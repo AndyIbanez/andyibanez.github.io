@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macos on Andy Ibanez</title>
+    <link>http://example.org/tags/macos/</link>
+    <description>Recent content in macos on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 21 Aug 2019 14:47:38 -0400</lastBuildDate>
+    
+	<atom:link href="http://example.org/tags/macos/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exploring the NSOperation APIs for Apple&#39;s Platforms</title>
+      <link>http://example.org/posts/exploring-the-nsoperation-apis/</link>
+      <pubDate>Wed, 21 Aug 2019 14:47:38 -0400</pubDate>
+      
+      <guid>http://example.org/posts/exploring-the-nsoperation-apis/</guid>
+      <description>The original title for this article was posted on my old website in 2012 and it was titled &amp;ldquo;Multithreading on iOS And Mac OS X Using NSOperations&amp;rdquo;. The original examples were written in Objective-C. This article has been rewritten from scratch not only to give the examples in Swift, but also to improve the quality of the old article. It has been shortened, and both language and tone have been revised.</description>
+    </item>
+    
+    <item>
+      <title>Fsduplicates</title>
+      <link>http://example.org/projects/fsduplicates/</link>
+      <pubDate>Sun, 26 Jun 2016 19:49:00 -0400</pubDate>
+      
+      <guid>http://example.org/projects/fsduplicates/</guid>
+      <description>Discontinued project. Developed in 2016
+Command line tool to detect duplicate songs in OS X/macOS based on their Audio Fingerprints.
+fsduplicates helps you find song duplicates recursively in any specific directory and output its findings in a different directory. With the generated results you can later analyse and take action on duplicate songs. The results are in plain text files, which you can analyse using any tool, like Unix standard commands, or fsduplicates’ tools.</description>
+    </item>
+    
+    <item>
+      <title>Leopaster</title>
+      <link>http://example.org/projects/leopaster/</link>
+      <pubDate>Sat, 04 Jan 2014 22:15:00 -0400</pubDate>
+      
+      <guid>http://example.org/projects/leopaster/</guid>
+      <description>Discontinued project. Developed in 2015
+Quick Status Bar Menu on OS X that allows you to quickly paste code on @DHowett’s ghostbin.com.
+ghostbin.com is a simple pasteboard service that allows people to paste code or any other text and to quickly share a link to them. These services allow developers to share code snippets faster to either request help with an specific piece of code, or to help others with theirs (Other uses may apply).</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.57.2" />
+
+    
+    
+    
+
+<title>rclone: From Basics to Encryption • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="rclone: From Basics to Encryption"/>
+<meta name="twitter:description" content="The original version of this article was titled &ldquo;rclone and Encryption Tutorial&rdquo; and was posted in the old version of my website. The original article was written in February 2017 for a much older version of rclone. This revised article covers rclone 1.48, and it has been rewritten from scratch to improve its quality. The examples used in the original article have been kept.
+rclone is a command line tool, similar to rsync, with the difference that it can sync, move, copy, and in general do other file operations on cloud storage services, such as Dropbox and Google Drive."/>
+
+<meta property="og:title" content="rclone: From Basics to Encryption" />
+<meta property="og:description" content="The original version of this article was titled &ldquo;rclone and Encryption Tutorial&rdquo; and was posted in the old version of my website. The original article was written in February 2017 for a much older version of rclone. This revised article covers rclone 1.48, and it has been rewritten from scratch to improve its quality. The examples used in the original article have been kept.
+rclone is a command line tool, similar to rsync, with the difference that it can sync, move, copy, and in general do other file operations on cloud storage services, such as Dropbox and Google Drive." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/rclone-basics-encryption/" />
+<meta property="article:published_time" content="2019-08-20T13:59:15-04:00" />
+<meta property="article:modified_time" content="2019-08-20T13:59:15-04:00" /><meta property="og:site_name" content="Software developer from La Paz, Bolivia" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="http://example.org/">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>rclone: From Basics to Encryption</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Aug 20, 2019
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/command-line">COMMAND LINE</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/rclone">rclone</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/linux">linux</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/command-line">command line</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 24 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<p><em>The original version of this article was titled &ldquo;rclone and Encryption Tutorial&rdquo; and was posted in the old version of my website. The original article was written in February 2017 for a much older version of rclone. This revised article covers rclone 1.48, and it has been rewritten from scratch to improve its quality. The examples used in the original article have been kept.</em></p>
+
+<p><a href="https://rclone.org/"><code>rclone</code></a> is a command line tool, similar to <a href="https://linux.die.net/man/1/rsync"><code>rsync</code></a>, with the difference that it can sync, move, copy, and in general do other file operations on cloud storage services, such as Dropbox and Google Drive. You can use <code>rclone</code> to create backups of your servers or personal computers or to simply store your files in the cloud, optionally adding encryption.</p>
+
+<p>rclone supports many different services, from customer services like Dropbox, Google Drive, and One Drive, to bucket-based storage services such as Wasabi and Backblaze 2, and even more traditional protocols such as FTP and Webdav. It even supports the local filesystem, so you can use rclone fully locally as well. For a list of all supported services and protocols, see <a href="https://rclone.org/overview/">this page</a>.</p>
+
+<h1 id="getting-started">Getting Started</h1>
+
+<h2 id="installation">Installation</h2>
+
+<p>The installation process for rclone is straightforward. There&rsquo;s little point in me explaining how to install it, because the <a href="http://rclone.org/install/">installation instructions</a> page has instructions for all major OSes.</p>
+
+<p>If you are on a Mac, I suggest you install it with <a href="https://www.andyibanez.com/rclone-encryption-tutorial/brew.sh">Homebrew</a>. If you have Homebrew installed, just type this command in your terminal followed by the Enter key:</p>
+
+<pre><code class="language-bash">brew install rclone
+</code></pre>
+
+<p>If you are on Windows instead, you can install it with <a href="https://chocolatey.org/packages/rclone">Chocolatey</a>. Simply open a Console window and type the following, followed by the Enter key:</p>
+
+<pre><code class="language-bash">choco install rclone
+</code></pre>
+
+<p>Once you have it installed, we&rsquo;ll explore some basic terminology to get you started with rclone.</p>
+
+<h2 id="basic-terminology">Basic Terminology</h2>
+
+<p>The most important concept of rclone is the <strong>remote</strong>. A remote is simply a cloud service you have configured in the tool. For example, if you configure your Dropbox account, it becomes a remote. You can have more than one remote for each cloud service type, so if you have two Dropbox accounts, you can configure a remote for each. You can then interact with your remotes with the command line. If you added your Dropbox and Google Accounts, you can share files between them (note that in that case the files will be downloaded to your computer before being sent to the destination remote), and you can also send files from your local filesystem to a remote, and vice-versa.</p>
+
+<p>With rclone, you execute <strong>commands</strong>. Things like <code>copy</code>, <code>move</code>, <code>sync</code> are all rclone commands. There&rsquo;s many more, and this article will not even cover half of them. It&rsquo;s good to know which ones exist though, so you can start adapting rclone to your use cases. Run the following command:</p>
+
+<pre><code class="language-bash">rclone
+</code></pre>
+
+<p>And the output will give you a list of commands rclone can do. It looks like this (this list has been truncated):</p>
+
+<pre><code class="language-bash">  copy            Copy files from source to dest, skipping already copied
+  copyto          Copy files from source to dest, skipping already copied
+  copyurl         Copy url content to dest.
+  cryptcheck      Cryptcheck checks the integrity of a crypted remote.
+  cryptdecode     Cryptdecode returns unencrypted file names.
+  dbhashsum       Produces a Dropbox hash file for all the objects in the path.
+  dedupe          Interactively find duplicate files and delete/rename them.
+  delete          Remove the contents of path.
+
+</code></pre>
+
+<p>rclone commands typically have at least two parameters: a <strong>source</strong> and a <strong>destination</strong>, where each is a remote. For commands that take two remote parameters, the source goes before the destination.</p>
+
+<p>Make sure you understand the four concepts above before moving.</p>
+
+<h1 id="rclone-basics">rclone Basics</h1>
+
+<h2 id="rclone-configuration">Rclone Configuration</h2>
+
+<p>You are about to configure your first remote. Open a command line window (or a Console window) and type the following:</p>
+
+<pre><code class="language-bash">rclone config
+</code></pre>
+
+<p>The <code>config</code> command allows you to add, delete, and modify existing remotes. All your remotes are stored in a <strong>config file</strong>. If you run the <code>rclone config file</code> command, you will see where your config file is stored. In my system, it prints <code>/Users/andyibanez/.config/rclone/rclone.conf</code>. Generally, you can recreate the contents of this file in another system or in a clean setup, but once we start dealing with encryption things can be a little bit messy in terms of management of your config file, so I recommend you keep a backup of it at all times.</p>
+
+<p>One additional thing you can with <code>rclone config</code> is to encrypt your config file itself (not to be confused with encrypted remotes, which we will explore later). Encrypting your config file is useful if you are you going to be using rclone in a computer you don&rsquo;t control, unless you trust the host enough that they aren&rsquo;t going to be looking at your rclone data.</p>
+
+<p>When running rclone, you can also pass it an alternative config file with the <code>--config</code> file. When this flag is missing, it will use the config stored in the path of <code>rclone config file</code>. We won&rsquo;t explore this idea further, but if you want to organize your remotes into different files or have any other use for separate config files, know that the option to have them is there.</p>
+
+<h3 id="your-first-remote">Your first remote</h3>
+
+<p>Once you run <code>rclone config</code>, you will see an output similar to this:</p>
+
+<pre><code class="language-bash">Name                 Type
+====                 ====
+GoogleDrive		  google drive
+ 
+e) Edit existing remote
+n) New remote
+d) Delete remote
+s) Set configuration password
+q) Quit config
+e/n/d/s/q&gt;
+</code></pre>
+
+<p>Since you do not have any remotes yet, you will not see the first four lines of the output. The first four lines show you your existing remotes and what service they are configured with. In the example above, you can see I have a remote of type <code>google drive</code>. In this example, we will configure a Google Drive remote, but feel free to use other types to experiment.</p>
+
+<p>Press <code>n</code> followed by the Enter key to create a new remote. The first prompt will be a <code>name</code>. This is just a name you assign to your remote so you can identify it later when doing a command such as <code>rclone listremotes</code> to view a list of all remotes in your config file. The name can be anything, just make sure it doesn&rsquo;t have any spaces. For example, if you want to add two Dropbox accounts, one for personal use and another one for business, you could create two remotes called <code>DropboxPersonal</code> or <code>DropboxBusiness</code>. I&rsquo;ll name mine <code>aibanezDrive</code>.</p>
+
+<p>The next prompt will ask you for the <code>Storage</code> type.</p>
+
+<pre><code class="language-bash"> 1 / A stackable unification remote, which can appear to merge the contents of several remotes
+   \ &quot;union&quot;
+ 2 / Alias for an existing remote
+   \ &quot;alias&quot;
+ 3 / Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 4 / Amazon S3 Compliant Storage Provider (AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, etc)
+   \ &quot;s3&quot;
+ 5 / Backblaze B2
+   \ &quot;b2&quot;
+ 6 / Box
+   \ &quot;box&quot;
+ 7 / Cache a remote
+   \ &quot;cache&quot;
+ 8 / Dropbox
+   \ &quot;dropbox&quot;
+ 9 / Encrypt/Decrypt a remote
+   \ &quot;crypt&quot;
+10 / FTP Connection
+   \ &quot;ftp&quot;
+11 / Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+12 / Google Drive
+   \ &quot;drive&quot;
+13 / Hubic
+   \ &quot;hubic&quot;
+14 / JottaCloud
+   \ &quot;jottacloud&quot;
+15 / Koofr
+   \ &quot;koofr&quot;
+16 / Local Disk
+   \ &quot;local&quot;
+17 / Mega
+   \ &quot;mega&quot;
+18 / Microsoft Azure Blob Storage
+   \ &quot;azureblob&quot;
+19 / Microsoft OneDrive
+   \ &quot;onedrive&quot;
+20 / OpenDrive
+   \ &quot;opendrive&quot;
+21 / Openstack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+22 / Pcloud
+   \ &quot;pcloud&quot;
+23 / QingCloud Object Storage
+   \ &quot;qingstor&quot;
+24 / SSH/SFTP Connection
+   \ &quot;sftp&quot;
+25 / Webdav
+   \ &quot;webdav&quot;
+26 / Yandex Disk
+   \ &quot;yandex&quot;
+27 / http Connection
+   \ &quot;http&quot;
+</code></pre>
+
+<p>Since we are configuring Google Drive, write in 12 and press Enter.</p>
+
+<hr>
+
+<p><strong>Important Note!</strong></p>
+
+<p>At the time this article was written, the current rclone version was 1.48. You can check your rclone version by running:</p>
+
+<pre><code class="language-bash">rclone version
+</code></pre>
+
+<pre><code class="language-bash">Andys-iMac-2:andyibanez andyibanez$ rclone version
+rclone v1.48.0
+- os/arch: darwin/amd64
+- go version: go1.12.6
+</code></pre>
+
+<p>There&rsquo;s generally no changes with how rclone commands work in each release, but it&rsquo;s very common for each update to add new cloud storage providers. In this current version, <code>Google Drive</code> is option <code>12</code>, but if you follow this article in a newer version, it&rsquo;s possible that the number assigned to Google Drive has changed. In fact, the initial version of this article which I wrote two years ago back in 2017, had Google Drive on number <code>7</code>! So be wary of that if you are reading this article and following it step by step.</p>
+
+<hr>
+
+<p>Many providers will prompt you for a <code>client_id</code> and a <code>client_secret</code>. You don’t need these most of the time. In general, if you are having any problems with rclone using specific remotes, the <a href="https://forum.rclone.org">community</a> will recommend you to use these parameters and how they should be used. If you are familiar with how web APIs work for services like Google Drive, then you know how to use these parameters and in that case I recommend you set them - but in case you don&rsquo;t the defaults should work fine, at least for the purposes of this article.</p>
+
+<p>For now, press Enter when it prompts you for each to leave them blank. But if you are inclined to fill these values (which is recommended for long term usage anyway), you can go <a href="https://rclone.org/drive/#making-your-own-client-id">here</a> to find instructions on how to get your client ID and client secret.</p>
+
+<p>The output will look like this:</p>
+
+<pre><code class="language-bash">Google Application Client Id
+Setting your own is recommended.
+See https://rclone.org/drive/#making-your-own-client-id for how to create your own.
+If you leave this blank, it will use an internal key which is low performance.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_id&gt; 
+Google Application Client Secret
+Setting your own is recommended.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+client_secret&gt; 
+</code></pre>
+
+<p>You will then be asked for the scope. This configuration is specific to Google Drive. This setting allows you choose what &ldquo;space&rdquo; it will have in your Google Drive folder. The first option will grant rclone access to every single folder and file in your drive, with the exception of <code>App Data</code>. App Data is a special folder. Generally mobile applications that interact with Google Drive can store their data here and have it inaccessible to anyone outside. Think of WhatsApp for Google Drive - it&rsquo;s backups are stored in the App Data folder and it&rsquo;s not visible even to you. You can choose this folder to give rclone a special container to store files in. This will prevent your main Google Drive view from being polluted with encrypted files that you can&rsquo;t view without rclone itself, which is handy if you use the web client. I personally use this option for my backups, but know that if you use this option, it&rsquo;s really recommended you backup your config file.</p>
+
+<p>All other scopes but the first one are outside the scope of this article, so write <code>1</code> followed by the Enter key. This will grant rclone standard access to the root of your Google Drive account and it will be able to see all your files and folders.</p>
+
+<pre><code class="language-bash">Scope that rclone should use when requesting access from drive.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 / Full access all files, excluding Application Data Folder.
+   \ &quot;drive&quot;
+ 2 / Read-only access to file metadata and file contents.
+   \ &quot;drive.readonly&quot;
+   / Access to files created by rclone only.
+ 3 | These are visible in the drive website.
+   | File authorization is revoked when the user deauthorizes the app.
+   \ &quot;drive.file&quot;
+   / Allows read and write access to the Application Data folder.
+ 4 | This is not visible in the drive website.
+   \ &quot;drive.appfolder&quot;
+   / Allows read-only access to file metadata but
+ 5 | does not allow any access to read or download file content.
+   \ &quot;drive.metadata.readonly&quot;
+scope&gt; 1
+</code></pre>
+
+<p>Next you will be asked to put in a <code>root_folder_id</code>. This is an interesting option, but not one we will be using in this article. It allows you restrict rclone to certain folders, even the <code>Computers</code> folders the Backup and Sync program uses to store files in. For now leave it blank and press Enter.</p>
+
+<pre><code class="language-bash">ID of the root folder
+Leave blank normally.
+Fill in to access &quot;Computers&quot; folders. (see docs).
+Enter a string value. Press Enter for the default (&quot;&quot;).
+root_folder_id&gt; 
+</code></pre>
+
+<p>You will now be asked for the path to a JSON file (<code>service_account_file</code>). This allows you to change the authentication method with Google Drive. We definitely don&rsquo;t want this now, so leave it blank and press Enter.</p>
+
+<pre><code class="language-bash">Service Account Credentials JSON file path 
+Leave blank normally.
+Needed only if you want use SA instead of interactive login.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+service_account_file&gt; 
+</code></pre>
+
+<p>After that you will be asked if you want to use advanced configurations. We aren&rsquo;t, so press <code>n</code> followed by Enter.</p>
+
+<pre><code class="language-bash">Edit advanced config? (y/n)
+y) Yes
+n) No
+y/n&gt; n
+</code></pre>
+
+<p>Finally, you will be asked if you want to use auto config. If you configure rclone in your Mac, or Windows, or in another system with a GUI, you can say no to this. If you were configuring rclone in a headless system (like SSHing into a Linux system with no GUI), you need to say yes to this.</p>
+
+<p>Since you are working on a Mac, Windows, or Linux with a GUI, press <code>n</code> followed by Enter.</p>
+
+<pre><code class="language-bash">Remote config
+Use auto config?
+ * Say Y if not sure
+ * Say N if you are working on a remote or headless machine
+y) Yes
+n) No
+</code></pre>
+
+<p>This will launch your default browser with a Google Drive authorization page.</p>
+
+<p><img src="/img/rclone_login.png" alt="rclone Authorization Page" /></p>
+
+<p>Once you are done authorizing your account, you will see another page with this in it:</p>
+
+<p><img src="/img/rclone_success.png" alt="rclone Success" /></p>
+
+<p>If you are asked if you want to configure it as a team drive, press <code>n</code> followed by Enter:</p>
+
+<pre><code class="language-bash">Configure this as a team drive?
+y) Yes
+n) No
+y/n&gt; n
+</code></pre>
+
+<p>rclone will print something like this in the console at the end, showing you information about your newly created remote. It may look differently depending on how and what parameters you have configured.</p>
+
+<pre><code class="language-bash">[aibanezDrive]
+client_id = 
+client_secret = 
+token = {...}
+</code></pre>
+
+<p>Press <code>y</code> followed by Enter. Your new remote has been created, and you are finally read to use it.</p>
+
+<h1 id="interacting-with-your-first-remote">Interacting With Your First Remote</h1>
+
+<p>Before we do anything, run:</p>
+
+<pre><code class="language-bash">rclone listremotes
+</code></pre>
+
+<p>To view a list of all your remotes. Your newly created remote should look like this:</p>
+
+<pre><code class="language-bash">aibanezDrive:
+</code></pre>
+
+<p>As you configure more remotes, they will show up in that list.</p>
+
+<p>We will create a list of files and directories and upload them to our Google Drive account using rclone. I need to remind you that we are currently playing with a non encrypted remote, so don’t choose any files you wouldn’t store unencrypted in the cloud. We will create the encrypted remote later.</p>
+
+<p>Go to your desktop and create a few files there. I created a directory called <code>~/Desktop/Cards</code> and I created this directory structure with files:</p>
+
+<pre><code class="language-bash">Cards
+ - Sakura
+   - The Mirror
+   - The Fly
+   - The Sword
+   - The Arrow
+ - Shaoran
+   - The Time
+   - The Storm
+   - The Return
+   - The Freeze
+ - None.txt
+</code></pre>
+
+<p>Where <code>Sakura</code> and <code>Shaoran</code> are directories, and everything starting with <code>The</code> is a file. If you want to use this same directory structure, you can run this small bash script to create the files in the same location as mine:</p>
+
+<pre><code class="language-bash">mkdir ~/Desktop/Cards &amp;&amp; cd ~/Desktop/Cards
+mkdir Sakura Shaoran
+touch Sakura/The\ Mirror
+touch Sakura/The\ Fly
+touch Sakura/The\ Sword
+touch Sakura/The\ Return
+touch Shaoran/The\ Time
+touch Shaoran/The\ Storm
+touch Shaoran/The\ Return
+touch Shaoran/The\ Freeze
+touch None.txt
+</code></pre>
+
+<h2 id="copying-the-local-directory-to-your-newly-created-google-drive-remote">Copying the Local Directory to Your Newly Created Google Drive Remote</h2>
+
+<p>The command to copy files and directories is very straight forward.</p>
+
+<pre><code class="language-bash">rclone copy LOCAL_DIRECTORY_OR_FILE REMOTE_DIRECTORY
+</code></pre>
+
+<p>This will copy <code>LOCAL_DIRECTORY_OR_FILE</code> to <code>REMOTE_DIRECTORY</code>. Fun little feature here is that rclone will skip everything that already exists in <code>REMOTE_DIRECTORY</code> by default, so you can use this command to do a very primitive version of incremental backups. For backups, I recommend you use the <code>sync</code> command instead, as it will mirror the <code>LOCAL_DIRECTORY_OR_FILE</code> exactly as it is on <code>REMOTE_DIRECTORY</code>. When you add files they will be added to the destination; when you change files they will be changed in the destination as well; when you delete files, they will also be deleted from the destination. Covering sync is outside the scope of this article, but keep in mind if you are interested in doing backups.</p>
+
+<p>You can copy entire directories or single files only. rclone is very flexible in that aspect.</p>
+
+<p>When you want to copy something to a remote, you write your remote <code>name</code>, followed by a <code>:</code>, and finally the path where you want to copy to.</p>
+
+<p>Going back to the example we are building, rewrite the last command like this:</p>
+
+<pre><code class="language-bash">rclone copy ~/Desktop/Cards aibanezDrive:/Cards
+</code></pre>
+
+<p>Depending on your internet connection, it could take a while, but they are all small files so hopefully that&rsquo;s not the case.</p>
+
+<p>After running the command, rclone will give you a nice little report of how everything went.</p>
+
+<pre><code class="language-bash">Transferred:      0 Bytes (0 Bytes/s)
+Errors:                 0
+Checks:                 0
+Transferred:            9
+Elapsed time:       28.9s
+</code></pre>
+
+<p>Always check these stats after running rclone to ensure your destination is not missing any data. When rclone detects the same files on the destination as in the origin already, it will run a <code>Check</code> instead of uploading it directly. This will ensure that, if the files are the same, they are skipped. If the files are different, they will be overridden in the destination.</p>
+
+<p>Login to your Google Drive account using your web browser. You will see the Cards directory at the root of your account.</p>
+
+<p><img src="/img/rclone_cards.png" alt="rclone Cards" /></p>
+
+<p>And if you go inside that directory, you will find your other directories and files.</p>
+
+<p><img src="/img/rclone_more_dirs.png" alt="rclone More Dirs" /></p>
+
+<p><img src="/img/rclone_files.png" alt="rclone Files" /></p>
+
+<p>Back on your terminal or console, you can type <code>rclone lsd aibanezDrive:/Cards</code>. This will list all the contents inside the <code>Cards</code> directory. If you do <code>rclone ls aibanezDrive:/Cards</code> instead, it will list all the contents instead. Be careful with this, because if you have a lot of data, <code>ls</code> can take a very long time to complete, as it will try to list every single file inside the specified path. You should prefer <code>lsd</code> over <code>ls</code> unless you understand how they are used.</p>
+
+<h2 id="copying-files-from-your-remotes-to-your-local-filesystem">Copying Files From Your Remotes to Your Local Filesystem</h2>
+
+<p>In the last section we copied local files to our remote. This time we will do it the other way around. Doing this is as easy as switching the source and destination around.</p>
+
+<p>Go ahead and upload any file to your Google Drive account. I uploaded a file called &ldquo;IMG_1434.JPG&rdquo; and I uploaded it the root of my account. If I wanted to copy this file from my Drive account to my Local computer, inside the <code>~/Desktop/Cards</code> directory using rclone, I’d use this command:</p>
+
+<pre><code class="language-bash">rclone copy aibanezDrive:/IMG_1434.JPG ~/Desktop/Cards
+</code></pre>
+
+<p>And don&rsquo;t forget that you can use this to download single files or entire directories if you please.</p>
+
+<h2 id="additional-commands">Additional Commands</h2>
+
+<p>It&rsquo;s beyond the scope of this article to talk about every single command and flag, but I thought I should mention a few of the most used ones.</p>
+
+<p>rclone Supports a whole lot of commands as listed in their <a href="http://rclone.org/docs/">Documentation</a>. Some useful ones are <code>sync</code> (it keeps a remote directory in sync with a local one), <code>move</code>, <code>delete</code> (remove the contents of a path), <code>purge</code> (remove a path and all its contents), <code>ls</code> (List all the objects in the specified path), <code>lsd</code> (list all the directories under the path), <code>mkdir</code>, and <code>rmdir</code>.</p>
+
+<p>Some interesting flags you can use with your commands include but are not limited to <code>--bwlimit</code>, to limit the amount of bandwidth rclone will use, and <code>--transfers</code> to limit the amount of files that get transferred in batch.</p>
+
+<hr>
+
+<p><strong>Important Note!</strong></p>
+
+<p>It’s important to note that some commands and flags may not work or may behave differently based on what kind of remote you are using. The <a href="http://rclone.org/overview/">Storage Systems Overview page</a> has a helpful table and a few notes for how commands may behave. There’s also a page for every supported remote that lists their quirks, features, and possible different behaviors for common commands.</p>
+
+<hr>
+
+<h1 id="setting-up-encryption-with-rclone">Setting up Encryption with rclone</h1>
+
+<p>When we discussed what a remote means earlier, I said that a remote is a cloud account added to rclone. This is not strictly true, as there two notable exceptions to this.</p>
+
+<p>There&rsquo;s two remote types that don&rsquo;t act as a cloud account. Instead, they sit &ldquo;on top&rdquo; of a normal remote to do their job. Said remotes are <code>crypt</code> and <code>cache</code>, and I just call them &ldquo;special&rdquo; remotes. We will only cover <code>crypt</code> in this article.</p>
+
+<p>The <code>crypt</code> remote takes another remote name as part of its configuration. The <code>crypt</code> remote itself never touches the cloud directly. Instead, when you are uploading something, it encrypts the data, hands it over to the underlying remote, and this underlying remote will do the uploading on its behalf. Likewise, when you download something, <code>crypt</code> just requests the encrypted data to the underlying remote, which in turns gives the encrypted blobs to <code>crypt</code>, who will decrypt them. Everything <code>crypt</code> does is to encrypt and decrypt data, and the underlying remote does the actual downloading and uploading.</p>
+
+<p>In this section, I will show you how the <code>aibanezDrive</code> remote we created earlier acts as the underlying remote for a new <code>crypt</code> remote we are about to create. Note that once you configure a crypt remote on top of a normal remote, you can still use both remotes normally, so be careful you choose the right remote when uploading, otherwise you might upload something sensitive unencrypted by default.</p>
+
+<h2 id="creating-a-crypt-remote">Creating a Crypt Remote</h2>
+
+<p>Before we create the new remote, delete the <code>/Cards</code> folder from your Google Drive (if you created it), as we will be using this same directory to show how <code>crypt</code> works.</p>
+
+<p>We need to run <code>rclone config</code> again. Press <code>n</code> followed by Enter to create a new remote.</p>
+
+<p>One thing I don’t like about rclone is that, when listing your remotes, you can’t see what underlying remote a <code>crypt</code> remote is using, so when prompted for the name, I recommend you choose one that can help you identify both the crypt and the underlying remote. I will be naming mine <code>aibanezDrive_Crypt</code>.</p>
+
+<p>After the name, you will be asked for the <code>Storage</code> type. Choose <code>9</code> which is the <code>crypt</code> type.</p>
+
+<p>You will now be prompted for the underlying remote. Remember, this is the remote that will do the actual uploading and downloading, so write the name of the remote where you want to store your encrypted data. In this case it&rsquo;s <code>aibanezDrive</code>.</p>
+
+<pre><code class="language-bash">Remote to encrypt/decrypt.
+Normally should contain a ':' and a path, eg &quot;myremote:path/to/dir&quot;,
+&quot;myremote:bucket&quot; or maybe &quot;myremote:&quot; (not recommended).
+Enter a string value. Press Enter for the default (&quot;&quot;).
+remote&gt; aibanezDrive:/Cards
+</code></pre>
+
+<p>A small discussion is in order here. First, the <code>remote&gt;</code> we are using contains both the remote and a path (<code>aibanezDrive:/Cards</code>). A crypt remote can store it&rsquo;s data in just a folder somewhere in the underlying remote, or it can use the entirety of it. You should configure a special folder to store the encrypted data in, because rclone will have problems dealing with the contents of a remote that has both encrypted and unencrypted data. In the example above, the underlying remote is <code>aibanezDrive:</code>, and the root folder for crypt is <code>/Cards</code> inside of it. This means that the <code>crypt</code> remote will not be able to write or read outside the <code>/Cards</code> directory. When you use Google Drive through the drive client, you will see the <code>/Cards</code> directory, but everything inside of it will be gibberish.</p>
+
+<p>Next you will be asked if you want to encrypt the file names. Rclone can upload the filenames with their original names while encrypting their content. The choice is up to you, but I prefer to encrypt the file names. So write <code>2</code> followed  by Enter.</p>
+
+<pre><code class="language-bash">How to encrypt the filenames.
+Enter a string value. Press Enter for the default (&quot;standard&quot;).
+Choose a number from below, or type in your own value
+ 1 / Don't encrypt the file names.  Adds a &quot;.bin&quot; extension only.
+   \ &quot;off&quot;
+ 2 / Encrypt the filenames see the docs for the details.
+   \ &quot;standard&quot;
+ 3 / Very simple filename obfuscation.
+   \ &quot;obfuscate&quot;
+</code></pre>
+
+<hr>
+
+<p><strong>Important Note!</strong></p>
+
+<p>Some remote types can&rsquo;t deal with very long file names or paths. Encrypting the files will make the file names longer as rclone stores metadata within the encrypted filename.</p>
+
+<p>As a personal anecdote, when I used the Amazon Drive remote, there was a limitation to file length and I couldn&rsquo;t nest my files very deeply because of it. I haven&rsquo;t had any similar issues with Google Drive yet, but your mileage may very.</p>
+
+<p>In general, if your file names are below 156 characters, you should be fine on all providers. Please refer to the <a href="http://rclone.org/crypt/">crypt documentation</a> to see if you can find any limitations with the file paths lengths with the remote types you intend on using.</p>
+
+<hr>
+
+<p>You will now be asked if you want to encrypt directory names. Just like file names, you can leave them unencrypted. I prefer to encrypt them, but keep in mind that directory names are also longer when encrypted.</p>
+
+<p>Press <code>1</code> followed by Enter.</p>
+
+<pre><code class="language-bash">Option to either encrypt directory names or leave them intact.
+Enter a boolean value (true or false). Press Enter for the default (&quot;true&quot;).
+Choose a number from below, or type in your own value
+ 1 / Encrypt directory names.
+   \ &quot;true&quot;
+ 2 / Don't encrypt directory names, leave them intact.
+   \ &quot;false&quot;
+directory_name_encryption&gt; 1
+</code></pre>
+
+<p>Next you will be asked if you want to provide your own encryption password or have one generated by rclone. This is where you need to be careful. The password will be stored in a secure manner inside your config file. It&rsquo;s very hard to retrieve the password from the config file later. Once the <code>crypt</code> remote has a password, you never have to worry about writing it down again as rclone will handle all that for you. For this reason, if you choose <code>y</code>es, you have to make sure you will never lose your password. If you choose <code>g</code>enerate, you have to be responsible and backup your rclone config file. You should always backup your config file regardless of what you choose, but if you chose <code>y</code> and you remember your password, you can recreate the remote and access your data in case you lose the original config. If you choose <code>g</code> and you lose your config file, you will never have access to the encrypted data ever again. So be careful here, and remember, backup, backup, backup!</p>
+
+<p>Choose <code>y</code> to write your own password for now.</p>
+
+<pre><code class="language-bash">Password or pass phrase for encryption.
+y) Yes type in my own password
+g) Generate random password
+n) No leave this optional password blank
+y/g/n&gt; y
+</code></pre>
+
+<p>You will be prompted twice for your password.</p>
+
+<p>To complicate things a bit, you are given the option to generate a second password. The options are the same as above, as are the implications of each. I always choose <code>g</code> because I keep this data stored in my password manager.</p>
+
+<pre><code class="language-bash">Password or pass phrase for salt. Optional but recommended.
+Should be different to the previous password.
+y) Yes type in my own password
+g) Generate random password
+n) No leave this optional password blank
+y/g/n&gt; y
+</code></pre>
+
+<p>Next you will be prompted if you want to use advanced config. Press <code>n</code> followed by <code>Enter</code>.</p>
+
+<p>Finally rclone will print your newly created <code>crypt</code> remote info.</p>
+
+<pre><code class="language-bash">[aibanezDrive_Crypt]
+type = crypt
+remote = aibanezDrive:/Cards
+filename_encryption = standard
+directory_name_encryption = true
+password = *** ENCRYPTED ***
+password2 = *** ENCRYPTED ***
+</code></pre>
+
+<p>We are ready to use our new shiny remote.</p>
+
+<h2 id="using-a-crypt-remote">Using a Crypt Remote</h2>
+
+<p>The nice thing about rclone is that once you have used a remote type, you have used them all. The syntax for the common commands such as <code>copy</code> does not change at all, whether you are using a Dropbox remote or a crypt remote. Run the following to upload the <code>~/Desktop/Cards</code> directory once again, but this time with your crypt remote:</p>
+
+<pre><code class="language-bash">rclone copy ~/Desktop/Cards aibanezDrive_Crypt:/
+</code></pre>
+
+<p>Now, open Google Drive in the web client and open the <code>/Cards</code> directory. You will see the right amount of folders and files, but their filenames are complete gibberish and even their contents are encrypted.</p>
+
+<p><img src="/img/rclone_crypt.png" alt="rclone Crypt Results" /></p>
+
+<p>Now the only way to access these files is with rclone. rclone knows how to do the right thing. List the remote&rsquo;s contents:</p>
+
+<pre><code class="language-bash">rclone ls aibanezDrive_Crypt:/
+</code></pre>
+
+<pre><code class="language-bash">Andys-iMac:Cards andyibanez$ rclone ls aibanezDrive_Crypt:/
+   358768 IMG_1434.JPG
+        0 None.txt
+        0 Shaoran/The Freeze
+        0 Shaoran/The Return
+        0 Shaoran/The Storm
+        0 Shaoran/The Time
+        0 Sakura/The Sword
+        0 Sakura/The Mirror
+        0 Sakura/The Return
+        0 Sakura/The Fly
+</code></pre>
+
+<p>And rclone will show you the decrypted filenames for you.</p>
+
+<p>If you use <code>copy</code> to copy from the crypt remote to your computer, rclone will decrypt the files and their names. rclone&rsquo;s encryption method is really transparent, and you never have to concern yourself with the details of how it&rsquo;s done.</p>
+
+<pre><code class="language-bash">rclone copy aibanezDrive_Crypt:/Sakura ~/Desktop/restored
+</code></pre>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>rclone is a great tool to interact with cloud storage services from the command line. It&rsquo;s encryption support is transparent and very easy to use. As long as you keep a backup of your <code>rclone.conf</code> file, you will never lose access to your encrypted files.</p>
+
+<h1 id="where-to-go-from-here">Where to Go From Here</h1>
+
+<p>Once you are familiar with rclone, I recommend you explore the <a href="https://rclone.org">Official Site</a> of the project so you can learn more advanced tasks you can do. Take some time to explore the documentation to learn how to use other commands, as well as how to use certain flags with certain commands. A particular command I use a lot is <code>sync</code> with the <code>--log-file</code> and <code>--backup-dir</code> flags. This allows me to check that all files were synced properly to the remote, and to move the ones that were different or deleted someplace else instead of outright removing them (for incremental backups). But there&rsquo;s much more you can do, and the only way to learn all the power of rclone is to browse the documentation and play around with it. In the future, I may share my backup strategies with rclone to give you ideas how you can use this amazing tool.</p>
+
+<hr>
+
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. rclone is a living project, so some things may change overtime and this article may need to be revised. Thank you!</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    
+    <a href="/posts/exploring-the-nsoperation-apis/" class="navigation-next">
+      <span class="navigation-tittle">Exploring the NSOperation APIs for Apple&#39;s Platforms</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/bash.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["bash"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

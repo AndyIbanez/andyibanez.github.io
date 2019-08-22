@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://example.org/</loc>
+    <lastmod>2019-08-22T15:30:53-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/old-content/</loc>
+    <lastmod>2019-08-22T15:30:53-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/apple/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/development/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/exploring-the-nsoperation-apis/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/ios/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/macos/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/programming/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/swift/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/tvos/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/watchos/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/command-line/</loc>
+    <lastmod>2019-08-20T13:59:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/command-line/</loc>
+    <lastmod>2019-08-20T13:59:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/linux/</loc>
+    <lastmod>2019-08-20T13:59:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/rclone/</loc>
+    <lastmod>2019-08-20T13:59:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/posts/rclone-basics-encryption/</loc>
+    <lastmod>2019-08-20T13:59:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/privacy-policies/nae1/</loc>
+    <lastmod>2019-08-19T22:29:10-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/privacy-policies/</loc>
+    <lastmod>2019-08-19T22:29:10-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/about/</loc>
+    <lastmod>2019-08-19T17:33:01-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/app-store/</loc>
+    <lastmod>2017-05-08T21:06:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/nextanimeepisode1/</loc>
+    <lastmod>2017-05-08T21:06:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/</loc>
+    <lastmod>2017-05-08T21:06:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/categories/projects/</loc>
+    <lastmod>2017-05-08T21:06:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/fsduplicates/</loc>
+    <lastmod>2016-06-26T19:49:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/open-source/</loc>
+    <lastmod>2016-06-26T19:49:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/mignoribox/</loc>
+    <lastmod>2014-03-26T19:13:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/php/</loc>
+    <lastmod>2014-03-26T19:13:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/web/</loc>
+    <lastmod>2014-03-26T19:13:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/mignori1/</loc>
+    <lastmod>2014-03-03T17:17:17-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/leopaster/</loc>
+    <lastmod>2014-01-04T22:15:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/cecrecy/</loc>
+    <lastmod>2014-01-04T22:07:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/cydia/</loc>
+    <lastmod>2014-01-04T22:07:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/tags/jailbreak/</loc>
+    <lastmod>2014-01-04T22:07:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/maulencer/</loc>
+    <lastmod>2014-01-04T21:58:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/sideswitch-toggles/</loc>
+    <lastmod>2014-01-04T21:46:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/silight/</loc>
+    <lastmod>2014-01-04T21:39:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/combox/</loc>
+    <lastmod>2014-01-04T18:54:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://example.org/projects/sb-converter/</loc>
+    <lastmod>2014-01-04T18:25:00-04:00</lastmod>
+  </url>
+  
+</urlset>
