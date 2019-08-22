@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Andy Ibanez</title>
-    <link>http://example.org/categories/</link>
+    <link>https://www.andyibanez.com/categories/</link>
     <description>Recent content in Categories on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 21 Aug 2019 14:47:38 -0400</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andyibanez.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>development</title>
-      <link>http://example.org/categories/development/</link>
+      <link>https://www.andyibanez.com/categories/development/</link>
       <pubDate>Wed, 21 Aug 2019 14:47:38 -0400</pubDate>
       
-      <guid>http://example.org/categories/development/</guid>
+      <guid>https://www.andyibanez.com/categories/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>command line</title>
-      <link>http://example.org/categories/command-line/</link>
+      <link>https://www.andyibanez.com/categories/command-line/</link>
       <pubDate>Tue, 20 Aug 2019 13:59:15 -0400</pubDate>
       
-      <guid>http://example.org/categories/command-line/</guid>
+      <guid>https://www.andyibanez.com/categories/command-line/</guid>
       <description></description>
     </item>
     
     <item>
       <title>projects</title>
-      <link>http://example.org/categories/projects/</link>
+      <link>https://www.andyibanez.com/categories/projects/</link>
       <pubDate>Mon, 08 May 2017 21:06:00 -0400</pubDate>
       
-      <guid>http://example.org/categories/projects/</guid>
+      <guid>https://www.andyibanez.com/categories/projects/</guid>
       <description></description>
     </item>
     

@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>cydia on Andy Ibanez</title>
-    <link>http://example.org/tags/cydia/</link>
+    <link>https://www.andyibanez.com/tags/cydia/</link>
     <description>Recent content in cydia on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Jan 2014 22:07:00 -0400</lastBuildDate>
     
-	<atom:link href="http://example.org/tags/cydia/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andyibanez.com/tags/cydia/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Cecrecy</title>
-      <link>http://example.org/projects/cecrecy/</link>
+      <link>https://www.andyibanez.com/projects/cecrecy/</link>
       <pubDate>Sat, 04 Jan 2014 22:07:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/cecrecy/</guid>
+      <guid>https://www.andyibanez.com/projects/cecrecy/</guid>
       <description>Discontinued project. Developed in 2013.
 If you want to protect app data from your friends or family that are constantly asking for your iDevice, there are a couple of things you can do: You can tell them not to enter certain apps, empowering their curiosity and therefore exposing your private data, or you can passcode-lock certain apps, which if they see, they will just wonder what you’re hiding that they can’t see.</description>
     </item>
     
     <item>
       <title>Maulencer</title>
-      <link>http://example.org/projects/maulencer/</link>
+      <link>https://www.andyibanez.com/projects/maulencer/</link>
       <pubDate>Sat, 04 Jan 2014 21:58:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/maulencer/</guid>
+      <guid>https://www.andyibanez.com/projects/maulencer/</guid>
       <description>Discontinued project. Developed in 2013.
 A friend of mine had his hardware ringer of his phone die on him. Because of that, toggling the ringer on and off was quite a chore for him. Without installing SBSettings or anything equivalent to that, he had to go to the settings app and toggle the ringer on and off there.
 So he asked me to write an icon on SpringBoard that would toggle the ringer.</description>
@@ -34,10 +34,10 @@ So he asked me to write an icon on SpringBoard that would toggle the ringer.</de
     
     <item>
       <title>Sideswitch Toggles</title>
-      <link>http://example.org/projects/sideswitch-toggles/</link>
+      <link>https://www.andyibanez.com/projects/sideswitch-toggles/</link>
       <pubDate>Sat, 04 Jan 2014 21:46:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/sideswitch-toggles/</guid>
+      <guid>https://www.andyibanez.com/projects/sideswitch-toggles/</guid>
       <description>Discontinued project. Developed in 2012.
 Sideswitch Toggles is a MobileSubstrate tweak that gives you full control over your iPhone’s Ringer (and as such, it isn’t available for the iPod Touch). The tweak simply modifies the action that happens when you toggle the ringer on and off.
 By default, Sideswitch Toggles comes with the ability to toggle Bluetooth, Wi-Fi, Airplane Mode, and Do Not Disturb. The capabilities of Sideswitch can be easily extended by other developers.</description>
@@ -45,10 +45,10 @@ By default, Sideswitch Toggles comes with the ability to toggle Bluetooth, Wi-Fi
     
     <item>
       <title>Silight</title>
-      <link>http://example.org/projects/silight/</link>
+      <link>https://www.andyibanez.com/projects/silight/</link>
       <pubDate>Sat, 04 Jan 2014 21:39:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/silight/</guid>
+      <guid>https://www.andyibanez.com/projects/silight/</guid>
       <description>Discontinued project. Developed in 2011
 SiLight is a small AssistantExtension that allows Siri to turn on your phone’s torch to use it as a flashlight. SiLight is a real quick flashlight, since commands work in the Lockscreen too. SiLight was programmed having natural speech in mind, instead of talking to her like a robot (“flashlight on”) you can ask her as you would ask anyone (“I need a flashlight”, “Siri, there’s a blackout”).</description>
     </item>

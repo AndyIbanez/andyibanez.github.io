@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>development on Andy Ibanez</title>
-    <link>http://example.org/categories/development/</link>
+    <link>https://www.andyibanez.com/categories/development/</link>
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 21 Aug 2019 14:47:38 -0400</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/development/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploring the NSOperation APIs for Apple&#39;s Platforms</title>
-      <link>http://example.org/posts/exploring-the-nsoperation-apis/</link>
+      <link>https://www.andyibanez.com/posts/exploring-the-nsoperation-apis/</link>
       <pubDate>Wed, 21 Aug 2019 14:47:38 -0400</pubDate>
       
-      <guid>http://example.org/posts/exploring-the-nsoperation-apis/</guid>
+      <guid>https://www.andyibanez.com/posts/exploring-the-nsoperation-apis/</guid>
       <description>The original title for this article was posted on my old website in 2012 and it was titled &amp;ldquo;Multithreading on iOS And Mac OS X Using NSOperations&amp;rdquo;. The original examples were written in Objective-C. This article has been rewritten from scratch not only to give the examples in Swift, but also to improve the quality of the old article. It has been shortened, and both language and tone have been revised.</description>
     </item>
     

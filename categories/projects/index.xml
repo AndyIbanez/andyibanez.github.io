@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>projects on Andy Ibanez</title>
-    <link>http://example.org/categories/projects/</link>
+    <link>https://www.andyibanez.com/categories/projects/</link>
     <description>Recent content in projects on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 08 May 2017 21:06:00 -0400</lastBuildDate>
     
-	<atom:link href="http://example.org/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andyibanez.com/categories/projects/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Next Anime Episode</title>
-      <link>http://example.org/projects/nextanimeepisode1/</link>
+      <link>https://www.andyibanez.com/projects/nextanimeepisode1/</link>
       <pubDate>Mon, 08 May 2017 21:06:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/nextanimeepisode1/</guid>
+      <guid>https://www.andyibanez.com/projects/nextanimeepisode1/</guid>
       <description>Download on the App Store | Privacy Policy
 Next Anime Episode does one job: To help you keep track of airing anime and when they will have a new episode available in Japan.
 Generally, sub based simulcast streaming services have the newest episodes available within one hour after they air in Japan.
@@ -25,10 +25,10 @@ Simply browse the currently airing chart, select which anime you are interested 
     
     <item>
       <title>Fsduplicates</title>
-      <link>http://example.org/projects/fsduplicates/</link>
+      <link>https://www.andyibanez.com/projects/fsduplicates/</link>
       <pubDate>Sun, 26 Jun 2016 19:49:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/fsduplicates/</guid>
+      <guid>https://www.andyibanez.com/projects/fsduplicates/</guid>
       <description>Discontinued project. Developed in 2016
 Command line tool to detect duplicate songs in OS X/macOS based on their Audio Fingerprints.
 fsduplicates helps you find song duplicates recursively in any specific directory and output its findings in a different directory. With the generated results you can later analyse and take action on duplicate songs. The results are in plain text files, which you can analyse using any tool, like Unix standard commands, or fsduplicates’ tools.</description>
@@ -36,10 +36,10 @@ fsduplicates helps you find song duplicates recursively in any specific director
     
     <item>
       <title>Mignori Box</title>
-      <link>http://example.org/projects/mignoribox/</link>
+      <link>https://www.andyibanez.com/projects/mignoribox/</link>
       <pubDate>Wed, 26 Mar 2014 19:13:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/mignoribox/</guid>
+      <guid>https://www.andyibanez.com/projects/mignoribox/</guid>
       <description>Discontinued project. Developed in 2014.
 Mignori Box was a service to download your Mignori 1 collections to your computer.
 The website was built using the classic web technologies. Twitter Bootstrap and jQuery for the front-end, PHP and even Bash for the backend. The site was hosted in a VPS provided by DigitalOcean.</description>
@@ -47,10 +47,10 @@ The website was built using the classic web technologies. Twitter Bootstrap and 
     
     <item>
       <title>Mignori 1</title>
-      <link>http://example.org/projects/mignori1/</link>
+      <link>https://www.andyibanez.com/projects/mignori1/</link>
       <pubDate>Mon, 03 Mar 2014 17:17:17 -0400</pubDate>
       
-      <guid>http://example.org/projects/mignori1/</guid>
+      <guid>https://www.andyibanez.com/projects/mignori1/</guid>
       <description>Discontinued project, but a new version is in the works. Developed in 2014.
 Mignori is a mobile client to use with -booru or -booru based sites (Gelbooru and Danbooru, to name a few).
 A -booru imageboard is simply a board where people post pictures and tag with them relevant attributes. This allows other users to search for images in these boards and find images with the qualities they’re looking for.</description>
@@ -58,10 +58,10 @@ A -booru imageboard is simply a board where people post pictures and tag with th
     
     <item>
       <title>Leopaster</title>
-      <link>http://example.org/projects/leopaster/</link>
+      <link>https://www.andyibanez.com/projects/leopaster/</link>
       <pubDate>Sat, 04 Jan 2014 22:15:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/leopaster/</guid>
+      <guid>https://www.andyibanez.com/projects/leopaster/</guid>
       <description>Discontinued project. Developed in 2015
 Quick Status Bar Menu on OS X that allows you to quickly paste code on @DHowett’s ghostbin.com.
 ghostbin.com is a simple pasteboard service that allows people to paste code or any other text and to quickly share a link to them. These services allow developers to share code snippets faster to either request help with an specific piece of code, or to help others with theirs (Other uses may apply).</description>
@@ -69,20 +69,20 @@ ghostbin.com is a simple pasteboard service that allows people to paste code or 
     
     <item>
       <title>Cecrecy</title>
-      <link>http://example.org/projects/cecrecy/</link>
+      <link>https://www.andyibanez.com/projects/cecrecy/</link>
       <pubDate>Sat, 04 Jan 2014 22:07:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/cecrecy/</guid>
+      <guid>https://www.andyibanez.com/projects/cecrecy/</guid>
       <description>Discontinued project. Developed in 2013.
 If you want to protect app data from your friends or family that are constantly asking for your iDevice, there are a couple of things you can do: You can tell them not to enter certain apps, empowering their curiosity and therefore exposing your private data, or you can passcode-lock certain apps, which if they see, they will just wonder what you’re hiding that they can’t see.</description>
     </item>
     
     <item>
       <title>Maulencer</title>
-      <link>http://example.org/projects/maulencer/</link>
+      <link>https://www.andyibanez.com/projects/maulencer/</link>
       <pubDate>Sat, 04 Jan 2014 21:58:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/maulencer/</guid>
+      <guid>https://www.andyibanez.com/projects/maulencer/</guid>
       <description>Discontinued project. Developed in 2013.
 A friend of mine had his hardware ringer of his phone die on him. Because of that, toggling the ringer on and off was quite a chore for him. Without installing SBSettings or anything equivalent to that, he had to go to the settings app and toggle the ringer on and off there.
 So he asked me to write an icon on SpringBoard that would toggle the ringer.</description>
@@ -90,10 +90,10 @@ So he asked me to write an icon on SpringBoard that would toggle the ringer.</de
     
     <item>
       <title>Sideswitch Toggles</title>
-      <link>http://example.org/projects/sideswitch-toggles/</link>
+      <link>https://www.andyibanez.com/projects/sideswitch-toggles/</link>
       <pubDate>Sat, 04 Jan 2014 21:46:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/sideswitch-toggles/</guid>
+      <guid>https://www.andyibanez.com/projects/sideswitch-toggles/</guid>
       <description>Discontinued project. Developed in 2012.
 Sideswitch Toggles is a MobileSubstrate tweak that gives you full control over your iPhone’s Ringer (and as such, it isn’t available for the iPod Touch). The tweak simply modifies the action that happens when you toggle the ringer on and off.
 By default, Sideswitch Toggles comes with the ability to toggle Bluetooth, Wi-Fi, Airplane Mode, and Do Not Disturb. The capabilities of Sideswitch can be easily extended by other developers.</description>
@@ -101,20 +101,20 @@ By default, Sideswitch Toggles comes with the ability to toggle Bluetooth, Wi-Fi
     
     <item>
       <title>Silight</title>
-      <link>http://example.org/projects/silight/</link>
+      <link>https://www.andyibanez.com/projects/silight/</link>
       <pubDate>Sat, 04 Jan 2014 21:39:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/silight/</guid>
+      <guid>https://www.andyibanez.com/projects/silight/</guid>
       <description>Discontinued project. Developed in 2011
 SiLight is a small AssistantExtension that allows Siri to turn on your phone’s torch to use it as a flashlight. SiLight is a real quick flashlight, since commands work in the Lockscreen too. SiLight was programmed having natural speech in mind, instead of talking to her like a robot (“flashlight on”) you can ask her as you would ask anyone (“I need a flashlight”, “Siri, there’s a blackout”).</description>
     </item>
     
     <item>
       <title>Combox</title>
-      <link>http://example.org/projects/combox/</link>
+      <link>https://www.andyibanez.com/projects/combox/</link>
       <pubDate>Sat, 04 Jan 2014 18:54:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/combox/</guid>
+      <guid>https://www.andyibanez.com/projects/combox/</guid>
       <description>Discontinued project. Developed in 2012.
 Combox is a third-party client for Dropbox.
 Do you love Dropbox? Dropbox is a very nifty service that allows you to store your files in the cloud. With Dropbox, you can upload and download your documents and photos anywhere, any time.
@@ -123,10 +123,10 @@ Why a third-party client? This app was made with Dropbox lovers and Power Users 
     
     <item>
       <title>SBConverter</title>
-      <link>http://example.org/projects/sb-converter/</link>
+      <link>https://www.andyibanez.com/projects/sb-converter/</link>
       <pubDate>Sat, 04 Jan 2014 18:25:00 -0400</pubDate>
       
-      <guid>http://example.org/projects/sb-converter/</guid>
+      <guid>https://www.andyibanez.com/projects/sb-converter/</guid>
       <description>Discontinued project. Developed in 2011.
 A very complete base number converter for programmers and computer science students. Super Base Converter (SBConverter) is a very powerful base number conversion tool. It offers a simple and intuitive user interface free of distractions to allow users to quickly convert from one number base to another.
 Features:  Convert any number back and forth in any base from base 2 (binary) to base 16 (hexadecimal).</description>
