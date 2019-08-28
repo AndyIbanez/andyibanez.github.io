@@ -38,6 +38,11 @@
   </url>
   
   <url>
+    <loc>https://www.andyibanez.com/tags/ipados/</loc>
+    <lastmod>2019-08-21T14:47:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
     <lastmod>2019-08-21T14:47:38-04:00</lastmod>
   </url>
@@ -205,6 +210,10 @@
   <url>
     <loc>https://www.andyibanez.com/projects/sb-converter/</loc>
     <lastmod>2014-01-04T18:25:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/series/</loc>
   </url>
   
 </urlset>
