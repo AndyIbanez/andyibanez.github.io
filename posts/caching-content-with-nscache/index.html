@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.57.2" />
+
+    
+    
+    
+
+<title>Caching Content With NSCache • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Caching Content With NSCache"/>
+<meta name="twitter:description" content="Learn to cache content on Apple&#39;s Platforms with NSCache, a high-level native caching API."/>
+
+<meta property="og:title" content="Caching Content With NSCache" />
+<meta property="og:description" content="Learn to cache content on Apple&#39;s Platforms with NSCache, a high-level native caching API." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/caching-content-with-nscache/" />
+<meta property="article:published_time" content="2019-08-28T12:08:07-04:00" />
+<meta property="article:modified_time" content="2019-08-28T12:08:07-04:00" /><meta property="og:site_name" content="Software developer from La Paz, Bolivia" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Caching Content With NSCache</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Aug 28, 2019
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 10 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<p>When we are working with apps on iOS, iPadOS, macOS, watchOS, or TVOS, it&rsquo;s possible that at some point we will have to store and retrieve a lot of temporary data throughout the lifecycle of our software. Depending on our needs, we may need to cache data on disk and manually manage it ourselves, or we may only need it to cache it in memory. In the case of the latter, Apple offers <code>NSCache</code>, a mutable collection that lets us cache files in memory using key-value pairs.</p>
+
+<p><code>NSCache</code> is really nice for a few reasons:</p>
+
+<ul>
+<li>It stores data in memory only. If our app gets killed, this memory is freed up and it&rsquo;s not persisted to disk.</li>
+<li>The key-value pair mechanism lets us very easily set and get cached content. Very similar to what we would do with a <code>Dictionary</code>. Unlike a dictionary, the keys are not copied, so it&rsquo;s slightly more memory efficient.</li>
+<li>We can set automatic eviction conditions to help <code>NSCache</code> delete objects automatically. We can also manually evict objects if we need to.</li>
+<li>It is multi-threading friendly. We can read and write the cache without having to manage our cache object ourselves.</li>
+</ul>
+
+<p>And there is just one reason it is not perfect:</p>
+
+<ul>
+<li>It&rsquo;s an Objective-C API, so you will end up doing some casting, even when working with basic objects such as strings.</li>
+</ul>
+
+<p>Use <code>NSCache</code> to store temporary objects that are expensive to create, but can be re-created if necessary. Suppose we have an app that downloads a lot of images to display to the user dynamically and they are very big - downloading them takes a long time and they consume a lot of data. It would be bad to re-download them these images every time the user needed them, so we can cache them instead. If at some point the system starts demanding memory, the system can just remove these images and we can re-download them if necessary.</p>
+
+<p><code>NSCache</code> is available in all of Apple&rsquo;s Platforms: watchOS, iOS, iPadOS, macOS, and TVOS.</p>
+
+<h1 id="nscache-basics">NSCache Basics</h1>
+
+<h2 id="creating-a-nscache-object">Creating a NSCache Object</h2>
+
+<p>The constructor of the <code>NSCache</code> object takes two generic objects: The key type, and the cached object type. We can optionally give it a name to identify it later.</p>
+
+<pre><code class="language-swift">let cache = NSCache&lt;NSString, UIImage&gt;()
+cache.name = &quot;Remote Image Cache&quot;
+</code></pre>
+
+<p>This API has its roots in the Objective-C days, and as such the generic parameters are constrained to conform to <code>AnyObject</code>, meaning that we cannot use <code>struct</code>s and must uses <code>class</code>es instead. For that reason we must use <code>NSString</code> instead of <code>String</code>. Both our keys and objects can be of any type as long as they are classes. In this example we chose strings for the keys, and images for the objects.</p>
+
+<h2 id="storing-objects">Storing Objects</h2>
+
+<p>Storing an object is as easy as calling the cache&rsquo;s <code>setObject</code> method.</p>
+
+<pre><code class="language-swift">let webImage = UIImage(named: &quot;pullip_doll.png&quot;)!
+cache.setObject(webImage, forKey: &quot;top banner&quot;)
+</code></pre>
+
+<p>There is also an overloaded <code>setObject(object:forKey:cost:)</code> method, which we will talk about in a bit.</p>
+
+<p><em>(I&rsquo;d love it if the API offered a subscript for this kind of task, but sadly that&rsquo;s not the case.)</em></p>
+
+<h2 id="retrieving-objects">Retrieving Objects</h2>
+
+<p>Retrieving objects is just as easy. There&rsquo;s just one method called <code>object(forKey:)</code>. This method returns an optional <code>ObjectType</code> (in our case, an optional <code>UIImage</code>), so we can easily check if the object exists. Whether the object no longer exists or it has been evicted, it will return <code>nil</code>.</p>
+
+<pre><code class="language-swift">if let webImage = cache.object(forKey: &quot;top banner&quot;) {
+		// Do something with webImage
+    print(&quot;The object is still cached&quot;)
+} else {
+    print(&quot;Web image went away&quot;)
+}
+</code></pre>
+
+<p><em>(Just like before there&rsquo;s no native subscript for this.)</em></p>
+
+<h2 id="removing-objects">Removing Objects</h2>
+
+<p>Deleting objects does not possess any kind of complexity, and there&rsquo;s methods to evict either a single object or the entire cache.</p>
+
+<p>To remove a single object, just call the cache&rsquo;s <code>removeObject(forKey:)</code> method.</p>
+
+<pre><code class="language-swift">cache.removeObject(forKey: &quot;top banner&quot;)
+</code></pre>
+
+<p>And to remove all the objects, simply call <code>removeAllObjects()</code> on the cache.</p>
+
+<pre><code class="language-swift">cache.removeAllObjects()
+</code></pre>
+
+<h1 id="automatic-eviction-conditions">Automatic Eviction Conditions</h1>
+
+<p>Having manual control over the cache is important and it&rsquo;s going to be enough for many cases, but <code>NSCache</code> allows us to set conditions to automatically clean after itself. We can constrain it to hold a limited amount of objects, and we can specify a maximum &ldquo;cost&rdquo;.</p>
+
+<p>Even when we don&rsquo;t set any eviction conditions, <code>NSCache</code> will start deleting objects if the system is really hungry for memory, so we cannot count on our objects always being there, even we don&rsquo;t set any eviction conditions ourselves.</p>
+
+<h2 id="limiting-the-amount-of-objects-in-the-cache">Limiting the Amount of Objects in the Cache</h2>
+
+<p>To limit the amount of objects our cache should hold, set the <code>countLimit</code> property to anything higher than 0. <code>0</code> means no limit, so the cache will keep storing objects indefinitely (unless the system really needs some memory, that is).</p>
+
+<pre><code class="language-swift">cache.countLimit = 10
+</code></pre>
+
+<p>What a good size is depends strictly on our application. If we are dealing with big images, we can set a low number here, but in the case of something smaller, such as strings, it can probably be way higher.</p>
+
+<p>It&rsquo;s worth noting that this is not a strict limit. The eviction of objects is governed by the implementation of the cache. If the cache goes over the limit, it may remove objects instantly, at a later moment, or possibly even never. It will all depend on the needs of the system at a given time.</p>
+
+<h2 id="setting-a-maximum-cost">Setting a Maximum Cost</h2>
+
+<h3 id="definition-of-cache-object-cost">Definition of Cache Object Cost</h3>
+
+<p>The &ldquo;cost&rdquo; of an object in the cache is a bit abstract, and it depends on the context in which a cache is operating.</p>
+
+<p>Let&rsquo;s go back to the example of storing images in the cache. We can define the &ldquo;cost&rdquo; of an image as its size in bytes. A bigger image will have a bigger cost. We could find a different definition, such as its size in dimensions (it&rsquo;s weight and height).</p>
+
+<p>If you wanted to store strings, you could define the &ldquo;cost&rdquo; based on the number of characters in each string. So the string <code>&quot;Pullip Classical Alice&quot;</code> (22 characters) has a bigger cost than <code>&quot;Pullip Alura&quot;</code> (12 characters).</p>
+
+<h3 id="limiting-the-maximum-total-cost-of-the-cache">Limiting the Maximum Total Cost of the Cache</h3>
+
+<p>To set the maximum cost, set the <code>totalCostLimit</code> property of the cache. This number is an <code>Int</code>, and once again, what exactly it represents depends on the context of each cache.</p>
+
+<pre><code class="language-swift">// For our image cache, we will set a maximum cost of 50,000,000 bytes, or 50 megabytes.
+cache.totalCostLimit = 50_000_000
+</code></pre>
+
+<p>Now, when we want to add objects along with their cost, we can use the <code>setObject(object:forKey:cost:)</code> method we mentioned above.</p>
+
+<pre><code class="language-swift">// Convert the image to Data.
+if let topBannerData = webImage.pngData() {
+    // The cost of our image is its size in bytes.
+    cache.setObject(webImage, forKey: &quot;top banner&quot;, cost: topBannerData.count)
+}
+</code></pre>
+
+<p>Just like setting the maximum total objects, though, this is not a strict limit, and the cache will decide what to do with the objects once the limit is surpassed. If it needs to start evicting objects, it will start deleting some until the total cost of the cache is under the <code>totalCostLimit</code>. Keep in mind that the order in which the objects will be removed is random. We cannot, for example, expect the cache to start removing the biggest cost objects first (in our example, the biggest images), and there&rsquo;s no way to enforce a specific order.</p>
+
+<h1 id="the-nsdiscardablecontent-protocol">The NSDiscardableContent Protocol</h1>
+
+<p>The <code>NSDiscardableContent</code> protocol can be implemented when an object has subcomponents that can be discarded when not being used.</p>
+
+<p>Suppose we have a class <code>Person</code> that looks like this:</p>
+
+<pre><code class="language-swift">class Person {
+    let firstName: String
+    let lastName: String
+    var avatar: UIImage? = nil
+    
+    init(firstName: String, lastName: String, avatar: UIImage?) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.avatar = avatar
+    }
+}
+</code></pre>
+
+<p>We want to cache this, but the <code>firstName</code> and <code>lastName</code> properties are probably too small to care about them persisting for a long time. On the other hand, the <code>avatar</code> can be big, so we want to remove only the <code>avatar</code> property when the system needs it. In this case, <code>Person</code> is a content-object, and the <code>avatar</code> property is the subcomponent that can be discarded.</p>
+
+<p><code>NSCache</code> allows us to do this by implementing the <code>NSDiscardableContent</code> in our objects.</p>
+
+<p><code>NSDiscardableContent</code> works with a simple variable counter system. When the memory is being read or is currently needed, its counter will have a value of <code>1</code>. If it&rsquo;s not needed at all and is not being used, the counter will be <code>0</code>. When a new `<code>NSDiscardableContent</code> is created, it&rsquo;s counter value starts with <code>1</code>. We will see how we can make use of this to help <code>NSCache</code> manage our <code>Person</code> class.</p>
+
+<p>When we conform to <code>NSDiscardableContent</code>, there&rsquo;s four methods we must adopt:</p>
+
+<pre><code class="language-swift">// True if the content is still available and have been successfully accessed.
+func beginContentAccess() -&gt; Bool {
+}
+
+// Called when the content is no longer being accessed.
+func endContentAccess() {
+}
+
+// If our counter is 0, we can discard the image.
+func discardContentIfPossible() {
+}
+
+// True if the content has been discarded.
+func isContentDiscarded() -&gt; Bool {
+}
+</code></pre>
+
+<p>We can implement <code>Person</code> conforming to the protocol the following way:</p>
+
+<pre><code class="language-swift">class Person: NSDiscardableContent {
+    let firstName: String
+    let lastName: String
+    var avatar: UIImage? = nil
+    
+    // Our counter variable
+    var accessCounter = true
+    
+    init(firstName: String, lastName: String, avatar: UIImage?) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.avatar = avatar
+    }
+    
+    // MARK: - NSDiscardableContent
+    
+    func beginContentAccess() -&gt; Bool {
+        if avatar != nil {
+            accessCounter = true
+        } else {
+            accessCounter = false
+        }
+        return accessCounter
+    }
+    
+    func endContentAccess() {
+        accessCounter = false
+    }
+    
+    func discardContentIfPossible() {
+        avatar = nil
+    }
+    
+    func isContentDiscarded() -&gt; Bool {
+        return avatar == nil
+    }
+}
+</code></pre>
+
+<p>Now we can create a cache of <code>Person</code>s. But there is one more thing we need to do.</p>
+
+<p>By default, <code>NSCache</code> will evict all the objects it contains. In our case, it will discard <code>Person</code>s as necessary, and not just their avatar. To change this, set the cache&rsquo;s <code>evictsObjectsWithDiscardedContent</code> property to <code>false</code>.</p>
+
+<pre><code class="language-swift">cache.evictsObjectsWithDiscardedContent = false
+</code></pre>
+
+<p>This property, whose default value is <code>true</code>, controls whether entire objects from the cache will be removed or just their discardable content. Setting it to <code>false</code> will ensure it just discards the <code>avatar</code>s and not whole <code>Person</code>s.</p>
+
+<p>We can new create a new cache object of <code>Person</code>s and add objects to it.</p>
+
+<pre><code class="language-swift">let cache = NSCache&lt;NSString, Person&gt;()
+cache.name = &quot;Person Cache&quot;
+cache.evictsObjectsWithDiscardedContent = false
+
+let andy = Person(firstName: &quot;Andy&quot;, lastName: &quot;Ibanez&quot;, avatar: UIImage(named: &quot;silight.png&quot;))
+cache.setObject(andy, forKey: &quot;me&quot;)
+</code></pre>
+
+<p>Now, when the cache starts deleting <code>Person</code>s, it will only delete their avatars.</p>
+
+<h1 id="the-nscachedelegate-protocol">The NSCacheDelegate Protocol</h1>
+
+<p>To finish off this post, we can talk about the <code>NSCacheDelegate</code> protocol, which allows to see what a specific cache is doing. Currently, the delegate only has one method, <code>cache(_:willEvictObject)</code>, which allows us to know when an object is being removed.</p>
+
+<pre><code class="language-swift">func cache(_ cache: NSCache&lt;AnyObject, AnyObject&gt;, willEvictObject obj: Any) {
+    if let person = obj as? Person {
+        print(&quot;Cache \(cache.name) will evict person \(person.firstName) \(person.lastName)&quot;)
+    }
+}
+</code></pre>
+
+<p>When an object is about to be deleted, we will be notified, which allows us to take some action. For now, we will just print who the person is that is being evicted.</p>
+
+<p><em>(As is the case with the other API examples above, this comes from Objective-C, so we have to do some casting.)</em></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p><code>NSCache</code> is a good API to cache content that you only need in memory. You can both control the contents manually, or you can set conditions to allow the cache to manage itself. Being an Objective-C object at its core, it has some quirks to work with, but it&rsquo;s still very easy to use.</p>
+
+<hr>
+
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/exploring-the-nsoperation-apis/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Exploring the NSOperation APIs for Apple&#39;s Platforms</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

@@ -6,10 +6,19 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Aug 2019 14:47:38 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 28 Aug 2019 12:08:07 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Caching Content With NSCache</title>
+      <link>https://www.andyibanez.com/posts/caching-content-with-nscache/</link>
+      <pubDate>Wed, 28 Aug 2019 12:08:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/caching-content-with-nscache/</guid>
+      <description>When we are working with apps on iOS, iPadOS, macOS, watchOS, or TVOS, it&amp;rsquo;s possible that at some point we will have to store and retrieve a lot of temporary data throughout the lifecycle of our software. Depending on our needs, we may need to cache data on disk and manually manage it ourselves, or we may only need it to cache it in memory. In the case of the latter, Apple offers NSCache, a mutable collection that lets us cache files in memory using key-value pairs.</description>
+    </item>
     
     <item>
       <title>Exploring the NSOperation APIs for Apple&#39;s Platforms</title>
