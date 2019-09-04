@@ -242,7 +242,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 0 min read
+    <i class="fas fa-clock"></i> 6 min read
 </div>
 
 
@@ -251,6 +251,123 @@ if (!doNotTrack) {
   
   <div class="post">
     
+
+<p>Building URLs with NSURLComponents</p>
+
+<p>If you have been programming for Apple platforms for a while, chances are you have seen (or maybe even wrote yourself) a line of code that looks like this:</p>
+
+<pre><code class="language-swift">let url = URL(string: &quot;https://www.google.com/search?hl=en&amp;q=pullip&quot;)!
+</code></pre>
+
+<p>Whether you wrote it yourself or someone else did it, one thing is clear: This is not a safe way to build URLs. Can you know, for sure, that your URL is actually valid? Intuitively, all of us can see a URL and see if it&rsquo;s valid, but there is a <a href="http://www.faqs.org/rfcs/rfc1738.html">whole lot of governing</a> in the URL format that at some point we may find funny URLs that look valid and aren&rsquo;t, or the other way around; they look invalid, but aren&rsquo;t.</p>
+
+<p>In this article we will explore a very handy class for both URL composition and decomposition: <code>NSURLComponents</code>.</p>
+
+<h1 id="introduction-to-nsurlcomponents">Introduction to NSURLComponents</h1>
+
+<p>Calling web APIs is a very common task that the vast majority of developers are going to do at some point. To do that, the iOS/iPadOS, macOS, TVOS, and watchOS SDKs have a nice set of tools that make networking easier. The process of creating a URL seems obvious with the simple <code>init(string:)</code> constructor of <code>NSURL</code>, but a URL has many more components, and it may be easier to write a bit more code to ensure you actually have a valid URL.</p>
+
+<p><code>NSURLComponents</code> is a class that allows us to both build URLs and decompose them into their essential parts. Using it, we can safely build valid URLs by just passing in the parts (components) we need. Other than making it easier to build URLs, it also handles some encoding details for us, so we don&rsquo;t have to care about escaping characters ourselves, especially in query strings.</p>
+
+<h2 id="building-urls">Building URLs</h2>
+
+<p>Let&rsquo;s go back to the old URL we used as an example at the beginning of this article.</p>
+
+<pre><code class="language-swift">let url = URL(string: &quot;https://www.google.com/search?hl=en&amp;q=pullip&quot;)!
+</code></pre>
+
+<p>We will try to build this URL using <code>NSURLComponents</code>. It is a little bit more code, but the peace of mind is worth it, and it also helps us understand how URLs work a bit better, without having to refer to the entirety of RFC-1738.</p>
+
+<p>First, we will build the URL up to the <code>/search</code> components, and we will be excluding the query (everything after the <code>?</code>).</p>
+
+<pre><code class="language-swift">var components = URLComponents()
+components.scheme = &quot;https&quot;
+components.host = &quot;www.google.com&quot;
+components.path = &quot;/search&quot;
+if let url = components.url {
+    print(&quot;URL: \(url)&quot;)
+}
+</code></pre>
+
+<p>Like we would expect, this will print <code>URL: https://www.google.com/search</code>. This an example of a very simple URL, but be aware that URLs may have some additional components (and we do not need to set all the properties in order for them to be valid). For example, not all URLs have a <code>path</code>, and we can safely ignore the <code>host</code> and <code>schema</code> too. Try deleting these properties and see what URL you get back.</p>
+
+<p>There&rsquo;s a few additional components in URLs that we will not cover in this article, but it&rsquo;s worth mentioning them:</p>
+
+<ul>
+<li><code>fragment</code>: If a URL contains a <code>#</code> symbol, the <code>fragment</code> is everything after it.</li>
+<li><code>user</code> and <code>password</code>: Some URLs require some basic authentication to access them. We can use these properties for such credentials (i.e. <code>https://andy:masterpassword@www.google.com</code>).</li>
+<li><code>port</code>: If we need to specify the port of a resource, this is the right property.</li>
+<li><code>query</code>: We will actually explore this one, but not as a string component. The <code>query</code> of a URL is everything after a <code>?</code> sign.</li>
+</ul>
+
+<h3 id="urls-with-queries">URLs with Queries</h3>
+
+<p>The query part of a URL (everything after a <code>?</code>) is composed of zero or more key-value pairs.</p>
+
+<p>To build the <code>query</code> component of a URL, we could use <code>NSURLComponents</code>&rsquo; <code>query</code> property, which is a string. This is a quick and dirty way of doing it, but we lose some safety and if we use this, we might as well not use <code>NSURLComponents</code> at all.</p>
+
+<pre><code class="language-swift">components.query = &quot;hl=en&amp;q=pullip&quot;
+</code></pre>
+
+<p>What we should use instead is use another class whose only purpose is to create these key-value pairs. That class is <code>URLQueryItem</code>, and it&rsquo;s very easy to use. It has one simple constructor which takes the <code>name</code> of the parameter (the &ldquo;key&rdquo;), and the value of it.</p>
+
+<pre><code class="language-swift">let hl = URLQueryItem(name: &quot;hl&quot;, value: &quot;en&quot;)
+let q = URLQueryItem(name: &quot;q&quot;, value: &quot;pullip doll&quot;)
+
+components.queryItems = [hl, q]
+</code></pre>
+
+<p>We all love Swift, so let&rsquo;s take a moment to make this Swiftier:</p>
+
+<pre><code class="language-swift">components.queryItems = [&quot;hl&quot;: &quot;en&quot;, &quot;q&quot;: &quot;pullip&quot;]
+    .map { URLQueryItem(name: $0, value: $1) }
+</code></pre>
+
+<p>With this, we can now build our query strings with the certainty that they are going to be valid when building URLs.</p>
+
+<h1 id="decomposing-urls-into-their-components">Decomposing URLs Into Their Components</h1>
+
+<p><code>NSURLComponents</code> can be used for both composing and decomposing URLs. This is very useful, specially if we use the URL mechanism Apple has in place for app communication.</p>
+
+<p>One such example of this is iOS with its URL app launching mechanism. Our apps can register <code>scheme</code>s to launch other apps, and also other apps can launch ours if they register our scheme.</p>
+
+<p>When an app launches ours, this application delegate method is called:</p>
+
+<pre><code class="language-swift">application(_:url:options:)
+</code></pre>
+
+<p>And we can use this to perform certain tasks in our app.</p>
+
+<p>We could decide that an app calling this URL is going to print the passed text into the console:</p>
+
+<p><code>myapp://print?text='Hello+Alice'</code></p>
+
+<p>You could try to grab the underlying string of the passed <code>NSURL</code>, splitting the string with a token and parsing the components ourselves. But this takes a lot of work, is error prone, and there&rsquo;s no need to do it since <code>NSURLComponents</code> can do it for us.</p>
+
+<p>In the following code, we will decompose the above URL with <code>NSURLComponents</code>, grab the <code>text</code> query parameter, and prints its value.</p>
+
+<pre><code class="language-swift">func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -&gt; Bool {
+    let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+    components?.queryItems?.forEach {
+        // In case our app grows and we start passing in bigger queries with the URLs, we will check we grab the ones we need and work with each parameter as required.
+        if $0.name == &quot;text&quot; {
+            print($0.value ?? &quot;&quot;)
+        }
+    }
+    return true
+}
+</code></pre>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>While <code>NSURLComponents</code> does require more code to write, using it has a lot of benefit. Automatic encoding, security, and peace of mind are some of the benefits it brings to us when building URLs. Being able to decompose existing URLs into their components is also a useful thing, especially on systems where app communication through URLs is prevalent.</p>
+
+<hr>
+
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
   </div>
   
 
