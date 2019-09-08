@@ -1,11 +1,11 @@
 {
 	"version": 3,
 	"file": "print.css",
-	"sourceRoot": "/Users/andyibanez/documents/Work/Sites/andyibanez",
+	"sourceRoot": "/Users/andyibanez/documents/work/sites/andyibanez",
 	"sources": [
 		"themes/hyde/assets/scss/print.scss",
-		"../../../../documents/Work/Sites/andyibanez/themes/hyde/assets/scss/hyde-hyde/_variables.scss",
-		"../../../../documents/Work/Sites/andyibanez/themes/hyde/assets/scss/hyde-hyde/_print.scss"
+		"../../../../documents/work/sites/andyibanez/themes/hyde/assets/scss/hyde-hyde/_variables.scss",
+		"../../../../documents/work/sites/andyibanez/themes/hyde/assets/scss/hyde-hyde/_print.scss"
 	],
 	"sourcesContent": [
 		"@import \"hyde-hyde/variables\";\n@import 'hyde-hyde/print';\n",
