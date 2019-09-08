@@ -251,7 +251,7 @@ if (!doNotTrack) {
 <li>It stores data in memory only. If our app gets killed, this memory is freed up and it&rsquo;s not persisted to disk.</li>
 <li>The key-value pair mechanism lets us very easily set and get cached content. Very similar to what we would do with a <code>Dictionary</code>. Unlike a dictionary, the keys are not copied, so it&rsquo;s slightly more memory efficient.</li>
 <li>We can set automatic eviction conditions to help <code>NSCache</code> delete objects automatically. We can also manually evict objects if we need to.</li>
-<li>It is multi-threading friendly. We can read and write the cache without having to manage our cache object ourselves.</li>
+<li>It is multi-threading friendly. We can read and write the cache without having to manage threading ourselves.</li>
 </ul>
 
 <p>And there is just one reason it is not perfect:</p>
