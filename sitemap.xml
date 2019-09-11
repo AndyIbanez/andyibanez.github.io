@@ -4,41 +4,86 @@
   
   <url>
     <loc>https://www.andyibanez.com/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/error/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/result/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/tvos/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/swift-result-type/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/watchos/</loc>
+    <lastmod>2019-09-07T15:17:02-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/</loc>
     <lastmod>2019-09-04T14:00:00-04:00</lastmod>
   </url>
   
@@ -53,37 +98,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/tvos/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/urls/</loc>
-    <lastmod>2019-09-04T14:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/watchos/</loc>
     <lastmod>2019-09-04T14:00:00-04:00</lastmod>
   </url>
   
@@ -103,12 +118,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/command-line/</loc>
+    <loc>https://www.andyibanez.com/tags/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/command-line/</loc>
+    <loc>https://www.andyibanez.com/categories/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
