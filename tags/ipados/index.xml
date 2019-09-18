@@ -6,10 +6,20 @@
     <description>Recent content in ipados on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Sep 2019 15:17:02 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 14 Sep 2019 15:02:44 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ipados/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Understanding the Essentials for Adopting Multiwindow Support on iPadOS</title>
+      <link>https://www.andyibanez.com/posts/ipad-multiwindow-support/</link>
+      <pubDate>Sat, 14 Sep 2019 15:02:44 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/ipad-multiwindow-support/</guid>
+      <description>On WWDC2019, Apple decided to fork iOS into two different operating systems: iOS for iPhones, and iPadOS for iPads. This is to recognize the iPad as its own independent entity that has its own set of features compared to iOS. Amongst those features, iPadOS adds Multiwindow support, which allows our apps to run in more than one Window at the same time.
+What exactly is Multi-window support, and how does it work?</description>
+    </item>
     
     <item>
       <title>Understanding the Result Type in Swift</title>
