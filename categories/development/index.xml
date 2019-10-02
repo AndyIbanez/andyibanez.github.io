@@ -6,10 +6,20 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Sep 2019 17:21:42 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 28 Sep 2019 16:47:11 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Playing Custom Haptics on iOS</title>
+      <link>https://www.andyibanez.com/posts/playing-custom-haptics-on-ios/</link>
+      <pubDate>Sat, 28 Sep 2019 16:47:11 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/playing-custom-haptics-on-ios/</guid>
+      <description>Vibration and physical feedback has become an important feature of Apple&amp;rsquo;s operating systems. Starting with the Apple Watch, Apple replaced the traditional vibration feedback with haptic feedback hardware, which allowed them to have more control over how vibrations and physical feedback work.
+First being introduced in the Apple Watch, Haptic Feedback has been a core part of the Apple ecosystem experience since. Just think about it, wouldn&amp;rsquo;t it be weird if you force-touched the screen to do something, and there was no physical response from the device?</description>
+    </item>
     
     <item>
       <title>Formatting Content with NSFormatter</title>
