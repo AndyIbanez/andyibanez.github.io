@@ -6,10 +6,19 @@
     <description>Recent content on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 05 Oct 2019 18:08:07 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 17:28:31 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Filtering Arrays with Predicates</title>
+      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
+      <pubDate>Sat, 12 Oct 2019 17:28:31 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
+      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
+    </item>
     
     <item>
       <title>Common Cryptographic Operations With Cryptokit</title>
@@ -126,7 +135,8 @@ If you choose to use my Service, then you agree to the collection and use of inf
       
       <guid>https://www.andyibanez.com/about/</guid>
       <description>I&amp;rsquo;m a software developer born and raised in La Paz, Bolivia.
-I started my university studies at Universidad Católica Boliviana in 2011. The career I was pursuing was simply &amp;ldquo;Systems Engineering&amp;rdquo;. I didn&amp;rsquo;t finish my degree there. Instead, I transferred to Universidad Privada Boliviana in late 2012 because the program was much more interesting. I finished all my courses in July 9, 2018 and I&amp;rsquo;m currently working on my thesis to get my degree in Computer Systems Engineering.</description>
+I currently work for Banco Nacional de Bolivia as a &amp;ldquo;Digital Solutions Analyst&amp;rdquo;, though that&amp;rsquo;s just a fancy name for someone who works at the Innovation Center. I work on their iOS apps and I have designed security-minded protocols for some of them.
+I started my university studies at Universidad Católica Boliviana in 2011. The career I was pursuing was simply &amp;ldquo;Systems Engineering&amp;rdquo;.</description>
     </item>
     
     <item>
