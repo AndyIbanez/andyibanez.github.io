@@ -408,6 +408,13 @@ let digestSignature = try! privateKey.signature(for: hash)
 }
 </code></pre>
 
+<hr>
+
+<p><strong>Important Note!</strong></p>
+
+<p>Not all cyphers have signing methods for both digests and data. Curve25519 only exposes signing methods for <code>DataProtocol</code>s.
+<hr></p>
+
 <h3 id="key-agreement">Key Agreement</h3>
 
 <p>Key agreement is a method used for multiple parties to securely choose a shared encryption key that can be used for signing and encrypting the data they want to share between each other.</p>
@@ -428,7 +435,7 @@ let salt = randomData(length: 32) // 256bits
 <p>If you don&rsquo;t want to drop down to CommonCrypto to generate a random salt, you can create a new <code>SymmetricKey</code> of 256bits, and than grab its raw bytes to use it as a salt.</p>
 
 <pre><code class="language-swift">let symKeySalt = SymmetricKey(size: .bits256)
-let salt = .withUnsafeBytes { Data($0) }
+let salt = symKeySalt.withUnsafeBytes { Data($0) }
 </code></pre>
 
 <p>After a salt has been generated, all the interested parties need to share their public keys with each other.</p>
