@@ -462,7 +462,7 @@ let aliceSymmetricKey = aliceSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.
 
 // Eileen derives the shared secret and key.
 let eileenSharedSecret = try! eileenPrivateKey.sharedSecretFromKeyAgreement(with: alicePublicKey)
-let eileenSymmetricKey = aliceSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: salt, sharedInfo: Data(), outputByteCount: 32)
+let eileenSymmetricKey = eileenSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: salt, sharedInfo: Data(), outputByteCount: 32)
 
 if aliceSymmetricKey == eileenSymmetricKey {
   print(&quot;The keys are equal and now they can share data&quot;)
