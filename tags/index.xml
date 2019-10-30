@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 17 Oct 2019 14:17:01 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 25 Oct 2019 15:57:05 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>ios</title>
       <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>ipados</title>
       <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ipados/</guid>
       <description></description>
@@ -41,9 +41,54 @@
     <item>
       <title>macos</title>
       <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patternmatching</title>
+      <link>https://www.andyibanez.com/tags/patternmatching/</link>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/patternmatching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvos</title>
+      <link>https://www.andyibanez.com/tags/tvos/</link>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/tvos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -53,42 +98,6 @@
       <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/nsnotificationcenter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tvos</title>
-      <link>https://www.andyibanez.com/tags/tvos/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/tvos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
