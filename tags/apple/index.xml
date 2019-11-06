@@ -6,10 +6,20 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Oct 2019 15:57:05 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 02 Nov 2019 12:28:26 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>When CryptoKit is not Enough</title>
+      <link>https://www.andyibanez.com/posts/cryptokit-not-enough/</link>
+      <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/cryptokit-not-enough/</guid>
+      <description>As I have been playing with the amazing CryptoKit framework in the past few weeks, I have discovered a few more things that CryptoKit currently doesn&amp;rsquo;t do. This is not generally a bad thing, and I think these limitations are related to what seem to be the goal of the framework:
+ Dealing with cryptography is hard, and Snej makes a good point in a comment in my previous CryptoKit article: It gives you easy and relatively safe operations without needing to dive deeply into the cryptographic primitives underneath it.</description>
+    </item>
     
     <item>
       <title>Introduction to Patterns and Pattern Matching in Swift.</title>
