@@ -126,6 +126,14 @@ if (!doNotTrack) {
 					</a>
 				</li>
 			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
 		
 	</ul>
 </div>
@@ -246,6 +254,8 @@ if (!doNotTrack) {
   <div class="post">
     
 
+<p><em>This article is a continuation to my <a href="https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/]">Common Cryptographic Operations with CryptoKit</a> article. If you want to learn how to use CryptoKit, read that one instead, and come to this one when you need a feature not offered by it.</em></p>
+
 <p>As I have been playing with the amazing CryptoKit framework in the past few weeks, I have discovered a few more things that CryptoKit currently doesn&rsquo;t do. This is not generally a bad thing, and I <em>think</em> these limitations are related to what seem to be the goal of the framework:</p>
 
 <ul>
@@ -255,9 +265,9 @@ if (!doNotTrack) {
 
 <p>Making working with cryptography easier and providing developer with tools to implement it safely seems to be a great general goal for the framework, and for this reason it&rsquo;s missing some features that may be surprising to some. Some may find it surprising, for example, that CryptoKit doesn&rsquo;t support AES-CBC out of the box. Reading Twitter, I found a discussion where <a href="https://twitter.com/FredericJacobs">Frederic Jacobs</a> says the following regarding AES in CBC mode:</p>
 
-<p>*&ldquo;That call is AES in CBC mode. It is not supported in CryptoKit. AES-CBC does not provide authentication and is hard to use correctly.</p>
+<p><em>&ldquo;That call is AES in CBC mode. It is not supported in CryptoKit. AES-CBC does not provide authentication and is hard to use correctly.</em></p>
 
-<p>Moving to an authenticated mode of operation such as GCM is recommended.&rdquo;* - <a href="https://twitter.com/FredericJacobs/status/1185164960793538561?s=20">Frederic Jacobs, in a Tweet</a></p>
+<p><em>Moving to an authenticated mode of operation such as GCM is recommended.&rdquo;</em> - <a href="https://twitter.com/FredericJacobs/status/1185164960793538561?s=20">Frederic Jacobs, in a Tweet</a></p>
 
 <p>AES-CBC being hard to use correctly sounds like a very reasonable reason to leave it out of CryptoKit, but AES in CBC mode - along with other cryptographic tools - are very popular elsewhere. So what can we do in this situation? Dropping down to the <code>Security</code> and <code>CommonCrypto</code> frameworks.</p>
 
@@ -363,7 +373,7 @@ func randomData(length: Int) -&gt; Data {
 
 <p>To derive a password using PBKDF2, you can use a function like this:</p>
 
-<pre><code>func pbkdf2(hash: CCPBKDFAlgorithm,
+<pre><code class="language-swift">func pbkdf2(hash: CCPBKDFAlgorithm,
             password: String,
             salt: Data,
             keyByteCount: Int,

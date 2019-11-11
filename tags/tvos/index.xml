@@ -17,8 +17,8 @@
       <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/cryptokit-not-enough/</guid>
-      <description>As I have been playing with the amazing CryptoKit framework in the past few weeks, I have discovered a few more things that CryptoKit currently doesn&amp;rsquo;t do. This is not generally a bad thing, and I think these limitations are related to what seem to be the goal of the framework:
- Dealing with cryptography is hard, and Snej makes a good point in a comment in my previous CryptoKit article: It gives you easy and relatively safe operations without needing to dive deeply into the cryptographic primitives underneath it.</description>
+      <description>This article is a continuation to my Common Cryptographic Operations with CryptoKit article. If you want to learn how to use CryptoKit, read that one instead, and come to this one when you need a feature not offered by it.
+As I have been playing with the amazing CryptoKit framework in the past few weeks, I have discovered a few more things that CryptoKit currently doesn&amp;rsquo;t do. This is not generally a bad thing, and I think these limitations are related to what seem to be the goal of the framework:</description>
     </item>
     
     <item>
