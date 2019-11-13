@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.58.3" />
+
+    
+    
+    
+
+<title>New Search APIs in iOS 13 • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="New Search APIs in iOS 13"/>
+<meta name="twitter:description" content="iOS 13 introduced improvements to existing UI search APIs. Learn what&#39;s changed."/>
+
+<meta property="og:title" content="New Search APIs in iOS 13" />
+<meta property="og:description" content="iOS 13 introduced improvements to existing UI search APIs. Learn what&#39;s changed." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/ios13-new-search-apis/" />
+<meta property="article:published_time" content="2019-11-13T07:00:00-04:00" />
+<meta property="article:modified_time" content="2019-11-06T16:32:01-04:00" /><meta property="og:site_name" content="Software developer from La Paz, Bolivia" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>New Search APIs in iOS 13</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Nov 6, 2019
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/uikit">uikit</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/search">search</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/uisearchbar">uisearchbar</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/uisearchtoken">uisearchtoken</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/uisearchtextfield">uisearchtextfield</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 3 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<p>New Search APIs in iOS 13</p>
+
+<p>iOS has always provided interesting search APIs, but they have always been limited and doing the most interesting tasks required you to either write your own implementation or use private API.</p>
+
+<p>iOS 13 has provided some very nice improvement and APIs to the UI search APIs. In this article we will talk about two of them.</p>
+
+<h1 id="uisearchbar-finally-exposes-it-s-text-field">UISearchBar finally exposes it&rsquo;s text field</h1>
+
+<p>I have been using <code>UISearchController</code> and <code>UISearchBar</code> for a <em>very</em> long time, and I have always found it bizarre that Apple didn&rsquo;t expose its underlying text field property. As of iOS 13, the search bar finally exposes it, in the form of a <a href="https://developer.apple.com/documentation/uikit/uisearchtextfield"><code>UISearchTextField</code></a> object.</p>
+
+<p>With this object, you can finally customize the appearance of the search bar. You no longer need to hack away at the view hierarchy with hopes of finding the text field and customizing it there.</p>
+
+<pre><code class="language-swift">searchBar.searchTextField.backgroundColor = .blue
+searchBar.searchTextField.textColor = .white
+</code></pre>
+
+<p>There&rsquo;s still some limitations, like you cannot change the bar style, but this is a very good change, and something developers have been hacking at for years. Been able to change the colors is a great improvements.</p>
+
+<h2 id="uisearchtextfielddelegate">UISearchTextFieldDelegate</h2>
+
+<p>Along with the text field, there&rsquo;s a new delegate. To tell you the truth, I have no idea what can be done with it. The <a href="https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate">Documentation</a> only has one <a href="https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate/3175446-searchtextfield">method</a> that is not documented.</p>
+
+<h1 id="search-tokens">Search Tokens</h1>
+
+<p>Search Tokens are my absolutely favorite new feature for search in iOS 13. Some native Apple apps like mail have had it for years. While the API has existed for years, it has recently been opened up to developers.</p>
+
+<p>Search tokens look like this:</p>
+
+<p><img src="/img/UISearchToken.png" alt="UISearchToken" /></p>
+
+<p>You create a search token with the <a href="https://developer.apple.com/documentation/uikit/uisearchtoken"><code>UISearchToken</code></a> class, and then you add them to the (also recently opened up) <code>searchTextField</code> properly:</p>
+
+<pre><code class="language-swift">let purchasesToken = UISearchToken(icon: UIImage(systemName: &quot;tag&quot;), text: &quot;Purchases&quot;)
+let countryToken = UISearchToken(icon: UIImage(systemName: &quot;flag&quot;), text: &quot;Country&quot;)
+
+searchBar.searchTextField.insertToken(purchasesToken, at: 0)
+searchBar.searchTextField.insertToken(countryToken, at: 0)
+</code></pre>
+
+<p>The <code>searchTextField</code> lets you do more than just adding the tokens. You can change the color of the tokens (thought you cannot change them individually):</p>
+
+<pre><code class="language-swift">searchBar.searchTextField.tokenBackgroundColor = .blue
+</code></pre>
+
+<p>You can allow or prevent the user from copying and deleting tokens:</p>
+
+<pre><code class="language-swift">searchBar.searchTextField.allowsCopyingTokens = true
+searchBar.searchTextField.allowsDeletingTokens = true
+</code></pre>
+
+<p>And then there&rsquo;s functions to get the range of one or multiple tokens, their positions, and more, so you can build powerful search features in your app.</p>
+
+<p>If you need to get the tokens themselves, the text field has a <code>tokens</code> property which you can access.</p>
+
+<pre><code class="language-swift">    searchBar.searchTextField.tokens.forEach {
+      // Do something with each search token.
+    }
+</code></pre>
+
+<p>Now here&rsquo;s the bizarre thing: The tokens do not expose their text or image properties. Instead, you need to assign the <code>representedObject</code> property. This object is of type <code>Any?</code>, so you can assign it anything you need. Here we are assigning simple search terms:</p>
+
+<pre><code class="language-swift">purchasesToken.representedObject = &quot;Purchases&quot;
+countryToken.representedObject = &quot;Bolivia&quot;
+</code></pre>
+
+<p>And now we can iterate over them:</p>
+
+<pre><code class="language-swift">searchBar.searchTextField.tokens.forEach {
+  // Do something with each search token.
+  print($0.representedObject)
+}
+</code></pre>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>The new search APIs are really neat in iOS 13. Other than a long-overdue functionality we have been begging for for years, we also got a new beautiful tokens API, which allows to build powerful search features for our users in our apps.</p>
+
+<hr>
+
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/cryptokit-not-enough/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">When CryptoKit is not Enough</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
