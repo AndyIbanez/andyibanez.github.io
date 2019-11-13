@@ -43,11 +43,6 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2019-11-06T16:32:01-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/posts/ios13-new-search-apis/</loc>
     <lastmod>2019-11-06T16:32:01-04:00</lastmod>
   </url>
@@ -78,11 +73,6 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/tvos/</loc>
-    <lastmod>2019-11-06T16:32:01-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/uikit/</loc>
     <lastmod>2019-11-06T16:32:01-04:00</lastmod>
   </url>
@@ -103,12 +93,22 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/watchos/</loc>
-    <lastmod>2019-11-06T16:32:01-04:00</lastmod>
+    <loc>https://www.andyibanez.com/tags/cryptokit/</loc>
+    <lastmod>2019-11-02T12:28:26-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/cryptokit/</loc>
+    <loc>https://www.andyibanez.com/tags/macos/</loc>
+    <lastmod>2019-11-02T12:28:26-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/tvos/</loc>
+    <lastmod>2019-11-02T12:28:26-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/watchos/</loc>
     <lastmod>2019-11-02T12:28:26-04:00</lastmod>
   </url>
   

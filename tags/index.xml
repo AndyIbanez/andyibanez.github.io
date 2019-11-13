@@ -39,15 +39,6 @@
     </item>
     
     <item>
-      <title>macos</title>
-      <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>programming</title>
       <link>https://www.andyibanez.com/tags/programming/</link>
       <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
@@ -71,15 +62,6 @@
       <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tvos</title>
-      <link>https://www.andyibanez.com/tags/tvos/</link>
-      <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/tvos/</guid>
       <description></description>
     </item>
     
@@ -120,20 +102,38 @@
     </item>
     
     <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cryptokit</title>
       <link>https://www.andyibanez.com/tags/cryptokit/</link>
       <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/cryptokit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://www.andyibanez.com/tags/macos/</link>
+      <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvos</title>
+      <link>https://www.andyibanez.com/tags/tvos/</link>
+      <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/tvos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
