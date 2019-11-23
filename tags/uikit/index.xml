@@ -19,7 +19,7 @@
       <guid>https://www.andyibanez.com/posts/ios13-new-search-apis/</guid>
       <description>iOS has always provided interesting search APIs, but they have always been limited and doing the most interesting tasks required you to either write your own implementation or use private APIs.
 iOS 13 has provided some very nice improvement and APIs to the UI search APIs. In this article we will talk about two of them.
-UISearchBar finally exposes it&amp;rsquo;s text field I have been using UISearchController and UISearchBar for a very long time, and I have always found it bizarre that Apple didn&amp;rsquo;t expose its underlying text field property.</description>
+UISearchBar finally exposes its text field I have been using UISearchController and UISearchBar for a very long time, and I have always found it bizarre that Apple didn&amp;rsquo;t expose its underlying text field property.</description>
     </item>
     
   </channel>
