@@ -4,22 +4,52 @@
   
   <url>
     <loc>https://www.andyibanez.com/</loc>
-    <lastmod>2019-11-17T15:29:41-04:00</lastmod>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2019-11-17T15:29:41-04:00</lastmod>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2019-11-17T15:29:41-04:00</lastmod>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2019-11-17T15:29:41-04:00</lastmod>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/property-wrappers/</loc>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/understanding-property-wrappers-swift/</loc>
+    <lastmod>2019-11-23T16:26:13-04:00</lastmod>
   </url>
   
   <url>
@@ -48,22 +78,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2019-11-17T15:29:41-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/proxy/</loc>
     <lastmod>2019-11-17T15:29:41-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/reverse-engineering/</loc>
-    <lastmod>2019-11-17T15:29:41-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
     <lastmod>2019-11-17T15:29:41-04:00</lastmod>
   </url>
   
@@ -93,17 +113,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2019-11-06T16:32:01-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/search/</loc>
-    <lastmod>2019-11-06T16:32:01-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
     <lastmod>2019-11-06T16:32:01-04:00</lastmod>
   </url>
   
@@ -258,12 +268,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/command-line/</loc>
+    <loc>https://www.andyibanez.com/categories/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/command-line/</loc>
+    <loc>https://www.andyibanez.com/tags/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
