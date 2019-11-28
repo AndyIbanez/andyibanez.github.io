@@ -346,7 +346,7 @@ print(myFullName.firstName) // prints &quot;Andy&quot;
 print(myFullName.lastName) // prints &quot;IBANEZ&quot;
 </code></pre>
 
-<p>First, we create our <code>ConfigurableCapitalization</code> property wrapped, which contains an <code>enum</code> that lets us specify the capitalization of a String. In the setter of the <code>wrappedValue</code>, we instruct the code to store the property in any of the specified capitalization types.</p>
+<p>First, we create our <code>ConfigurableCapitalization</code> property wrapper, which contains an <code>enum</code> that lets us specify the capitalization of a String. In the setter of the <code>wrappedValue</code>, we instruct the code to store the property in any of the specified capitalization types.</p>
 
 <p>Then we created a <code>FullName</code> object that will store a <code>firstName</code> as a <code>capitalized</code> string (it will capitalize the first letter of each word), and the last name as an <code>uppercased</code> string.</p>
 
@@ -387,11 +387,11 @@ struct ConfigurableCapitalization {
 <pre><code class="language-swift">print(myFullName.$firstName) // prints &quot;capitalized&quot;
 </code></pre>
 
-<p>But you can use it for me. If you are storing your values in a database, you can expose the connector object to do something with it, like flush values, or more.</p>
+<p>If you are storing your values in a database, you can expose the connector object to do something with it, like flush values, or more.</p>
 
 <h1 id="the-downsides">The Downsides</h1>
 
-<p>Property wrappers are an amazing feature, but they have one downside: They provide too much &ldquo;black magic&rdquo; for someone who is not familiar with them. If you handed a new programmer our <code>FullName</code> class and instructed them to use it, they may be surprised at what&rsquo;s going on behind the scenes. This can only be solved with proper documentation.</p>
+<p>Property wrappers are an amazing feature, but they have one downside: They provide too much &ldquo;black magic&rdquo; for someone who is not familiar with them. If you handed a new programmer our <code>FullName</code> struct and instructed them to use it, they may be surprised at what&rsquo;s going on behind the scenes. This can only be solved with proper documentation.</p>
 
 <h1 id="conclusion">Conclusion</h1>
 
