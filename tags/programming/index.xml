@@ -121,7 +121,7 @@ A Result wraps a success or a failure. It is essentially an enum with two possib
     <item>
       <title>Building URLs With NSURLComponents</title>
       <link>https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/</link>
-      <pubDate>Wed, 04 Sep 2019 14:00:00 -0400</pubDate>
+      <pubDate>Wed, 04 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/</guid>
       <description>If you have been programming for Apple platforms for a while, chances are you have seen (or maybe even wrote yourself) a line of code that looks like this:
