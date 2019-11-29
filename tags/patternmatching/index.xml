@@ -6,7 +6,7 @@
     <description>Recent content in patternmatching on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 23 Sep 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 27 Sep 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/patternmatching/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Introduction to Patterns and Pattern Matching in Swift.</title>
       <link>https://www.andyibanez.com/posts/pattern-matching/</link>
-      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      <pubDate>Fri, 27 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
       <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.

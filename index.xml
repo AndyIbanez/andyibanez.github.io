@@ -83,22 +83,22 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
     </item>
     
     <item>
+      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
+      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
+      <pubDate>Fri, 27 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
+      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
+For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
+    </item>
+    
+    <item>
       <title>Formatting Content with NSFormatter</title>
       <link>https://www.andyibanez.com/posts/nsformatter/</link>
       <pubDate>Wed, 25 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/nsformatter/</guid>
       <description>Very often, we need to deal with data in a &amp;ldquo;raw&amp;rdquo; format that, if displayed directly to the user, it makes little sense to them. This kind of data includes a date timestamp, the number of bytes in a big file, or numbers with no rounding a bunch of decimals. There is a lot of data like this, and we need to be able to format it and show it to the user.</description>
-    </item>
-    
-    <item>
-      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
-      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
-      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
-      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
-For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
     </item>
     
     <item>
