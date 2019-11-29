@@ -71,6 +71,25 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
     </item>
     
     <item>
+      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
+      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
+      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
+      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
+For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
+    </item>
+    
+    <item>
+      <title>Understanding and Implementing NSNotificationCenter on Apple&#39;s Platforms</title>
+      <link>https://www.andyibanez.com/posts/nsnotificationcenter/</link>
+      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/nsnotificationcenter/</guid>
+      <description>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &amp;ldquo;listen&amp;rdquo; to in order to react.</description>
+    </item>
+    
+    <item>
       <title>Understanding the Essentials for Adopting Multiwindow Support on iPadOS</title>
       <link>https://www.andyibanez.com/posts/ipad-multiwindow-support/</link>
       <pubDate>Wed, 18 Sep 2019 07:00:00 -0400</pubDate>
@@ -78,6 +97,15 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
       <guid>https://www.andyibanez.com/posts/ipad-multiwindow-support/</guid>
       <description>On WWDC2019, Apple decided to fork iOS into two different operating systems: iOS for iPhones, and iPadOS for iPads. This is to recognize the iPad as its own independent entity that has its own set of features compared to iOS. Amongst those features, iPadOS adds Multiwindow support, which allows our apps to run in more than one Window at the same time.
 What exactly is Multi-window support, and how does it work?</description>
+    </item>
+    
+    <item>
+      <title>Filtering Arrays with Predicates</title>
+      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
+      <pubDate>Mon, 16 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
+      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
     </item>
     
     <item>
@@ -116,34 +144,6 @@ let url = URL(string: &amp;quot;https://www.google.com/search?hl=en&amp;amp;q=pu
       
       <guid>https://www.andyibanez.com/posts/exploring-the-nsoperation-apis/</guid>
       <description>The original title for this article was posted on my old website in 2012 and it was titled &amp;ldquo;Multithreading on iOS And Mac OS X Using NSOperations&amp;rdquo;. The original examples were written in Objective-C. This article has been rewritten from scratch not only to give the examples in Swift, but also to improve the quality of the old article. It has been shortened, and both language and tone have been revised.</description>
-    </item>
-    
-    <item>
-      <title>Filtering Arrays with Predicates</title>
-      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
-      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
-    </item>
-    
-    <item>
-      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
-      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
-      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
-For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
-    </item>
-    
-    <item>
-      <title>Understanding and Implementing NSNotificationCenter on Apple&#39;s Platforms</title>
-      <link>https://www.andyibanez.com/posts/nsnotificationcenter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/nsnotificationcenter/</guid>
-      <description>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &amp;ldquo;listen&amp;rdquo; to in order to react.</description>
     </item>
     
   </channel>

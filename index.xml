@@ -21,6 +21,15 @@
     </item>
     
     <item>
+      <title>Intercepting Network Traffic with mitmproxy</title>
+      <link>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</guid>
+      <description>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</description>
+    </item>
+    
+    <item>
       <title>New Search APIs in iOS 13</title>
       <link>https://www.andyibanez.com/posts/ios13-new-search-apis/</link>
       <pubDate>Wed, 13 Nov 2019 07:00:00 -0400</pubDate>
@@ -83,6 +92,25 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
     </item>
     
     <item>
+      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
+      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
+      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
+      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
+For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
+    </item>
+    
+    <item>
+      <title>Understanding and Implementing NSNotificationCenter on Apple&#39;s Platforms</title>
+      <link>https://www.andyibanez.com/posts/nsnotificationcenter/</link>
+      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/nsnotificationcenter/</guid>
+      <description>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &amp;ldquo;listen&amp;rdquo; to in order to react.</description>
+    </item>
+    
+    <item>
       <title>Understanding the Essentials for Adopting Multiwindow Support on iPadOS</title>
       <link>https://www.andyibanez.com/posts/ipad-multiwindow-support/</link>
       <pubDate>Wed, 18 Sep 2019 07:00:00 -0400</pubDate>
@@ -90,6 +118,15 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
       <guid>https://www.andyibanez.com/posts/ipad-multiwindow-support/</guid>
       <description>On WWDC2019, Apple decided to fork iOS into two different operating systems: iOS for iPhones, and iPadOS for iPads. This is to recognize the iPad as its own independent entity that has its own set of features compared to iOS. Amongst those features, iPadOS adds Multiwindow support, which allows our apps to run in more than one Window at the same time.
 What exactly is Multi-window support, and how does it work?</description>
+    </item>
+    
+    <item>
+      <title>Filtering Arrays with Predicates</title>
+      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
+      <pubDate>Mon, 16 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
+      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
     </item>
     
     <item>
@@ -291,43 +328,6 @@ Why a third-party client? This app was made with Dropbox lovers and Power Users 
       <description>Discontinued project. Developed in 2011.
 A very complete base number converter for programmers and computer science students. Super Base Converter (SBConverter) is a very powerful base number conversion tool. It offers a simple and intuitive user interface free of distractions to allow users to quickly convert from one number base to another.
 Features:  Convert any number back and forth in any base from base 2 (binary) to base 16 (hexadecimal).</description>
-    </item>
-    
-    <item>
-      <title>Filtering Arrays with Predicates</title>
-      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
-      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
-    </item>
-    
-    <item>
-      <title>Intercepting Network Traffic with mitmproxy</title>
-      <link>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</guid>
-      <description>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</description>
-    </item>
-    
-    <item>
-      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
-      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
-      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
-For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
-    </item>
-    
-    <item>
-      <title>Understanding and Implementing NSNotificationCenter on Apple&#39;s Platforms</title>
-      <link>https://www.andyibanez.com/posts/nsnotificationcenter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/nsnotificationcenter/</guid>
-      <description>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &amp;ldquo;listen&amp;rdquo; to in order to react.</description>
     </item>
     
   </channel>

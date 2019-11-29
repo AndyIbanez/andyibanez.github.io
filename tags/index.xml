@@ -50,7 +50,7 @@
     <item>
       <title>ios</title>
       <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 13 Nov 2019 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios/</guid>
       <description></description>
@@ -59,9 +59,63 @@
     <item>
       <title>ipados</title>
       <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 13 Nov 2019 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://www.andyibanez.com/tags/macos/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>networking</title>
+      <link>https://www.andyibanez.com/tags/networking/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https://www.andyibanez.com/tags/proxy/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reverse engineering</title>
+      <link>https://www.andyibanez.com/tags/reverse-engineering/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/reverse-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvos</title>
+      <link>https://www.andyibanez.com/tags/tvos/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/tvos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -120,33 +174,6 @@
     </item>
     
     <item>
-      <title>macos</title>
-      <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Wed, 06 Nov 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tvos</title>
-      <link>https://www.andyibanez.com/tags/tvos/</link>
-      <pubDate>Wed, 06 Nov 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/tvos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 06 Nov 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>corehaptics</title>
       <link>https://www.andyibanez.com/tags/corehaptics/</link>
       <pubDate>Wed, 02 Oct 2019 07:00:00 -0400</pubDate>
@@ -174,6 +201,51 @@
     </item>
     
     <item>
+      <title>nsnotificationcenter</title>
+      <link>https://www.andyibanez.com/tags/nsnotificationcenter/</link>
+      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/nsnotificationcenter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patternmatching</title>
+      <link>https://www.andyibanez.com/tags/patternmatching/</link>
+      <pubDate>Mon, 23 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/patternmatching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>arrays</title>
+      <link>https://www.andyibanez.com/tags/arrays/</link>
+      <pubDate>Mon, 16 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/arrays/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nsarray</title>
+      <link>https://www.andyibanez.com/tags/nsarray/</link>
+      <pubDate>Mon, 16 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/nsarray/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nspredicate</title>
+      <link>https://www.andyibanez.com/tags/nspredicate/</link>
+      <pubDate>Mon, 16 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/nspredicate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>error</title>
       <link>https://www.andyibanez.com/tags/error/</link>
       <pubDate>Wed, 11 Sep 2019 07:00:00 -0400</pubDate>
@@ -188,15 +260,6 @@
       <pubDate>Wed, 11 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/result/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>networking</title>
-      <link>https://www.andyibanez.com/tags/networking/</link>
-      <pubDate>Wed, 04 Sep 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/networking/</guid>
       <description></description>
     </item>
     
@@ -296,69 +359,6 @@
       <pubDate>Sat, 04 Jan 2014 22:07:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/jailbreak/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>arrays</title>
-      <link>https://www.andyibanez.com/tags/arrays/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/arrays/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nsarray</title>
-      <link>https://www.andyibanez.com/tags/nsarray/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/nsarray/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nsnotificationcenter</title>
-      <link>https://www.andyibanez.com/tags/nsnotificationcenter/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/nsnotificationcenter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>nspredicate</title>
-      <link>https://www.andyibanez.com/tags/nspredicate/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/nspredicate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>patternmatching</title>
-      <link>https://www.andyibanez.com/tags/patternmatching/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/patternmatching/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>proxy</title>
-      <link>https://www.andyibanez.com/tags/proxy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reverse engineering</title>
-      <link>https://www.andyibanez.com/tags/reverse-engineering/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/reverse-engineering/</guid>
       <description></description>
     </item>
     

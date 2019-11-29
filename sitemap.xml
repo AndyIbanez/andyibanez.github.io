@@ -53,13 +53,48 @@
   </url>
   
   <url>
+    <loc>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2019-11-13T07:00:00-04:00</lastmod>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2019-11-13T07:00:00-04:00</lastmod>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/macos/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/networking/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/proxy/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/reverse-engineering/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/tvos/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/watchos/</loc>
+    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -108,21 +143,6 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2019-11-06T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/tvos/</loc>
-    <lastmod>2019-11-06T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/watchos/</loc>
-    <lastmod>2019-11-06T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/posts/cryptokit-not-enough/</loc>
     <lastmod>2019-11-06T07:00:00-04:00</lastmod>
   </url>
@@ -158,8 +178,48 @@
   </url>
   
   <url>
+    <loc>https://www.andyibanez.com/posts/pattern-matching/</loc>
+    <lastmod>2019-09-23T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/nsnotificationcenter/</loc>
+    <lastmod>2019-09-23T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/patternmatching/</loc>
+    <lastmod>2019-09-23T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/nsnotificationcenter/</loc>
+    <lastmod>2019-09-23T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/posts/ipad-multiwindow-support/</loc>
     <lastmod>2019-09-18T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/arrays/</loc>
+    <lastmod>2019-09-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</loc>
+    <lastmod>2019-09-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/nsarray/</loc>
+    <lastmod>2019-09-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/nspredicate/</loc>
+    <lastmod>2019-09-16T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -179,11 +239,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/</loc>
-    <lastmod>2019-09-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/networking/</loc>
     <lastmod>2019-09-04T07:00:00-04:00</lastmod>
   </url>
   
@@ -213,12 +268,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/command-line/</loc>
+    <loc>https://www.andyibanez.com/tags/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/command-line/</loc>
+    <loc>https://www.andyibanez.com/categories/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
@@ -348,51 +403,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/arrays/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/pattern-matching/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/nsarray/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/nsnotificationcenter/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/nspredicate/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/patternmatching/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/proxy/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/reverse-engineering/</loc>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/series/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/nsnotificationcenter/</loc>
   </url>
   
 </urlset>
