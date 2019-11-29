@@ -148,6 +148,26 @@
   </url>
   
   <url>
+    <loc>https://www.andyibanez.com/tags/arrays/</loc>
+    <lastmod>2019-10-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</loc>
+    <lastmod>2019-10-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/nsarray/</loc>
+    <lastmod>2019-10-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/nspredicate/</loc>
+    <lastmod>2019-10-16T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/</loc>
     <lastmod>2019-10-09T07:00:00-04:00</lastmod>
   </url>
@@ -195,26 +215,6 @@
   <url>
     <loc>https://www.andyibanez.com/posts/nsnotificationcenter/</loc>
     <lastmod>2019-09-23T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/arrays/</loc>
-    <lastmod>2019-09-18T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</loc>
-    <lastmod>2019-09-18T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/nsarray/</loc>
-    <lastmod>2019-09-18T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/nspredicate/</loc>
-    <lastmod>2019-09-18T07:00:00-04:00</lastmod>
   </url>
   
   <url>
