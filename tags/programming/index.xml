@@ -90,6 +90,15 @@ For example, consider casting. Casting is a feature in the vast majority of stat
     </item>
     
     <item>
+      <title>Filtering Arrays with Predicates</title>
+      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
+      <pubDate>Wed, 18 Sep 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
+      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
+    </item>
+    
+    <item>
       <title>Understanding the Essentials for Adopting Multiwindow Support on iPadOS</title>
       <link>https://www.andyibanez.com/posts/ipad-multiwindow-support/</link>
       <pubDate>Wed, 18 Sep 2019 07:00:00 -0400</pubDate>
@@ -97,15 +106,6 @@ For example, consider casting. Casting is a feature in the vast majority of stat
       <guid>https://www.andyibanez.com/posts/ipad-multiwindow-support/</guid>
       <description>On WWDC2019, Apple decided to fork iOS into two different operating systems: iOS for iPhones, and iPadOS for iPads. This is to recognize the iPad as its own independent entity that has its own set of features compared to iOS. Amongst those features, iPadOS adds Multiwindow support, which allows our apps to run in more than one Window at the same time.
 What exactly is Multi-window support, and how does it work?</description>
-    </item>
-    
-    <item>
-      <title>Filtering Arrays with Predicates</title>
-      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
-      <pubDate>Mon, 16 Sep 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
-      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
     </item>
     
     <item>
