@@ -6,7 +6,6 @@
     <description>Recent content in nspredicate on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2019 17:28:31 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/nspredicate/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +13,7 @@
     <item>
       <title>Filtering Arrays with Predicates</title>
       <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
-      <pubDate>Sat, 12 Oct 2019 17:28:31 -0400</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
       <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>

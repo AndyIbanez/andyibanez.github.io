@@ -6,7 +6,7 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 23 Nov 2019 16:26:13 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 27 Nov 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,25 +14,16 @@
     <item>
       <title>Understanding Property Wrappers in Swift</title>
       <link>https://www.andyibanez.com/posts/understanding-property-wrappers-swift/</link>
-      <pubDate>Sat, 23 Nov 2019 16:26:13 -0400</pubDate>
+      <pubDate>Wed, 27 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/understanding-property-wrappers-swift/</guid>
       <description>Swift 5.1 introduced a sleuth of wonderful features, and amongst them, there&amp;rsquo;s one that is essential for SwiftUI: Property Wrappers. Property wrappers are a powerful feature in Swift that allow you to wrap behavior along with properties. This allows us to do some interesting things. If you have seen SwiftUI, you&amp;rsquo;ve seen the @State &amp;ldquo;keyword&amp;rdquo;, and you know that it allows you to modify structs. This is possible thanks to the behavior &amp;ldquo;wrapped&amp;rdquo; within properties marked with it.</description>
     </item>
     
     <item>
-      <title>Intercepting Network Traffic with mitmproxy</title>
-      <link>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</link>
-      <pubDate>Sun, 17 Nov 2019 15:29:41 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</guid>
-      <description>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</description>
-    </item>
-    
-    <item>
       <title>New Search APIs in iOS 13</title>
       <link>https://www.andyibanez.com/posts/ios13-new-search-apis/</link>
-      <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
+      <pubDate>Wed, 13 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/ios13-new-search-apis/</guid>
       <description>iOS has always provided interesting search APIs, but they have always been limited and doing the most interesting tasks required you to either write your own implementation or use private APIs.
@@ -43,7 +34,7 @@ UISearchBar finally exposes its text field I have been using UISearchController 
     <item>
       <title>When CryptoKit is not Enough</title>
       <link>https://www.andyibanez.com/posts/cryptokit-not-enough/</link>
-      <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
+      <pubDate>Wed, 06 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/cryptokit-not-enough/</guid>
       <description>This article is a continuation to my Common Cryptographic Operations with CryptoKit article. If you want to learn how to use CryptoKit, read that one instead, and come to this one when you need a feature not offered by it.
@@ -51,37 +42,9 @@ As I have been playing with the amazing CryptoKit framework in the past few week
     </item>
     
     <item>
-      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
-      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
-      <pubDate>Fri, 25 Oct 2019 15:57:05 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
-      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
-For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
-    </item>
-    
-    <item>
-      <title>Understanding and Implementing NSNotificationCenter on Apple&#39;s Platforms</title>
-      <link>https://www.andyibanez.com/posts/nsnotificationcenter/</link>
-      <pubDate>Thu, 17 Oct 2019 14:17:01 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/nsnotificationcenter/</guid>
-      <description>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &amp;ldquo;listen&amp;rdquo; to in order to react.</description>
-    </item>
-    
-    <item>
-      <title>Filtering Arrays with Predicates</title>
-      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
-      <pubDate>Sat, 12 Oct 2019 17:28:31 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
-      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
-    </item>
-    
-    <item>
       <title>Common Cryptographic Operations With Cryptokit</title>
       <link>https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/</link>
-      <pubDate>Sat, 05 Oct 2019 18:08:07 -0400</pubDate>
+      <pubDate>Wed, 09 Oct 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/</guid>
       <description>Apple has always taken security very seriously, so it&amp;rsquo;s expected that they would provide developers with the same tools they have to help developers implement the same security measures in their apps. This year, Apple introduced CryptoKit.
@@ -91,7 +54,7 @@ Apple providing new cryptography tools is nothing new. They have provided the Se
     <item>
       <title>Playing Custom Haptics on iOS</title>
       <link>https://www.andyibanez.com/posts/playing-custom-haptics-on-ios/</link>
-      <pubDate>Sat, 28 Sep 2019 16:47:11 -0400</pubDate>
+      <pubDate>Wed, 02 Oct 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/playing-custom-haptics-on-ios/</guid>
       <description>Vibration and physical feedback has become an important feature of Apple&amp;rsquo;s operating systems. Starting with the Apple Watch, Apple replaced the traditional vibration feedback with haptic feedback hardware, which allowed them to have more control over how vibrations and physical feedback work.
@@ -101,7 +64,7 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
     <item>
       <title>Formatting Content with NSFormatter</title>
       <link>https://www.andyibanez.com/posts/nsformatter/</link>
-      <pubDate>Sat, 21 Sep 2019 17:21:42 -0400</pubDate>
+      <pubDate>Wed, 25 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/nsformatter/</guid>
       <description>Very often, we need to deal with data in a &amp;ldquo;raw&amp;rdquo; format that, if displayed directly to the user, it makes little sense to them. This kind of data includes a date timestamp, the number of bytes in a big file, or numbers with no rounding a bunch of decimals. There is a lot of data like this, and we need to be able to format it and show it to the user.</description>
@@ -110,7 +73,7 @@ First being introduced in the Apple Watch, Haptic Feedback has been a core part 
     <item>
       <title>Understanding the Essentials for Adopting Multiwindow Support on iPadOS</title>
       <link>https://www.andyibanez.com/posts/ipad-multiwindow-support/</link>
-      <pubDate>Sat, 14 Sep 2019 15:02:44 -0400</pubDate>
+      <pubDate>Wed, 18 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/ipad-multiwindow-support/</guid>
       <description>On WWDC2019, Apple decided to fork iOS into two different operating systems: iOS for iPhones, and iPadOS for iPads. This is to recognize the iPad as its own independent entity that has its own set of features compared to iOS. Amongst those features, iPadOS adds Multiwindow support, which allows our apps to run in more than one Window at the same time.
@@ -120,7 +83,7 @@ What exactly is Multi-window support, and how does it work?</description>
     <item>
       <title>Understanding the Result Type in Swift</title>
       <link>https://www.andyibanez.com/posts/swift-result-type/</link>
-      <pubDate>Wed, 11 Sep 2019 15:17:02 -0400</pubDate>
+      <pubDate>Wed, 11 Sep 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/swift-result-type/</guid>
       <description>Error handling when expecting a result out of an operation is a very common thing to do. For this reason, various high-level programming languages have introduced a Result type into their libraries, on top of their existing error-handling features. This feature was implemented in Swift 5.
@@ -140,7 +103,7 @@ let url = URL(string: &amp;quot;https://www.google.com/search?hl=en&amp;amp;q=pu
     <item>
       <title>Caching Content With NSCache</title>
       <link>https://www.andyibanez.com/posts/caching-content-with-nscache/</link>
-      <pubDate>Wed, 28 Aug 2019 12:08:07 -0400</pubDate>
+      <pubDate>Wed, 28 Aug 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/caching-content-with-nscache/</guid>
       <description>When we are working with apps on iOS, iPadOS, macOS, watchOS, or TVOS, it&amp;rsquo;s possible that at some point we will have to store and retrieve a lot of temporary data throughout the lifecycle of our software. Depending on our needs, we may need to cache data on disk and manually manage it ourselves, or we may only need it to cache it in memory. In the case of the latter, Apple offers NSCache, a mutable collection that lets us cache files in memory using key-value pairs.</description>
@@ -149,10 +112,47 @@ let url = URL(string: &amp;quot;https://www.google.com/search?hl=en&amp;amp;q=pu
     <item>
       <title>Exploring the NSOperation APIs for Apple&#39;s Platforms</title>
       <link>https://www.andyibanez.com/posts/exploring-the-nsoperation-apis/</link>
-      <pubDate>Wed, 21 Aug 2019 14:47:38 -0400</pubDate>
+      <pubDate>Wed, 21 Aug 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/exploring-the-nsoperation-apis/</guid>
       <description>The original title for this article was posted on my old website in 2012 and it was titled &amp;ldquo;Multithreading on iOS And Mac OS X Using NSOperations&amp;rdquo;. The original examples were written in Objective-C. This article has been rewritten from scratch not only to give the examples in Swift, but also to improve the quality of the old article. It has been shortened, and both language and tone have been revised.</description>
+    </item>
+    
+    <item>
+      <title>Filtering Arrays with Predicates</title>
+      <link>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/filtering-arrays-nspredicate/</guid>
+      <description>Whether you have been programming for a while or are new at it, chances are you have had the need to search for results in an array. And while Apple&amp;rsquo;s SDKs for iOS, macOS, iPadOS, and watchOS all use Foundation and have a set of handy tools to make that task easier, there is one particular API that is very powerful but doesn&amp;rsquo;t get much use unless you pair with other frameworks such as Core Data: NSPredicate.</description>
+    </item>
+    
+    <item>
+      <title>Intercepting Network Traffic with mitmproxy</title>
+      <link>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</guid>
+      <description>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Patterns and Pattern Matching in Swift.</title>
+      <link>https://www.andyibanez.com/posts/pattern-matching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/pattern-matching/</guid>
+      <description>Swift is a beautiful language, but it hides some powerful features from developers who come from more &amp;ldquo;old-style&amp;rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.
+For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&amp;rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath.</description>
+    </item>
+    
+    <item>
+      <title>Understanding and Implementing NSNotificationCenter on Apple&#39;s Platforms</title>
+      <link>https://www.andyibanez.com/posts/nsnotificationcenter/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/nsnotificationcenter/</guid>
+      <description>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &amp;ldquo;listen&amp;rdquo; to in order to react.</description>
     </item>
     
   </channel>

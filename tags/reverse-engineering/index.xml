@@ -6,7 +6,6 @@
     <description>Recent content in reverse engineering on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Nov 2019 15:29:41 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +13,7 @@
     <item>
       <title>Intercepting Network Traffic with mitmproxy</title>
       <link>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</link>
-      <pubDate>Sun, 17 Nov 2019 15:29:41 -0400</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</guid>
       <description>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</description>

@@ -6,7 +6,7 @@
     <description>Recent content in cryptokit on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Nov 2019 12:28:26 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 06 Nov 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/cryptokit/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>When CryptoKit is not Enough</title>
       <link>https://www.andyibanez.com/posts/cryptokit-not-enough/</link>
-      <pubDate>Sat, 02 Nov 2019 12:28:26 -0400</pubDate>
+      <pubDate>Wed, 06 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/cryptokit-not-enough/</guid>
       <description>This article is a continuation to my Common Cryptographic Operations with CryptoKit article. If you want to learn how to use CryptoKit, read that one instead, and come to this one when you need a feature not offered by it.
@@ -24,7 +24,7 @@ As I have been playing with the amazing CryptoKit framework in the past few week
     <item>
       <title>Common Cryptographic Operations With Cryptokit</title>
       <link>https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/</link>
-      <pubDate>Sat, 05 Oct 2019 18:08:07 -0400</pubDate>
+      <pubDate>Wed, 09 Oct 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/</guid>
       <description>Apple has always taken security very seriously, so it&amp;rsquo;s expected that they would provide developers with the same tools they have to help developers implement the same security measures in their apps. This year, Apple introduced CryptoKit.

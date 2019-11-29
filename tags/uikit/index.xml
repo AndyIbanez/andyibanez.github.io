@@ -6,7 +6,7 @@
     <description>Recent content in uikit on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 Nov 2019 16:32:01 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 13 Nov 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/uikit/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>New Search APIs in iOS 13</title>
       <link>https://www.andyibanez.com/posts/ios13-new-search-apis/</link>
-      <pubDate>Wed, 06 Nov 2019 16:32:01 -0400</pubDate>
+      <pubDate>Wed, 13 Nov 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/ios13-new-search-apis/</guid>
       <description>iOS has always provided interesting search APIs, but they have always been limited and doing the most interesting tasks required you to either write your own implementation or use private APIs.
