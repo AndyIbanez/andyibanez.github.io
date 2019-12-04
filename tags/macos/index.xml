@@ -6,10 +6,20 @@
     <description>Recent content in macos on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Nov 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 04 Dec 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UserDefaults and Property Wrappers</title>
+      <link>https://www.andyibanez.com/posts/nsuserdefaults-property-wrappers/</link>
+      <pubDate>Wed, 04 Dec 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/nsuserdefaults-property-wrappers/</guid>
+      <description>Last week we talked about Property Wrappers, what they are, and how they work with Swift. In this article, we will build upon that to write a very nice property wrapper for user settings based on NSUserDefaults.
+But Why? I don&amp;rsquo;t know about you, but a pattern I see a lot (and I&amp;rsquo;m guilty of doing this myself) is to just wrap all user defaults in a Singleton. This works, but singletons in general are not a pattern everyone is particularly a fan of.</description>
+    </item>
     
     <item>
       <title>Intercepting Network Traffic with mitmproxy</title>
