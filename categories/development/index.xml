@@ -6,10 +6,20 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Dec 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 11 Dec 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Formatting Relative Dates With RelativeDateTimeormatter</title>
+      <link>https://www.andyibanez.com/posts/formatting-relative-dates-relativedatetimeformatter/</link>
+      <pubDate>Wed, 11 Dec 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/formatting-relative-dates-relativedatetimeformatter/</guid>
+      <description>Formatting Relative Dates With RelativeDateTimeFormatter
+A few weeks ago we talked about formatting content with NSFormatter, an abstract class from which multiple formatting classes inherit from to allow you to format different kinds of data in a human-readable form. NSFormatter is not only a class you can inherit from yourself, but as iOS evolves, more formatters will be added to its family. This week, we will explore a new member of this family introduced in iOS 13: RelativeDateTimeFormatter.</description>
+    </item>
     
     <item>
       <title>UserDefaults and Property Wrappers</title>
