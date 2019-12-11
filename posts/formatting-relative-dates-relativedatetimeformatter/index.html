@@ -289,7 +289,7 @@ if (!doNotTrack) {
 <li><code>localizedString(from:)</code>: This methods takes a <code>DateComponents</code> object, so you can easily construct objects and check their time difference relative to the current time on the device.<sup>[2]</sup></li>
 </ul>
 
-<h3 id="simple-usage-localizedstring-fromtimeinterval">Simple Usage: <code>localizedString(fromTimeInterval:)</code></h3>
+<h3 id="simple-usage-localizedstring-fromtimeinterval">Simple Usage: localizedString(fromTimeInterval:)</h3>
 
 <p>In its simplest form, you can get formatted text out of this formatter with two lines of code. We will use <code>localizedString(fromTimeInterval)</code> to show you how to do this:</p>
 
@@ -382,9 +382,11 @@ relativeDtf.localizedString(from: DateComponents(day: 1)) // &quot;in 1 day&quot
 
 <h6 id="foot-notes">Foot Notes</h6>
 
-<p>[1]: I actually don&rsquo;t know if formats the date relative to the user&rsquo;s device. The API is not documented, but that&rsquo;s what I have observed.
-[2]: Just like the note above, it&rsquo;s not documented if the formatting occurs relative to the device&rsquo;s time, but my observations point to yes.
-[3]: I looked and looked and couldn&rsquo;t find an input that produced something different. Hopefully the docs will be up soon.</p>
+<p>[1]: I actually don&rsquo;t know if formats the date relative to the user&rsquo;s device. The API is not documented, but that&rsquo;s what I have observed.</p>
+
+<p>[2]: Just like the note above, it&rsquo;s not documented if the formatting occurs relative to the device&rsquo;s time, but my observations point to yes.</p>
+
+<p>[3]: I looked and looked and couldn&rsquo;t find an input that produced something different. Hopefully the docs will be up soon.</p>
 
   </div>
   
