@@ -19,7 +19,7 @@
       <guid>https://www.andyibanez.com/posts/nsuserdefaults-property-wrappers/</guid>
       <description>Important Note
 Soon after I published this article, Christian Tietze wrote a fair criticism of this idea here.
-Once you understand how property wrappers work, you can use this article to apply it to user defaults. The main idea is that property wrappers allow you to store your values differently and even externally. That said, you may or may not want to implement this in a real app. I recommend you read this article first, and then go back to Christian&amp;rsquo;s to see more downsides of this idea than the ones I mentioned below.</description>
+Once you understand how property wrappers work, you can use this article to apply it to user defaults. The main idea is that property wrappers allow you to store your values differently and even externally. That said, you may or may not want to implement this in a real app. I recommend you read this article first, and then go back to Christian&amp;rsquo;s to see more downsides of this idea other than the ones I mentioned below.</description>
     </item>
     
     <item>
