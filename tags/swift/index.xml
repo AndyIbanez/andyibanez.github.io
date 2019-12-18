@@ -6,10 +6,19 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Dec 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 18 Dec 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Background Execution in iOS</title>
+      <link>https://www.andyibanez.com/posts/background-execution-in-ios/</link>
+      <pubDate>Wed, 18 Dec 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/background-execution-in-ios/</guid>
+      <description>In the early days of iOS development, developers had no way at all to perform background tasks beyond a very limited constraints of tasks, like music playback. Modern demands go beyond allowing people to play music in your app while they use a different app, and we as developers need to adapt to these changes. VoIP, lengthy networking, and even silent pushes to keep an app updated are very common these days, and fulfilling these demands used to be hard, if not outright impossible.</description>
+    </item>
     
     <item>
       <title>Formatting Relative Dates With RelativeDateTimeFormatter</title>
