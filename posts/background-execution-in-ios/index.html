@@ -422,7 +422,7 @@ Executing (0.0 seconds remaining)
 
 <p>You can also give extensions additional time before they get suspended by the system, with the following method:</p>
 
-<pre><code>ProcessInfo.performExpiringActivity(withReason:using:)
+<pre><code>ProcessInfo().performExpiringActivity(withReason:using:)
 </code></pre>
 
 <p>The first parameter is a string you can use for debugging purposes. The second parameter is a handler where you put code you want to execute in the background. The block will give you a boolean telling you if the process is about to be suspended. If the boolean is <code>true</code>, you should take caution to end the task as soon as possible. I wasn&rsquo;t able to find a way to tell how much time you have left to execute a background task with this API.</p>
