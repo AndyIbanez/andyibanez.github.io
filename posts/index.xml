@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Dec 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 25 Dec 2019 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Modern Backgrounds Tasks in iOS 13</title>
+      <link>https://www.andyibanez.com/posts/modern-background-tasks-ios13/</link>
+      <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/modern-background-tasks-ios13/</guid>
+      <description>In the article from last week, we explored the basic background execution APIs introduced since iOS 7. We explored how we could request additional time for a task to complete after entering the background, how we could defer downloads with URLSession, and how we could use silent push notifications to trigger background tasks.
+The story with background tasks does not end there. iOS 13 introduced more APIs to do better background tasks, and that allow you to do things that weren&amp;rsquo;t possible before.</description>
+    </item>
     
     <item>
       <title>Background Execution in iOS</title>
