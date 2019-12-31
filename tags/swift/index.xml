@@ -6,10 +6,21 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Dec 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 17:27:58 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AIiCloudSync</title>
+      <link>https://www.andyibanez.com/projects/aiicloudsync/</link>
+      <pubDate>Tue, 31 Dec 2019 17:27:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/aiicloudsync/</guid>
+      <description>GitHub Repository
+ AIiCloudSync AIiCloudSync is a simple Package written in Swift to synchronize specific UserDefaults with the iCloud Key Value store (NSUbiquitousKeyValueStore).
+To use this package, create a single instance of AIiCloudSync, and keep a reference to it. Once you create it, you don&amp;rsquo;t need to worry about it any longer. It will automatically sync changes between iCloud and your local UserDefaults through the lifetime of your application. You can optionally receive notifications when the iCloud Syncs change so you can react accordingly.</description>
+    </item>
     
     <item>
       <title>Modern Backgrounds Tasks in iOS 13</title>

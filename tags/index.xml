@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Dec 2019 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 17:27:58 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ios</title>
+      <link>https://www.andyibanez.com/tags/ios/</link>
+      <pubDate>Tue, 31 Dec 2019 17:27:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Tue, 31 Dec 2019 17:27:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>open source</title>
+      <link>https://www.andyibanez.com/tags/open-source/</link>
+      <pubDate>Tue, 31 Dec 2019 17:27:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/open-source/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Tue, 31 Dec 2019 17:27:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>apple</title>
@@ -30,29 +66,11 @@
     </item>
     
     <item>
-      <title>ios</title>
-      <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>iOS13</title>
       <link>https://www.andyibanez.com/tags/ios13/</link>
       <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios13/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
       <description></description>
     </item>
     
@@ -71,15 +89,6 @@
       <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
     </item>
     
@@ -341,15 +350,6 @@
       <pubDate>Mon, 08 May 2017 21:06:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/app-store/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>open source</title>
-      <link>https://www.andyibanez.com/tags/open-source/</link>
-      <pubDate>Sun, 26 Jun 2016 19:49:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/open-source/</guid>
       <description></description>
     </item>
     
