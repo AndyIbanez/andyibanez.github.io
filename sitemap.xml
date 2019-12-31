@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.andyibanez.com/projects/aiicloudsync/</loc>
-    <lastmod>2019-12-31T17:27:58-04:00</lastmod>
+    <loc>https://www.andyibanez.com/</loc>
+    <lastmod>2019-12-31T18:38:56-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/</loc>
+    <loc>https://www.andyibanez.com/privacy_policy/</loc>
+    <lastmod>2019-12-31T18:38:56-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/projects/aiicloudsync/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
@@ -28,12 +33,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/open-source/</loc>
+    <loc>https://www.andyibanez.com/tags/open-source/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/open-source/</loc>
+    <loc>https://www.andyibanez.com/categories/open-source/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
