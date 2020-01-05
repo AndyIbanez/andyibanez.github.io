@@ -347,7 +347,7 @@ let sharpness = CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5
 let attackTime = CHHapticEventParameter(parameterID: .attackTime, value: 0.5) // When to increase the intensity of the haptic.
 let decayTime = CHHapticEventParameter(parameterID: .decayTime, value: 0.5) // When the intensity of the haptic goes down.
 let releaseTime = CHHapticEventParameter(parameterID: .releaseTime, value: 0.5) // If you want the haptic to &quot;fade&quot;, when
-let releaseTime = CHHapticEventParameter(parameterID: .sustained, value: true) // If you want to sustain the haptic for its entire duration.
+let sustainTime = CHHapticEventParameter(parameterID: .sustained, value: true) // If you want to sustain the haptic for its entire duration.
 
 let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: 0)
 
