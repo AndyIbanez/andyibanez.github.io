@@ -6,10 +6,21 @@
     <description>Recent content in ipados on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 15 Jan 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ipados/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CryptoKit and the Secure Enclave</title>
+      <link>https://www.andyibanez.com/posts/cryptokit-secure-enclave/</link>
+      <pubDate>Wed, 15 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/cryptokit-secure-enclave/</guid>
+      <description>CryptoKit and the Secure Enclave
+Apple&amp;rsquo;s CryptoKit introduced this year is full of amazing features. Not only does it offer very easy to use cryptography, but it also offers an interface to a security feature that Apple introduced less than a decade ago: The Secure Enclave.
+The Secure Enclave is a hardware feature for helping the system work with cryptographically secure data. In this article, we will build upon our previous CryptoKit knowledge (see the article linked above), and we will also learn what the Secure Enclave is all about.</description>
+    </item>
     
     <item>
       <title>Implementing Parametrizable Shortcut Actions for your iOS Apps</title>

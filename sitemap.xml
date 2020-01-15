@@ -4,22 +4,82 @@
   
   <url>
     <loc>https://www.andyibanez.com/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/cryptokit/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/cryptokit-secure-enclave/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ios/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ipados/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/macos/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/tvos/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/watchos/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/wwdc2019/</loc>
+    <lastmod>2020-01-15T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -28,27 +88,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/ios13/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
     <lastmod>2020-01-08T07:00:00-04:00</lastmod>
   </url>
   
@@ -59,26 +99,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/siri/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/watchos/</loc>
-    <lastmod>2020-01-08T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/wwdc2019/</loc>
     <lastmod>2020-01-08T07:00:00-04:00</lastmod>
   </url>
   
@@ -98,12 +118,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/open-source/</loc>
+    <loc>https://www.andyibanez.com/tags/open-source/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/open-source/</loc>
+    <loc>https://www.andyibanez.com/categories/open-source/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
@@ -123,17 +143,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2019-12-25T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/posts/modern-background-tasks-ios13/</loc>
-    <lastmod>2019-12-25T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/tvos/</loc>
     <lastmod>2019-12-25T07:00:00-04:00</lastmod>
   </url>
   
@@ -230,11 +240,6 @@
   <url>
     <loc>https://www.andyibanez.com/bolivia/translatebo/</loc>
     <lastmod>2019-11-11T12:05:19-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/cryptokit/</loc>
-    <lastmod>2019-11-06T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -353,12 +358,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/command-line/</loc>
+    <loc>https://www.andyibanez.com/categories/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/command-line/</loc>
+    <loc>https://www.andyibanez.com/tags/command-line/</loc>
     <lastmod>2019-08-20T13:59:15-04:00</lastmod>
   </url>
   
