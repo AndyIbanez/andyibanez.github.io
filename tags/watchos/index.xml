@@ -6,10 +6,20 @@
     <description>Recent content in watchos on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jan 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/watchos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Recognizing Speech Locally on a iOS Device using the Speech Framework</title>
+      <link>https://www.andyibanez.com/posts/speech-recognition-sfspeechrecognizer/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/speech-recognition-sfspeechrecognizer/</guid>
+      <description>As iOS becomes more advanced, features that we thought belonged to the long future start becoming more common place in today&amp;rsquo;s software. One such feature is speech recognition, which allows a device to take verbal input from a user, transcribe it into text, and do something with it.
+In iOS, we can do this using a framework called Speech, and an object called SFSpeechRecognizer. With this class, you can perform all kinds of speech recognition tasks.</description>
+    </item>
     
     <item>
       <title>Generating Feedback Haptics with UINotificationFeedbackGenerator</title>
@@ -121,7 +131,7 @@ For example, consider casting. Casting is a feature in the vast majority of stat
     </item>
     
     <item>
-      <title>Common Cryptographic Operations With Cryptokit</title>
+      <title>Common Cryptographic Operations With CryptoKit</title>
       <link>https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/</link>
       <pubDate>Wed, 09 Oct 2019 07:00:00 -0400</pubDate>
       

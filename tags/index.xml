@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jan 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 22 Jan 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
@@ -23,9 +23,81 @@
     <item>
       <title>ios</title>
       <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 22 Jan 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS13</title>
+      <link>https://www.andyibanez.com/tags/ios13/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ios13/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>speech</title>
+      <link>https://www.andyibanez.com/tags/speech/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/speech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>speech recognition</title>
+      <link>https://www.andyibanez.com/tags/speech-recognition/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/speech-recognition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc2019</title>
+      <link>https://www.andyibanez.com/tags/wwdc2019/</link>
+      <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc2019/</guid>
       <description></description>
     </item>
     
@@ -39,33 +111,6 @@
     </item>
     
     <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 22 Jan 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 22 Jan 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 22 Jan 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cryptokit</title>
       <link>https://www.andyibanez.com/tags/cryptokit/</link>
       <pubDate>Wed, 15 Jan 2020 07:00:00 -0400</pubDate>
@@ -75,38 +120,11 @@
     </item>
     
     <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 15 Jan 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>tvos</title>
       <link>https://www.andyibanez.com/tags/tvos/</link>
       <pubDate>Wed, 15 Jan 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/tvos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wwdc2019</title>
-      <link>https://www.andyibanez.com/tags/wwdc2019/</link>
-      <pubDate>Wed, 15 Jan 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/wwdc2019/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>iOS13</title>
-      <link>https://www.andyibanez.com/tags/ios13/</link>
-      <pubDate>Wed, 08 Jan 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ios13/</guid>
       <description></description>
     </item>
     
