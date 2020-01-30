@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Recognizing Speech Locally on a iOS Device using the Speech Framework</title>
+      <title>Recognizing Speech Locally on an iOS Device Using the Speech Framework</title>
       <link>https://www.andyibanez.com/posts/speech-recognition-sfspeechrecognizer/</link>
       <pubDate>Wed, 29 Jan 2020 07:00:00 -0400</pubDate>
       
@@ -63,7 +63,7 @@ The story with background tasks does not end there. iOS 13 introduced more APIs 
     </item>
     
     <item>
-      <title>Background Execution in iOS</title>
+      <title>Background Execution on iOS</title>
       <link>https://www.andyibanez.com/posts/background-execution-in-ios/</link>
       <pubDate>Wed, 18 Dec 2019 07:00:00 -0400</pubDate>
       
