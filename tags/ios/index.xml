@@ -239,6 +239,15 @@ let url = URL(string: &amp;quot;https://www.google.com/search?hl=en&amp;amp;q=pu
     </item>
     
     <item>
+      <title>Matching Natural Language Text for Predefined Data Patterns on Apple&#39;s Devices</title>
+      <link>https://www.andyibanez.com/posts/matching-nl-nsdatadetector/</link>
+      <pubDate>Tue, 05 Feb 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/matching-nl-nsdatadetector/</guid>
+      <description>iOS has a lot of APIs that deal with natural language detection. One such class is NSDataDetector. This class allows you to match different kinds of data in text, including dates, time, links, and more. This class, actually introduced a very long time ago (in the iOS 4.0 days!) makes it very easy to find this kind of data in strings. In this article we will explore how to use this very old class - whose documentation is Objective-C only at this time - in Swift, and how to do common tasks with it.</description>
+    </item>
+    
+    <item>
       <title>Next Anime Episode</title>
       <link>https://www.andyibanez.com/projects/nextanimeepisode1/</link>
       <pubDate>Mon, 08 May 2017 21:06:00 -0400</pubDate>
