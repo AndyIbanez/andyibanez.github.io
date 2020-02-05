@@ -6,10 +6,19 @@
     <description>Recent content on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jan 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 05 Feb 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Matching Natural Language Text for Predefined Data Patterns on Apple&#39;s Devices</title>
+      <link>https://www.andyibanez.com/posts/matching-nl-nsdatadetector/</link>
+      <pubDate>Wed, 05 Feb 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/matching-nl-nsdatadetector/</guid>
+      <description>iOS has a lot of APIs that deal with natural language detection. One such class is NSDataDetector. This class allows you to match different kinds of data in text, including dates, time, links, and more. This class, actually introduced a very long time ago (in the iOS 4.0 days!) makes it very easy to find this kind of data in strings. In this article we will explore how to use this very old class - whose documentation is Objective-C only at this time - in Swift, and how to do common tasks with it.</description>
+    </item>
     
     <item>
       <title>Recognizing Speech Locally on an iOS Device Using the Speech Framework</title>
@@ -319,15 +328,6 @@ If you choose to use my Service, then you agree to the collection and use of inf
       <description>I&amp;rsquo;m a software developer born and raised in La Paz, Bolivia.
 I currently work for Banco Nacional de Bolivia as a &amp;ldquo;Digital Solutions Analyst&amp;rdquo;, though that&amp;rsquo;s just a fancy name for someone who works at the Innovation Center. I work on their iOS apps and I have designed security-minded protocols for some of them.
 I started my university studies at Universidad Católica Boliviana in 2011. The career I was pursuing was simply &amp;ldquo;Systems Engineering&amp;rdquo;.</description>
-    </item>
-    
-    <item>
-      <title>Matching Natural Language Text for Predefined Data Patterns on Apple&#39;s Devices</title>
-      <link>https://www.andyibanez.com/posts/matching-nl-nsdatadetector/</link>
-      <pubDate>Tue, 05 Feb 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/matching-nl-nsdatadetector/</guid>
-      <description>iOS has a lot of APIs that deal with natural language detection. One such class is NSDataDetector. This class allows you to match different kinds of data in text, including dates, time, links, and more. This class, actually introduced a very long time ago (in the iOS 4.0 days!) makes it very easy to find this kind of data in strings. In this article we will explore how to use this very old class - whose documentation is Objective-C only at this time - in Swift, and how to do common tasks with it.</description>
     </item>
     
     <item>
