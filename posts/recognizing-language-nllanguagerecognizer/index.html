@@ -17,19 +17,19 @@
     
     
 
-<title>Tokenizing Natural Language into Semantic Units in iOS • Andy Ibanez</title>
+<title>Recognizing the language in Natural Language Text with NLanguageRecognizer • Andy Ibanez</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Tokenizing Natural Language into Semantic Units in iOS"/>
-<meta name="twitter:description" content="Learn how to use the NLTokenizer Class to separate natural language strings into components."/>
+<meta name="twitter:title" content="Recognizing the language in Natural Language Text with NLanguageRecognizer"/>
+<meta name="twitter:description" content="Identify the language of a body of natural language text with NLLanguageRecognizer."/>
 
-<meta property="og:title" content="Tokenizing Natural Language into Semantic Units in iOS" />
-<meta property="og:description" content="Learn how to use the NLTokenizer Class to separate natural language strings into components." />
+<meta property="og:title" content="Recognizing the language in Natural Language Text with NLanguageRecognizer" />
+<meta property="og:description" content="Identify the language of a body of natural language text with NLLanguageRecognizer." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.andyibanez.com/posts/tokenizing-nltokenizer/" />
-<meta property="article:published_time" content="2020-02-12T07:00:00-04:00" />
-<meta property="article:modified_time" content="2020-02-12T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/recognizing-language-nllanguagerecognizer/" />
+<meta property="article:published_time" content="2020-02-19T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-02-19T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
 
 
     
@@ -197,13 +197,13 @@ if (!doNotTrack) {
     
 <article>
   <header>
-    <h1>Tokenizing Natural Language into Semantic Units in iOS</h1>
+    <h1>Recognizing the language in Natural Language Text with NLanguageRecognizer</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Feb 12, 2020
+      <i class="fas fa-calendar-alt"></i> Feb 19, 2020
     
     
     
@@ -264,109 +264,103 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<p>Working with Natural Language is possible thanks to machine learning. Starting on iOS 12, Apple has provided many APIs just for this task. In this article we will explore how to use <a href="https://developer.apple.com/documentation/naturallanguage/nltokenizer"><code>NLTokenizer</code></a> to separate natural language text into its proper units.</p>
+<p>Continuing my trend of writing about language processing, today I want to discuss about identifying the language of a body of text. This is an interesting task we can do thanks, once again, to Apple&rsquo;s investment in APIs linked to machine learning.</p>
 
-<h1 id="introduction-to-natural-language-tokenizing">Introduction to Natural Language Tokenizing</h1>
+<p>Today we will explore the <a href="https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer"><code>NLLanguageRecognizer</code></a> object. Introduced in iOS 12, this class can do a lot of language recognizing, from detecting the &ldquo;dominant language&rdquo; of a string, to all the possible languages.</p>
 
-<p>If you are not familiar with the inner workings of Natural Language processing, tokenizing simply means that we separate a string and analyze it to find its semantic units. If you are writing a program that processes text, you may be tempted to split the string using a separator. For example, if you wanted to get all the words in a natural sentence string in an array, you would write something like this:</p>
-
-<pre><code class="language-swift">&quot;This should be separated into words using the space&quot;.split(separator: &quot; &quot;)
-</code></pre>
-
-<p>And this naive approach <em>may</em> work under very specific constraints. Specifically, you know it will work if the language you are using is English. But languages such as Japanese don&rsquo;t separate their sentences with spaces. So what do you do if you need to support different languages? This is where the tokenizer comes into play.</p>
-
-<h1 id="using-nltokenizer">Using NLTokenizer</h1>
-
-<p>Start by importing the <code>NaturalLanguage</code> framework.</p>
-
-<pre><code class="language-Swift">import NaturalLanguage
-</code></pre>
-
-<p>To create the <code>NLTokenizer</code> object, call the <code>NLTokenizer(using:)</code> method, to which you have to specify what <code>NLTokenUnit</code> you want to use. At the time of this writing, you can use <code>.document</code>, <code>.paragraph</code>, <code>.sentence</code>, <code>.word</code>. The unit allows you to specify the linguistic unit. If you choose <code>.word</code>, the tokenizer will take every word and give it back to you. As you use the other units, you will get bigger portions of text.</p>
-
-<p>In the example below, we will tokenize a simple sentence.</p>
-
-<pre><code class="language-swift">var stringToTokenize = &quot;It was many and many a year ago, in a kingdom by the sea.&quot;
-
-let tokenizer = NLTokenizer(unit: .sentence)
-tokenizer.string = stringToTokenize
-</code></pre>
-
-<p>Since we have a single sentence, we will use the <code>.sentence</code> unit, and the first phrase of my favorite poem (<a href="https://en.wikipedia.org/wiki/Annabel_Lee">Annabel Lee</a>, by Edgar Allan Poe).</p>
-
-<p>It&rsquo;s worth noting that you can specify the language to use. By default the system will use your default language, but you can specify a different language. To be more explicitly, I will set the language to English.</p>
-
-<pre><code class="language-swift">tokenizer.setLanguage(.english)
-</code></pre>
-
-<p>And we can finally go through the words:</p>
-
-<pre><code class="language-swift">tokenizer.enumerateTokens(in: fullStringRange) { (range, attributes) -&gt; Bool in
-  print(stringToTokenize[range])
-  return true
-}
-</code></pre>
-
-<p>The return indicates the enumerator if it should continue going through each token. If you return false, the enumerator will stop.</p>
-
-<p>The output for the above code is the following:</p>
-
-<pre><code>It
-was
-many
-and
-many
-a
-year
-ago
-in
-a
-kingdom
-by
-the
-sea
-</code></pre>
-
-<h2 id="tokenizing-different-languages">Tokenizing Different Languages</h2>
-
-<p>Some languages don&rsquo;t separate words in a sentence the same way, so it can be expected that they may also separate other words with different symbols. We will now tokenize a Japanese string into words.</p>
-
-<pre><code class="language-swift">var stringToTokenize = &quot;私は毎日太っています&quot;
-
-let tokenizer = NLTokenizer(unit: .word)
-tokenizer.string = stringToTokenize
-tokenizer.setLanguage(.japanese)
-let fullStringRange = stringToTokenize.startIndex..&lt;stringToTokenize.endIndex
-
-tokenizer.enumerateTokens(in: fullStringRange) { (range, attributes) -&gt; Bool in
-  print(stringToTokenize[range])
-  return true
-}
-</code></pre>
-
-<p>Output:</p>
-
-<pre><code>私
-は
-毎日
-太っ
-て
-い
-ます
-</code></pre>
-
-<p>So, even if Japanese is a &ldquo;run-on&rdquo; written language, where there&rsquo;s no visual way to separate words from each other, the tokenizer knows where it word begins and ends.</p>
+<h1 id="introducing-nllanguagerecognizer">Introducing NLLanguageRecognizer</h1>
 
 <hr>
 
 <p><strong>Important Note!</strong></p>
 
-<p>If any point you have troubles with the tokenizer, and the enumeration function doesn&rsquo;t give you anything, try setting the language <em>before</em> the string. For some reason, at least with the <code>NSLanguage</code> being <code>.spanish</code>, I had to set the language first.
+<p>Don&rsquo;t try to use one instance of this object through multiple threads.
 </hr></p>
+
+<p>This class is actually very easy to use. It has very few methods, and the easiest task to perform is one static method away. You need to <code>import NaturalLanguage</code> to use it.</p>
+
+<h2 id="quickly-recognizing-a-language-in-a-string">Quickly Recognizing a Language in a String.</h2>
+
+<p>If all you need to do is to quickly recognize a language in a string, you can use the static <code>dominantLanguage(for:)</code> method. This method takes the string to recognize and returns an optional <a href="https://developer.apple.com/documentation/naturallanguage/nllanguage"><code>NLLanguage</code></a> object, which contains the language itself. If the string cannot recognize a language at all, it will be nil.</p>
+
+<pre><code class="language-swift">var stringToRecognize = &quot;This is an awesome string.&quot;
+
+if let lang = NLLanguageRecognizer.dominantLanguage(for: stringToRecognize) {
+  print(lang.rawValue) // prints &quot;en&quot;
+}
+</code></pre>
+
+<p>And the fun part is, because the method can return the <em>dominant</em> language, you can mix multiple languages together and it will return the one with most presence.</p>
+
+<pre><code class="language-swift">var stringToRecognize = &quot;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&quot;
+
+if let lang = NLLanguageRecognizer.dominantLanguage(for: stringToRecognize) {
+  print(lang.rawValue) // prints &quot;es&quot;
+}
+</code></pre>
+
+<p>The above example uses a string with both English and Spanish. Because Spanish is the dominant language, it prints &ldquo;es&rdquo;.</p>
+
+<h2 id="advanced-usage">Advanced Usage</h2>
+
+<p>That&rsquo;s probably a bad title, because using the other features o this class is not complicated at all.</p>
+
+<p>First, we can detect all the languages in a string. Although this will not be accurate all the time, an instance of this class offers the <code>languageHypotheses(withMaximum)</code> method, which tries to return all the languages found in a string. The return type is a dictionary of type <code>[NLLanguage: Double]</code>. The double is the probability of each language. The <code>withMaximum</code> parameter is the maximum number of languages to return.</p>
+
+<p>To use an instance instead of the static methods of this class, you have to call the <code>processString</code> method, which takes a string and returns nothing. After you call this method, <code>NSLanguageRecognizer</code>s will have its <code>dominantLanguage</code> property filled. You will also be able to use <code>languageHypotheses(withMaximum)</code> method. Calling <code>processString</code> is essential to do anything interesting with this class. And like you are able to tell, everything happens in the same thread, so remember not to use one instance concurrently.</p>
+
+<p>The following example gets all the possible languages in the string:</p>
+
+<pre><code class="language-swift">var stringToRecognize = &quot;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&quot;
+
+let langRecognizer = NLLanguageRecognizer()
+langRecognizer.processString(stringToRecognize)
+for (lang, perc) in langRecognizer.languageHypotheses(withMaximum: 10) {
+  print(&quot;Probability of \(lang.rawValue): \(perc)&quot;)
+}
+</code></pre>
+
+<p>It will output something like the following:</p>
+
+<pre><code class="language-swift">Probability of de: 0.0011527120368555188
+Probability of sk: 0.0013781085144728422
+Probability of hu: 0.001778516685590148
+Probability of it: 0.003761883592233062
+Probability of pt: 0.01308358833193779
+Probability of nl: 0.0018757604993879795
+Probability of ro: 0.0038427249528467655
+Probability of hr: 0.0007617694209329784
+Probability of en: 0.09818074852228165
+Probability of es: 0.8707313537597656
+</code></pre>
+
+<p>You should try to give the <code>withMaximum</code> parameter a more reasonable value if you have any idea of what the dominant languages are going to be. We can observe that English and Spanish have the bigger percentages.</p>
+
+<p>You can also guide the recognizer by specifying the <code>languageHints</code> and <code>languageConstraints</code> properties. I wasn&rsquo;t able to find much use for <code>languageHints</code> because it takes a dictionary similar to the one returned by <code>languageHypotheses(withMaxium:)</code>, but by using <code>languageConstraints</code> you can limit the languages you want to recognize.</p>
+
+<p>If we add the following code to the piece of code above</p>
+
+<pre><code class="language-swift">langRecognizer.languageConstraints = [.english, .spanish]
+</code></pre>
+
+<p>It will print:</p>
+
+<pre><code>Probability of es: 0.8986690044403076
+Probability of fr: 0.0
+Probability of hr: 0.0
+Probability of da: 0.0
+Probability of en: 0.10133091360330582
+Probability of cs: 0.0
+Probability of fi: 0.0
+Probability of de: 0.0
+Probability of hu: 0.0
+</code></pre>
+
+<p>And it would be good to assign <code>withMaxium</code> to <code>2</code> here, as we know we only want to recognize two languages.</p>
 
 <h1 id="conclusion">Conclusion</h1>
 
-<p>Separating a string with a token is a common task, but doing it naively will not account for all possible cases. <code>NLTokenizer</code> is very smart as it can process words in many languages and already knows about a lot of special cases. If you are tokenizing strings in natural language, you should use this class instead of trying to do it manually.</p>
+<p>Recognizing a language in iOS is as easy as using the <code>NLLanguageRecognizer</code> API introduced in iOS 12 and calling a few lines of code. The system will do its best to determine the dominant language or all the possible languages in a string, and you can use this information for natural-language apps.</p>
 
 <hr>
 
@@ -379,16 +373,11 @@ tokenizer.enumerateTokens(in: fullStringRange) { (range, attributes) -&gt; Bool 
 
 <div class="navigation navigation-single">
     
-    <a href="/posts/matching-nl-nsdatadetector/" class="navigation-prev">
+    <a href="/posts/tokenizing-nltokenizer/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Matching Natural Language Text for Predefined Data Patterns on Apple&#39;s Devices</span>
+      <span class="navigation-tittle">Tokenizing Natural Language into Semantic Units in iOS</span>
     </a>
     
-    
-    <a href="/posts/recognizing-language-nllanguagerecognizer/" class="navigation-next">
-      <span class="navigation-tittle">Recognizing the language in Natural Language Text with NLanguageRecognizer</span>
-      <i aria-hidden="true" class="fa fa-chevron-right"></i>
-    </a>
     
 </div>
 

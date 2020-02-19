@@ -6,10 +6,20 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Feb 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 19 Feb 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Recognizing the language in Natural Language Text with NLanguageRecognizer</title>
+      <link>https://www.andyibanez.com/posts/recognizing-language-nllanguagerecognizer/</link>
+      <pubDate>Wed, 19 Feb 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/recognizing-language-nllanguagerecognizer/</guid>
+      <description>Continuing my trend of writing about language processing, today I want to discuss about identifying the language of a body of text. This is an interesting task we can do thanks, once again, to Apple&amp;rsquo;s investment in APIs linked to machine learning.
+Today we will explore the NLLanguageRecognizer object. Introduced in iOS 12, this class can do a lot of language recognizing, from detecting the &amp;ldquo;dominant language&amp;rdquo; of a string, to all the possible languages.</description>
+    </item>
     
     <item>
       <title>Tokenizing Natural Language into Semantic Units in iOS</title>

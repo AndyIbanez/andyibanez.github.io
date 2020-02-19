@@ -4,76 +4,81 @@
   
   <url>
     <loc>https://www.andyibanez.com/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/natural-language/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/recognizing-language-nllanguagerecognizer/</loc>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/tokenizing-nltokenizer/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/tvos/</loc>
-    <lastmod>2020-02-12T07:00:00-04:00</lastmod>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/watchos/</loc>
+    <lastmod>2020-02-19T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/tokenizing-nltokenizer/</loc>
     <lastmod>2020-02-12T07:00:00-04:00</lastmod>
   </url>
   
@@ -153,12 +158,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/open-source/</loc>
+    <loc>https://www.andyibanez.com/categories/open-source/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/categories/open-source/</loc>
+    <loc>https://www.andyibanez.com/tags/open-source/</loc>
     <lastmod>2019-12-31T17:27:58-04:00</lastmod>
   </url>
   
