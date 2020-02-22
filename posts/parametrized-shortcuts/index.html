@@ -1,7 +1,662 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
 
 
-{0xc000640a00 0xc0004ca740}
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.58.3" />
+
+    
+    
+    
+
+<title>Implementing Parametrizable Shortcut Actions for your iOS Apps • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Implementing Parametrizable Shortcut Actions for your iOS Apps"/>
+<meta name="twitter:description" content="Learn to implement parametrized Siri Shortcut Actions in your iOS apps."/>
+
+<meta property="og:title" content="Implementing Parametrizable Shortcut Actions for your iOS Apps" />
+<meta property="og:description" content="Learn to implement parametrized Siri Shortcut Actions in your iOS apps." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/parametrized-shortcuts/" />
+<meta property="article:published_time" content="2020-01-08T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-01-08T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
 
 
 
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2020 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Implementing Parametrizable Shortcut Actions for your iOS Apps</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jan 8, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios13">ios13</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2019">wwdc2019</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/shortcuts">shortcuts</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/siri">siri</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 15 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<p>All the way back to 2016, a group of very talented iOS developers released <a href="workflow.is">Workflow</a>, a very popular app to let users create actions of different kinds within the system&rsquo;s constraints. You could create and automate different tasks, such as controlling a server via SSH, downloading all the images from a website, and more&hellip; Much, much more.</p>
+
+<p>Apple saw the power of the app and <a href="https://techcrunch.com/2017/03/22/apple-has-acquired-workflow-a-powerful-automation-tool-for-ipad-and-iphone/">aquired</a> it in March 2017. This was very exciting, but we didn&rsquo;t hear anything from the app since. Until WWDC 2018. Apple revealed a new app: Shortcuts. This app was built on top of Workflow, and as an Apple app, it allowed it to do many things that Workflow just wasn&rsquo;t allowed to do, such as toggling system settings, integrating it with other apps (!!), and it was also natively integrated into Siri.</p>
+
+<p>This was in iOS 12, and as the initial release of Shortcuts, it was still very limited. Developers could integrate Shortcuts into their apps, but they were limited and there was no way to parametrize them.</p>
+
+<p>In iOS 13, the Shortcuts app is now better than ever. And developers can now create actions that permit users to customize them. This allows them to create powerful shortcuts, with your action serving as a functional organ in them.</p>
+
+<hr>
+
+<p><strong>Note</strong></p>
+
+<p>A <em>Shortcut</em> is made of <em>Actions</em>. A shortcut executes a series of <em>Actions</em> to get to a result. Apps can expose different actions to Siri and the Shortcuts app.</p>
+
+<p></hr></p>
+
+<p>You can go beyond want to creating simple shortcuts: you can create <em>conversational Siri actions</em>. This is very cool, because allows Siri to respond differently depending on how the user replies to her queries.</p>
+
+<p>In this article, we will create a few actions with parameters to explain how the system works, so you can start writing your own parametrizable actions for your own apps. The sample project we created will be attached at the end of this article.</p>
+
+<h1 id="thinking-about-parametrized-shortcuts">Thinking About Parametrized Shortcuts.</h1>
+
+<p>You may be wondering why parametrized shortcuts are useful. Prior to iOS 13, we could get similar behavior to parametrized shortcuts by leveraging the clipboard to move data inside and outside your action.</p>
+
+<p>With parametrized shortcuts, you can think of them as if they were functions - the traditional functions you know from the programming world. A function is a black box which takes input  (parameters) and produces some output.</p>
+
+<p>This way, you can let users pass in variables or results from other actions into your own action, operate on it, and optionally produce an output.</p>
+
+<h1 id="implementing-parametrized-shortcuts-in-your-ios-app">Implementing Parametrized Shortcuts in Your iOS App.</h1>
+
+<p>We will create a few parametrized shortcuts that allow you do basic math operations. Along the way, we will modify the shortcuts to show what kind of features you can implement.</p>
+
+<h2 id="project-setup">Project Setup</h2>
+
+<p>The setup is the same as it is in iOS 12, so feel to skip this section if your app already uses the Intents extension.</p>
+
+<p>To add these type of shortcuts in your App, you will need to add the <code>Siri</code> capability in your <code>Signing &amp; Capabilities</code> tab of your main app&rsquo;s target. You will also need to add a new Target of type <code>Intents Extension</code> (File -&gt; New -&gt; Target -&gt; <code>Intents Extension</code>). This will also link against the <code>SiriKit</code> framework.</p>
+
+<h2 id="creating-the-intent-definition-file">Creating the Intent Definition File</h2>
+
+<p>Next, you need to add a <code>intentdefinition</code> file and share it across all your targets. To do this, right-click your project blueprint on the Navigator and select &ldquo;Add New File&rdquo;. Search for &ldquo;SiriKit Intent Definition File&rdquo; and click Next. Finally, on the Inspector, add it to all your Targets.</p>
+
+<p>if you have done this prior to iOS 13, prepare to see a lot of changes here.</p>
+
+<p>An <code>Intent</code> is a definition of something users could want to do. If you want to create an action to let users add two numbers, that action is an <em>Intent</em>. There&rsquo;s a bunch of pre-defined intents provided by the system, such as Messages, Photo Search, and more, but we will not be talking about them today.</p>
+
+<p>Now that you have created the <code>intentdefinition</code> file, you can start working on your Shortcuts.</p>
+
+<p>This file allows you to structure your shortcuts and to create all the custom types involved in their execution. Here, you can define what variables take part of your Actions. You can define the combinations of variables allowed, default values for them, constraints, and more. You structure your actions in <code>Intents</code>, which have <code>variables</code>, and you can configure them as you see fit.</p>
+
+<h3 id="creating-intents">Creating Intents.</h3>
+
+<p>Open the <code>intentdefinition</code>, scroll to the bottom, of the left pane, click the &ldquo;+&rdquo; button, and select <code>New Intent</code>.</p>
+
+<p>We will create the Intent to add two numbers together.</p>
+
+<p>For now, copy the following configuration. I&rsquo;m just showing the configuration for <code>firstNumber</code>, but you need to do the same thing for <code>secondNumber</code>:</p>
+
+<p><img src="shortcuts_intent_config.png" alt="Intent Variable Configuration" /></p>
+
+<p>Before we move on, let&rsquo;s talk about the different configurations each action can take.</p>
+
+<h4 id="intents-configuration">Intents Configuration</h4>
+
+<h5 id="basic-configuration-and-variable-configuration">Basic Configuration and Variable Configuration</h5>
+
+<p>The <code>Category</code> is a way to classify your action. This helps the system organize the entire actions from across all the apps into categories. We use the <code>Generic</code> <code>Run</code> category here, because it&rsquo;s hard to categorize in a a different way.</p>
+
+<p>The <code>Title</code> is the title of the action in the Shortcuts app. The <code>Description</code> is a small description of the action. You can write what it does and show short instructions to explain your users how to use it.</p>
+
+<p><img src="/img/adds_two_numbers.png" alt="Action Title" /></p>
+
+<p><img src="/img/adds_two_nums_desc.png" alt="Action Description" /></p>
+
+<p>You can also set a <code>default image</code>, and whether the user should always be asked before running the Shortcut.</p>
+
+<p>Next, you configure the variables themselves. They are nicely named &ldquo;Parameters&rdquo; in the UI. The user will see the <code>Display Name</code> of the parameter in the Shortcuts Action UI. The <code>Type</code> defines what kind of parameter it is (String, Int, a custom type as an enum, etc). You can also pass in a list of these numbers (so you could create an action that adds all the numbers in a list, for example).</p>
+
+<p>The <code>User-Facing</code> option is what allows the user to customize the action in Shortcuts. If you disable this, users cannot supply their own values.</p>
+
+<p>The <code>Dynamic Options</code> constraints the variable to a pre defined list of values. The user cannot provide this value if it&rsquo;s checked.</p>
+
+<p>In the <code>Relationship</code> section, we can define a <code>Parent Variable</code>. With this variable, you can choose whether to show this variable or not to the user depending on the value of the parent.</p>
+
+<p>Now that all the configurations starting on <code>Relationship</code> are only accesible if you have the <code>User-Facing</code> box checked.</p>
+
+<p>The <code>Input</code> section allows to define the UI and constraints for our values. The configurations here are self-explanatory: In case of Integers, you can decide if you want a textfield or stepper to let your end user interact with your action, or and you can set max, min, and a default value for that particular variable.</p>
+
+<p>If you run the app, it will automatically add your Intents to the Shortcuts app. Open the app, create a new Shortcut, and search for your <code>Add Two Numbers</code> action. When you add the action, it will look like this:</p>
+
+<p><img src="/img/basic_shortcuts_ui.png" alt="Shortcuts Configuration Screen" /></p>
+
+<p>But we can make it look a little bit prettier and more user friendly.</p>
+
+<h5 id="shortcuts-app-configurations">Shortcuts app Configurations</h5>
+
+<h6 id="paramaters-and-inputs">Paramaters and Inputs</h6>
+
+<p>The <code>Input Parameter</code> allows you to define what variable will receive the value outputted from the previous action. There&rsquo;s no way to define more receiving variables at this time, but users can configure variables in the action and pass in more data that way.</p>
+
+<p>The <code>Key Parameter</code> will let Siri Suggestions suggest values for the chosen variable.</p>
+
+<p>The next section is more interested, as it allows you to define different variable combinations. You can define what kind of combinations should work, so the user has a sense of optional values to configure the action further. Along with the combinations, you can pass in a summary. This summary a user-facing string, and you can customize it as such. You can display variables in this screen, and the UI will show a string with place holders to the user.</p>
+
+<p>If you add the string &ldquo;Add <code>firstNumber</code> and <code>secondNumber</code> together&rdquo;, while you write your string, you will get suggestions to add the variables as placeholders. At the end, it will look like this:</p>
+
+<p><img src="/img/shortcut_summary_cust.png" alt="Shortcut Summary Customization" /></p>
+
+<p>Building and running the app will update the Shortcut Action to look like this:</p>
+
+<p><img src="/img/friendly_shortcuts_ui.png" alt="User Friendly Shortcut" /></p>
+
+<p>In order to actually configure different Supported Combinations, you need to make parameters dependent of others with the <code>Parent Parameter</code> configuration. In our case we need two numbers to add together, so we won&rsquo;t be using different combinations.</p>
+
+<h6 id="outputs-and-results">Outputs and Results</h6>
+
+<p>Before we can write code, we have to finish up the Shortcut Intent Configuration. We have configured the Inputs, so let&rsquo;s deal with the Outputs now.</p>
+
+<p>Below the <code>AddNumbers</code> intent, there&rsquo;s a &ldquo;Response&rdquo;. Here you can configure the outputs for your Shortcut. Copy this simple Response output:</p>
+
+<p><img src="/img/shortcut_output_response.png" alt="Add Numbers Response" /></p>
+
+<p>You can define multiple properties that your Action can output. Give it a <code>Display Name</code> for your user to see, a <code>Type</code> (in our case, an Integer, since we are adding Integers), and whether it&rsquo;s an array of multiple values. On <code>Output</code> choose <code>Addition</code>, and this way our Shortcut can now be chained to other actions from other apps, including system ones.</p>
+
+<h2 id="implementing-shortcut-action-logic">Implementing Shortcut Action Logic</h2>
+
+<p>Now is a good time to add logic to our new action. The idea is to illustrate how parametrized actions work before we talk about more advanced configuration options.</p>
+
+<p>Open the <code>‌IntentHandler.swift</code> file. You will notice that Apple provides a lot of code for handling message intents as an example. We don&rsquo;t really need all that, so let&rsquo;s simplify the entire content of this class. You can replace the whole file with this:</p>
+
+<pre><code class="language-swift">class IntentHandler: INExtension {
+    
+    override func handler(for intent: INIntent) -&gt; Any {
+        return self
+    }
+}
+</code></pre>
+
+<p>The way I write my handlers is by letting the default <code>IntentHandler</code> class launch my own handlers. Like the name implies, this class handles Shortcuts for you.</p>
+
+<p>Create a new file called <code>AddNumbersIntentHandler.swift</code> in your <code>Intents</code> target. I implemented mine as so:</p>
+
+<pre><code class="language-swift">class AddNumbersIntentHandler: NSObject, AddNumbersIntentHandling {
+  func handle(intent: AddNumbersIntent, completion: @escaping (AddNumbersIntentResponse) -&gt; Void) {
+    let firstNumber = intent.firstNumber!
+    let secondNumber = intent.secondNumber!
+    let result = NSNumber(value: firstNumber.intValue + secondNumber.intValue)
+    let response = AddNumbersIntentResponse.success(addition: result)
+    completion(response)
+  }
+  
+  func resolveSecondNumber(for intent: AddNumbersIntent, with completion: @escaping (AddNumbersSecondNumberResolutionResult) -&gt; Void) {
+    var result: AddNumbersSecondNumberResolutionResult = .unsupported()
+    
+    defer { completion(result) }
+    
+    if let number = intent.secondNumber?.intValue {
+      result = AddNumbersSecondNumberResolutionResult.success(with: number)
+    }
+  }
+  
+  func resolveFirstNumber(for intent: AddNumbersIntent, with completion: @escaping (AddNumbersFirstNumberResolutionResult) -&gt; Void) {
+    
+    var result: AddNumbersFirstNumberResolutionResult = .unsupported()
+    
+    defer { completion(result) }
+    
+    if let number = intent.secondNumber?.intValue {
+      result = AddNumbersFirstNumberResolutionResult.success(with: number)
+    }
+    
+  }
+}
+</code></pre>
+
+<p>An explanation of what&rsquo;s going on here is in order.</p>
+
+<p>SiriKit will automatically create some classes and protocols for you, including a <code>-Handling</code> protocol file, based on the contents of your intent definition file. My intent is called <code>AddNumbers</code>, so Xcode generated <code>AddNumbersIntentHandling</code> for me, and I&rsquo;m implementing its methods. Also, our class is inheriting from <code>NSObject</code> because the <code>-Handling</code> protocol created for us requires it. You could implement the requirements yourself, but you can save yourself the trouble by simply inheriting from <code>NSObject</code>.</p>
+
+<p>This protocol requires you implement a few methods. The <code>handle</code> method exists in all <code>-Handling</code> protocols. The other required methods depend on the parameters you define as part of your intent, and they are all about resolving the Parameters. Here, both methods are implemented in the same way and they both check that we do have some integer value in <code>firstNumber</code> and <code>secondNumber</code>. If we don&rsquo;t, we pass in a value to the system. Xcode also generates <code>-Result</code> objects for us, and that&rsquo;s what we use to let the system know about the status of our variables. In general, you can resolve to anything. In our case, we are just resolving to the numbers themselves because that&rsquo;s what we want. You can resolve to different values depending on the needs of your action.</p>
+
+<p>The <code>handle</code> function will actually perform our operation: In our case, it will add <code>firstNumber</code> and <code>secondNumber</code> together and return the result back to the system. In the <code>intentdefinition</code> file, we defined that a variable called <code>addition</code> will contain the output of our action - the sum of both numbers, so to pass this result back to the system, we create a new <code>-Response</code> object - also generated by Xcode -, specify it was a <code>success</code>, and pass it the output variable as part of that method call.</p>
+
+<p>Go back to <code>IntentHandler.swift</code> and replace the body of the <code>handle(for:)</code> method with the following:</p>
+
+<pre><code class="language-swift">let addNumbersIntentHandler = AddNumbersIntentHandler()
+return addNumbersIntentHandler
+</code></pre>
+
+<p>Like we said earlier, you can use this method to return different handlers for different intents. We will do that a little bit later, towards the end of this article.</p>
+
+<p>Run your Extension now, and create a shortcut that uses your &ldquo;Add Two Numbers&rdquo; action. Give it two numbers, and you will see that it works&hellip; Sort of. Shortcuts is trying to display some UI to the user, but it ends up doing nothing and displaying nothing at all. When you dismiss this UI, Shortcuts will continue executing your action and show you the final result in the native UI.</p>
+
+<p>This weird UI is part of the <code>Intents UI</code> framework that was added to your project automatically when you added the Siri capability. Exploring this framework is out of the scope of this article, and we don&rsquo;t even need it. The easiest way to remove it, is to go to the <code>Info.plist</code> file of the <code>Intents UI</code> target, expand <code>NSExtension</code>, expand <code>NSExtensionAttributes</code>, expand <code>IntentsSupported</code>, and finally delete the entry that has your custom intent type there. Once you do that, when you build and run your action again, Shortcuts will no longer try to open the Intents UI.</p>
+
+<p>And that&rsquo;s great. You have now created a new action that can take input, produce and output, and that it can work inside a chain of other actions from other apps is it can receive data from anyone, and produce an output that can be received by anyone.</p>
+
+<p><img src="/img/shortcut_action_result.png" alt="Shortcut Action Result" /></p>
+
+<h2 id="using-enums-to-make-richer-parametrizable-actions">Using Enums to Make Richer Parametrizable Actions</h2>
+
+<p>What we did so far allows us to create very interesting actions for our apps. But we can add more features to make them friendlier for our users.</p>
+
+<p>Suppose you want to add a new action to substract two numbers. Your first thought may be to just duplicate the &ldquo;AddNumbers&rdquo; Intent, rename it to &ldquo;SubstractNumbers&rdquo;, and implement a new copy-paste version of AddNumbers to add the substraction method.</p>
+
+<p>We can avoid all that code duplication by implementing an enum. An enum you know and love from writing Swift. You can then let the user choose an enum as part of the action&rsquo;s parameters. In this case, we will implement an <code>enum</code> called <code>Operation</code> which will have <code>addition</code> and <code>substraction</code>.</p>
+
+<p>Start by once again going to your <code>intentdefinition</code> file, click the &ldquo;+&rdquo; button the same way you created your first intent, and select &ldquo;New Enum&rdquo;. Name it &ldquo;Operation&rdquo;.</p>
+
+<p>You can now add simple enum values that represent an addition and subtraction. It&rsquo;s not possible to remove the &ldquo;unknown&rdquo; case. Changing the &ldquo;Display Name&rdquo; will change the string shown to the user. The other options are more specific to Siri, so we will not be changing those at this time.</p>
+
+<p>Adding addition and subtraction options will make the configuration look like this:</p>
+
+<p><img src="/img/shortcut_enum_config.png" alt="Shortcut Enum Configurations" /></p>
+
+<p>We will replace &ldquo;AddNumbers&rdquo; with &ldquo;OperateNumbers&rdquo;, so rename the intent accordingly. Feel free to change the title and description while you are at it.</p>
+
+<p><img src="/img/shortcut_rename_add_to_operate.png" alt="Renaming AddNumbers to OperateNumbers" /></p>
+
+<p>Next, we need to add a new parameter that represents the operation we want to do. Add a new parameter and change it&rsquo;s type to <code>Operation</code>, which is the operation we defined just now. Choose the default type to something other than <code>unknown</code>.</p>
+
+<p><img src="/img/adding_operation_parameter.png" alt="Adding the &quot;Operation&quot; Parameter" /></p>
+
+<p>Also change the &ldquo;Shortcuts app&rdquo; section to take into account the new parameter:</p>
+
+<p><img src="/img/new_action_parameters_combinations.png" alt="New Action Parameters Combinations" /></p>
+
+<p>If you try to build the project again, you will get a handful of errors. All of them are related to missing symbols. Remember how we mentioned that Xcode automatically generates a lot of protocols and classes based on your <code>intentdefinition</code> file? We have essentially deleted all the previous symbols the moment we chose to rename &ldquo;AddNumbers&rdquo; to &ldquo;OperateNumbers&rdquo;.</p>
+
+<p>To solve this, you could rename all the &ldquo;AddNumbers-&rdquo; code to &ldquo;OperateNumbers-&rdquo;. Feel free to do that. I will create a new class and move the content over before deleting the original <code>AddNumbersIntentHandler.swift</code> file.</p>
+
+<p>I implemented <code>OperateNumbersIntentHandler.swift</code> as such:</p>
+
+<pre><code class="language-swift">class OperateNumbersIntentHandler: NSObject, OperateNumbersIntentHandling {
+  func operate(with operation: Operation, firstNumber: Int, secondNumber: Int) -&gt; Int {
+    switch operation {
+    case .addition: return firstNumber + secondNumber
+    case .substraction: return firstNumber - secondNumber
+    default: fatalError(&quot;Invalid operation&quot;)
+    }
+  }
+  
+  func handle(intent: OperateNumbersIntent, completion: @escaping (OperateNumbersIntentResponse) -&gt; Void) {
+    
+    let opResult = operate(with: intent.operation,
+                           firstNumber: intent.firstNumber!.intValue,
+                           secondNumber: intent.secondNumber!.intValue)
+    
+    let result = OperateNumbersIntentResponse.success(addition: NSNumber(value: opResult))
+    
+    completion(result)
+    
+  }
+  
+  func resolveSecondNumber(for intent: OperateNumbersIntent, with completion: @escaping (OperateNumbersSecondNumberResolutionResult) -&gt; Void) {
+    var result: OperateNumbersSecondNumberResolutionResult = .unsupported()
+    
+    defer { completion(result) }
+    
+    if let number = intent.secondNumber?.intValue {
+      result = OperateNumbersSecondNumberResolutionResult.success(with: number)
+    }
+  }
+  
+  func resolveFirstNumber(for intent: OperateNumbersIntent, with completion: @escaping (OperateNumbersFirstNumberResolutionResult) -&gt; Void) {
+    var result: OperateNumbersFirstNumberResolutionResult = .unsupported()
+    
+    defer { completion(result) }
+    
+    if let number = intent.firstNumber?.intValue {
+      result = OperateNumbersFirstNumberResolutionResult.success(with: number)
+    }
+  }
+  
+  func resolveOperation(for intent: OperateNumbersIntent, with completion: @escaping (OperationResolutionResult) -&gt; Void) {
+    var result: OperationResolutionResult = .unsupported()
+    
+    defer { completion(result) }
+    
+    let operation = intent.operation
+    if operation != .unknown {
+      result = .success(with: operation)
+    }
+  }
+}
+</code></pre>
+
+<p>Everything is essentially the same. The <code>resolveOperation</code> method will check to see that we have a valid operation, and if we don&rsquo;t, we tell the system that it&rsquo;s an unsupported parameter. We also added a new function that will do math based on the <code>operation</code> parameter.</p>
+
+<p>Run the action again, and this time you have a way to choose an operation. Tapping on the operation will prompt you between <code>Addition</code> and <code>Subtraction</code>.</p>
+
+<p><img src="/img/action_enum_type_param.png" alt="Action Enum Type Paramater in Action" /></p>
+
+<h1 id="project-download">Project Download</h1>
+
+<p>If you don&rsquo;t feel like following the steps above, you can download the completed project <a href="/archives/testshortcuts.zip">here</a> and explore it at your own pace.</p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>The Shortcuts app has received a very nice improvement with the introduction of Parameters on iOS 13. In this article we explored how you could implement them in your own apps, by creating a simple Action that allows users to pass in numbers to do some math operation on them. We saw how actions are exactly like functions - black boxes that take input and produce and output - and how developers can leverage them for their users.</p>
+
+<hr>
+
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/happy-new-years-2020/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Happy New 2020!</span>
+    </a>
+    
+    
+    <a href="/posts/cryptokit-secure-enclave/" class="navigation-next">
+      <span class="navigation-tittle">CryptoKit and the Secure Enclave</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
