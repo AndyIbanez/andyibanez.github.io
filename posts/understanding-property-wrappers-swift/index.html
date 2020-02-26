@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -251,168 +251,121 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Swift 5.1 introduced a sleuth of wonderful features, and amongst them, there&rsquo;s one that is essential for SwiftUI: Property Wrappers. Property wrappers are a powerful feature in Swift that allow you to wrap behavior along with properties. This allows us to do some interesting things. If you have seen SwiftUI, you&rsquo;ve seen the <code>@State</code> &ldquo;keyword&rdquo;, and you know that it allows you to modify structs. This is possible thanks to the behavior &ldquo;wrapped&rdquo; within properties marked with it.</p>
-
+    <p>Swift 5.1 introduced a sleuth of wonderful features, and amongst them, there&rsquo;s one that is essential for SwiftUI: Property Wrappers. Property wrappers are a powerful feature in Swift that allow you to wrap behavior along with properties. This allows us to do some interesting things. If you have seen SwiftUI, you&rsquo;ve seen the <code>@State</code> &ldquo;keyword&rdquo;, and you know that it allows you to modify structs. This is possible thanks to the behavior &ldquo;wrapped&rdquo; within properties marked with it.</p>
 <p>But <code>@State</code> isn&rsquo;t really a keyword. It&rsquo;s just functionality exposed to us through Property Wrappers, and just like SwiftUI provides <code>@State</code>, <code>@EnvironmentObject</code>, and more, you can create your own property wrappers for your own use, and they can let you, amongst other things, simplify the code you write and get rid of a lot of boilerplate code. Also, the use of property wrappers is not limited to SwiftUI, and you can find uses for them in any context.</p>
-
-<p>In fewer words, we can define property wrappers as a layer between how a property is stored and the code that defines a property. <sup><a href="https://docs.swift.org/swift-book/LanguageGuide/Properties.html">1</a></sup></p>
-
+<p>In fewer words, we can define property wrappers as a layer between how a property is stored and the code that defines a property. <!-- raw HTML omitted --><a href="https://docs.swift.org/swift-book/LanguageGuide/Properties.html">1</a><!-- raw HTML omitted --></p>
 <p>Property wrappers are useful in any context and you shouldn&rsquo;t constraint yourself in using them only with SwiftUI. In this article we will explore some ideas that can be implemented with property wrappers that can be done without using SwiftUI at all.</p>
-
 <h1 id="a-gotcha">A Gotcha</h1>
-
 <p>Before we get started, it&rsquo;s worth mentioning that you can only apply <em>one</em> property wrapper to a given property at any given time. You cannot, for example, do something like <code>@State @EnvironmentObject var foo = Foo()</code>.</p>
-
 <h1 id="playing-with-property-wrappers">Playing with Property Wrappers</h1>
-
 <h2 id="implementing-your-own-property-wrappers">Implementing Your Own Property Wrappers</h2>
-
 <p>To implement your own property wrapper, you need to do a few things:</p>
-
 <ul>
 <li>Declare a struct that will wrap the property.</li>
 <li>Mark the struct as a <code>@propertyWrapper</code> before the <code>struct</code> keyword.</li>
 <li>Implement the <code>var wrappedValue</code> computed variable. You can use <code>get</code> to get the value of the property, and <code>set</code> to set it. With this, you can see that you can let a property wrapper store its value anywhere.</li>
 </ul>
-
 <p>To exemplify this, we will write a simple property wrapper that works with <code>String</code>s and it changes them to uppercase letters.</p>
-
-<pre><code class="language-swift">@propertyWrapper
-struct Capitalized {
-  private(set) var text: String = &quot;&quot;
-  var wrappedValue: String {
-    get { return text }
-    set { text = newValue.uppercased() }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@propertyWrapper
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Capitalized</span> {
+  <span style="color:#66d9ef">private</span>(<span style="color:#66d9ef">set</span>) <span style="color:#66d9ef">var</span> text: String = <span style="color:#e6db74">&#34;&#34;</span>
+  <span style="color:#66d9ef">var</span> wrappedValue: String {
+    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> text }
+    <span style="color:#66d9ef">set</span> { text = newValue.uppercased() }
   }
 }
-</code></pre>
-
-<p>This is a very simple wrapper with a straight forward task, but the complexity can grow depending on what you want to do.</p>
-
+</code></pre></div><p>This is a very simple wrapper with a straight forward task, but the complexity can grow depending on what you want to do.</p>
 <p>Our struct <code>Capitalized</code> <em>is</em> our new property wrapper. It will store the string internally in the <code>text</code> property, but this is not a requirement (you could store it in a database, cache, or anywhere else). The <code>wrappedValue</code> property will handle the storage and retrieval for the contents of the property. In this case, when we return the property, we will return the standard property, and when we store it, we will make it an uppercase string. Nothing prevents you from doing it the other way around - storing the string as-is, and returning it as <code>uppercased()</code> -, so feel free to explore and to implement it differently as necessary depending on the context.</p>
-
 <p>Notice that our <code>text</code> variable needs a default value in this case. If you don&rsquo;t set it, you will have problems compiling the code above.</p>
-
 <h2 id="using-custom-property-wrappers">Using Custom Property Wrappers</h2>
-
 <p>Now that we defined our property wrapper, we can finally apply it to members of a struct or class. To show how to do this, we will create a struct called <code>Name</code> that will store the first and last name of someone, and they will be stored in capital letters only:</p>
-
-<pre><code class="language-swift">struct Name {
-  @Capitalized var firstName: String
-  @Capitalized var lastName: String
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Name</span> {
+  @Capitalized <span style="color:#66d9ef">var</span> firstName: String
+  @Capitalized <span style="color:#66d9ef">var</span> lastName: String
 }
-</code></pre>
-
-<p>And now, when you create an object of this type and set its properties, they will be uppercased when you need them:</p>
-
-<pre><code class="language-swift">var myName = Name()
-myName.firstName = &quot;andy&quot;
-myName.lastName = &quot;ibanez&quot;
-print(myName.firstName) // prints &quot;ANDY&quot;
-print(myName.lastName) // prints &quot;IBANEZ&quot;
-</code></pre>
-
-<h2 id="advanced-usage">Advanced Usage</h2>
-
+</code></pre></div><p>And now, when you create an object of this type and set its properties, they will be uppercased when you need them:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> myName = Name()
+myName.firstName = <span style="color:#e6db74">&#34;andy&#34;</span>
+myName.lastName = <span style="color:#e6db74">&#34;ibanez&#34;</span>
+print(myName.firstName) <span style="color:#75715e">// prints &#34;ANDY&#34;</span>
+print(myName.lastName) <span style="color:#75715e">// prints &#34;IBANEZ&#34;</span>
+</code></pre></div><h2 id="advanced-usage">Advanced Usage</h2>
 <p>What we saw above was a very simple wrapper that changes the capitalization of strings. But we can do a few more interesting things with them that open the door to more interesting ideas.</p>
-
 <p>You can, for example, pass in parameters to the wrapper property itself. This allows you to configure how the property should behave on the fly.</p>
-
 <p>As an example, we will write a new property wrapped, <code>ConfigurableCapitalization</code>, that allows us to specify how a <code>String</code> should be capitalized. We can specify if we want it to be <code>uppercased</code>, <code>lowercased</code>, or <code>capitalized</code>.</p>
-
-<pre><code class="language-swift">@propertyWrapper
-struct ConfigurableCapitalization {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@propertyWrapper
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ConfigurableCapitalization</span> {
   
-  enum Settings {
-    case uppercased
-    case capitalized
-    case lowercased
+  <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Settings</span> {
+    <span style="color:#66d9ef">case</span> uppercased
+    <span style="color:#66d9ef">case</span> capitalized
+    <span style="color:#66d9ef">case</span> lowercased
   }
   
-  private(set) var text: String = &quot;&quot;
-  public let setting: Settings
+  <span style="color:#66d9ef">private</span>(<span style="color:#66d9ef">set</span>) <span style="color:#66d9ef">var</span> text: String = <span style="color:#e6db74">&#34;&#34;</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">let</span> setting: Settings
   
-  var wrappedValue: String {
-    get { return text }
-    set {
-      switch setting {
-      case .capitalized: text = newValue.capitalized
-      case .lowercased: text = newValue.lowercased()
-      case .uppercased: text = newValue.uppercased()
+  <span style="color:#66d9ef">var</span> wrappedValue: String {
+    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> text }
+    <span style="color:#66d9ef">set</span> {
+      <span style="color:#66d9ef">switch</span> setting {
+      <span style="color:#66d9ef">case</span> .capitalized: text = newValue.capitalized
+      <span style="color:#66d9ef">case</span> .lowercased: text = newValue.lowercased()
+      <span style="color:#66d9ef">case</span> .uppercased: text = newValue.uppercased()
       }
     }
   }
 }
 
-struct FullName {
-  @ConfigurableCapitalization(setting: .capitalized) var firstName: String
-  @ConfigurableCapitalization(setting: .uppercased) var lastName: String
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">FullName</span> {
+  @ConfigurableCapitalization(setting: .capitalized) <span style="color:#66d9ef">var</span> firstName: String
+  @ConfigurableCapitalization(setting: .uppercased) <span style="color:#66d9ef">var</span> lastName: String
 }
 
-var myFullName = FullName()
-myFullName.firstName = &quot;andy&quot;
-myFullName.lastName = &quot;ibanez&quot;
-print(myFullName.firstName) // prints &quot;Andy&quot;
-print(myFullName.lastName) // prints &quot;IBANEZ&quot;
-</code></pre>
-
-<p>First, we create our <code>ConfigurableCapitalization</code> property wrapper, which contains an <code>enum</code> that lets us specify the capitalization of a String. In the setter of the <code>wrappedValue</code>, we instruct the code to store the property in any of the specified capitalization types.</p>
-
+<span style="color:#66d9ef">var</span> myFullName = FullName()
+myFullName.firstName = <span style="color:#e6db74">&#34;andy&#34;</span>
+myFullName.lastName = <span style="color:#e6db74">&#34;ibanez&#34;</span>
+print(myFullName.firstName) <span style="color:#75715e">// prints &#34;Andy&#34;</span>
+print(myFullName.lastName) <span style="color:#75715e">// prints &#34;IBANEZ&#34;</span>
+</code></pre></div><p>First, we create our <code>ConfigurableCapitalization</code> property wrapper, which contains an <code>enum</code> that lets us specify the capitalization of a String. In the setter of the <code>wrappedValue</code>, we instruct the code to store the property in any of the specified capitalization types.</p>
 <p>Then we created a <code>FullName</code> object that will store a <code>firstName</code> as a <code>capitalized</code> string (it will capitalize the first letter of each word), and the last name as an <code>uppercased</code> string.</p>
-
 <p>Finally, we assign some values to these property and print their values to the see the results.</p>
-
 <h1 id="projecting-values-from-property-wrappers">Projecting Values from Property Wrappers</h1>
-
 <p>Property wrappers can expose even more functionality through the use of Projected Values. The projected value is implemented as a property in the property wrapper called <code>projectedValue</code>, and it can be of any type you want. You can use this for many things. In our example, we will simply use it to tell us what <code>Setting</code> it used to capitalize the string.</p>
-
-<pre><code class="language-swift">@propertyWrapper
-struct ConfigurableCapitalization {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@propertyWrapper
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ConfigurableCapitalization</span> {
   
-  var projectedValue: Settings = .capitalized
+  <span style="color:#66d9ef">var</span> projectedValue: Settings = .capitalized
   
-  enum Settings {
-    case uppercased
-    case capitalized
-    case lowercased
+  <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Settings</span> {
+    <span style="color:#66d9ef">case</span> uppercased
+    <span style="color:#66d9ef">case</span> capitalized
+    <span style="color:#66d9ef">case</span> lowercased
   }
   
-  private(set) var text: String = &quot;&quot;
-  public let setting: Settings
+  <span style="color:#66d9ef">private</span>(<span style="color:#66d9ef">set</span>) <span style="color:#66d9ef">var</span> text: String = <span style="color:#e6db74">&#34;&#34;</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">let</span> setting: Settings
   
-  var wrappedValue: String {
-    get { return text }
-    set {
-      switch setting {
-      case .capitalized: text = newValue.capitalized
-      case .lowercased: text = newValue.lowercased()
-      case .uppercased: text = newValue.uppercased()
+  <span style="color:#66d9ef">var</span> wrappedValue: String {
+    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> text }
+    <span style="color:#66d9ef">set</span> {
+      <span style="color:#66d9ef">switch</span> setting {
+      <span style="color:#66d9ef">case</span> .capitalized: text = newValue.capitalized
+      <span style="color:#66d9ef">case</span> .lowercased: text = newValue.lowercased()
+      <span style="color:#66d9ef">case</span> .uppercased: text = newValue.uppercased()
       }
       projectedValue = setting
     }
   }
 }
-</code></pre>
-
-<pre><code class="language-swift">print(myFullName.$firstName) // prints &quot;capitalized&quot;
-</code></pre>
-
-<p>If you are storing your values in a database, you can expose the connector object to do something with it, like flush values, or more.</p>
-
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">print(myFullName.<span style="color:#960050;background-color:#1e0010">$</span>firstName) <span style="color:#75715e">// prints &#34;capitalized&#34;</span>
+</code></pre></div><p>If you are storing your values in a database, you can expose the connector object to do something with it, like flush values, or more.</p>
 <h1 id="the-downsides">The Downsides</h1>
-
 <p>Property wrappers are an amazing feature, but they have one downside: They provide too much &ldquo;black magic&rdquo; for someone who is not familiar with them. If you handed a new programmer our <code>FullName</code> struct and instructed them to use it, they may be surprised at what&rsquo;s going on behind the scenes. This can only be solved with proper documentation.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>Property wrappers are a very interesting Swift feature. While their usage is prominent in SwiftUI, it doesn&rsquo;t have to be. It can be hard to wrap (heh) your head around them at first, but once you take the time to understand them, you can see they offer ways to simplify, reduce boilerplate, or simply wrap a lot of power in a small container.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -263,89 +263,55 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Continuing my trend of writing about language processing, today I want to discuss about identifying the language of a body of text. This is an interesting task we can do thanks, once again, to Apple&rsquo;s investment in APIs linked to machine learning.</p>
-
+    <p>Continuing my trend of writing about language processing, today I want to discuss about identifying the language of a body of text. This is an interesting task we can do thanks, once again, to Apple&rsquo;s investment in APIs linked to machine learning.</p>
 <p>Today we will explore the <a href="https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer"><code>NLLanguageRecognizer</code></a> object. Introduced in iOS 12, this class can do a lot of language recognizing, from detecting the &ldquo;dominant language&rdquo; of a string, to all the possible languages.</p>
-
 <h1 id="introducing-nllanguagerecognizer">Introducing NLLanguageRecognizer</h1>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
-<p>Don&rsquo;t try to use one instance of this object through multiple threads.
-<hr></p>
-
+<!-- raw HTML omitted -->
+<p>Don&rsquo;t try to use one instance of this object through multiple threads.</p>
+<!-- raw HTML omitted -->
 <p>This class is actually very easy to use. It has very few methods, and the easiest task to perform is one static method away. You need to <code>import NaturalLanguage</code> to use it.</p>
-
 <h2 id="quickly-recognizing-a-language-in-a-string">Quickly Recognizing a Language in a String.</h2>
-
 <p>If all you need to do is to quickly recognize a language in a string, you can use the static <code>dominantLanguage(for:)</code> method. This method takes the string to recognize and returns an optional <a href="https://developer.apple.com/documentation/naturallanguage/nllanguage"><code>NLLanguage</code></a> object, which contains the language itself. If the string cannot recognize a language at all, it will be nil.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToRecognize = <span style="color:#e6db74">&#34;This is an awesome string.&#34;</span>
 
-<pre><code class="language-swift">var stringToRecognize = &quot;This is an awesome string.&quot;
-
-if let lang = NLLanguageRecognizer.dominantLanguage(for: stringToRecognize) {
-  print(lang.rawValue) // prints &quot;en&quot;
+<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> lang = NLLanguageRecognizer.dominantLanguage(<span style="color:#66d9ef">for</span>: stringToRecognize) {
+  print(lang.rawValue) <span style="color:#75715e">// prints &#34;en&#34;</span>
 }
-</code></pre>
+</code></pre></div><p>And the fun part is, because the method can return the <em>dominant</em> language, you can mix multiple languages together and it will return the one with most presence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToRecognize = <span style="color:#e6db74">&#34;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&#34;</span>
 
-<p>And the fun part is, because the method can return the <em>dominant</em> language, you can mix multiple languages together and it will return the one with most presence.</p>
-
-<pre><code class="language-swift">var stringToRecognize = &quot;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&quot;
-
-if let lang = NLLanguageRecognizer.dominantLanguage(for: stringToRecognize) {
-  print(lang.rawValue) // prints &quot;es&quot;
+<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> lang = NLLanguageRecognizer.dominantLanguage(<span style="color:#66d9ef">for</span>: stringToRecognize) {
+  print(lang.rawValue) <span style="color:#75715e">// prints &#34;es&#34;</span>
 }
-</code></pre>
-
-<p>The above example uses a string with both English and Spanish. Because Spanish is the dominant language, it prints &ldquo;es&rdquo;.</p>
-
+</code></pre></div><p>The above example uses a string with both English and Spanish. Because Spanish is the dominant language, it prints &ldquo;es&rdquo;.</p>
 <h2 id="advanced-usage">Advanced Usage</h2>
-
 <p>That&rsquo;s probably a bad title, because using the other features o this class is not complicated at all.</p>
-
 <p>First, we can detect all the languages in a string. Although this will not be accurate all the time, an instance of this class offers the <code>languageHypotheses(withMaximum)</code> method, which tries to return all the languages found in a string. The return type is a dictionary of type <code>[NLLanguage: Double]</code>. The double is the probability of each language. The <code>withMaximum</code> parameter is the maximum number of languages to return.</p>
-
 <p>To use an instance instead of the static methods of this class, you have to call the <code>processString</code> method, which takes a string and returns nothing. After you call this method, <code>NSLanguageRecognizer</code>s will have its <code>dominantLanguage</code> property filled. You will also be able to use <code>languageHypotheses(withMaximum)</code> method. Calling <code>processString</code> is essential to do anything interesting with this class. And like you are able to tell, everything happens in the same thread, so remember not to use one instance concurrently.</p>
-
 <p>The following example gets all the possible languages in the string:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToRecognize = <span style="color:#e6db74">&#34;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&#34;</span>
 
-<pre><code class="language-swift">var stringToRecognize = &quot;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&quot;
-
-let langRecognizer = NLLanguageRecognizer()
+<span style="color:#66d9ef">let</span> langRecognizer = NLLanguageRecognizer()
 langRecognizer.processString(stringToRecognize)
-for (lang, perc) in langRecognizer.languageHypotheses(withMaximum: 10) {
-  print(&quot;Probability of \(lang.rawValue): \(perc)&quot;)
+<span style="color:#66d9ef">for</span> (lang, perc) <span style="color:#66d9ef">in</span> langRecognizer.languageHypotheses(withMaximum: <span style="color:#ae81ff">10</span>) {
+  print(<span style="color:#e6db74">&#34;Probability of </span><span style="color:#e6db74">\(</span>lang.rawValue<span style="color:#e6db74">)</span><span style="color:#e6db74">: </span><span style="color:#e6db74">\(</span>perc<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 }
-</code></pre>
-
-<p>It will output something like the following:</p>
-
-<pre><code class="language-swift">Probability of de: 0.0011527120368555188
-Probability of sk: 0.0013781085144728422
-Probability of hu: 0.001778516685590148
-Probability of it: 0.003761883592233062
-Probability of pt: 0.01308358833193779
-Probability of nl: 0.0018757604993879795
-Probability of ro: 0.0038427249528467655
-Probability of hr: 0.0007617694209329784
-Probability of en: 0.09818074852228165
-Probability of es: 0.8707313537597656
-</code></pre>
-
-<p>You should try to give the <code>withMaximum</code> parameter a more reasonable value if you have any idea of what the dominant languages are going to be. We can observe that English and Spanish have the bigger percentages.</p>
-
+</code></pre></div><p>It will output something like the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Probability of de: <span style="color:#ae81ff">0.0011527120368555188</span>
+Probability of sk: <span style="color:#ae81ff">0.0013781085144728422</span>
+Probability of hu: <span style="color:#ae81ff">0.001778516685590148</span>
+Probability of it: <span style="color:#ae81ff">0.003761883592233062</span>
+Probability of pt: <span style="color:#ae81ff">0.01308358833193779</span>
+Probability of nl: <span style="color:#ae81ff">0.0018757604993879795</span>
+Probability of ro: <span style="color:#ae81ff">0.0038427249528467655</span>
+Probability of hr: <span style="color:#ae81ff">0.0007617694209329784</span>
+Probability of en: <span style="color:#ae81ff">0.09818074852228165</span>
+Probability of es: <span style="color:#ae81ff">0.8707313537597656</span>
+</code></pre></div><p>You should try to give the <code>withMaximum</code> parameter a more reasonable value if you have any idea of what the dominant languages are going to be. We can observe that English and Spanish have the bigger percentages.</p>
 <p>You can also guide the recognizer by specifying the <code>languageHints</code> and <code>languageConstraints</code> properties. I wasn&rsquo;t able to find much use for <code>languageHints</code> because it takes a dictionary similar to the one returned by <code>languageHypotheses(withMaxium:)</code>, but by using <code>languageConstraints</code> you can limit the languages you want to recognize.</p>
-
 <p>If we add the following code to the piece of code above</p>
-
-<pre><code class="language-swift">langRecognizer.languageConstraints = [.english, .spanish]
-</code></pre>
-
-<p>It will print:</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">langRecognizer.languageConstraints = [.english, .spanish]
+</code></pre></div><p>It will print:</p>
 <pre><code>Probability of es: 0.8986690044403076
 Probability of fr: 0.0
 Probability of hr: 0.0
@@ -355,18 +321,11 @@ Probability of cs: 0.0
 Probability of fi: 0.0
 Probability of de: 0.0
 Probability of hu: 0.0
-</code></pre>
-
-<p>And it would be good to assign <code>withMaxium</code> to <code>2</code> here, as we know we only want to recognize two languages.</p>
-
+</code></pre><p>And it would be good to assign <code>withMaxium</code> to <code>2</code> here, as we know we only want to recognize two languages.</p>
 <h1 id="conclusion">Conclusion</h1>
-
 <p>Recognizing a language in iOS is as easy as using the <code>NLLanguageRecognizer</code> API introduced in iOS 12 and calling a few lines of code. The system will do its best to determine the dominant language or all the possible languages in a string, and you can use this information for natural-language apps.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

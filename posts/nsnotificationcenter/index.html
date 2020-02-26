@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -263,137 +263,93 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &ldquo;listen&rdquo; to in order to react. If you have an app like a photo gallery, you may need to know when the user adds a new photo so you can update all relevant UI and make other necessary updates.</p>
-
+    <p>Sometimes when you are writing an app, you need to be notified of events occurring somewhere else in the system - either in your own app, or in the operating system - and react to them accordingly. For example, you may be an app like Snapchat and you want to know when a screenshot has been taken. This is a system notification that you can &ldquo;listen&rdquo; to in order to react. If you have an app like a photo gallery, you may need to know when the user adds a new photo so you can update all relevant UI and make other necessary updates.</p>
 <p><code>NSNotificationCenter</code> allows you to listen to events and to react to them. In this article we will explore how to make use of this API in our apps, we will listen to system-provided notifications, and we will also implement our own.</p>
-
 <h1 id="introduction">Introduction</h1>
-
-<p>Not to be confused with the Notification Center feature on Apple&rsquo;s devices, <code>NSNotificationCenter</code> allows apps to listen to events and to react to them. Apple describes it as &ldquo;A notification dispatch mechanism that enables the broadcast of information to registered observers.&rdquo;<sup><a href="https://developer.apple.com/documentation/foundation/nsnotificationcenter">1</a></sup></p>
-
+<p>Not to be confused with the Notification Center feature on Apple&rsquo;s devices, <code>NSNotificationCenter</code> allows apps to listen to events and to react to them. Apple describes it as &ldquo;A notification dispatch mechanism that enables the broadcast of information to registered observers.&ldquo;<!-- raw HTML omitted --><a href="https://developer.apple.com/documentation/foundation/nsnotificationcenter">1</a><!-- raw HTML omitted --></p>
 <p>Essentially, objects that are interested in learning about a certain event can &ldquo;listen&rdquo; for it. More than one object can listen for the same event (which is why events are &ldquo;broadcasted&rdquo;). Objects who are listening for these events are called Observers.</p>
-
 <p>While you can create your own <code>NSNotificationCenter</code> instances, I have never seen this been done in the while. More often that not, you want to use the singleton <code>defaultCenter</code>.</p>
-
 <h1 id="observing-and-posting-custom-events">Observing And Posting Custom Events</h1>
-
 <h2 id="custom-events">Custom Events</h2>
-
 <p>You are implementing your own photo gallery app and you want to know when a new app is added so you can update all the relevant parts of the UI. Imagine the Photos.app, where you have the main &ldquo;Photos&rdquo; tab and the &ldquo;Albums&rdquo; tab which has a &ldquo;Recents&rdquo; album. How can you update these two when a new image is added?</p>
-
 <p>The solution is to use <code>NSNotificationCenter</code>, register your own <code>NSNotification</code> to the system, and observe this notification from both the &ldquo;Albums&rdquo; tab and &ldquo;Recents&rdquo; album.</p>
-
 <h3 id="registering-your-custom-notifications">Registering Your Custom Notifications</h3>
-
 <p>To register your own notifications, you need to write an extension for the <code>NSNotification.Name</code> class and add all your related notifications to it.</p>
-
-<pre><code class="language-Swift">extension NSNotification.Name {
-  /// User added a new photo to gallery.
-  class GalleryApp {
-    static let newPhotoAdded = NSNotification.Name(rawValue: &quot;com.andyibanez.galleryApp.newPhotoAdded&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Swift" data-lang="Swift"><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">NSNotification</span>.Name {
+  <span style="color:#75715e">/// User added a new photo to gallery.</span>
+  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GalleryApp</span> {
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> newPhotoAdded = NSNotification.Name(rawValue: <span style="color:#e6db74">&#34;com.andyibanez.galleryApp.newPhotoAdded&#34;</span>)
   
-    /// User deleted a photo from gallery.
-    static let photoDeleted = NSNotification.Name(rawValue: &quot;com.andyibanez.galleryApp.photoDeleted&quot;)
+    <span style="color:#75715e">/// User deleted a photo from gallery.</span>
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> photoDeleted = NSNotification.Name(rawValue: <span style="color:#e6db74">&#34;com.andyibanez.galleryApp.photoDeleted&#34;</span>)
   }
 }
-</code></pre>
-
-<p>What we are doing here is extend <code>NSNotificationName</code>, we are adding a class of static objects, and these objects are our own notifications.</p>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
-<p>You technically don&rsquo;t need to extend <code>NSNotification.Name</code>, and even less add your own class to it. I just find this way to be better if your app implements many custom notifications. The downside to wrapping your own notifications in a class is you lose some of Swift&rsquo;s inference features when working with notifications.
-<hr></p>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
+</code></pre></div><p>What we are doing here is extend <code>NSNotificationName</code>, we are adding a class of static objects, and these objects are our own notifications.</p>
+<!-- raw HTML omitted -->
+<p>You technically don&rsquo;t need to extend <code>NSNotification.Name</code>, and even less add your own class to it. I just find this way to be better if your app implements many custom notifications. The downside to wrapping your own notifications in a class is you lose some of Swift&rsquo;s inference features when working with notifications.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>If you have seen other documentation, tutorials, or articles on <code>NSNotification.Name(rawValue: &quot;&quot;)</code>, you may have seen they don&rsquo;t use reverse DNS notation for the raw value. I believe it is necessary, because other dependencies on your app may create their own notifications as well, and that will create a conflict when you least expect it.</p>
-
 <p>Suppose you add a dependency that takes photos in your gallery app. It may add new notification with the raw value &ldquo;<code>photoAdded</code>&rdquo; for its own internal use after taking a photo. If our own <code>newPhotoAdded</code> notification used that same identifier, there would be a conflict and components in your app may receive the incorrect notification.</p>
-
-<p>It&rsquo;s not always possible if dependencies add their own notifications, and the system provides its own sets of notifications as well, so I strongly recommend you namespace notifications with reverse DNS notation. After all, you will never need to refer to this <code>rawValue</code> directly.
-<hr></p>
-
+<p>It&rsquo;s not always possible if dependencies add their own notifications, and the system provides its own sets of notifications as well, so I strongly recommend you namespace notifications with reverse DNS notation. After all, you will never need to refer to this <code>rawValue</code> directly.</p>
+<!-- raw HTML omitted -->
 <h3 id="posting-custom-notifications">Posting Custom Notifications</h3>
-
 <p>Now that you have your own notifications, you can start posting them, and anyone interested in them can listen to them.</p>
-
 <p><code>NSNotification</code> center has three overloaded methods to post notifications:</p>
-
 <ul>
 <li><code>NotificationCenter.default.post(notification:)</code>: Use this method if you just need to post a notification with no context whatsoever.</li>
 <li><code>NotificationCenter.default.post(name:object:)</code>: Use this method if you need to post a notification and care about who is posting it. The <code>object</code> person is the sender, the object posting the notification.</li>
 <li><code>NotificationCenter.default.post(name:object:userInfo:)</code>:  This method is the most complete one. You specify the notification name, the object (which is again the sender), and an <code>userInfo</code> dictionary. You can use this dictionary to provide additional data to the observers. In our example, we can provide the picture that was just added to the app.</li>
 </ul>
-
 <p>Since we want to pass the photo that was just added, we will use the last one.</p>
-
-<pre><code class="language-swift">  class PhotoManager {
-    func addNewPhoto(_ photo: UIImage) {
-      // 1. Our notification name
-      let newPhotoAdded = Notification.Name.GalleryApp.newPhotoAdded
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PhotoManager</span> {
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">addNewPhoto</span>(<span style="color:#66d9ef">_</span> photo: UIImage) {
+      <span style="color:#75715e">// 1. Our notification name</span>
+      <span style="color:#66d9ef">let</span> newPhotoAdded = Notification.Name.GalleryApp.newPhotoAdded
       
-      // 2. Extra info to pass to the interested parties.
-      let userInfo: [String: Any] = [
-        &quot;image&quot;: photo
+      <span style="color:#75715e">// 2. Extra info to pass to the interested parties.</span>
+      <span style="color:#66d9ef">let</span> userInfo: [String: Any] = [
+        <span style="color:#e6db74">&#34;image&#34;</span>: photo
       ]
       
-      // 3. Post the notification
-      NotificationCenter.default.post(name: newPhotoAdded,
-                                      object: self,
+      <span style="color:#75715e">// 3. Post the notification</span>
+      NotificationCenter.<span style="color:#66d9ef">default</span>.post(name: newPhotoAdded,
+                                      object: <span style="color:#66d9ef">self</span>,
                                       userInfo: userInfo)
     }
   }
-</code></pre>
-
-<p>Our <code>PhotoManager</code> class is responsible for posting notifications. He will notify all interested parties when a new photo has been added to the app.</p>
-
+</code></pre></div><p>Our <code>PhotoManager</code> class is responsible for posting notifications. He will notify all interested parties when a new photo has been added to the app.</p>
 <h3 id="receiving-notifications">Receiving Notifications</h3>
-
 <p>The final step is to listen for notifications we are interested in. We will see how our example Gallery app may implement it in its &ldquo;<code>PhotosViewController</code>. The very same logic applies to the &ldquo;Recents&rdquo; album.</p>
-
-<pre><code class="language-swift">class PhotosViewController: UIViewController {
-  var photos = [UIImage]()
-  override func viewDidLoad() {
-    super.viewDidLoad()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PhotosViewController</span>: UIViewController {
+  <span style="color:#66d9ef">var</span> photos = [UIImage]()
+  <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
+    <span style="color:#66d9ef">super</span>.viewDidLoad()
     registerForNotifications()
   }
   
-  func registerForNotifications() {
-    let ns = NotificationCenter.default
-    let newPhotoAddedNotif = Notification.Name.GalleryApp.newPhotoAdded
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">registerForNotifications</span>() {
+    <span style="color:#66d9ef">let</span> ns = NotificationCenter.<span style="color:#66d9ef">default</span>
+    <span style="color:#66d9ef">let</span> newPhotoAddedNotif = Notification.Name.GalleryApp.newPhotoAdded
     ns.addObserver(forName: newPhotoAddedNotif,
-                   object: nil,
-                   queue: nil) { (notification) in
-                    // A new photo was added!
-                    // Retrieve the photo from the notification and update our UI
-                    guard let uInfo = notification.userInfo,
-                      let image = uInfo[&quot;image&quot;] as? UIImage else {
-                        return
+                   object: <span style="color:#66d9ef">nil</span>,
+                   queue: <span style="color:#66d9ef">nil</span>) { (notification) <span style="color:#66d9ef">in</span>
+                    <span style="color:#75715e">// A new photo was added!</span>
+                    <span style="color:#75715e">// Retrieve the photo from the notification and update our UI</span>
+                    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> uInfo = notification.userInfo,
+                      <span style="color:#66d9ef">let</span> image = uInfo[<span style="color:#e6db74">&#34;image&#34;</span>] <span style="color:#66d9ef">as</span>? UIImage <span style="color:#66d9ef">else</span> {
+                        <span style="color:#66d9ef">return</span>
                     }
-                    self.photos += [image]
+                    <span style="color:#66d9ef">self</span>.photos <span style="color:#f92672">+=</span> [image]
                     
     }
   }
 }
-</code></pre>
-
-<p>And that&rsquo;s it! Now when our object receives the <code>.newPhotoAdded</code> notification. It will add the photo to its own <code>photos</code> array. The same thing will happen in the hypothetical &ldquo;Recents&rdquo; album.</p>
-
+</code></pre></div><p>And that&rsquo;s it! Now when our object receives the <code>.newPhotoAdded</code> notification. It will add the photo to its own <code>photos</code> array. The same thing will happen in the hypothetical &ldquo;Recents&rdquo; album.</p>
 <h1 id="system-notifications">System Notifications</h1>
-
 <p>The system (iOS, watchOS, iPadOS, macOS, TVOS) can post its own notifications when an event takes place.</p>
-
 <p>You don&rsquo;t need to do anything special to listen to them. Just add yourself as an observe like you did before and you will start to receive these notifications.</p>
-
 <p>There&rsquo;s many documentation pages that list some notification names, like the  <a href="https://developer.apple.com/documentation/uikit/accessibility/notification_names">Accessibility Notification Names</a>, and the <a href="https://developer.apple.com/documentation/foundation/nsnotification/name">Notification.Name</a> provides a <em>very long</em> list of system notifications. It wouldn&rsquo;t be fun to post them all here, so I will just mention the ones I find most interesting:</p>
-
 <ul>
 <li><a href="https://developer.apple.com/documentation/foundation/nsnotification/name/1408062-nscalendardaychanged">NSCalendarDayChanged</a>: Posted when the system calendar day changes.</li>
 <li><a href="https://developer.apple.com/documentation/foundation/nsnotification/name/1387256-nssystemtimezonedidchange">NSTimeZoneDidChange</a>: Posted when the system&rsquo;s time zone changes.</li>
@@ -402,13 +358,9 @@ if (!doNotTrack) {
 <li><a href="https://developer.apple.com/documentation/uikit/uiscreen/1617832-brightnessdidchangenotification">brightnessDidChangeNotification</a>: Posted when the device brightness level changes.</li>
 <li><a href="https://developer.apple.com/documentation/foundation/nsnotification/name/2909077-skstorefrontcountrycodedidchange">SKStorefrontCountryCodeDidChange</a>: Changed when country used for purchases changes.</li>
 </ul>
-
 <p>You can use these and others in the linked documentation to do more interesting stuff with your code. Play around with the notifications and see what you can do.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

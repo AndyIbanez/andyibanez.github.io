@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -266,195 +266,139 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>As iOS becomes more advanced, features that we thought belonged to the long future start becoming more common place in today&rsquo;s software. One such feature is speech recognition, which allows a device to take verbal input from a user, transcribe it into text, and do something with it.</p>
-
+    <p>As iOS becomes more advanced, features that we thought belonged to the long future start becoming more common place in today&rsquo;s software. One such feature is speech recognition, which allows a device to take verbal input from a user, transcribe it into text, and do something with it.</p>
 <p>In iOS, we can do this using a framework called <code>Speech</code>, and an object called <code>SFSpeechRecognizer</code>. With this class, you can perform all kinds of speech recognition tasks.</p>
-
 <p><code>SFSpeechRecognizer</code> supports many languages (far from them all, though), and you can specify which one to use. It also supports different audio inputs of audio to recognize the speech from. So you can choose to recognize speech from a file, or from the device&rsquo;s microphone.</p>
-
 <h1 id="implementing-sfspeechrecognizer">Implementing SFSpeechRecognizer</h1>
-
 <h2 id="initial-setup">Initial Setup</h2>
-
 <p>The <code>Speech</code> framework is one of those tools that require you set a string letting your user know what you are going to recognize the speech for. So in your app&rsquo;s <code>Info.plist</code>, add the key <code>NSSpeechRecognitionUsageDescription</code> of type <code>string</code>, and add a short text describing what you are going to use it for.</p>
-
 <p>Then we need to actually ask for permission. The following method will request for permission and return the status of the operation:</p>
-
-<pre><code class="language-swift">SFSpeechRecognizer.requestAuthorization { (status) in
-	switch status {
-	case .notDetermined: print(&quot;Not determined&quot;)
-  case .restricted: print(&quot;Restricted&quot;)
-  case .denied: print(&quot;Denied&quot;)
-  case .authorized: print(&quot;We can recognize speech now.&quot;)
-  @unknown default: print(&quot;Unknown case&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">SFSpeechRecognizer.requestAuthorization { (status) <span style="color:#66d9ef">in</span>
+	<span style="color:#66d9ef">switch</span> status {
+	<span style="color:#66d9ef">case</span> .notDetermined: print(<span style="color:#e6db74">&#34;Not determined&#34;</span>)
+  <span style="color:#66d9ef">case</span> .restricted: print(<span style="color:#e6db74">&#34;Restricted&#34;</span>)
+  <span style="color:#66d9ef">case</span> .denied: print(<span style="color:#e6db74">&#34;Denied&#34;</span>)
+  <span style="color:#66d9ef">case</span> .authorized: print(<span style="color:#e6db74">&#34;We can recognize speech now.&#34;</span>)
+  @unknown <span style="color:#66d9ef">default</span>: print(<span style="color:#e6db74">&#34;Unknown case&#34;</span>)
   }
 }
-</code></pre>
-
-<p>You should also check if the speech recognizer is available before you try to use it. For that, instances of <code>SFSpeechRecognizer</code> have a property called <code>isAvailable</code> you can use to quickly check for availability.</p>
-
-<pre><code class="language-swift">    if let speechRecognizer = SFSpeechRecognizer() {
-      if speechRecognizer.isAvailable {
-        // Use the speech recognizer
+</code></pre></div><p>You should also check if the speech recognizer is available before you try to use it. For that, instances of <code>SFSpeechRecognizer</code> have a property called <code>isAvailable</code> you can use to quickly check for availability.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> speechRecognizer = SFSpeechRecognizer() {
+      <span style="color:#66d9ef">if</span> speechRecognizer.isAvailable {
+        <span style="color:#75715e">// Use the speech recognizer</span>
       }
     }
-</code></pre>
-
-<p>There is also a <code>supportsOnDeviceRecognition</code> property. When this is true, the framework will perform on-device speech recognition. When it isn&rsquo;t, it will use the network and send the input to Apple&rsquo;s servers. Make sure you check if this variable if network usage matters.</p>
-
+</code></pre></div><p>There is also a <code>supportsOnDeviceRecognition</code> property. When this is true, the framework will perform on-device speech recognition. When it isn&rsquo;t, it will use the network and send the input to Apple&rsquo;s servers. Make sure you check if this variable if network usage matters.</p>
 <p>One little annoyance is that, to instantiate this class, you need to check for optionals. <code>SFSpeechRecognizer</code> has two initializers you can use. The default one attempts to construct an object with the device&rsquo;s default language, and if that fails it will try to use the language used for keyboard string recognition. When both conditions fail, it can return <code>nil</code>.</p>
-
 <p>The other initializer takes a <code>Locale</code> object. This method can also return <code>nil</code> when you pass a locale that isn&rsquo;t available. To see all the available locales, you can call the <code>supportedLocales()</code> method, which will return a set of locales you can instantiate a <code>SFSpeechRecognizer</code> with.</p>
-
 <p>With that out of the way, we can start using <code>SFSpeechRecognizer</code> now.</p>
-
 <h2 id="recognizing-speech">Recognizing Speech</h2>
-
 <h3 id="speech-recognizing-tasks">Speech Recognizing Tasks</h3>
-
 <p>After you have created a <code>SFSpeechRecognizer</code> object, you instruct it to execute tasks, which are subclasses of <code>SFSpeechRecognitionRequest</code>. At the time of this writing, there&rsquo;s two possible tasks: <a href="https://developer.apple.com/documentation/speech/sfspeechurlrecognitionrequest"><code>SFSpeechURLRecognitionRequest</code></a>, to recognize speech in local files, and <a href="https://developer.apple.com/documentation/speech/sfspeechaudiobufferrecognitionrequest"><code>SFSpeechAudioBufferRecognitionRequest</code></a>, which can take a constant input of audio to recognize speech.</p>
-
 <p>The <code>SFSpeechRecognitionRequest</code> superclass offers a few interesting properties you can use to configure your tasks. You can force the request to use on-device speech recognition by setting <code>requiresOnDeviceRecognition</code> to <code>true</code>; you can force it to report partial results with <code>shouldReportPartialResults</code>, and you can provide an array of phrases that should be recognize even when they don&rsquo;t exist in the system&rsquo;s vocabulary with <code>contextualStrings</code>. This last one is interesting because you can even make it recognize made-up words. The documentation recommends you keep these to 100 or less.</p>
-
 <h4 id="recognizing-speech-in-audio-files-with-sfspeechurlrecognitionrequest">Recognizing Speech in Audio Files with SFSpeechURLRecognitionRequest</h4>
-
 <p>Remember to check if the speech recognizer is actually available.</p>
-
-<pre><code class="language-swift">if recognizer!.isAvailable {
-  // Use the speech recognizer
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">if</span> recognizer!.isAvailable {
+  <span style="color:#75715e">// Use the speech recognizer</span>
 }
-</code></pre>
-
-<p>Once you know it is, you can start using it.</p>
-
+</code></pre></div><p>Once you know it is, you can start using it.</p>
 <p>When you call <code>recognitionTask</code>, you specify a recognition handler. This is an asynchronous operation that will call you back when it has recognized more speech. If you don&rsquo;t want to use completion handlers, you can use a <a href="https://developer.apple.com/documentation/speech/sfspeechrecognitiontaskdelegate">SFSpeechRecognitionTaskDelegate</a> instead.</p>
-
 <p>Using this request is very straightforward. All you need to do is to specify the URL to the file in the constructor. You can then configure the <code>recognitionTask</code> with the parameters you need. In our case, we will force it to use on-device speech recognition.</p>
-
 <p>Then we call the <code>recognitionTask</code> on the your recognizer, and specify a callback for success or error. If you get a correct result you can grab the transcribed results.</p>
-
 <p>The below example will recognize text in a generic audio file, and print its contents:</p>
-
-<pre><code class="language-swift">  private var recognitionTask: SFSpeechRecognitionTask?
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">  <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> recognitionTask: SFSpeechRecognitionTask?
   
-  func recognizeFromFile() {
-    let fileUrl = // ... URL To file
-    let request = SFSpeechURLRecognitionRequest(url: fileUrl)
-    speechRecognizer?.supportsOnDeviceRecognition = true
+  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">recognizeFromFile</span>() {
+    <span style="color:#66d9ef">let</span> fileUrl = <span style="color:#75715e">// ... URL To file</span>
+    <span style="color:#66d9ef">let</span> request = SFSpeechURLRecognitionRequest(url: fileUrl)
+    speechRecognizer?.supportsOnDeviceRecognition = <span style="color:#66d9ef">true</span>
     speechRecognizer?.recognitionTask(
       with: request,
-      resultHandler: { (result, error) in
-        if let error = error {
-          // handle error
-        } else if let result = result {
+      resultHandler: { (result, error) <span style="color:#66d9ef">in</span>
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> error = error {
+          <span style="color:#75715e">// handle error</span>
+        } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> result = result {
           print(result.bestTranscription.formattedString)
         }
     })
   }
 
-</code></pre>
-
-<h4 id="recognizing-speech-in-audio-streams-with-sfspeechaudiobufferrecognitionrequest">Recognizing Speech in Audio Streams with SFSpeechAudioBufferRecognitionRequest</h4>
-
+</code></pre></div><h4 id="recognizing-speech-in-audio-streams-with-sfspeechaudiobufferrecognitionrequest">Recognizing Speech in Audio Streams with SFSpeechAudioBufferRecognitionRequest</h4>
 <p>If you need to capture audio from a real time source, such as the user&rsquo;s microphone, you can use this request. It works very similar to <code>SFSpeechURLRecognitionRequest</code>, but you need to explicitly end the recognition by calling the <code>endAudio()</code> method.</p>
-
 <p>The following example will recognize speech provided from the device&rsquo;s microphone. Brace yourself, as this code is much longer than the previous one.</p>
-
-<pre><code class="language-swift">let speechRecognizer = SFSpeechRecognizer()!
-var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
-var recognitionTask: SFSpeechRecognitionTask?
-let audioEngine = AVAudioEngine()
-func startRecording() throws {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> speechRecognizer = SFSpeechRecognizer()<span style="color:#f92672">!</span>
+<span style="color:#66d9ef">var</span> recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+<span style="color:#66d9ef">var</span> recognitionTask: SFSpeechRecognitionTask?
+<span style="color:#66d9ef">let</span> audioEngine = AVAudioEngine()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">startRecording</span>() <span style="color:#66d9ef">throws</span> {
   
-  // Cancel the previous recognition task.
+  <span style="color:#75715e">// Cancel the previous recognition task.</span>
   recognitionTask?.cancel()
-  recognitionTask = nil
+  recognitionTask = <span style="color:#66d9ef">nil</span>
   
-  // Audio session, to get information from the microphone.
-  let audioSession = AVAudioSession.sharedInstance()
-  try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
-  try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-  let inputNode = audioEngine.inputNode
+  <span style="color:#75715e">// Audio session, to get information from the microphone.</span>
+  <span style="color:#66d9ef">let</span> audioSession = AVAudioSession.sharedInstance()
+  <span style="color:#66d9ef">try</span> audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+  <span style="color:#66d9ef">try</span> audioSession.setActive(<span style="color:#66d9ef">true</span>, options: .notifyOthersOnDeactivation)
+  <span style="color:#66d9ef">let</span> inputNode = audioEngine.inputNode
   
-  // The AudioBuffer
+  <span style="color:#75715e">// The AudioBuffer</span>
   recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-  recognitionRequest!.shouldReportPartialResults = true
+  recognitionRequest!.shouldReportPartialResults = <span style="color:#66d9ef">true</span>
   
-  // Force speech recognition to be on-device
-  if #available(iOS 13, *) {
-    recognitionRequest!.requiresOnDeviceRecognition = true
+  <span style="color:#75715e">// Force speech recognition to be on-device</span>
+  <span style="color:#66d9ef">if</span> <span style="color:#75715e">#available</span>(<span style="color:#75715e">iOS</span> <span style="color:#ae81ff">13</span>, <span style="color:#f92672">*</span>) {
+    recognitionRequest!.requiresOnDeviceRecognition = <span style="color:#66d9ef">true</span>
   }
   
-  // Actually create the recognition task. We need to keep a pointer to it so we can stop it.
-  recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest!) { result, error in
-    var isFinal = false
+  <span style="color:#75715e">// Actually create the recognition task. We need to keep a pointer to it so we can stop it.</span>
+  recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest!) { result, error <span style="color:#66d9ef">in</span>
+    <span style="color:#66d9ef">var</span> isFinal = <span style="color:#66d9ef">false</span>
     
-    if let result = result {
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> result = result {
       isFinal = result.isFinal
-      print(&quot;Text \(result.bestTranscription.formattedString)&quot;)
+      print(<span style="color:#e6db74">&#34;Text </span><span style="color:#e6db74">\(</span>result.bestTranscription.formattedString<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
     }
     
-    if error != nil || isFinal {
-      // Stop recognizing speech if there is a problem.
+    <span style="color:#66d9ef">if</span> error <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> <span style="color:#f92672">||</span> isFinal {
+      <span style="color:#75715e">// Stop recognizing speech if there is a problem.</span>
       audioEngine.stop()
-      inputNode.removeTap(onBus: 0)
+      inputNode.removeTap(onBus: <span style="color:#ae81ff">0</span>)
       
-      recognitionRequest = nil
-      recognitionTask = nil
+      recognitionRequest = <span style="color:#66d9ef">nil</span>
+      recognitionTask = <span style="color:#66d9ef">nil</span>
     }
   }
   
-  // Configure the microphone.
-  let recordingFormat = inputNode.outputFormat(forBus: 0)
-    // The buffer size tells us how much data should the microphone record before dumping it into the recognition request.
-  inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
+  <span style="color:#75715e">// Configure the microphone.</span>
+  <span style="color:#66d9ef">let</span> recordingFormat = inputNode.outputFormat(forBus: <span style="color:#ae81ff">0</span>)
+    <span style="color:#75715e">// The buffer size tells us how much data should the microphone record before dumping it into the recognition request.</span>
+  inputNode.installTap(onBus: <span style="color:#ae81ff">0</span>, bufferSize: <span style="color:#ae81ff">1024</span>, format: recordingFormat) { (buffer: AVAudioPCMBuffer, when: AVAudioTime) <span style="color:#66d9ef">in</span>
     recognitionRequest?.append(buffer)
   }
   
   audioEngine.prepare()
-  try audioEngine.start()
+  <span style="color:#66d9ef">try</span> audioEngine.start()
 }
 
-</code></pre>
-
-<p><em>(Code provided and adapted from <a href="https://stackoverflow.com/questions/11525942/play-audio-ios-objective-c">Apple</a>)</em></p>
-
+</code></pre></div><p><em>(Code provided and adapted from <a href="https://stackoverflow.com/questions/11525942/play-audio-ios-objective-c">Apple</a>)</em></p>
 <p>That code is a bit of a mouthful, because it uses Apple&rsquo;s AVFoundation framework, which is used to get audio and visual input from a device.</p>
-
 <p>AVFoundation is out of the scope of this article, so we will briefly describe the relevant parts.</p>
-
 <p>When we configure the recognizer, we will use the locale on the user&rsquo;s device. In my case my phone is set to English, so it works on my device. You may need to specify the locale, in case the recognizer does not work with the one specified on your device.</p>
-
 <p>The completion handler in the recognition handler will be report back results received from the microphone. Because we set <code>shouldReportPartialResults</code> to <code>true</code>, as you speak, the device will print results on the console before you are done talking. On iOS 13 we will force the device to use on-device speech recognition setting <code>requiresOnDeviceRecognition</code> to true. The speech recognizer will also know when it has finished recognizing, so you can stop the session when you receive that.</p>
-
 <p>For the microphone&rsquo;s configuration, we will dump the contents of the buffer every 1024 bytes. Strictly speaking, The Speech Recognizer cannot detect speech in real time. The microphone will dump its recent speech into it when the buffer fills to the size you specified. When we dump the contents of the session, the recognizer will recognize the last text dumped into it (by calling <code>append</code>). If you make the buffer bigger, it may make this process slower, but it will recognize more text which <em>may</em> make it more accurate. But if you make it smaller the recognizer may not be able to keep up. I found 1024 bytes is a good size for this.</p>
-
 <h2 id="getting-more-data-out-of-a-recognition-task">Getting More Data Out of a Recognition Task</h2>
-
 <p>You can get more data out of the result of a recognition task. This data includes the speaking rate (the number of words spoken per minute) (<code>SFSpeechRecognitionResult.speakingRate</code>); Additionally, the result contains a property called <code>segments</code>, which is an array of <code>SFTranscriptionSegment</code>). Segments contain data about parts of the spoken text, such as the <code>confidence</code> level, which gives us how much a word is likely to match the spoken word. The <code>timestamp</code> and <code>duration</code> properties tell you the position of the segment in the audio stream, and a <code>voiceAnalytics</code> (<code>SFVoiceAnalytics</code>) from which you can get the <code>pitch</code>, <code>jitter</code>, and <code>shimmer</code>. You can build very interesting apps with these properties.</p>
-
 <h2 id="additional-setup-options">Additional Setup Options</h2>
-
 <p>If you liked what you say, take a look at the <a href="https://developer.apple.com/documentation/speech/sfspeechrecognizer">documentation</a>. There&rsquo;s some more configuration options you can use, including the queue where recognition handlers should be executed on. You can also provide a <code>defaultTaskHint</code>, which can help the recognizer be slightly more accurate.</p>
-
 <h2 id="gotchas">Gotchas</h2>
-
 <p>Keep in mind that not all setups will support on-device speech recognition. The first requirement is to support iOS 13. I haven&rsquo;t found any cases in which the device supports iOS 13 and not on-device speech recognition, but you should always add the proper checks for this in your code.</p>
-
 <p>Also remember that not all languages are supported just yet. You should always check if your user&rsquo;s locale matches one of the values provided by <code>SFSpeechRecognizer.supportedLocales()</code>.</p>
-
 <p>You need to keep your audio duration sessions to one minute at most. Speech recognizing can take a lot of battery, and in the case of not having on-device speech recognition, high network usage. The framework will stop recognizing past the one-minute mark.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>Despite a few limitations, on-device speech recognition is finally a thing. While this feature is available on iOS 13, previous iOS devices can use speech recognizing, although it will require an internet connection to work. The API is very easy to use, and you have the option to provide different input sources.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

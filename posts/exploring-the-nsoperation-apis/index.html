@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -260,134 +260,95 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p><em>The original title for this article was posted on my old website in 2012 and it was titled &ldquo;Multithreading on iOS And Mac OS X Using NSOperations&rdquo;. The original examples were written in Objective-C. This article has been rewritten from scratch not only to give the examples in Swift, but also to improve the quality of the old article. It has been shortened, and both language and tone have been revised.</em></p>
-
+    <p><em>The original title for this article was posted on my old website in 2012 and it was titled &ldquo;Multithreading on iOS And Mac OS X Using NSOperations&rdquo;. The original examples were written in Objective-C. This article has been rewritten from scratch not only to give the examples in Swift, but also to improve the quality of the old article. It has been shortened, and both language and tone have been revised.</em></p>
 <p>Writing concurrent code is important and something that is done for almost all non-trivial apps. If you want your app to handle expensive tasks without causing a bad experience for users (freezing the main thread), you will eventually have to deal with concurrency. And the good news is, if your concurrent task is complex enough, you can simplify how it&rsquo;s done with the help of an API that has been there for a very long time, but is ignored by many developers of Apple platforms: NSOperations.</p>
-
 <p>Concurrency on iOS and macOS is nothing new. The technologies have also been moved to TVOS and watchOS. In fact, there&rsquo;s four concurrency methods that you can do in all these platforms:</p>
-
 <ul>
 <li>pthreads</li>
 <li>NSThread</li>
 <li>Grand Central Dispatch (GCD)</li>
 <li>NSOperation</li>
 </ul>
-
 <p>Sorted from lower level to higher level, the vast majority of Apple developers will never touch pthreads (POSIX threads) or NSThreads, (though they can drop down to those levels if they need to for extremely sensitive performance applications), and most of them use the GCD in their day-to-day jobs. The GCD works fine for the vast majority of concurrent apps, and many developers will not need the extra functionalities offered by NSOperations.</p>
-
 <p>But, while the GCD provides a great concurrency API for developers, sometimes your tasks may not scale well with it. The power of the NSOperation APIs is that they provide a high level interface for concurrency, and it allows you to set dependent tasks of each other very easily. Suppose you want to write an app that downloads photos from a Flickr feed, and after downloading them you want to apply a black and white filter on them. You can achieve this while creating a Download operation and a Filtering operation that depends on the Download operation.</p>
-
 <p>In this article we will explore the NSOperations API and we will write some very basic code to show how they work, how to create dependent operations, and more.</p>
-
 <h1 id="nsoperation-classes">NSOperation Classes</h1>
-
 <p>The NSOperations API has a few classes that make it easy to interact with it.</p>
-
 <p>The <code>NSOperation</code> class represents a task that you want to do concurrently. The code you want to perform concurrently is encapsulated within a <code>NSOperation</code> subclass. NSOperation itself is considered an abstract class, and as such you never use it directly (technically there isn&rsquo;t the concept of an abstract class in either Swift or Objective-C, but the <a href="https://developer.apple.com/documentation/foundation/operation">documentation</a> uses that word when describing the API), but it provides a few subclasses that you can use instead.</p>
-
 <p>The two subclasses Apple provides are:</p>
-
 <ul>
 <li><code>NSInvocationOperation</code>: When using this class, you use the familiar target-action pattern to define what object should call what method as a concurrency task. You can use this subclass when you have an object with a method that you want to use in both concurrent threads and in your main thread. It also gives you a lot of flexibility thanks to the underlying dynamic Objective-C dispatching. It&rsquo;s very important to note that you can&rsquo;t use this one in Swift. The underlying class needed by this subclass to work (<code>NSInvocation</code>) is not available to be used in Swift. You can find more info about this <a href="https://stackoverflow.com/a/26644944/648767">here</a>, so in this article we will not cover this subclass.</li>
 <li><code>NSBlockOperation</code>: You can use this operation to execute various closures at once. An <code>NSBlockOperation</code> is considered to have finished running when all its blocks have completed their execution.</li>
 </ul>
-
 <p>You can also write your own NSOperation subclasses, but doing so is very complicated, unusual, and often unnecessary. The <a href="https://developer.apple.com/documentation/foundation/operation">documentation</a> has some helpful subclassing notes, but chances are you will never have to do this. In this article, we will not explore how to do that as it is an extremely niché case.</p>
-
 <p>All <code>NSOperation</code> subclasses support the same handy features:</p>
-
 <ul>
 <li>You can use dependencies to tell an operation to only execute once another operation has finished running.</li>
 <li>You can monitor their state through the use of Key-Value Observing.</li>
 <li>You can cancel operations at any time, whether they are running or have yet to run. You can implement your custom cancellation events if you need to.</li>
 </ul>
-
 <p>When you have an <code>NSOperation</code> subclass ready, you will normally want to hand it over to an <code>NSOperationQueue</code>. You can actually choose to start each operation directly by calling their <code>start()</code> method, but doing so does not guarantee that the operation will run in a different thread. It could choose to run in your main thread. Using the queue is the only way to ensure your tasks are actually concurrent. All operations have a method called <code>isConcurrent</code> which you can use to check if they are running in a background thread or in your main thread.</p>
-
 <p>You can query the status of your operations by some properties. All operations have the following:</p>
-
 <ul>
 <li><code>isConcurrent</code>. You can use this one to see if the operation is running in a different thread than where it was called or not.</li>
 <li><code>isExecuting</code></li>
 <li><code>isFinished</code></li>
 <li><code>isCancelled</code></li>
 </ul>
-
 <h1 id="exploring-the-api">Exploring the API</h1>
-
 <p>With all that theory out of the way, it&rsquo;s time to get our feet wet. We will be running these examples in a simple Command Line project in Xcode.</p>
-
 <h2 id="nsblockoperation">NSBlockOperation</h2>
-
 <p>Using <code>NSBlockOperation</code> is very easy. In the example below, we will create two different <code>NSBlockOperation</code>. One will count from 1 to 10, and the other one will count from 1 to 20. You will see that there&rsquo;s no consistent order in how the numbers are printed, despite the fact that we queue the <code>from1to10</code>operation before <code>from11to20</code>.</p>
-
-<pre><code class="language-swift">class NumberCounter: NSObject {
-    func startCounting() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NumberCounter</span>: NSObject {
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">startCounting</span>() {
         
-        /// We will need a queue for this.
-        let operationQueue = OperationQueue()
+        <span style="color:#75715e">/// We will need a queue for this.</span>
+        <span style="color:#66d9ef">let</span> operationQueue = OperationQueue()
         
-        /// You can give your queue an optional name, if you need to identify it later.
-        operationQueue.name = &quot;Counting queue&quot;
+        <span style="color:#75715e">/// You can give your queue an optional name, if you need to identify it later.</span>
+        operationQueue.name = <span style="color:#e6db74">&#34;Counting queue&#34;</span>
         
-        /// This will just count from 1 to 10...
-        let from1To10 = BlockOperation {
-            for i in (1 ... 10) {
+        <span style="color:#75715e">/// This will just count from 1 to 10...</span>
+        <span style="color:#66d9ef">let</span> from1To10 = BlockOperation {
+            <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">1</span> ... <span style="color:#ae81ff">10</span>) {
                 print(i)
             }
         }
         
-        /// ... and this from 11 to 20
-        let from11To20 = BlockOperation {
-            for i in (11 ... 20) {
+        <span style="color:#75715e">/// ... and this from 11 to 20</span>
+        <span style="color:#66d9ef">let</span> from11To20 = BlockOperation {
+            <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">11</span> ... <span style="color:#ae81ff">20</span>) {
                 print(i)
             }
         }
         
-        /// Add the operations to the queue
+        <span style="color:#75715e">/// Add the operations to the queue</span>
         operationQueue.addOperation(from1To10)
         operationQueue.addOperation(from11To20)
         
-        /// To ensure the program doesn't exit early while the operations are running.
+        <span style="color:#75715e">/// To ensure the program doesn&#39;t exit early while the operations are running.</span>
         operationQueue.waitUntilAllOperationsAreFinished()
     }
 }
 
-let counter = NumberCounter()
+<span style="color:#66d9ef">let</span> counter = NumberCounter()
 counter.startCounting()
-</code></pre>
-
-<p>Run this sample of code a couple of times. You will see that each time, the order of the numbers is different.</p>
-
+</code></pre></div><p>Run this sample of code a couple of times. You will see that each time, the order of the numbers is different.</p>
 <p>To fix this, we will make <code>from1to10</code> be a dependency of <code>from11To20</code>. When we do this, the numbers will be printed in the order you expect, no matter how many times you run the program. Add this code before you add the operations to the queue:</p>
-
-<pre><code class="language-Swift"> /// from11To20 should depend on from1To10, so the numbers are added in the right order.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Swift" data-lang="Swift"> <span style="color:#75715e">/// from11To20 should depend on from1To10, so the numbers are added in the right order.</span>
  from11To20.addDependency(from1To10)
-</code></pre>
-
-<p>And just like that, the numbers will be printed in the right order, since <code>from11To20</code> will not run unless <code>from1To10</code> has completed its execution.</p>
-
+</code></pre></div><p>And just like that, the numbers will be printed in the right order, since <code>from11To20</code> will not run unless <code>from1To10</code> has completed its execution.</p>
 <h3 id="a-tiny-trick">A Tiny Trick</h3>
-
 <p>As I was writing this, I noticed that you can directly add a block to a <code>NSOperationQueue</code> without having to wrap it in a <code>NSBlockOperation</code>. It looks like this:</p>
-
-<pre><code class="language-swift">operationQueue.addOperation {
-    for i in (21 ... 31) {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">operationQueue.addOperation {
+    <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> (<span style="color:#ae81ff">21</span> ... <span style="color:#ae81ff">31</span>) {
         print(i)
     }
 }
-</code></pre>
-
-<p>This makes simpler concurrency easier to do in some cases. Just keep in mind that since you are passing a block directly, you do not have the same benefits as <code>NSBlockOperation</code>. For example, you will not be able to cancel this operation early, and you cannot query it&rsquo;s state with its properties.</p>
-
+</code></pre></div><p>This makes simpler concurrency easier to do in some cases. Just keep in mind that since you are passing a block directly, you do not have the same benefits as <code>NSBlockOperation</code>. For example, you will not be able to cancel this operation early, and you cannot query it&rsquo;s state with its properties.</p>
 <h1 id="conclusion">Conclusion</h1>
-
 <p>The <code>NSOperation</code> API is really good to do complex concurrently easily. You have a lot of control over your operations and managing dependencies is very easy.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
 
   </div>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -243,7 +243,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 11 min read
+    <i class="fas fa-clock"></i> 10 min read
 </div>
 
 
@@ -251,103 +251,60 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>In the early days of iOS development, developers had no way at all to perform background tasks beyond a very limited constraints of tasks, like music playback. Modern demands go beyond allowing people to play music in your app while they use a different app, and we as developers need to adapt to these changes. VoIP, lengthy networking, and even silent pushes to keep an app updated are very common these days, and fulfilling these demands used to be hard, if not outright impossible.</p>
-
+    <p>In the early days of iOS development, developers had no way at all to perform background tasks beyond a very limited constraints of tasks, like music playback. Modern demands go beyond allowing people to play music in your app while they use a different app, and we as developers need to adapt to these changes. VoIP, lengthy networking, and even silent pushes to keep an app updated are very common these days, and fulfilling these demands used to be hard, if not outright impossible.</p>
 <p>iOS 7 was the first one to introduce more slightly powerful background execution APIs. In this article, we will explore how to perform background tasks in our apps and how to give our apps additional time to complete a task that was initially started in the foreground, and was later moved to the background before it had time to complete.</p>
-
 <p>In particular, we will explore the following use cases.</p>
-
 <ol>
 <li>Getting additional background execution time when an app is sent to the background.</li>
 <li>Starting background tasks with silent push notifications.</li>
 <li>Deferred downloads with Discretionary Background URL Session.</li>
 </ol>
-
 <p>This article is based on the <a href="https://developer.apple.com/videos/play/wwdc2019/707">Advances in Background Execution</a> WWDC 2019 talk and in the documentation, but I have taken the liberty to add my own code examples and I have removed content that is not not relevant for the majority of developers (VoIP pushes, etc).</p>
-
-<hr>
-
-<p><strong>Note</strong></p>
-
+<!-- raw HTML omitted -->
 <p>The original version of this article was supposed to cover the old background tasks APIs introduced since iOS 7 and then the new APIs introduced in iOS 13. The article became much longer than I had originally expected, so I separated the article into two different ones: One article for old but still relevant APIs (this one), and another one for the iOS 13 exclusive APIs (the <code>BackgroundTasks</code> framework).</p>
-
-<p>For that reason this article won&rsquo;t cover the new shiny <code>BackgroundTasks</code>. You will have to wait until December 25 (Merry Christmas!) for that one. Sorry about that!
-<hr></p>
-
+<p>For that reason this article won&rsquo;t cover the new shiny <code>BackgroundTasks</code>. You will have to wait until December 25 (Merry Christmas!) for that one. Sorry about that!</p>
+<!-- raw HTML omitted -->
 <h1 id="the-need-for-background-execution">The Need for Background Execution</h1>
-
 <h2 id="what-exactly-is-background-execution">What exactly is background execution?</h2>
-
 <p>Background execution is simply letting the app run code while it&rsquo;s not in the foreground - it&rsquo;s not the app the user is currently using.</p>
-
 <p>The app can require background execution if it requests it to the system. If you want to refresh content and have an up-to-date UI for your users when they relaunch your app after a few hours. Chat applications may want to do this, so next time the user launches an app, they can see all their chats updated instead of waiting for the app to do it when they visit the app. The app can also request this to complete some work that started while the app was in the background, like a big network download.</p>
-
 <p>The app can also begin background execution when an event takes place in the system. For example, it can be triggered when the user receives a notification, or when the GPS detects the device is in a specific location. In other words, the data needs to respond to some event.</p>
-
 <h2 id="considerations">Considerations</h2>
-
 <p>The background execution system still has some considerations that you should really keep in mind before you go forward with this.</p>
-
 <p>First is <em>power</em>. If your app uses too much battery performing background execution, it may be a bad experience for your user. You should let the system know when your tasks finish to become a good player in the Background Execution world. If you allocate 60 seconds for a task and finish it in 40, let the system know and it will become more generous with your requests over time.</p>
-
 <p>The second is <em>performance</em>. Multiple apps may be running in the background at a time, and then there&rsquo;s the little bonus that a foreground may also be executing. Be aware that your app is not the only app in your user&rsquo;s devices, and they may have thousands of different apps performing background tasks.</p>
-
 <p>Finally, there&rsquo;s <em>privacy</em>. You cannot view other background tasks, as it is expected in the Apple fashion.</p>
-
 <p>You should adopt background execution keeping all these in factors in mind.</p>
-
 <h1 id="background-execution-use-cases">Background Execution Use Cases</h1>
-
-<hr>
-
-<p><strong>Note</strong></p>
-
-<p>Like I said above, the original article was supposed to cover both the old and new APIs for background execution. Everything written here is stuff that can be done pre-iOS 13.
-<hr></p>
-
+<!-- raw HTML omitted -->
+<p>Like I said above, the original article was supposed to cover both the old and new APIs for background execution. Everything written here is stuff that can be done pre-iOS 13.</p>
+<!-- raw HTML omitted -->
 <p>We can divide the use cases of background execution into different categories. If your app needs to do any of the following, you can adopt this new framework:</p>
-
 <ul>
 <li>Give additional time to execute a task before the app is suspended. If you start work in the foreground, you can complete it in the background.</li>
 <li>Triggering background tasks with silent push notifications.</li>
 <li>Downloading content at a later time with Background URL Session.</li>
 </ul>
-
 <p>We will go through each individually, offering code whenever possible.</p>
-
 <h2 id="give-additional-time-to-execute-a-task-before-being-suspended">Give additional time to execute a task before being suspended.</h2>
-
 <p><code>UIApplication</code> has a simple method that can be used for this: <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623031-beginbackgroundtask">beginBackgroundTask(expirationHandler:)</a></p>
-
 <pre><code>UIApplication.beginBackgroundTask(expirationHandler:)
-</code></pre>
-
-<p>You should call this method when leaving a task unfinished may cause a bad user experience in your app. You can use it to complete disk writes, finish user-initiated requests, network calls, and tasks similar to that. The <code>expirationHandler</code> is optional, but if you provide it the system will call it before the time expires to give you a chance to end a task gracefully before it had time to complete.</p>
-
+</code></pre><p>You should call this method when leaving a task unfinished may cause a bad user experience in your app. You can use it to complete disk writes, finish user-initiated requests, network calls, and tasks similar to that. The <code>expirationHandler</code> is optional, but if you provide it the system will call it before the time expires to give you a chance to end a task gracefully before it had time to complete.</p>
 <p>You should call this method right before you start your task, and better if you do before the app actually enters the background state.</p>
-
 <p>Each call to this API should have a matching call to <a href="https://developer.apple.com/documentation/uikit/uiapplication/1622970-endbackgroundtask"><code>UIApplication.endBackgroundTask(identifier:)</code></a>. Because apps cannot run indefinitely in the background, you can check how much time your app has by checking the <code>backgroundTimeRemaining</code> property of <code>UIApplication</code>.</p>
-
 <p>You can call <code>beginBackgroundTask</code> any time, and as many times as you want. Each call will return a unique <code>identifier</code> you can use to identify a task, or <code>&quot;invalid&quot;</code> if the app doesn&rsquo;t support background execution. Don&rsquo;t forget to end your tasks by calling <code>endBackgroundTask</code> with the identifier returned by <code>beginBackgroundTasks</code>.</p>
-
 <p>You can get your hands dirty with this. Create a new empty project and put this code inside <code>viewDidAppear</code> in the default view controller:</p>
-
-<pre><code class="language-swift">    let taskId = UIApplication.shared.beginBackgroundTask {
-      print(&quot;We are about to kill your task&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">let</span> taskId = UIApplication.shared.beginBackgroundTask {
+      print(<span style="color:#e6db74">&#34;We are about to kill your task&#34;</span>)
     }
     
-    print(&quot;The task ID: \(taskId)&quot;)
+    print(<span style="color:#e6db74">&#34;The task ID: </span><span style="color:#e6db74">\(</span>taskId<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
     
-    let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-      print(&quot;Executing (\(UIApplication.shared.backgroundTimeRemaining) seconds remaining)&quot;)
+    <span style="color:#66d9ef">let</span> _ = Timer.scheduledTimer(withTimeInterval: <span style="color:#ae81ff">1</span>, repeats: <span style="color:#66d9ef">true</span>) { <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
+      print(<span style="color:#e6db74">&#34;Executing (</span><span style="color:#e6db74">\(</span>UIApplication.shared.backgroundTimeRemaining<span style="color:#e6db74">)</span><span style="color:#e6db74"> seconds remaining)&#34;</span>)
     }
-</code></pre>
-
-<p>In my tests, while this was running in the foreground, it kept printing <code>Executing (1.7976931348623157e+308 seconds remaining)</code>. As soon as I backgrounded it, I saw that the system allocated approximately 30 seconds for the background task:</p>
-
-<pre><code class="language-text">Executing (29.899623215998872 seconds remaining)
+</code></pre></div><p>In my tests, while this was running in the foreground, it kept printing <code>Executing (1.7976931348623157e+308 seconds remaining)</code>. As soon as I backgrounded it, I saw that the system allocated approximately 30 seconds for the background task:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Executing (29.899623215998872 seconds remaining)
 Executing (28.80678400799661 seconds remaining)
 Executing (27.900681052997243 seconds remaining)
 Executing (26.9005714599989 seconds remaining)
@@ -379,114 +336,72 @@ Executing (2.899573540998972 seconds remaining)
 Executing (1.8968817720015068 seconds remaining)
 Executing (0.8995601319984416 seconds remaining)
 Executing (0.0 seconds remaining)
-</code></pre>
-
-<p>In my tests, the expiration handler got called about 5 seconds before the time expired.</p>
-
+</code></pre></div><p>In my tests, the expiration handler got called about 5 seconds before the time expired.</p>
 <p>It&rsquo;s possible the system adjusts this automatically depending on how good of a player you are and how you use background tasks.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p><strong>Important Note!</strong></p>
-
 <p>While my tests say you get around 30 seconds for execution task and the completion handler gets called about 5 seconds before the task expires, you should not rely on these numbers in your app. Don&rsquo;t hard code anything. As a rule of thumb, just try to finish all your work as soon as possible when using <code>beginBackgroundTask</code>, because if the system doesn&rsquo;t adjust to your use case, future iOS versions may change the amount of time you get for executing tasks.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>Of course we want to be good background execution citizens, so we should end the task at some point. For now, we will end the task when we only have 10 or less seconds left.</p>
-
-<pre><code class="language-swift">    let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-      let bgTimeLeft = UIApplication.shared.backgroundTimeRemaining
-      print(&quot;Executing (\(bgTimeLeft) seconds remaining)&quot;)
-      if bgTimeLeft &lt;= 10 {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">let</span> _ = Timer.scheduledTimer(withTimeInterval: <span style="color:#ae81ff">1</span>, repeats: <span style="color:#66d9ef">true</span>) { <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
+      <span style="color:#66d9ef">let</span> bgTimeLeft = UIApplication.shared.backgroundTimeRemaining
+      print(<span style="color:#e6db74">&#34;Executing (</span><span style="color:#e6db74">\(</span>bgTimeLeft<span style="color:#e6db74">)</span><span style="color:#e6db74"> seconds remaining)&#34;</span>)
+      <span style="color:#66d9ef">if</span> bgTimeLeft <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span> {
         UIApplication.shared.endBackgroundTask(taskId)
       }
     }
-</code></pre>
-
-<p>If you background the app, the app will not print anything else after the available execution time is less than 10. In other words, your expiration handler will not get called when you end the task properly with a few seconds to spare.</p>
-
+</code></pre></div><p>If you background the app, the app will not print anything else after the available execution time is less than 10. In other words, your expiration handler will not get called when you end the task properly with a few seconds to spare.</p>
 <p>For reference, here&rsquo;s the whole code I wrote for <code>viewDidAppear</code>:</p>
-
-<pre><code class="language-swift">  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(true)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">  <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidAppear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
+    <span style="color:#66d9ef">super</span>.viewDidAppear(<span style="color:#66d9ef">true</span>)
     
-    let taskId = UIApplication.shared.beginBackgroundTask {
-      print(&quot;We are about to kill your task&quot;)
+    <span style="color:#66d9ef">let</span> taskId = UIApplication.shared.beginBackgroundTask {
+      print(<span style="color:#e6db74">&#34;We are about to kill your task&#34;</span>)
     }
     
-    print(&quot;The task ID: \(taskId)&quot;)
+    print(<span style="color:#e6db74">&#34;The task ID: </span><span style="color:#e6db74">\(</span>taskId<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
     
-    let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-      let bgTimeLeft = UIApplication.shared.backgroundTimeRemaining
-      print(&quot;Executing (\(bgTimeLeft) seconds remaining)&quot;)
-      if bgTimeLeft &lt;= 10 {
+    <span style="color:#66d9ef">let</span> _ = Timer.scheduledTimer(withTimeInterval: <span style="color:#ae81ff">1</span>, repeats: <span style="color:#66d9ef">true</span>) { <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span>
+      <span style="color:#66d9ef">let</span> bgTimeLeft = UIApplication.shared.backgroundTimeRemaining
+      print(<span style="color:#e6db74">&#34;Executing (</span><span style="color:#e6db74">\(</span>bgTimeLeft<span style="color:#e6db74">)</span><span style="color:#e6db74"> seconds remaining)&#34;</span>)
+      <span style="color:#66d9ef">if</span> bgTimeLeft <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span> {
         UIApplication.shared.endBackgroundTask(taskId)
       }
     }
   }
-</code></pre>
-
-<h3 id="giving-additional-time-to-extensions">Giving additional time to extensions.</h3>
-
+</code></pre></div><h3 id="giving-additional-time-to-extensions">Giving additional time to extensions.</h3>
 <p>You can also give extensions additional time before they get suspended by the system, with the following method:</p>
-
 <pre><code>ProcessInfo().performExpiringActivity(withReason:using:)
-</code></pre>
-
-<p>The first parameter is a string you can use for debugging purposes. The second parameter is a handler where you put code you want to execute in the background. The block will give you a boolean telling you if the process is about to be suspended. If the boolean is <code>true</code>, you should take caution to end the task as soon as possible. I wasn&rsquo;t able to find a way to tell how much time you have left to execute a background task with this API.</p>
-
+</code></pre><p>The first parameter is a string you can use for debugging purposes. The second parameter is a handler where you put code you want to execute in the background. The block will give you a boolean telling you if the process is about to be suspended. If the boolean is <code>true</code>, you should take caution to end the task as soon as possible. I wasn&rsquo;t able to find a way to tell how much time you have left to execute a background task with this API.</p>
 <p>The system will define if it can execute your handler at all. If it can&rsquo;t, it will call it passing it <code>true</code>, forcing you finish everything as soon as possible. If it can execute your task, it will call the handler with <code>false</code>.</p>
-
 <p>If the system is executing the handler and needs to suspend it, it will call your handler a second time passing <code>true</code>, so keep in mind that this handler might be called more than once. A rule of thumb is to simply cancel anything your handler is doing when the parameter is <code>true</code>.</p>
-
 <h2 id="triggering-background-execution-with-notifications">Triggering Background Execution with Notifications</h2>
-
 <p>Background Pushes are a mechanism to tell devices that new data is available without notifying the user. In other words, they don&rsquo;t display any kind of UI or play a sound.</p>
-
 <p>To send a silent push, add the <code>content-available</code> key to <code>1</code>, and don&rsquo;t include <code>badge</code>, <code>sound</code>, or <code>alert</code>. You must also set <code>apns-priority</code> to <code>5</code> and it is highly recommended, but necessary on to watchOS,  to set <code>apns-push-type</code> to <code>background</code>,</p>
-
 <p>The push will not trigger the download immediately. Instead, the system will intelligently decide the best time to download new content, including factors such as power and performance.</p>
-
 <h2 id="download-content-at-a-later-time-with-discretionary-background-url-session">Download Content at a Later Time with Discretionary Background URL Session.</h2>
-
 <p>This is a way to tell the system to defer downloads until a better time. We can provide information to the system for smarter scheduling.</p>
-
 <p>Using it is as easy as any other <code>URLSession</code>, but starting on iOS 13, you can set the <code>isDiscretionary</code> property to <code>true</code>.</p>
-
-<pre><code class="language-swift">let config = URLSessionConfiguration.background(withIdentifier: &quot;com.andyibanez.pastContent&quot;)
-config.isDiscretionary = true
-let session = URLSession(configuration: config)
-</code></pre>
-
-<p>The advantage of this API is that you have finer control over the session, as you can set intervals, the earliest begin date, and more.</p>
-
-<pre><code class="language-swift">config.timeoutIntervalForResource = 24 * 60 * 60   config.timeoutIntervalForRequest = 60
-</code></pre>
-
-<pre><code class="language-swift">var request = URLRequest(url: URL(string: &quot;google.com&quot;)!)
-request.addValue(&quot;foo&quot;, forHTTPHeaderField: &quot;bar&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> config = URLSessionConfiguration.background(withIdentifier: <span style="color:#e6db74">&#34;com.andyibanez.pastContent&#34;</span>)
+config.isDiscretionary = <span style="color:#66d9ef">true</span>
+<span style="color:#66d9ef">let</span> session = URLSession(configuration: config)
+</code></pre></div><p>The advantage of this API is that you have finer control over the session, as you can set intervals, the earliest begin date, and more.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">config.timeoutIntervalForResource = <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>   config.timeoutIntervalForRequest = <span style="color:#ae81ff">60</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> request = URLRequest(url: URL(string: <span style="color:#e6db74">&#34;google.com&#34;</span>)<span style="color:#f92672">!</span>)
+request.addValue(<span style="color:#e6db74">&#34;foo&#34;</span>, forHTTPHeaderField: <span style="color:#e6db74">&#34;bar&#34;</span>)
     
-let task = session.downloadTask(with: request)
-task.earliestBeginDate = Date(timeIntervalSinceNow: 2 * 60 * 60)
-</code></pre>
-
-<h1 id="conclusion">Conclusion</h1>
-
+<span style="color:#66d9ef">let</span> task = session.downloadTask(with: request)
+task.earliestBeginDate = Date(timeIntervalSinceNow: <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span>)
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
 <p>Background execution is a very common task and you can adopt your app to do it. Prior to iOS 13, you could follow three use cases to implement it in your own code:</p>
-
 <ol>
 <li>Give extra time to a task to finish after it enters the background.</li>
 <li>Start background tasks upon receiving silent push notifications.</li>
 <li>Defer long downloads to a discretionary background URL session.</li>
 </ol>
-
 <p>The APIs are easy to use, and I encourage you to add them if it makes sense in your use case. In particular, the first point is very useful as you never know when a user may send your app to the background when your app is doing something important.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

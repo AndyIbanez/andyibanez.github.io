@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -269,87 +269,48 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>iOS has always provided interesting search APIs, but they have always been limited and doing the most interesting tasks required you to either write your own implementation or use private APIs.</p>
-
+    <p>iOS has always provided interesting search APIs, but they have always been limited and doing the most interesting tasks required you to either write your own implementation or use private APIs.</p>
 <p>iOS 13 has provided some very nice improvements to the UI search APIs. In this article we will talk about two of them.</p>
-
 <h1 id="uisearchbar-finally-exposes-its-text-field">UISearchBar finally exposes its text field</h1>
-
 <p>I have been using <code>UISearchController</code> and <code>UISearchBar</code> for a <em>very</em> long time, and I have always found it bizarre that Apple didn&rsquo;t expose its underlying text field property. As of iOS 13, the search bar finally exposes it, in the form of a <a href="https://developer.apple.com/documentation/uikit/uisearchtextfield"><code>UISearchTextField</code></a> object.</p>
-
 <p>With this object, you can finally customize the appearance of the search bar. You no longer need to hack away at the view hierarchy with hopes of finding the text field and customizing it there.</p>
-
-<pre><code class="language-swift">searchBar.searchTextField.backgroundColor = .blue
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">searchBar.searchTextField.backgroundColor = .blue
 searchBar.searchTextField.textColor = .white
-</code></pre>
-
-<p>There&rsquo;s still some limitations, like you cannot change the bar style, but this is a very good change, and something developers have been hacking at for years. Been able to change the colors is a great improvements.</p>
-
+</code></pre></div><p>There&rsquo;s still some limitations, like you cannot change the bar style, but this is a very good change, and something developers have been hacking at for years. Been able to change the colors is a great improvements.</p>
 <h2 id="uisearchtextfielddelegate">UISearchTextFieldDelegate</h2>
-
 <p>Along with the text field, there&rsquo;s a new delegate. To tell you the truth, I have no idea what can be done with it. The <a href="https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate">Documentation</a> only has one <a href="https://developer.apple.com/documentation/uikit/uisearchtextfielddelegate/3175446-searchtextfield">method</a> that is not documented.</p>
-
 <h1 id="search-tokens">Search Tokens</h1>
-
 <p>Search Tokens are my absolutely favorite new feature for search in iOS 13. Some native Apple apps like mail have had it for years. While the API has existed for years, it has recently been opened up to developers.</p>
-
 <p>Search tokens look like this:</p>
-
-<p><img src="/img/UISearchToken.png" alt="UISearchToken" /></p>
-
+<p><img src="/img/UISearchToken.png" alt="UISearchToken"></p>
 <p>You create a search token with the <a href="https://developer.apple.com/documentation/uikit/uisearchtoken"><code>UISearchToken</code></a> class, and then you add them to the (also recently opened up) <code>searchTextField</code> properly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> purchasesToken = UISearchToken(icon: UIImage(systemName: <span style="color:#e6db74">&#34;tag&#34;</span>), text: <span style="color:#e6db74">&#34;Purchases&#34;</span>)
+<span style="color:#66d9ef">let</span> countryToken = UISearchToken(icon: UIImage(systemName: <span style="color:#e6db74">&#34;flag&#34;</span>), text: <span style="color:#e6db74">&#34;Country&#34;</span>)
 
-<pre><code class="language-swift">let purchasesToken = UISearchToken(icon: UIImage(systemName: &quot;tag&quot;), text: &quot;Purchases&quot;)
-let countryToken = UISearchToken(icon: UIImage(systemName: &quot;flag&quot;), text: &quot;Country&quot;)
-
-searchBar.searchTextField.insertToken(purchasesToken, at: 0)
-searchBar.searchTextField.insertToken(countryToken, at: 0)
-</code></pre>
-
-<p>The <code>searchTextField</code> lets you do more than just adding the tokens. You can change the color of the tokens (thought you cannot change them individually):</p>
-
-<pre><code class="language-swift">searchBar.searchTextField.tokenBackgroundColor = .blue
-</code></pre>
-
-<p>You can allow or prevent the user from copying and deleting tokens:</p>
-
-<pre><code class="language-swift">searchBar.searchTextField.allowsCopyingTokens = true
-searchBar.searchTextField.allowsDeletingTokens = true
-</code></pre>
-
-<p>And then there&rsquo;s functions to get the range of one or multiple tokens, their positions, and more, so you can build powerful search features in your app.</p>
-
+searchBar.searchTextField.insertToken(purchasesToken, at: <span style="color:#ae81ff">0</span>)
+searchBar.searchTextField.insertToken(countryToken, at: <span style="color:#ae81ff">0</span>)
+</code></pre></div><p>The <code>searchTextField</code> lets you do more than just adding the tokens. You can change the color of the tokens (thought you cannot change them individually):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">searchBar.searchTextField.tokenBackgroundColor = .blue
+</code></pre></div><p>You can allow or prevent the user from copying and deleting tokens:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">searchBar.searchTextField.allowsCopyingTokens = <span style="color:#66d9ef">true</span>
+searchBar.searchTextField.allowsDeletingTokens = <span style="color:#66d9ef">true</span>
+</code></pre></div><p>And then there&rsquo;s functions to get the range of one or multiple tokens, their positions, and more, so you can build powerful search features in your app.</p>
 <p>If you need to get the tokens themselves, the text field has a <code>tokens</code> property which you can access.</p>
-
-<pre><code class="language-swift">    searchBar.searchTextField.tokens.forEach {
-      // Do something with each search token.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    searchBar.searchTextField.tokens.forEach {
+      <span style="color:#75715e">// Do something with each search token.</span>
     }
-</code></pre>
-
-<p>Now here&rsquo;s the bizarre thing: The tokens do not expose their text or image properties. Instead, you need to assign the <code>representedObject</code> property. This object is of type <code>Any?</code>, so you can assign it anything you need. Here we are assigning simple search terms:</p>
-
-<pre><code class="language-swift">purchasesToken.representedObject = &quot;Purchases&quot;
-countryToken.representedObject = &quot;Bolivia&quot;
-</code></pre>
-
-<p>And now we can iterate over them:</p>
-
-<pre><code class="language-swift">searchBar.searchTextField.tokens.forEach {
-  // Do something with each search token.
+</code></pre></div><p>Now here&rsquo;s the bizarre thing: The tokens do not expose their text or image properties. Instead, you need to assign the <code>representedObject</code> property. This object is of type <code>Any?</code>, so you can assign it anything you need. Here we are assigning simple search terms:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">purchasesToken.representedObject = <span style="color:#e6db74">&#34;Purchases&#34;</span>
+countryToken.representedObject = <span style="color:#e6db74">&#34;Bolivia&#34;</span>
+</code></pre></div><p>And now we can iterate over them:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">searchBar.searchTextField.tokens.forEach {
+  <span style="color:#75715e">// Do something with each search token.</span>
   print($0.representedObject)
 }
-</code></pre>
-
-<h1 id="conclusion">Conclusion</h1>
-
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
 <p>The new search APIs are really neat in iOS 13. Other than a long-overdue functionality we have been begging for for years, we also got a new beautiful tokens API, which allows to build powerful search features for our users in our apps.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

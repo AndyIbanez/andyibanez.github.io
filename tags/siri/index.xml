@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>siri on Andy Ibanez</title>
@@ -18,7 +18,7 @@
       
       <guid>https://www.andyibanez.com/posts/parametrized-shortcuts/</guid>
       <description>All the way back to 2016, a group of very talented iOS developers released Workflow, a very popular app to let users create actions of different kinds within the system&amp;rsquo;s constraints. You could create and automate different tasks, such as controlling a server via SSH, downloading all the images from a website, and more&amp;hellip; Much, much more.
-Apple saw the power of the app and aquired it in March 2017.</description>
+Apple saw the power of the app and aquired it in March 2017. This was very exciting, but we didn&amp;rsquo;t hear anything from the app since.</description>
     </item>
     
   </channel>

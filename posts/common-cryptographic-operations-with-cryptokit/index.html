@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -266,264 +266,158 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Apple has always taken security very seriously, so it&rsquo;s expected that they would provide developers with the same tools they have to help developers implement the same security measures in their apps. This year, Apple introduced <code>CryptoKit</code>.</p>
-
+    <p>Apple has always taken security very seriously, so it&rsquo;s expected that they would provide developers with the same tools they have to help developers implement the same security measures in their apps. This year, Apple introduced <code>CryptoKit</code>.</p>
 <p>Apple providing new cryptography tools is nothing new. They have provided the <code>Security</code> framework for a <em>very</em> long time, and a few years later they introduced <code>CommonCrypto</code>. The problem with these frameworks is that they can be very low level, being written in C, and it can be intimidating for new developers to adopt them in their project. <code>CryptoKit</code> abstracts a lot of the details and it provides easier interfaces for common operations such as hashing, encrypting, and even signing.</p>
-
 <p>In this article we will explore how to do common cryptographic operations with CryptoKit, and the downsides it currently has.</p>
-
 <h1 id="introduction-to-cryptokit">Introduction to CryptoKit</h1>
-
 <p><code>CryptoKit</code> is a cryptography framework for Apple&rsquo;s platforms written in Swift. It provides easy and convenient interfaces for cryptographic operations in a safe and high-level manner. You no longer have to worry about managing pointers or other low-level concepts that just don&rsquo;t exist in Swift. You also don&rsquo;t have to do manual memory management.</p>
-
 <p>CryptoKit allows you to:</p>
-
 <ul>
 <li>Compute and compare hashes.</li>
 <li>Work with Public-Key cryptography to create and evaluate digital signatures and do key exchange.</li>
 <li>Work with symmetric cryptography to do message authentication and encryption.</li>
 </ul>
-
 <h1 id="common-cryptographic-operations-with-cryptokit">Common Cryptographic Operations with CryptoKit</h1>
-
 <h2 id="hashing">Hashing</h2>
-
 <p>To perform hashing, <code>CryptoKit</code> provides the <a href="https://developer.apple.com/documentation/cryptokit/hashfunction"><code>HashFunction</code></a> protocol, along with three implementations of it. At the time of this writing, said implementations are the following structs:</p>
-
 <ul>
 <li>SHA256</li>
 <li>SHA384</li>
 <li>SHA512</li>
 </ul>
-
 <p>They are all used similarly. They all have a static method that takes a <code>DataProtocol</code> of what you want to hash.</p>
-
 <p>For example, to perform a SHA256:</p>
-
-<pre><code class="language-swift">let data = string.data(using: .utf8)!
-let hash = SHA256.hash(data: data)
-</code></pre>
-
-<p>This will return the hash as a <code>SHA256.Digest</code> object, which is actually a collection</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> data = string.data(using: .utf8)<span style="color:#f92672">!</span>
+<span style="color:#66d9ef">let</span> hash = SHA256.hash(data: data)
+</code></pre></div><p>This will return the hash as a <code>SHA256.Digest</code> object, which is actually a collection</p>
 <p>If you want to get the string representation of this hash, you do this:</p>
-
-<pre><code class="language-swift">let stringHash = hash.map { String(format: &quot;%02hhx&quot;, $0) }.joined()
-</code></pre>
-
-<hr>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> stringHash = hash.map { String(format: <span style="color:#e6db74">&#34;%02hhx&#34;</span>, $0) }.joined()
+</code></pre></div><!-- raw HTML omitted -->
 <p><strong>Important Note!</strong></p>
-
 <p>You may have seen (and maybe even been tempted by) people grabbing the hash using the <code>description</code> property of the digest.</p>
-
-<pre><code class="language-swift">print(hash.description)
-</code></pre>
-
-<p>This is because the property prints something like this:</p>
-
-<pre><code class="language-text">SHA256 digest: ae7ffb85a76d5810c70c2459415e02b26a556e6d02ef76449690c1459232ffa9
-</code></pre>
-
-<p>This is not safe, because Apple can change how the <code>description</code> property returns the information about the hash in a future release. In general, you should never rely on this property to get any long-lasting data. You should only use it when debugging.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">print(hash.description)
+</code></pre></div><p>This is because the property prints something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">SHA256 digest: ae7ffb85a76d5810c70c2459415e02b26a556e6d02ef76449690c1459232ffa9
+</code></pre></div><p>This is not safe, because Apple can change how the <code>description</code> property returns the information about the hash in a future release. In general, you should never rely on this property to get any long-lasting data. You should only use it when debugging.</p>
 <p>As a recent example of this, Apple recently changed what the <code>description</code> property of <code>Data</code> objects returns. Developers were using it as a quick way to get the textual representation of a push notification token, and Apple changed it to return the size of the data instead. This caused a lot of broken push notifications in a lot of apps.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>For the sake of comparison, this is how I calculated a <code>SHA512</code> hash prior to iOS 13 in Swift:</p>
-
-<pre><code class="language-swift">  func iOS10Sha512(data: Data) -&gt; Data {
-    let digest = NSMutableData(length: Int(CC_SHA512_DIGEST_LENGTH))!
-    let value = data as NSData
-    let uint8Pointer = UnsafeMutablePointer&lt;UInt8&gt;.allocate(capacity: digest.length)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">iOS10Sha512</span>(data: Data) -&gt; Data {
+    <span style="color:#66d9ef">let</span> digest = NSMutableData(length: Int(CC_SHA512_DIGEST_LENGTH))<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> value = data <span style="color:#66d9ef">as</span> NSData
+    <span style="color:#66d9ef">let</span> uint8Pointer = UnsafeMutablePointer&lt;UInt8&gt;.allocate(capacity: digest.length)
     CC_SHA512(value.bytes, CC_LONG(data.count), uint8Pointer)
-    return value as Data
+    <span style="color:#66d9ef">return</span> value <span style="color:#66d9ef">as</span> Data
   }
-</code></pre>
-
-<p>All the aforementioned hashes are used the same way. If you need to use deprecated hash algorithms but are still popular today (such as <code>MD5</code>), Apple provides them in an <code>Insecure</code> enum.</p>
-
+</code></pre></div><p>All the aforementioned hashes are used the same way. If you need to use deprecated hash algorithms but are still popular today (such as <code>MD5</code>), Apple provides them in an <code>Insecure</code> enum.</p>
 <p>To calculate the MD5 hash of a piece of data with CryptoKit:</p>
-
-<pre><code class="language-swift">let md5 = Insecure.MD5.hash(data: data)
-</code></pre>
-
-<p>You can also find the <code>SHA1</code> algorithm within <code>Insecure</code>.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> md5 = Insecure.MD5.hash(data: data)
+</code></pre></div><p>You can also find the <code>SHA1</code> algorithm within <code>Insecure</code>.</p>
 <h2 id="symmetric-encryption">Symmetric Encryption</h2>
-
 <p>With CryptoKit, when you encrypt a piece of data not only will get you confidentiality of your message, but also authenticity.</p>
-
 <p>CryptoKit provides two symmetric cyphers: <code>AES-GCM</code> and <code>ChaChaPoly</code>.</p>
-
 <p>Their usage is once again very straightforward and you don&rsquo;t have to concern yourself with the low-level implementation details.</p>
-
 <p>The return type of the <code>seal</code> method is a <code>AES.GCM.SealedBox</code> object which contains information about the box. A few important properties:</p>
-
 <ul>
 <li>A <code>ciphertext</code>, which is the encrypted data with the same size as the input data.</li>
 <li>A <code>tag</code>, which ensures the content cannot be tampered with in a way you would not notice.</li>
 <li>A <code>nonce</code>, which is a random number to add entropy to the encrypted data.</li>
 </ul>
-
 <p>If you need to share the data with somebody else, you can use the <code>combined</code> property which combines all the previous properties into one. Then they can decrypt this data using the same key.</p>
-
-<pre><code class="language-swift">let combinedData = sealedBox.combined! // Previous sealed box
-let sealedBoxToOpen = try! AES.GCM.SealedBox(combined: combinedData)
-let decryptedData = try! AES.GCM.open(sealedBoxToOpen, using: passwordKey)
-let decryptedString = String(data: decryptedData, encoding: .utf8)!
-print(decryptedString) // &quot;The Legend of Zelda&quot;
-</code></pre>
-
-<h2 id="signing-and-verifying-signed-content">Signing and Verifying Signed Content</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> combinedData = sealedBox.combined! <span style="color:#75715e">// Previous sealed box</span>
+<span style="color:#66d9ef">let</span> sealedBoxToOpen = <span style="color:#66d9ef">try</span>! AES.GCM.SealedBox(combined: combinedData)
+<span style="color:#66d9ef">let</span> decryptedData = <span style="color:#66d9ef">try</span>! AES.GCM.open(sealedBoxToOpen, using: passwordKey)
+<span style="color:#66d9ef">let</span> decryptedString = String(data: decryptedData, encoding: .utf8)<span style="color:#f92672">!</span>
+print(decryptedString) <span style="color:#75715e">// &#34;The Legend of Zelda&#34;</span>
+</code></pre></div><h2 id="signing-and-verifying-signed-content">Signing and Verifying Signed Content</h2>
 <p>CryptoKit can help you sign and verify the signature of data.</p>
-
 <p>CryptoKit comes with four different elliptic curve types:</p>
-
 <ul>
 <li><code>Curve25519</code></li>
 <li><code>P521</code></li>
 <li><code>P384</code></li>
 <li><code>P256</code></li>
 </ul>
-
 <p>We will see how to use P521, and you will be able to use the others with these examples.</p>
-
 <h3 id="generating-key-pairs">Generating Key Pairs</h3>
-
 <p>Public-Key cryptography works with private and public keys, so we will start generating those.</p>
-
 <pre><code>let privateKey = P521.Signing.PrivateKey()
 let publicKey = privateKey.publicKey
 let publicKeyData = publicKey.rawRepresentation //You can share this one with others
-</code></pre>
-
-<p>The <code>P521.Signing.PrivateKey</code> object wraps both the private key and public key, and they both have a <code>Data</code> representation that you can use to share (though you shouldn&rsquo;t share the private key with anyone, but you can use the data representation if you want to store it in a different way). You can convert these representations to Base64 encoded strings to make them easier to share, like posting them on your websites or sharing them in social media.</p>
-
+</code></pre><p>The <code>P521.Signing.PrivateKey</code> object wraps both the private key and public key, and they both have a <code>Data</code> representation that you can use to share (though you shouldn&rsquo;t share the private key with anyone, but you can use the data representation if you want to store it in a different way). You can convert these representations to Base64 encoded strings to make them easier to share, like posting them on your websites or sharing them in social media.</p>
 <h3 id="signing">Signing</h3>
-
 <p>Dealing with signing is much, much easier than doing it with the earlier APIs (and I tell you this from personal experience!)</p>
-
 <h4 id="creating-signatures">Creating Signatures</h4>
-
 <p>Signing is a very simple affair, and so is verifying signatures.</p>
-
-<pre><code class="language-swift">let signature = try! privateKey.signature(for: data)
-</code></pre>
-
-<p>There&rsquo;s two variations of the <code>signature</code> method: One for data, and one for digests, which is what you would normally want to do. If you have a digest generated with CryptoKit&rsquo;s <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, or even an insecure algorithm, you can sign it directly with the overloaded method.</p>
-
-<pre><code class="language-swift">let hash = SHA256.hash(data: data)
-let digestSignature = try! privateKey.signature(for: hash)
-</code></pre>
-
-<h4 id="verifying-signatures">Verifying Signatures</h4>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> signature = <span style="color:#66d9ef">try</span>! privateKey.signature(<span style="color:#66d9ef">for</span>: data)
+</code></pre></div><p>There&rsquo;s two variations of the <code>signature</code> method: One for data, and one for digests, which is what you would normally want to do. If you have a digest generated with CryptoKit&rsquo;s <code>SHA256</code>, <code>SHA384</code>, <code>SHA512</code>, or even an insecure algorithm, you can sign it directly with the overloaded method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> hash = SHA256.hash(data: data)
+<span style="color:#66d9ef">let</span> digestSignature = <span style="color:#66d9ef">try</span>! privateKey.signature(<span style="color:#66d9ef">for</span>: hash)
+</code></pre></div><h4 id="verifying-signatures">Verifying Signatures</h4>
 <p>Just like is the case with signing, there&rsquo;s two overloaded methods for signature verification: One for a <code>DataProtocol</code>, and another one for a digest.</p>
-
-<pre><code class="language-swift">if publicKey.isValidSignature(signature, for: data) {
-  print(&quot;Valid signature&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">if</span> publicKey.isValidSignature(signature, <span style="color:#66d9ef">for</span>: data) {
+  print(<span style="color:#e6db74">&#34;Valid signature&#34;</span>)
 }
-</code></pre>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
-<p>Not all cyphers have signing methods for both digests and data. Curve25519 only exposes signing methods for <code>DataProtocol</code>s.
-<hr></p>
-
+</code></pre></div><!-- raw HTML omitted -->
+<p>Not all cyphers have signing methods for both digests and data. Curve25519 only exposes signing methods for <code>DataProtocol</code>s.</p>
+<!-- raw HTML omitted -->
 <h3 id="key-agreement">Key Agreement</h3>
-
 <p>Key agreement is a method used for multiple parties to securely choose a shared encryption key that can be used for signing and encrypting the data they want to share between each other.</p>
-
 <p>Start by choosing a random salt.</p>
-
-<pre><code class="language-swift">func randomData(length: Int) -&gt; Data {
-  var data = Data(count: length)
-  _ = data.withUnsafeMutableBytes {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">randomData</span>(length: Int) -&gt; Data {
+  <span style="color:#66d9ef">var</span> data = Data(count: length)
+  <span style="color:#66d9ef">_</span> = data.withUnsafeMutableBytes {
     SecRandomCopyBytes(kSecRandomDefault, length, $0.baseAddress!)
   }
-  return data
+  <span style="color:#66d9ef">return</span> data
 }
 
-let salt = randomData(length: 32) // 256bits
-</code></pre>
+<span style="color:#66d9ef">let</span> salt = randomData(length: <span style="color:#ae81ff">32</span>) <span style="color:#75715e">// 256bits</span>
+</code></pre></div><p>If you don&rsquo;t want to drop down to CommonCrypto to generate a random salt, you can create a new <code>SymmetricKey</code> of 256bits, and than grab its raw bytes to use it as a salt.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> symKeySalt = SymmetricKey(size: .bits256)
+<span style="color:#66d9ef">let</span> salt = symKeySalt.withUnsafeBytes { Data($0) }
+</code></pre></div><p>After a salt has been generated, all the interested parties need to share their public keys with each other.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> alicePrivateKey = P521.KeyAgreement.PrivateKey()
+<span style="color:#66d9ef">let</span> alicePublicKey = alicePrivateKey.publicKey
 
-<p>If you don&rsquo;t want to drop down to CommonCrypto to generate a random salt, you can create a new <code>SymmetricKey</code> of 256bits, and than grab its raw bytes to use it as a salt.</p>
+<span style="color:#66d9ef">let</span> eileenPrivateKey = P521.KeyAgreement.PrivateKey()
+<span style="color:#66d9ef">let</span> eileenPublicKey = eileenPrivateKey.publicKey
 
-<pre><code class="language-swift">let symKeySalt = SymmetricKey(size: .bits256)
-let salt = symKeySalt.withUnsafeBytes { Data($0) }
-</code></pre>
-
-<p>After a salt has been generated, all the interested parties need to share their public keys with each other.</p>
-
-<pre><code class="language-swift">let alicePrivateKey = P521.KeyAgreement.PrivateKey()
-let alicePublicKey = alicePrivateKey.publicKey
-
-let eileenPrivateKey = P521.KeyAgreement.PrivateKey()
-let eileenPublicKey = eileenPrivateKey.publicKey
-
-/// Alice sends her public key to Eileen
-/// Eileen sends her public key to Alice
-</code></pre>
-
-<p>Now, all the parties have the relevant public keys.</p>
-
+<span style="color:#75715e">/// Alice sends her public key to Eileen</span>
+<span style="color:#75715e">/// Eileen sends her public key to Alice</span>
+</code></pre></div><p>Now, all the parties have the relevant public keys.</p>
 <p>Then, all the parties need to do is derive a secret using their own private key and the public key of the people they want to talk with. Once they have that shared secret, they can get the symmetric key.</p>
-
 <p>All parties should derive the same symmetric key, and later they can start sharing data encrypted using this key.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// Alice derives the shared secret and key.</span>
+<span style="color:#66d9ef">let</span> aliceSharedSecret = <span style="color:#66d9ef">try</span>! alicePrivateKey.sharedSecretFromKeyAgreement(with: eileenPublicKey)
+<span style="color:#66d9ef">let</span> aliceSymmetricKey = aliceSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.<span style="color:#66d9ef">self</span>, salt: salt, sharedInfo: Data(), outputByteCount: <span style="color:#ae81ff">32</span>)
 
-<pre><code class="language-swift">// Alice derives the shared secret and key.
-let aliceSharedSecret = try! alicePrivateKey.sharedSecretFromKeyAgreement(with: eileenPublicKey)
-let aliceSymmetricKey = aliceSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: salt, sharedInfo: Data(), outputByteCount: 32)
+<span style="color:#75715e">// Eileen derives the shared secret and key.</span>
+<span style="color:#66d9ef">let</span> eileenSharedSecret = <span style="color:#66d9ef">try</span>! eileenPrivateKey.sharedSecretFromKeyAgreement(with: alicePublicKey)
+<span style="color:#66d9ef">let</span> eileenSymmetricKey = eileenSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.<span style="color:#66d9ef">self</span>, salt: salt, sharedInfo: Data(), outputByteCount: <span style="color:#ae81ff">32</span>)
 
-// Eileen derives the shared secret and key.
-let eileenSharedSecret = try! eileenPrivateKey.sharedSecretFromKeyAgreement(with: alicePublicKey)
-let eileenSymmetricKey = eileenSharedSecret.hkdfDerivedSymmetricKey(using: SHA256.self, salt: salt, sharedInfo: Data(), outputByteCount: 32)
-
-if aliceSymmetricKey == eileenSymmetricKey {
-  print(&quot;The keys are equal and now they can share data&quot;)
+<span style="color:#66d9ef">if</span> aliceSymmetricKey == eileenSymmetricKey {
+  print(<span style="color:#e6db74">&#34;The keys are equal and now they can share data&#34;</span>)
 }
-</code></pre>
+</code></pre></div><p>And said encryption can be done with the two algorithms we saw before: Either AES-GCM or ChaCha20. To show this we will simulate a simple chat between Alice and Eileen:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// Alice sends a message to Eileen</span>
+<span style="color:#66d9ef">let</span> message = <span style="color:#e6db74">&#34;Hi Eileen!&#34;</span>.data(using: .utf8)<span style="color:#f92672">!</span>
+<span style="color:#66d9ef">let</span> encryptedByAlice = <span style="color:#66d9ef">try</span> ChaChaPoly.seal(message, using: aliceSymmetricKey)
 
-<p>And said encryption can be done with the two algorithms we saw before: Either AES-GCM or ChaCha20. To show this we will simulate a simple chat between Alice and Eileen:</p>
-
-<pre><code class="language-swift">// Alice sends a message to Eileen
-let message = &quot;Hi Eileen!&quot;.data(using: .utf8)!
-let encryptedByAlice = try ChaChaPoly.seal(message, using: aliceSymmetricKey)
-
- // Eileen reads Alice's message.
-let decryptedMessage = try! ChaChaPoly.open(encryptedByAlice, using: eileenSymmetricKey)
-let decryptedMessageString = String(data: decryptedMessage, encoding: .utf8)!
-print(decryptedMessageString) // Hi Eileen!
-</code></pre>
-
-<p>You can send a different salt each time a new message is generated as to keep it unique, and I encourage you to do so. If you are starting with CryptoKit, feel free to use a hard coded salt, but don&rsquo;t use it in a real application.</p>
-
+ <span style="color:#75715e">// Eileen reads Alice&#39;s message.</span>
+<span style="color:#66d9ef">let</span> decryptedMessage = <span style="color:#66d9ef">try</span>! ChaChaPoly.open(encryptedByAlice, using: eileenSymmetricKey)
+<span style="color:#66d9ef">let</span> decryptedMessageString = String(data: decryptedMessage, encoding: .utf8)<span style="color:#f92672">!</span>
+print(decryptedMessageString) <span style="color:#75715e">// Hi Eileen!</span>
+</code></pre></div><p>You can send a different salt each time a new message is generated as to keep it unique, and I encourage you to do so. If you are starting with CryptoKit, feel free to use a hard coded salt, but don&rsquo;t use it in a real application.</p>
 <h1 id="the-downsides">The Downsides</h1>
-
 <p>Currently, CryptoKit doesn&rsquo;t have much support for some popular encryption algorithms. While I wouldn&rsquo;t expect Apple to implement TwoFish or Serpent anytime soon, I was surprised when I saw we couldn&rsquo;t derive RSA keys. CryptoKit is really nice though, so I&rsquo;m sure the encryption suites it supports will just grow in the future.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>CryptoKit is a new and modern Cryptography framework for Apple&rsquo;s platforms. It is very high level, which makes it very easy to use. It supports a good set of cryptography algorithms you&rsquo;d expect to find in any other library. It supports the most basic operations like hashing, encryption, and even key derivation and sharing. It&rsquo;s a very powerful and simple framework despite it&rsquo;s lack of other popular algorithms. I personally have high hopes for its future, and it was one of my favorite surprises of this year&rsquo;s WWDC.</p>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
-<p>In this article, I took a lot of liberties with the force-unwrapping and <code>try!</code>. With CryptoKit you should always deal with these operations in a safe manner.
-<hr></p>
-
-<hr>
-
+<!-- raw HTML omitted -->
+<p>In this article, I took a lot of liberties with the force-unwrapping and <code>try!</code>. With CryptoKit you should always deal with these operations in a safe manner.</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

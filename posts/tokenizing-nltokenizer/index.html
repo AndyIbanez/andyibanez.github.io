@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -263,55 +263,30 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Working with Natural Language is possible thanks to machine learning. Starting on iOS 12, Apple has provided many APIs just for this task. In this article we will explore how to use <a href="https://developer.apple.com/documentation/naturallanguage/nltokenizer"><code>NLTokenizer</code></a> to separate natural language text into its proper units.</p>
-
+    <p>Working with Natural Language is possible thanks to machine learning. Starting on iOS 12, Apple has provided many APIs just for this task. In this article we will explore how to use <a href="https://developer.apple.com/documentation/naturallanguage/nltokenizer"><code>NLTokenizer</code></a> to separate natural language text into its proper units.</p>
 <h1 id="introduction-to-natural-language-tokenizing">Introduction to Natural Language Tokenizing</h1>
-
 <p>If you are not familiar with the inner workings of Natural Language processing, tokenizing simply means that we separate a string and analyze it to find its semantic units. If you are writing a program that processes text, you may be tempted to split the string using a separator. For example, if you wanted to get all the words in a natural sentence string in an array, you would write something like this:</p>
-
-<pre><code class="language-swift">&quot;This should be separated into words using the space&quot;.split(separator: &quot; &quot;)
-</code></pre>
-
-<p>And this naive approach <em>may</em> work under very specific constraints. Specifically, you know it will work if the language you are using is English. But languages such as Japanese don&rsquo;t separate their sentences with spaces. So what do you do if you need to support different languages? This is where the tokenizer comes into play.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#e6db74">&#34;This should be separated into words using the space&#34;</span>.split(separator: <span style="color:#e6db74">&#34; &#34;</span>)
+</code></pre></div><p>And this naive approach <em>may</em> work under very specific constraints. Specifically, you know it will work if the language you are using is English. But languages such as Japanese don&rsquo;t separate their sentences with spaces. So what do you do if you need to support different languages? This is where the tokenizer comes into play.</p>
 <h1 id="using-nltokenizer">Using NLTokenizer</h1>
-
 <p>Start by importing the <code>NaturalLanguage</code> framework.</p>
-
-<pre><code class="language-Swift">import NaturalLanguage
-</code></pre>
-
-<p>To create the <code>NLTokenizer</code> object, call the <code>NLTokenizer(using:)</code> method, to which you have to specify what <code>NLTokenUnit</code> you want to use. At the time of this writing, you can use <code>.document</code>, <code>.paragraph</code>, <code>.sentence</code>, <code>.word</code>. The unit allows you to specify the linguistic unit. If you choose <code>.word</code>, the tokenizer will take every word and give it back to you. As you use the other units, you will get bigger portions of text.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Swift" data-lang="Swift"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">NaturalLanguage</span>
+</code></pre></div><p>To create the <code>NLTokenizer</code> object, call the <code>NLTokenizer(using:)</code> method, to which you have to specify what <code>NLTokenUnit</code> you want to use. At the time of this writing, you can use <code>.document</code>, <code>.paragraph</code>, <code>.sentence</code>, <code>.word</code>. The unit allows you to specify the linguistic unit. If you choose <code>.word</code>, the tokenizer will take every word and give it back to you. As you use the other units, you will get bigger portions of text.</p>
 <p>In the example below, we will tokenize a simple sentence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToTokenize = <span style="color:#e6db74">&#34;It was many and many a year ago, in a kingdom by the sea.&#34;</span>
 
-<pre><code class="language-swift">var stringToTokenize = &quot;It was many and many a year ago, in a kingdom by the sea.&quot;
-
-let tokenizer = NLTokenizer(unit: .sentence)
+<span style="color:#66d9ef">let</span> tokenizer = NLTokenizer(unit: .sentence)
 tokenizer.string = stringToTokenize
-</code></pre>
-
-<p>Since we have a single sentence, we will use the <code>.sentence</code> unit, and the first phrase of my favorite poem (<a href="https://en.wikipedia.org/wiki/Annabel_Lee">Annabel Lee</a>, by Edgar Allan Poe).</p>
-
+</code></pre></div><p>Since we have a single sentence, we will use the <code>.sentence</code> unit, and the first phrase of my favorite poem (<a href="https://en.wikipedia.org/wiki/Annabel_Lee">Annabel Lee</a>, by Edgar Allan Poe).</p>
 <p>It&rsquo;s worth noting that you can specify the language to use. By default the system will use your default language, but you can specify a different language. To be more explicitly, I will set the language to English.</p>
-
-<pre><code class="language-swift">tokenizer.setLanguage(.english)
-</code></pre>
-
-<p>And we can finally go through the words:</p>
-
-<pre><code class="language-swift">tokenizer.enumerateTokens(in: fullStringRange) { (range, attributes) -&gt; Bool in
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">tokenizer.setLanguage(.english)
+</code></pre></div><p>And we can finally go through the words:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">tokenizer.enumerateTokens(<span style="color:#66d9ef">in</span>: fullStringRange) { (range, attributes) -&gt; Bool <span style="color:#66d9ef">in</span>
   print(stringToTokenize[range])
-  return true
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
 }
-</code></pre>
-
-<p>The return indicates the enumerator if it should continue going through each token. If you return false, the enumerator will stop.</p>
-
+</code></pre></div><p>The return indicates the enumerator if it should continue going through each token. If you return false, the enumerator will stop.</p>
 <p>The output for the above code is the following:</p>
-
 <pre><code>It
 was
 many
@@ -326,27 +301,20 @@ kingdom
 by
 the
 sea
-</code></pre>
-
-<h2 id="tokenizing-different-languages">Tokenizing Different Languages</h2>
-
+</code></pre><h2 id="tokenizing-different-languages">Tokenizing Different Languages</h2>
 <p>Some languages don&rsquo;t separate words in a sentence the same way, so it can be expected that they may also separate other words with different symbols. We will now tokenize a Japanese string into words.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToTokenize = <span style="color:#e6db74">&#34;私は毎日太っています&#34;</span>
 
-<pre><code class="language-swift">var stringToTokenize = &quot;私は毎日太っています&quot;
-
-let tokenizer = NLTokenizer(unit: .word)
+<span style="color:#66d9ef">let</span> tokenizer = NLTokenizer(unit: .word)
 tokenizer.string = stringToTokenize
 tokenizer.setLanguage(.japanese)
-let fullStringRange = stringToTokenize.startIndex..&lt;stringToTokenize.endIndex
+<span style="color:#66d9ef">let</span> fullStringRange = stringToTokenize.startIndex..&lt;stringToTokenize.endIndex
 
-tokenizer.enumerateTokens(in: fullStringRange) { (range, attributes) -&gt; Bool in
+tokenizer.enumerateTokens(<span style="color:#66d9ef">in</span>: fullStringRange) { (range, attributes) -&gt; Bool <span style="color:#66d9ef">in</span>
   print(stringToTokenize[range])
-  return true
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
 }
-</code></pre>
-
-<p>Output:</p>
-
+</code></pre></div><p>Output:</p>
 <pre><code>私
 は
 毎日
@@ -354,25 +322,14 @@ tokenizer.enumerateTokens(in: fullStringRange) { (range, attributes) -&gt; Bool 
 て
 い
 ます
-</code></pre>
-
-<p>So, even if Japanese is a &ldquo;run-on&rdquo; written language, where there&rsquo;s no visual way to separate words from each other, the tokenizer knows where each word begins and ends.</p>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
-<p>If any point you have troubles with the tokenizer, and the enumeration function doesn&rsquo;t give you anything, try setting the language <em>before</em> the string. For some reason, at least with the <code>NSLanguage</code> being <code>.spanish</code>, I had to set the language first.
-</hr></p>
-
+</code></pre><p>So, even if Japanese is a &ldquo;run-on&rdquo; written language, where there&rsquo;s no visual way to separate words from each other, the tokenizer knows where each word begins and ends.</p>
+<!-- raw HTML omitted -->
+<p>If any point you have troubles with the tokenizer, and the enumeration function doesn&rsquo;t give you anything, try setting the language <em>before</em> the string. For some reason, at least with the <code>NSLanguage</code> being <code>.spanish</code>, I had to set the language first.</p>
+<!-- raw HTML omitted -->
 <h1 id="conclusion">Conclusion</h1>
-
 <p>Separating a string with a token is a common task, but doing it naively will not account for all possible cases. <code>NLTokenizer</code> is very smart as it can process words in many languages and already knows about a lot of special cases. If you are tokenizing strings in natural language, you should use this class instead of trying to do it manually.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

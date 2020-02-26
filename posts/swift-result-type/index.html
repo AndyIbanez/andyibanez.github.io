@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -269,114 +269,73 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Error handling when expecting a result out of an operation is a very common thing to do. For this reason, various high-level programming languages have introduced a <code>Result</code> type into their libraries, on top of their existing error-handling features. This feature was implemented in Swift 5.</p>
-
+    <p>Error handling when expecting a result out of an operation is a very common thing to do. For this reason, various high-level programming languages have introduced a <code>Result</code> type into their libraries, on top of their existing error-handling features. This feature was implemented in Swift 5.</p>
 <p>A <code>Result</code> wraps a success or a failure. It is essentially an <code>enum</code> with two possible cases: <code>.success</code> and <code>.failure</code>. The <code>.success</code> case wraps the correct result of an operation, whereas a <code>.failure</code> wraps an <code>Error</code>. Its implementation uses generics, so you always know what you are going to get back.</p>
-
 <p>In this article, we will explore why you would want to use the <code>Result</code> when we can already handle errors with <code>do-try-catch</code> and specifying functions that throw an error with <code>throws</code>.</p>
-
 <h1 id="using-result">Using Result</h1>
-
 <p>To understand <code>Result</code> better, we will explore all the ways you could want to write a function to read the contents of a URL into a <code>String</code>. On each step, we will see the shortcomings of the traditional <code>do-try-catch</code> APIs and the advantages of <code>Result</code>. This is a good example to build, because it&rsquo;s a task that is likely to throw an error, and there&rsquo;s different reasons that may trigger it.</p>
-
 <h2 id="the-traditional-error-handling-approach">The Traditional Error Handling Approach.</h2>
-
 <p>We will start by creating our own error object to handle all file reading operation errors:</p>
-
-<pre><code class="language-swift">enum StringFileError: Error {
-    case invalidURL
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">StringFileError</span>: Error {
+    <span style="color:#66d9ef">case</span> invalidURL
 }
-</code></pre>
-
-<p>Now, the first attempt to write a file-reading function that can throw errors could look like this:</p>
-
-<pre><code class="language-swift">func readFileFromURL(url: URL?) throws -&gt; String {
-    guard let url = url else { throw StringFileError.invalidURL }
-    return try String(contentsOf: url)
+</code></pre></div><p>Now, the first attempt to write a file-reading function that can throw errors could look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">readFileFromURL</span>(url: URL?) <span style="color:#66d9ef">throws</span> -&gt; String {
+    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> url = url <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">throw</span> StringFileError.invalidURL }
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> String(contentsOf: url)
 }
-</code></pre>
-
-<p>Because the function is marked as <code>throws</code>, we have to handle the error ourselves.</p>
-
-<pre><code class="language-swift">do {
-    let fileContents = try readFileFromURL(url: URL(string: &quot;/path/to/file&quot;))
-} catch let error as StringFileError {
-    // Handle StringFileErrors
-} catch {
-    // Handle any other errors thrown by the SDK.
+</code></pre></div><p>Because the function is marked as <code>throws</code>, we have to handle the error ourselves.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">let</span> fileContents = <span style="color:#66d9ef">try</span> readFileFromURL(url: URL(string: <span style="color:#e6db74">&#34;/path/to/file&#34;</span>))
+} <span style="color:#66d9ef">catch</span> <span style="color:#66d9ef">let</span> error <span style="color:#66d9ef">as</span> StringFileError {
+    <span style="color:#75715e">// Handle StringFileErrors</span>
+} <span style="color:#66d9ef">catch</span> {
+    <span style="color:#75715e">// Handle any other errors thrown by the SDK.</span>
 }
-</code></pre>
-
-<p>When trying to read a file from a URL, we can receive <code>StringFileError</code>s or we can receive <code>Error</code>s, depending on what the problem is.</p>
-
+</code></pre></div><p>When trying to read a file from a URL, we can receive <code>StringFileError</code>s or we can receive <code>Error</code>s, depending on what the problem is.</p>
 <p>That code gets the job done, but we can improve it with the new <code>Result</code> type.</p>
-
 <h2 id="implementing-result-over-traditional-do-try-catch">Implementing Result Over Traditional do-try-catch</h2>
-
 <p>To start using result, we can change the signature of the function and its implementation to return a new <code>Result&lt;String, Error&gt;</code> instead. It&rsquo;s still far from what we want to achieve, but we will get there in a second.</p>
-
-<pre><code class="language-swift">func readFileFromURL(url: URL?) -&gt; Result&lt;String, Error&gt; {
-    return Result&lt;String, Error&gt; {
-        guard let url = url else { throw StringFileError.invalidURL }
-        return try String(contentsOf: url)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">readFileFromURL</span>(url: URL?) -&gt; Result&lt;String, Error&gt; {
+    <span style="color:#66d9ef">return</span> Result&lt;String, Error&gt; {
+        <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> url = url <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">throw</span> StringFileError.invalidURL }
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> String(contentsOf: url)
     }
 }
-</code></pre>
-
-<p>To use it, we need to change a few things and even add an extra line of code:</p>
-
-<pre><code class="language-swift">do {
-    let fileContentsResult = readFileFromURL(url: URL(string: &quot;/path/to/file&quot;))
-    let fileContents = try fileContentsResult.get()
-} catch let error as StringFileError {
-    // Handle StringFileErrors
-} catch {
-    // Handle any other errors thrown by the SDK.
+</code></pre></div><p>To use it, we need to change a few things and even add an extra line of code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">let</span> fileContentsResult = readFileFromURL(url: URL(string: <span style="color:#e6db74">&#34;/path/to/file&#34;</span>))
+    <span style="color:#66d9ef">let</span> fileContents = <span style="color:#66d9ef">try</span> fileContentsResult.<span style="color:#66d9ef">get</span>()
+} <span style="color:#66d9ef">catch</span> <span style="color:#66d9ef">let</span> error <span style="color:#66d9ef">as</span> StringFileError {
+    <span style="color:#75715e">// Handle StringFileErrors</span>
+} <span style="color:#66d9ef">catch</span> {
+    <span style="color:#75715e">// Handle any other errors thrown by the SDK.</span>
 }
-</code></pre>
-
-<p>This is not really a good example of when you&rsquo;d want to use result. The most important feature of <code>Result</code> to me is that you can start using type-safe errors. One of the biggest weaknesses in Swift right now is that errors are not type-safe. Despite how strong-typed Swift is, there is no way to tell if a function can throw specific errors (like <code>StringFileError</code>) - everything just <code>throws</code> and whatever it throws can be an <code>Error</code> of any type, whether it is the high-level <code>Error</code> itself or specific implementations.</p>
-
+</code></pre></div><p>This is not really a good example of when you&rsquo;d want to use result. The most important feature of <code>Result</code> to me is that you can start using type-safe errors. One of the biggest weaknesses in Swift right now is that errors are not type-safe. Despite how strong-typed Swift is, there is no way to tell if a function can throw specific errors (like <code>StringFileError</code>) - everything just <code>throws</code> and whatever it throws can be an <code>Error</code> of any type, whether it is the high-level <code>Error</code> itself or specific implementations.</p>
 <p>If you knew that all your file paths are always going to point to a valid file, for example, you can specify the error in result to be of <code>StringFileError</code>, and we gain some additional safety.</p>
-
 <p>We can also rewrite the implementation of function, while still using result. Sometimes, <code>init</code>int a result type with the closure can be a bit tricky, so we can instead make our function return <code>.success</code> or <code>.failure</code>.</p>
-
-<pre><code class="language-swift">func readFileFromURL(url: URL?) -&gt; Result&lt;String, StringFileError&gt; {
-    guard let url = url else { return .failure(.invalidURL) }
-    return .success(try! String(contentsOf: url))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">readFileFromURL</span>(url: URL?) -&gt; Result&lt;String, StringFileError&gt; {
+    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> url = url <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> .failure(.invalidURL) }
+    <span style="color:#66d9ef">return</span> .success(<span style="color:#66d9ef">try</span>! String(contentsOf: url))
 }
-</code></pre>
-
-<p>To handle the error, we now have just one case to consider, so we can get rid of the last <code>catch</code> clause.</p>
-
-<pre><code class="language-swift">do {
-    let fileContentsResult = readFileFromURL(url: URL(string: &quot;/path/to/file&quot;))
-    let fileContents = try fileContentsResult.get()
-} catch {
-    // Now all the possible errors are StringFileErrors, so we can simplify the catch clauses into one
+</code></pre></div><p>To handle the error, we now have just one case to consider, so we can get rid of the last <code>catch</code> clause.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">do</span> {
+    <span style="color:#66d9ef">let</span> fileContentsResult = readFileFromURL(url: URL(string: <span style="color:#e6db74">&#34;/path/to/file&#34;</span>))
+    <span style="color:#66d9ef">let</span> fileContents = <span style="color:#66d9ef">try</span> fileContentsResult.<span style="color:#66d9ef">get</span>()
+} <span style="color:#66d9ef">catch</span> {
+    <span style="color:#75715e">// Now all the possible errors are StringFileErrors, so we can simplify the catch clauses into one</span>
 }
-</code></pre>
+</code></pre></div><p>And you can make it even prettier:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> fileContentsResult = readFileFromURL(url: URL(string: <span style="color:#e6db74">&#34;/path/to/file&#34;</span>))
 
-<p>And you can make it even prettier:</p>
-
-<pre><code class="language-swift">let fileContentsResult = readFileFromURL(url: URL(string: &quot;/path/to/file&quot;))
-
-switch fileContentsResult {
-    case .success(let contents): print(contents)
-    case .failure(let stringFileError): // Handle error
+<span style="color:#66d9ef">switch</span> fileContentsResult {
+    <span style="color:#66d9ef">case</span> .success(<span style="color:#66d9ef">let</span> contents): print(contents)
+    <span style="color:#66d9ef">case</span> .failure(<span style="color:#66d9ef">let</span> stringFileError): <span style="color:#75715e">// Handle error</span>
 }
-</code></pre>
-
-<h1 id="conclusion">Conclusion</h1>
-
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
 <p>One of Swift&rsquo;s weaknesses is that it can&rsquo;t deal with errors in a type safe manner despite how strongly-typed it is. The <code>Result</code> type helps us write code where errors are typed, and this can help us write cleaner code.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

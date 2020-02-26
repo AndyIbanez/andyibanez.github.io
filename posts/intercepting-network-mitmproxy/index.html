@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -263,80 +263,43 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</p>
-
+    <p>If you have been programming mobile apps for a while, you must have used a web based API - JSON based or otherwise - and you have had to deal with bugs related to your requests and responses to a web service. You have likely asked yourself why some parsing code is not working as expected, or why a request seems to have an invalid format. Intercepting your own network calls with a proxy can help you find the answer to these questions.</p>
 <p>You have probably heard about <a href="https://www.charlesproxy.com">Charles Proxy</a>, a wonderful tool that lets you inspect the network calls of your app to other web services. It also lets you inspect the traffic of other apps. It&rsquo;s an amazing and very easy to use tool that lets you intercept traffic and reverse engineer network calls, both to see how some app works, or to help you debug your own code.</p>
-
 <p>But Charles is not the only solution to this problem. It&rsquo;s the most popular one due to its ease of use, but you may not be interested in buying a license. So in this article, we will explore another tool that lets you intercept network calls. <a href="https://mitmproxy.org"><code>mitmproxy</code></a> is a free and open source command line utility that lets you intercept network traffic that both leaves and enters your device. It has some advanced features like scripting, and in the long run, I find it is the more powerful tool.</p>
-
 <h1 id="installation">Installation</h1>
-
 <p>If you use <a href="https://brew.sh">Homebrew</a>, simply open a Terminal window and type:</p>
-
 <pre><code>brew install mitmproxy
-</code></pre>
-
-<p>Followed by the <code>Enter</code> key.</p>
-
+</code></pre><p>Followed by the <code>Enter</code> key.</p>
 <h1 id="quick-introduction">Quick Introduction</h1>
-
 <p><code>mitmproxy</code> is a proxy tool. Its features are spread across three different command line utilities:</p>
-
 <ul>
 <li><code>mitmproxy</code>: Interactive man-in-the-middle proxy for HTTP and HTTPS with a console interface.</li>
 <li><code>mitmdump</code>: Command line version of <code>mitmproxy</code>. Think tcpdump for HTTP.</li>
 <li><code>mitmweb</code>: Web-based interface for <code>mitmproxy</code>.</li>
 </ul>
-
 <p>This tool can do a lot. It can intercept network calls for traffic impression, it can replay previous requests, interception SSL certificates are generated on the fly, and more. There&rsquo;s a page on all the features <a href="https://docs.mitmproxy.org/stable/overview-features/">here</a>.</p>
-
 <h1 id="a-quick-explanation-of-the-tools">A Quick Explanation of the Tools</h1>
-
 <p>Before we start using it, let&rsquo;s talk a few minutes about the three command line tools that make up <code>mitmproxy</code>. This will help you understand when you can use which and the different features they have.</p>
-
 <h2 id="mitmproxy">mitmproxy</h2>
-
 <p>This tool allows interactive examination and modification of HTTP(S) traffic. All the flows are kept in memory, so this tool was built for taking and manipulating small samples. If you need to do more intense work, use <code>mitmdump</code> instead.</p>
-
 <h2 id="mitmdump">mitmdump</h2>
-
 <p>This is a command-line compation to mitmproxy. It behaves very similar to <code>tcpdump</code>, and as such you can view, record, and programatically transform (scripting!) HTTP traffic.</p>
-
 <h2 id="mitmweb">mitmweb</h2>
-
 <p>If you don&rsquo;t fancy a command line interface, you can use mitmweb, which provides a web-based interface to mitmproxy which allows you to examine and modify HTTP traffic. It has the same limitations as the <code>mitmproxy</code> tool, so use this if you want to work with small samples of requests as all the flows are stored in memory.</p>
-
 <h1 id="setup-for-ios-simulators-and-physical-devices">Setup for iOS Simulators and Physical Devices</h1>
-
 <p>If you only care about intercepting raw HTTP traffic (not HTTPS), you are set. However in this modern age, the vast, <em>vast</em> majority of APIs and websites are using HTTPS. In fact I have not found a single raw HTTP API in at least 5 years. So if you want to intercept traffic of SSL-apps, you need to do one more step.</p>
-
 <p>We now need to install the Certificate in both the simulator and physical device. If we don&rsquo;t, we won&rsquo;t be able to see traffic to HTTPS websites.</p>
-
-<hr>
-
-<p><strong>Important Note!</strong></p>
-
-<p>mitmproxy cannot do anything for network calls that make use of SSL pinning. If you want to reverse engineer an app that is not yours and is using SSL pinning, mitmproxy will not help you. You will still need to jailbreak your phone to find ways to undo the pinning.
-<hr></p>
-
+<!-- raw HTML omitted -->
+<p>mitmproxy cannot do anything for network calls that make use of SSL pinning. If you want to reverse engineer an app that is not yours and is using SSL pinning, mitmproxy will not help you. You will still need to jailbreak your phone to find ways to undo the pinning.</p>
+<!-- raw HTML omitted -->
 <h2 id="ios-simulator">iOS Simulator</h2>
-
 <p>Dealing with the iOS Simulator is a little bit more complicated than preparing physical devices, because simulators have no way to configure their own proxy settings. They use the macOS native proxy settings instead. Essentially, we have to configure our <em>entire</em> computer to use the proxy. If you are scared and are a Charles user, this is exactly how Charles works by default. This implies that <em>all</em> the network traffic in our Mac will appear in mitmproxy. The good news is that we have ways to easily filter out what we don&rsquo;t need.</p>
-
 <p>On your Mac, open <code>System Preferences</code>, then go to <code>Network</code> &gt; <code>Advanced</code> &gt; <code>Proxies</code>.</p>
-
-<p><img src="/img/macos-proxy-settings.png" alt="macOS Proxy Settings" /></p>
-
+<p><img src="/img/macos-proxy-settings.png" alt="macOS Proxy Settings"></p>
 <p>On this screen, enable both the <code>Web Proxy (HTTP)</code> and <code>Secure Web Proxy</code> (HTTPS) options. You will need to write mitmproxy&rsquo;s IP address in both. By default, mitmproxy runs on address <code>0.0.0.0</code> and port <code>8080</code>. Once you hit <code>OK</code> and then <code>Apply</code> to save the chances, all the traffic should start going through mitmproxy.</p>
-
 <p>Now, visit <code>mitm.it</code>. This page allows you to download the certificates and it only works if you set the proxy properly. If you see anything other than the screenshot below, check the proxy settings. You may need to change the IP Address and/or port depending on your settings and other tools you have on your Mac:</p>
-
-<p><img src="/img/mitm-it-certs.png" alt="Certificate Download Page" /></p>
-
+<p><img src="/img/mitm-it-certs.png" alt="Certificate Download Page"></p>
 <p>Click the Apple icon and it will download a <code>*.pem</code> file. The page has additional instructions you need to follow to finish the setup:</p>
-
 <blockquote>
 <ul>
 <li>Double-click the PEM file</li>
@@ -349,17 +312,11 @@ if (!doNotTrack) {
 <li>Done!</li>
 </ul>
 </blockquote>
-
 <p>Now, the proxy is automatically receiving all the requests on your computer. You can view them with any of the tools mentioned above. To make things easier for now, we will use the web client. On a Terminal window, simply write <code>mitmweb</code> followed by Enter. After a few seconds, your default web browser will launch with the <code>mitmweb</code> page, and you will start seeing all the requests and responses from all the applications on your Mac. We will see how the web client works at the end of this article.</p>
-
 <h2 id="physical-ios-devices">Physical iOS Devices</h2>
-
 <p>If you want to intercept calls in physical iOS devices, you need to configure the devices so they use <code>mitmproxy</code> as a proxy server. To do this, first you need to figure out the address of your Mac running mitmproxy on your network. An easy way to do this is to go back to the Network preferences on your Mac:</p>
-
-<p><img src="/img/mac-get-ip-address.png" alt="Getting the IP Address of your Mac" /></p>
-
+<p><img src="/img/mac-get-ip-address.png" alt="Getting the IP Address of your Mac"></p>
 <p>Now, follow these steps to finish the configuration of the proxy on your device:</p>
-
 <ol>
 <li>Open the <code>Settings.app</code> on your device.</li>
 <li>Tap <code>Wi-Fi</code>.</li>
@@ -377,51 +334,28 @@ if (!doNotTrack) {
 <li>Scroll down to the <code>Certificate Trust Settings</code> option, and tap it.</li>
 <li><a href="/img/IMG_0613.PNG">Enable the switch</a> for for <code>mitmproxy</code>.</li>
 </ol>
-
-<p><img src="/img/IMG_0606.PNG" alt="Proxy Settings" /></p>
-
+<p><img src="/img/IMG_0606.PNG" alt="Proxy Settings"></p>
 <p>With that done, you can finally start intercepting calls from your actual device.</p>
-
 <h2 id="setup-issues">Setup Issues.</h2>
-
 <p>You may come across a few setup issues, depending on the software you have running on your Mac.</p>
-
 <p>First, in my experience, if you have two active network connections on your Mac (I have both Wi-Fi and Ethernet enabled), you may have some problems. You only need to configure mitmproxy in one of them to start intercepting HTTP requests and responses on your local Mac. Ensure you write the right IP address and Port when configuring the proxy, and if that doesn&rsquo;t solve it, try to configure a different IP address and port for mitmproxy (check the docs). If you are running other proxy software or have other software that may be bind to the same address and port as MITM Proxy, you will have issues.</p>
-
 <p>For my phone, I was having problems accessing <code>mitm.it</code>. I was connecting to the Mac network that didn&rsquo;t have the proxy configured, so ensure that whatever network you are connecting to has the proxy enabled for mitmproxy. I spent longer fighting this than I care to admit.</p>
-
 <h1 id="exploring-the-requests">Exploring the Requests</h1>
-
 <p>With all that setup done, you can finally start using mitmproxy to intercept some requests. As I said earlier, I will be using the web client, because it covers the vast majority of my needs.</p>
-
 <p>Open a Terminal window and type <code>mitmweb</code>.</p>
-
 <p>Now you need an app to (maybe your own!) to start seeing the requests of. For this article, I will be intercepting my own <a href="https://www.andyibanez.com/projects/nextanimeepisode1/">Next Anime Episode app</a>.</p>
-
 <p>When you open the web client, you will see the <a href="/img/flood-of-requests.png">flood of requests</a> for all your computer. Luckily you can use the <code>search</code> filter to filter it down and find what you need. There&rsquo;s many options here, and when you click on the textfield, it will give you a list of options you can use to search. You can write more advanced search queries if you know regex. For now, I know my app just queries <code>graphql.anilist.co</code>, so by writing <code>~u anilist</code>, I will filter by all the URLs that just have this URL.</p>
-
-<p><img src="/img/only-anilist.png" alt="Only Anilist" /></p>
-
+<p><img src="/img/only-anilist.png" alt="Only Anilist"></p>
 <p>In <a href="/img/mitmweb-anilist-sample.png">this screenshot</a> you can see that now I&rsquo;m only seeing the requests that have <code>anilist</code> as part of the URL.</p>
-
 <p>You can check both the <code>Request</code> and <code>Response</code> tabs to view how a request was done and what returned to your device. Also, if you click the little pencil icon, you can modify both the request the device sent and the response it is expeting to suspect. With this feature you can modify calls on the fly to reverse-engineer APIs or to see how APIs you use would expect if you modified certain parameters.</p>
-
-<p><img src="/img/mitmweb-request-response-view.png" alt="mitmweb Request, Response, and Editor" /></p>
-
+<p><img src="/img/mitmweb-request-response-view.png" alt="mitmweb Request, Response, and Editor"></p>
 <h1 id="other-tips">Other Tips</h1>
-
 <p>Charles took care of the configuration for you. When you launched it, it automatically setup the System Preferences to use the proxy. mitmproxy cannot currently do that, but in your Mac, if you want to avoid setting up the proxy everytime you need to, I recommend you create two Locations: One called &ldquo;Proxy&rdquo;, and the other called &ldquo;No Proxy&rdquo;. In the Proxy location you can set up the proxy, and you can simply change locations when you need to use it.</p>
-
 <p>Unfortunately you cannot do this on iOS, but there was no workaround for Charles, either.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>We didn&rsquo;t explore the full power of mitmproxy in this article, but what you learned should help you add a new tool to your arsenal to debug networking in your apps. mitmproxy is a very powerful tool, and if you are interested in learning all its features, I encourage you to read the <a href="https://docs.mitmproxy.org/stable/">docs</a>. That said what you learned in this article is more than enough for most scenarios, and the power to do more is out there.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

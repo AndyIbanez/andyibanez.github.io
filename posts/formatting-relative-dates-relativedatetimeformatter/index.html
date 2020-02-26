@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -272,129 +272,79 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Formatting Relative Dates With RelativeDateTimeFormatter</p>
-
+    <p>Formatting Relative Dates With RelativeDateTimeFormatter</p>
 <p>A few weeks ago we talked about <a href="https://www.andyibanez.com/posts/nsformatter/">formatting content with NSFormatter</a>, an abstract class from which multiple formatting classes inherit from to allow you to format different kinds of data in a human-readable form. <code>NSFormatter</code> is not only a class you can inherit from yourself, but as iOS evolves, more formatters will be added to its family. This week, we will explore a new member of this family introduced in iOS 13: <code>RelativeDateTimeFormatter</code>.</p>
-
 <p>At the time of this writing, there&rsquo;s no documentation on this yet (this article is being written on Dec 2, 2018, so yeah&hellip;), so I will be happy to explore how to use it with you.</p>
-
 <h1 id="relativedatetimeformatter-vs-similar-formatter-classes">RelativeDateTimeFormatter VS. Similar Formatter Classes</h1>
-
 <p>In the article linked above, we already used a formatter that lets you get the relative amount of time between different date times (<code>DateComponentFormatter</code>), so what&rsquo;s the difference with this one?</p>
-
 <p>RelativeDateFormatter allows you to present your users with date time data in an even friendlier manner, being able to show strings such as &ldquo;tomorrow&rdquo; (instead of &ldquo;1d&rdquo;), &ldquo;yesterday&rdquo; (instead of -1d), and even &ldquo;5 minutes ago&rdquo; or &ldquo;in 10 hours&rdquo;.</p>
-
 <h1 id="using-relativedatetimeformatter">Using RelativeDateTimeFormatter</h1>
-
 <h2 id="basic-formatting">Basic Formatting</h2>
-
 <p>Using this new formatter is very easy. It provides three methods which you can use to do the formatting itself:</p>
-
 <ul>
-<li><code>localizedString(fromTimeInterval:)</code>: This takes a <code>TimeInterval</code> and formats the difference between the current time in the user&rsquo;s device and the passed interval<sup>[1]</sup>.</li>
+<li><code>localizedString(fromTimeInterval:)</code>: This takes a <code>TimeInterval</code> and formats the difference between the current time in the user&rsquo;s device and the passed interval<!-- raw HTML omitted -->[1]<!-- raw HTML omitted -->.</li>
 <li><code>localizedString(for:relativeTo:)</code>: You can use this method to get the time difference between two different dates.</li>
-<li><code>localizedString(from:)</code>: This methods takes a <code>DateComponents</code> object, so you can easily construct objects and check their time difference relative to the current time on the device.<sup>[2]</sup></li>
+<li><code>localizedString(from:)</code>: This methods takes a <code>DateComponents</code> object, so you can easily construct objects and check their time difference relative to the current time on the device.<!-- raw HTML omitted -->[2]<!-- raw HTML omitted --></li>
 </ul>
-
-<h3 id="simple-usage-localizedstring-fromtimeinterval">Simple Usage: localizedString(fromTimeInterval:)</h3>
-
+<h3 id="simple-usage-localizedstringfromtimeinterval">Simple Usage: localizedString(fromTimeInterval:)</h3>
 <p>In its simplest form, you can get formatted text out of this formatter with two lines of code. We will use <code>localizedString(fromTimeInterval)</code> to show you how to do this:</p>
-
-<pre><code class="language-swift">let relativeDtf = RelativeDateTimeFormatter()
-relativeDtf.localizedString(fromTimeInterval: 60.0) // &quot;in 1 minute&quot;
-</code></pre>
-
-<p>This simple line will print <code>in 1 minute</code> because internally, the formatter will use the device&rsquo;s time, and it will compare it with the time 60 seconds from now.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> relativeDtf = RelativeDateTimeFormatter()
+relativeDtf.localizedString(fromTimeInterval: <span style="color:#ae81ff">60.0</span>) <span style="color:#75715e">// &#34;in 1 minute&#34;</span>
+</code></pre></div><p>This simple line will print <code>in 1 minute</code> because internally, the formatter will use the device&rsquo;s time, and it will compare it with the time 60 seconds from now.</p>
 <p>You can also calculate the time in the past by passing in negative values. If you pass in <code>-60.0</code> to the function, it will print exactly what you expect:</p>
-
-<pre><code class="language-swift">relativeDtf.localizedString(fromTimeInterval: -60.0) // prints &quot;1 minute ago&quot;
-</code></pre>
-
-<p>Simple enough, right?</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">relativeDtf.localizedString(fromTimeInterval: <span style="color:#f92672">-</span><span style="color:#ae81ff">60.0</span>) <span style="color:#75715e">// prints &#34;1 minute ago&#34;</span>
+</code></pre></div><p>Simple enough, right?</p>
 <h3 id="difference-between-two-dates">Difference between two dates.</h3>
-
 <p>If you want to calculate the difference between two dates (that do not necessarily involve the device&rsquo;s current time), you can use the <code>localizedString(for:relativeTo:)</code> function.</p>
-
 <p>I cannot find a case where you want to get two unrelated dates and get a relative formatting between them. For example, I can get the difference between my birthday this year (May 20, 2019) and Christmas (May 25, 2019), but the output does not make any sense, contextually:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> andysBday2019 = Date(timeIntervalSince1970: <span style="color:#ae81ff">1558310400.0</span>)
+<span style="color:#66d9ef">let</span> christmas2019 = Date(timeIntervalSince1970: <span style="color:#ae81ff">1577232000.0</span>)
 
-<pre><code class="language-swift">let andysBday2019 = Date(timeIntervalSince1970: 1558310400.0)
-let christmas2019 = Date(timeIntervalSince1970: 1577232000.0)
-
-let relativeDtf = RelativeDateTimeFormatter()
-relativeDtf.localizedString(for: andysBday2019, relativeTo: christmas2019) // prints &quot;7 months ago&quot; (Was my birthday really 7 months ago?)
-</code></pre>
-
-<p>You can probably find a use for it.</p>
-
+<span style="color:#66d9ef">let</span> relativeDtf = RelativeDateTimeFormatter()
+relativeDtf.localizedString(<span style="color:#66d9ef">for</span>: andysBday2019, relativeTo: christmas2019) <span style="color:#75715e">// prints &#34;7 months ago&#34; (Was my birthday really 7 months ago?)</span>
+</code></pre></div><p>You can probably find a use for it.</p>
 <p>Instead, you can use this to calculate the difference between today and another date using <code>Date</code> objects. We will calculate the time between <code>now</code> and Christmas.</p>
-
-<pre><code class="language-swift">let relativeDtf = RelativeDateTimeFormatter()
-relativeDtf.localizedString(for: christmas2019, relativeTo: now) // prints &quot;in 3 weeks&quot;
-</code></pre>
-
-<p>Using this formatter you can get the relative time difference very easily.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> relativeDtf = RelativeDateTimeFormatter()
+relativeDtf.localizedString(<span style="color:#66d9ef">for</span>: christmas2019, relativeTo: now) <span style="color:#75715e">// prints &#34;in 3 weeks&#34;</span>
+</code></pre></div><p>Using this formatter you can get the relative time difference very easily.</p>
 <h2 id="formatter-configuration">Formatter Configuration</h2>
-
 <p>The example we saw so far were simple, and they will probably suit the vast majority of your needs. But you can configure the formatter to spell out the difference, to use abbreviations, and more.</p>
-
 <p>To do this, simply change the formatter&rsquo;s <code>unitsStyle</code> property to any of the following:</p>
-
 <ul>
 <li><code>.abbreviated</code>: <em>3 min. ago</em></li>
 <li><code>.full</code>: <em>3 minutes ago</em></li>
-<li><code>.short</code>: <em>3 min. ago</em> <sup>[3]</sup></li>
+<li><code>.short</code>: <em>3 min. ago</em> <!-- raw HTML omitted -->[3]<!-- raw HTML omitted --></li>
 <li><code>‌.spellOut</code>: <em>three minutes ago</em></li>
 </ul>
-
 <p>If you want to quickly see what would a difference look like, you can use this code. It will print your dates in each <code>unitStyle</code>.</p>
-
-<pre><code class="language-swift">let relativeDtf = RelativeDateTimeFormatter()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> relativeDtf = RelativeDateTimeFormatter()
 [
   RelativeDateTimeFormatter.UnitsStyle.abbreviated,
   .full,
   .short,
   .spellOut
   ].forEach {
-    let formatted = relativeDtf.localizedString(for: threeMinutesAgo, relativeTo: now)
+    <span style="color:#66d9ef">let</span> formatted = relativeDtf.localizedString(<span style="color:#66d9ef">for</span>: threeMinutesAgo, relativeTo: now)
     relativeDtf.unitsStyle = $0
     print(formatted)
 }
-</code></pre>
-
-<p>You can use other formatting options, such as <code>.formattingContext</code>, which lets you specify where in a sentence would the formatted text appear.</p>
-
+</code></pre></div><p>You can use other formatting options, such as <code>.formattingContext</code>, which lets you specify where in a sentence would the formatted text appear.</p>
 <p>You can also specify a <code>.dateTimeStyle</code>. If you specify <code>.named</code>, you will get something like &ldquo;tomorrow&rdquo;, whereas if you specify <code>.numeric</code>, you will get &ldquo;in 1 day&rdquo;.</p>
-
-<pre><code class="language-swift">relativeDtf.dateTimeStyle = .named
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">relativeDtf.dateTimeStyle = .named
 relativeDtf.unitsStyle = .abbreviated
-relativeDtf.localizedString(from: DateComponents(day: 1)) // &quot;tomorrow&quot;
+relativeDtf.localizedString(from: DateComponents(day: <span style="color:#ae81ff">1</span>)) <span style="color:#75715e">// &#34;tomorrow&#34;</span>
 
 relativeDtf.dateTimeStyle = .numeric
 relativeDtf.unitsStyle = .abbreviated
-relativeDtf.localizedString(from: DateComponents(day: 1)) // &quot;in 1 day&quot;
-</code></pre>
-
-<h1 id="conclusion">Conclusion</h1>
-
+relativeDtf.localizedString(from: DateComponents(day: <span style="color:#ae81ff">1</span>)) <span style="color:#75715e">// &#34;in 1 day&#34;</span>
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
 <p>Formatters are powerful, and as time progresses, we will see more and more. In this article we explored the new <code>RelativeDateTimeFormatter</code> in iOS 13 and how to use it, so you can start implementing friendly texts for your relative date-time strings.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
-
 <h6 id="foot-notes">Foot Notes</h6>
-
 <p>[1]: I actually don&rsquo;t know if formats the date relative to the user&rsquo;s device. The API is not documented, but that&rsquo;s what I have observed.</p>
-
 <p>[2]: Just like the note above, it&rsquo;s not documented if the formatting occurs relative to the device&rsquo;s time, but my observations point to yes.</p>
-
 <p>[3]: I looked and looked and couldn&rsquo;t find an input that produced something different. Hopefully the docs will be up soon.</p>
 
   </div>

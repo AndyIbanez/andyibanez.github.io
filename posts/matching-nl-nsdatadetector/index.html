@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -263,45 +263,27 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>iOS has a lot of APIs that deal with natural language detection. One such class is <a href="https://developer.apple.com/documentation/foundation/nsdatadetector"><code>NSDataDetector</code></a>. This class allows you to match different kinds of data in text, including dates, time, links, and more. This class, actually introduced a very long time ago (in the iOS 4.0 days!) makes it very easy to find this kind of data in strings. In this article we will explore how to use this very old class - whose documentation is Objective-C only at this time - in Swift, and how to do common tasks with it.</p>
-
+    <p>iOS has a lot of APIs that deal with natural language detection. One such class is <a href="https://developer.apple.com/documentation/foundation/nsdatadetector"><code>NSDataDetector</code></a>. This class allows you to match different kinds of data in text, including dates, time, links, and more. This class, actually introduced a very long time ago (in the iOS 4.0 days!) makes it very easy to find this kind of data in strings. In this article we will explore how to use this very old class - whose documentation is Objective-C only at this time - in Swift, and how to do common tasks with it.</p>
 <p>This class is a subclass of <a href="https://developer.apple.com/documentation/foundation/nsregularexpression"><code>NSRegularExpression</code></a>, so you can expect it to not be entirely perfect with some data. For example, my country&rsquo;s addresses do not follow any kind of format used in developed countries, so address detection fails for me most of the time.</p>
-
 <p>That said you can expect it to work with most data. Phone numbers, URLs, and dates/times are likely to be recognized without an issue.</p>
-
 <h1 id="finding-patterns-in-natural-language">Finding Patterns in Natural Language.</h1>
-
 <p>When you create an instance of this class, you specify what kind of content you want to find. A checking type is a <a href="https://developer.apple.com/documentation/foundation/nstextcheckingresult/checkingtype"><code>NSTextCheckingResult.CheckingType</code></a> object, and you can specify more than one at a time.</p>
-
 <p>In the below example, we will create a data detector that can find links and dates in a string:</p>
-
-<pre><code class="language-swift">let detector = try! NSDataDetector(
-  types: NSTextCheckingResult.CheckingType.link.rawValue | NSTextCheckingResult.CheckingType.date.rawValue
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> detector = <span style="color:#66d9ef">try</span>! NSDataDetector(
+  types: NSTextCheckingResult.CheckingType.link.rawValue <span style="color:#f92672">|</span> NSTextCheckingResult.CheckingType.date.rawValue
 )
-</code></pre>
-
-<p>As we said earlier, this is an Objective-C API that comes from the early iOS days, so it may look a little bit weird (and ugly), but it works.</p>
-
+</code></pre></div><p>As we said earlier, this is an Objective-C API that comes from the early iOS days, so it may look a little bit weird (and ugly), but it works.</p>
 <p>We need to use the <code>rawValue</code>s of the types, and we need to <code>or</code> them together. Swift cannot even infer the types, so we need to write quite a bit of verbose code.</p>
-
 <p>Now we can use the detector to match content in a string.</p>
-
 <p>We start by defining the string we want to match in, a few regex <a href="https://developer.apple.com/documentation/foundation/nsregularexpression/matchingoptions">matching options</a>, and the range of the string to check in.</p>
-
 <pre><code>let string = &quot;Make sure you check out my website andyibanez.com tomorrow at 8 and on Friday&quot;
 let range = NSRange(0..&lt;string.count)
 
 let foundContent = detector.matches(
   in: string,
   options: [], range: range)
-</code></pre>
-
-<p>Once again, this being an old API, we need to use the good ol&rsquo; <code>NSRange</code> instead of the Swift&rsquo;s range. Other than that, nothing too bothersome here.</p>
-
+</code></pre><p>Once again, this being an old API, we need to use the good ol&rsquo; <code>NSRange</code> instead of the Swift&rsquo;s range. Other than that, nothing too bothersome here.</p>
 <p>That will return an array of <a href="https://developer.apple.com/documentation/foundation/nstextcheckingresult"><code>NSTextCheckingResult</code></a>s, and you can just iterate over the elements:</p>
-
 <pre><code>foundContent.forEach { content in
   switch content.resultType {
   case NSTextCheckingResult.CheckingType.link:
@@ -312,35 +294,22 @@ let foundContent = detector.matches(
     break
   }
 }
-</code></pre>
-
-<p>There are different result types for different objects. The good news is, that once you know we have a certain type in the <code>switch</code>, we can just force-unwrap the expected element. The code above prints the following in my machine:</p>
-
+</code></pre><p>There are different result types for different objects. The good news is, that once you know we have a certain type in the <code>switch</code>, we can just force-unwrap the expected element. The code above prints the following in my machine:\</p>
 <pre><code>URL: http://andyibanez.com
 DATE: Optional(2020-01-30 12:00:00 +0000)
 DATE: Optional(2020-01-31 16:00:00 +0000)
-</code></pre>
-
-<p>Dates are in UTC, so you may need to operate on them when you  receive them. If your string contains text that can be used to to deduce the timezone, you can access the <code>timezone</code> property of <code>NSTextCheckingResult</code>.</p>
-
-<pre><code class="language-swift">let string = &quot;Visit me tomorrow at 8 UTC+4&quot;
-//...
-case NSTextCheckingResult.CheckingType.date:
-    print(&quot;DATE: \(content.date!) \(content.timeZone)&quot;)
-//...
-// DATE: 2020-01-30 04:00:00 +0000 Optional(GMT+0400 (fixed))
-</code></pre>
-
-<p>Note that the link was detected in a very smart way and you didn&rsquo;t even need to specify the protocol.</p>
-
+</code></pre><p>Dates are in UTC, so you may need to operate on them when you  receive them. If your string contains text that can be used to to deduce the timezone, you can access the <code>timezone</code> property of <code>NSTextCheckingResult</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> string = <span style="color:#e6db74">&#34;Visit me tomorrow at 8 UTC+4&#34;</span>
+<span style="color:#75715e">//...</span>
+<span style="color:#66d9ef">case</span> NSTextCheckingResult.CheckingType.date:
+    print(<span style="color:#e6db74">&#34;DATE: </span><span style="color:#e6db74">\(</span>content.date!<span style="color:#e6db74">)</span><span style="color:#e6db74"> </span><span style="color:#e6db74">\(</span>content.timeZone<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#75715e">//...</span>
+<span style="color:#75715e">// DATE: 2020-01-30 04:00:00 +0000 Optional(GMT+0400 (fixed))</span>
+</code></pre></div><p>Note that the link was detected in a very smart way and you didn&rsquo;t even need to specify the protocol.</p>
 <h1 id="conclusion">Conclusion</h1>
-
 <p><code>NSDataDetector</code> is an old but still very powerful API. What we saw today is just the type of the iceberg of its features. This object can match other types of content as well. If you are interested, I encourage you to check out the documentation. It has some limitations, but it will for many cases.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

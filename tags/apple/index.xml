@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>apple on Andy Ibanez</title>
@@ -78,7 +78,7 @@ The Secure Enclave is a hardware feature for helping the system work with crypto
       
       <guid>https://www.andyibanez.com/posts/parametrized-shortcuts/</guid>
       <description>All the way back to 2016, a group of very talented iOS developers released Workflow, a very popular app to let users create actions of different kinds within the system&amp;rsquo;s constraints. You could create and automate different tasks, such as controlling a server via SSH, downloading all the images from a website, and more&amp;hellip; Much, much more.
-Apple saw the power of the app and aquired it in March 2017.</description>
+Apple saw the power of the app and aquired it in March 2017. This was very exciting, but we didn&amp;rsquo;t hear anything from the app since.</description>
     </item>
     
     <item>
@@ -116,8 +116,7 @@ A few weeks ago we talked about formatting content with NSFormatter, an abstract
       <pubDate>Wed, 04 Dec 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/nsuserdefaults-property-wrappers/</guid>
-      <description>Important Note
-Soon after I published this article, Christian Tietze wrote a fair criticism of this idea here.
+      <description>Soon after I published this article, Christian Tietze wrote a fair criticism of this idea here.
 Once you understand how property wrappers work, you can use this article to apply it to user defaults. The main idea is that property wrappers allow you to store your values differently and even externally. That said, you may or may not want to implement this in a real app. I recommend you read this article first, and then go back to Christian&amp;rsquo;s to see more downsides of this idea other than the ones I mentioned below.</description>
     </item>
     
@@ -244,7 +243,7 @@ A Result wraps a success or a failure. It is essentially an enum with two possib
       
       <guid>https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/</guid>
       <description>If you have been programming for Apple platforms for a while, chances are you have seen (or maybe even wrote yourself) a line of code that looks like this:
-let url = URL(string: &amp;quot;https://www.google.com/search?hl=en&amp;amp;q=pullip&amp;quot;)!  Whether you wrote it yourself or someone else did it, one thing is clear: This is not a safe way to build URLs. Can you know, for sure, that your URL is actually valid? Intuitively, all of us can see a URL and see if it&amp;rsquo;s valid, but there is a whole lot of governing in the URL format that at some point we may find funny URLs that look valid and aren&amp;rsquo;t, or the other way around; they look invalid, but aren&amp;rsquo;t.</description>
+let url = URL(string: &amp;#34;https://www.google.com/search?hl=en&amp;amp;q=pullip&amp;#34;)! Whether you wrote it yourself or someone else did it, one thing is clear: This is not a safe way to build URLs. Can you know, for sure, that your URL is actually valid? Intuitively, all of us can see a URL and see if it&amp;rsquo;s valid, but there is a whole lot of governing in the URL format that at some point we may find funny URLs that look valid and aren&amp;rsquo;t, or the other way around; they look invalid, but aren&amp;rsquo;t.</description>
     </item>
     
     <item>

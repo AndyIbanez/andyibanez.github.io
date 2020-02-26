@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -44,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -263,26 +263,15 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>Swift is a beautiful language, but it hides some powerful features from developers who come from more &ldquo;old-style&rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.</p>
-
+    <p>Swift is a beautiful language, but it hides some powerful features from developers who come from more &ldquo;old-style&rdquo; programming languages such as C++ and Java. One such feature is Pattern Matching, and it allows you to write some cleaner code when dealing with some operations.</p>
 <p>For example, consider casting. Casting is a feature in the vast majority of statically-typed languages. Casting is considered to be an ugly operation by some, because when you need to cast, it&rsquo;s usually because the language has a flaw that prevents it from telling you about the right data type underneath. This is specially true when you add in Object-Oriented Programming and classes are marked to return a super type instead of a specific subtype. With pattern matching, you can more cleanly check for datatypes without having to worry about crashes or weird behavior.</p>
-
 <p>In this article, we will learn what &ldquo;Patterns&rdquo; are in this context, we will explore the specific casting pattern, and we will explore a few other common patterns that are used in Swift. We will also talk about pattern matching along the way so you can learn about this feature along the way, if you haven&rsquo;t already.</p>
-
 <h1 id="introduction-to-patterns-and-pattern-matching">Introduction to Patterns and Pattern Matching</h1>
-
 <p>Pattern matching is the checking and locating of specific sequences of data in some specific pattern mixed with random data. Not to be confused with pattern recognition, which allows us to observe a bunch of raw data and find some kind pattern into it. In pattern matching, you already know what the pattern looks like, and you want to know when it&rsquo;s found, and what kind of data to retrieve from it, if applicable.</p>
-
 <p>The pattern represents the structure of a single value or a composite value. You can essentially use this pattern to get information about data, and/or the data itself. Patterns can be very varied, from data type checking to enum checking, and more.</p>
-
 <p>In Swift, pattern matching is usually done with the <code>switch</code> statement, but you can use this powerful feature with other features as well, like <code>for</code> loops and even <code>catch</code>.</p>
-
 <h1 id="types-of-patterns">Types of Patterns</h1>
-
 <p>Switch has the following patterns:</p>
-
 <ul>
 <li>Wildcard Pattern</li>
 <li>Identifier Pattern</li>
@@ -293,249 +282,171 @@ if (!doNotTrack) {
 <li>Type-Casting Pattern</li>
 <li>Expression Pattern</li>
 </ul>
-
 <p>We will explore all of them and learn how to apply them in Pattern Matching.</p>
-
 <h2 id="the-wildcard-pattern">The Wildcard Pattern</h2>
-
 <p>The Wildcard Patterns ignores any value and replaces it with <em>nothing</em>, represented as an underscore. You can use this pattern when you don&rsquo;t care about the values provided in a pattern.</p>
-
 <p>In the following example, you can do something three times with a <code>for</code> loop. Swift doesn&rsquo;t have the traditional <code>for(;;)</code>  loop, so if you need to do something repeatedly without necessarily caring about a value, you can do this:</p>
-
-<pre><code class="language-swift">for _ in 1...3 {
-  print(&quot;I'm doing something!&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">_</span> <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1.</span>..<span style="color:#ae81ff">3</span> {
+  print(<span style="color:#e6db74">&#34;I&#39;m doing something!&#34;</span>)
 }
-</code></pre>
-
-<p>You commonly use the <code>for</code> loop to fast-iterate over the values of a collection. This works, because <code>1...3</code> creates a <a href="https://developer.apple.com/documentation/swift/Range"><code>Range</code></a> which on every iteration returns a number within it. We are <em>matching</em> any random in the range and using an underscore to represent it, since we don&rsquo;t care about its value.</p>
-
+</code></pre></div><p>You commonly use the <code>for</code> loop to fast-iterate over the values of a collection. This works, because <code>1...3</code> creates a <a href="https://developer.apple.com/documentation/swift/Range"><code>Range</code></a> which on every iteration returns a number within it. We are <em>matching</em> any random in the range and using an underscore to represent it, since we don&rsquo;t care about its value.</p>
 <h2 id="identifier-pattern">Identifier Pattern</h2>
-
 <p>This is the most common pattern of all, and you use it all the time. This pattern matches any value and binds it to a variable or constant name. It&rsquo;s a full mouth way of saying &ldquo;variable assignment&rdquo;.</p>
-
-<pre><code class="language-swift">let doll = &quot;Classical Alice&quot;
-</code></pre>
-
-<p>This will assign the value &ldquo;Classical Alice&rdquo; to the variable &ldquo;doll&rdquo;.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> doll = <span style="color:#e6db74">&#34;Classical Alice&#34;</span>
+</code></pre></div><p>This will assign the value &ldquo;Classical Alice&rdquo; to the variable &ldquo;doll&rdquo;.</p>
 <p>You have used this pattern before, but did you know you can discard the contents of the assignment? This is useful when you call a function with side effects and you don&rsquo;t need to store its value at all. I do this all the time with <code>Sec</code> functions that return a OSStatus, but there&rsquo;s situations when it may never return any errors at all:</p>
-
-<pre><code class="language-swift">let _ = functionWithSideEffects()
-</code></pre>
-
-<h2 id="value-binding-pattern">Value-Binding Pattern.</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> _ = functionWithSideEffects()
+</code></pre></div><h2 id="value-binding-pattern">Value-Binding Pattern.</h2>
 <p>In this pattern is where things start to become more interesting. This pattern allows you to match a tuple and grab its values independently.</p>
-
-<pre><code class="language-swift">let coordinate = (5, -3)
-switch coordinate {
-case let (x, y):
-  print(&quot;Coordintate: \(x), \(y)&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coordinate = (<span style="color:#ae81ff">5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">switch</span> coordinate {
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> (x, y):
+  print(<span style="color:#e6db74">&#34;Coordintate: </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74">, </span><span style="color:#e6db74">\(</span>y<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 }
-</code></pre>
-
-<p>Also, now is a good time to mention that you can use the <code>where</code> keyword to do more complex pattern matching. In the following example, we will not bind the <code>y</code> value (we are replacing it with an underscore), and we will only match the <code>x</code> value when it is higher than 10:</p>
-
-<pre><code class="language-swift">let coordinate = (5, -3)
-switch coordinate {
-case let (x, _) where x &gt; 10:
-  print(&quot;This coordinate is way to the right of the x axis. \(x)&quot;)
+</code></pre></div><p>Also, now is a good time to mention that you can use the <code>where</code> keyword to do more complex pattern matching. In the following example, we will not bind the <code>y</code> value (we are replacing it with an underscore), and we will only match the <code>x</code> value when it is higher than 10:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coordinate = (<span style="color:#ae81ff">5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">switch</span> coordinate {
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> (x, <span style="color:#66d9ef">_</span>) <span style="color:#66d9ef">where</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>:
+  print(<span style="color:#e6db74">&#34;This coordinate is way to the right of the x axis. </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 }
-</code></pre>
-
-<p>It&rsquo;s also worth noting that the <code>case</code> match in the order they appear in. Consider the following:</p>
-
-<pre><code class="language-swift">let coordinate = (12, -3)
-switch coordinate {
-case let (x, y):
-  print(&quot;Coordintate: \(x), \(y)&quot;)
-case let (x, _) where x &gt; 10:
-  print(&quot;This coordinate is way to the right of the x axis. \(x)&quot;)
+</code></pre></div><p>It&rsquo;s also worth noting that the <code>case</code> match in the order they appear in. Consider the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coordinate = (<span style="color:#ae81ff">12</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">switch</span> coordinate {
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> (x, y):
+  print(<span style="color:#e6db74">&#34;Coordintate: </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74">, </span><span style="color:#e6db74">\(</span>y<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> (x, <span style="color:#66d9ef">_</span>) <span style="color:#66d9ef">where</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>:
+  print(<span style="color:#e6db74">&#34;This coordinate is way to the right of the x axis. </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 }
-</code></pre>
-
-<p>Despite the value we want has a value bigger than 10, the second case will never be executed. This is because the first case matches perfectly. You can, however match multiple patterns with the <code>fallthrough</code> keyword.</p>
-
-<pre><code class="language-swift">let coordinate = (12, -3)
-switch coordinate {
-case let (x, y):
-  print(&quot;Coordintate: \(x), \(y)&quot;)
-  fallthrough
-case let (x, _) where x &gt; 10:
-  print(&quot;This coordinate is way to the right of the x axis. \(x)&quot;)
+</code></pre></div><p>Despite the value we want has a value bigger than 10, the second case will never be executed. This is because the first case matches perfectly. You can, however match multiple patterns with the <code>fallthrough</code> keyword.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coordinate = (<span style="color:#ae81ff">12</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)
+<span style="color:#66d9ef">switch</span> coordinate {
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> (x, y):
+  print(<span style="color:#e6db74">&#34;Coordintate: </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74">, </span><span style="color:#e6db74">\(</span>y<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+  <span style="color:#66d9ef">fallthrough</span>
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> (x, <span style="color:#66d9ef">_</span>) <span style="color:#66d9ef">where</span> x <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>:
+  print(<span style="color:#e6db74">&#34;This coordinate is way to the right of the x axis. </span><span style="color:#e6db74">\(</span>x<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 }
-</code></pre>
-
-<p>You can write very interesting and easy to understand code with this.</p>
-
+</code></pre></div><p>You can write very interesting and easy to understand code with this.</p>
 <h2 id="tuple-pattern">Tuple Pattern</h2>
-
 <p>A tuple is a comma-separated list of zero or more patterns. You may have used patterns before:</p>
-
-<pre><code class="language-swift">func makeCoordinate(x: Int, y: Int) -&gt; (Int, Int) {
-	return (x, y)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">makeCoordinate</span>(x: Int, y: Int) -&gt; (Int, Int) {
+	<span style="color:#66d9ef">return</span> (x, y)
 }
-</code></pre>
-
-<p>Tuples are very powerful and they extend the power of pattern matching even more.</p>
-
+</code></pre></div><p>Tuples are very powerful and they extend the power of pattern matching even more.</p>
 <p>Consider an array of Coordinates. You can bind a value in each iteration to get the values.</p>
-
-<pre><code class="language-swift">let coordinates = [(1, 1), (2, 2), (5, 5), (7, 5), (9, 2), (3, 5)]
-for (x, y) in coordinates {
-  // Only iterate over the values that have a 5 in the `y` position.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coordinates = [(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>), (<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), (<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>), (<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>), (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>)]
+<span style="color:#66d9ef">for</span> (x, y) <span style="color:#66d9ef">in</span> coordinates {
+  <span style="color:#75715e">// Only iterate over the values that have a 5 in the `y` position.</span>
 }
-</code></pre>
-
-<p>But even more interesting, once again, you can use the <code>where</code> keyboard to further constraint the matching. In the following example we will only get the coordinates that have a value of <code>y &gt; 5</code>.</p>
-
-<pre><code class="language-swift">let coordinates = [(1, 1), (2, 2), (5, 5), (7, 5), (9, 2), (3, 5)]
-for (x, y) in coordinates where y &gt; 5 {
-  // Only iterate over the values that have a 5 in the `y` position.
+</code></pre></div><p>But even more interesting, once again, you can use the <code>where</code> keyboard to further constraint the matching. In the following example we will only get the coordinates that have a value of <code>y &gt; 5</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coordinates = [(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">2</span>), (<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>), (<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">5</span>), (<span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>), (<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">5</span>)]
+<span style="color:#66d9ef">for</span> (x, y) <span style="color:#66d9ef">in</span> coordinates <span style="color:#66d9ef">where</span> y <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">5</span> {
+  <span style="color:#75715e">// Only iterate over the values that have a 5 in the `y` position.</span>
 }
-</code></pre>
-
-<h2 id="enumeration-case-pattern">Enumeration Case Pattern</h2>
-
+</code></pre></div><h2 id="enumeration-case-pattern">Enumeration Case Pattern</h2>
 <p>This is a very nice pattern, and a very powerful one. This is the kind of pattern you can use with <code>Error</code>. This kind of patterns lets not only match pure cases, but also cases with parameters.</p>
-
-<pre><code class="language-swift">enum DataError: Error {
-  case writingError(localizedDescription: String, file: Data)
-  case readingError(localizedDescription: String, fileURL: URL)
-  case unknownError
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">DataError</span>: Error {
+  <span style="color:#66d9ef">case</span> writingError(localizedDescription: String, file: Data)
+  <span style="color:#66d9ef">case</span> readingError(localizedDescription: String, fileURL: URL)
+  <span style="color:#66d9ef">case</span> unknownError
 }
 
-let error = DataError.writingError(localizedDescription: &quot;Error writing file&quot;, file: Data())
-switch error {
-case .writingError(let description, let data):
-  print(&quot;Could write data \(data) because \(description)&quot;)
-case .readingError(let description, let url):
-  print(&quot;Couldn't read file at \(url) because \(description)&quot;)
-case .unknownError:
-  print(&quot;Unknown error&quot;)
+<span style="color:#66d9ef">let</span> error = DataError.writingError(localizedDescription: <span style="color:#e6db74">&#34;Error writing file&#34;</span>, file: Data())
+<span style="color:#66d9ef">switch</span> error {
+<span style="color:#66d9ef">case</span> .writingError(<span style="color:#66d9ef">let</span> description, <span style="color:#66d9ef">let</span> data):
+  print(<span style="color:#e6db74">&#34;Could write data </span><span style="color:#e6db74">\(</span>data<span style="color:#e6db74">)</span><span style="color:#e6db74"> because </span><span style="color:#e6db74">\(</span>description<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">case</span> .readingError(<span style="color:#66d9ef">let</span> description, <span style="color:#66d9ef">let</span> url):
+  print(<span style="color:#e6db74">&#34;Couldn&#39;t read file at </span><span style="color:#e6db74">\(</span>url<span style="color:#e6db74">)</span><span style="color:#e6db74"> because </span><span style="color:#e6db74">\(</span>description<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">case</span> .unknownError:
+  print(<span style="color:#e6db74">&#34;Unknown error&#34;</span>)
 }
-</code></pre>
-
-<p>We defined a <code>DataError</code> and we can match all the different cases. And yes, in case of the case parameters (such as <code>localizedDescription</code>), you can use the wildcard pattern if you don&rsquo;t care about retrieving their values at all.</p>
-
+</code></pre></div><p>We defined a <code>DataError</code> and we can match all the different cases. And yes, in case of the case parameters (such as <code>localizedDescription</code>), you can use the wildcard pattern if you don&rsquo;t care about retrieving their values at all.</p>
 <h2 id="optional-pattern">Optional Pattern</h2>
-
 <p>In Swift, Optionals are just syntactic sugar for the Optional Pattern. An optional is simply an <code>enum</code>, and you can match this even.</p>
-
 <p>Take a look at the following code:</p>
-
-<pre><code class="language-swift">let anOptional: Int? = 50
-if case .some(let value) = anOptional {
-  // The optional has a value
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> anOptional: Int? = <span style="color:#ae81ff">50</span>
+<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">case</span> .some(<span style="color:#66d9ef">let</span> value) = anOptional {
+  <span style="color:#75715e">// The optional has a value</span>
   print(value)
 }
-</code></pre>
-
-<p>In Swift, we can use this shorthand form:</p>
-
-<pre><code class="language-swift">if case let value? = anOptional {
+</code></pre></div><p>In Swift, we can use this shorthand form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">if</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> value? = anOptional {
   print(value)
 }
-</code></pre>
-
-<p>But the real power of this pattern comes from other uses. You can use it to iterate over an array of options and ignore the values that are nil, for example.</p>
-
-<pre><code class="language-swift">let names: [String?] = [&quot;Alice&quot;, nil, &quot;Eileen&quot;, &quot;Margarethe&quot;, &quot;Alura&quot;, nil, nil, &quot;Momoko&quot;]
-for case let name? in names {
-  /// Print all the names
+</code></pre></div><p>But the real power of this pattern comes from other uses. You can use it to iterate over an array of options and ignore the values that are nil, for example.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> names: [String?] = [<span style="color:#e6db74">&#34;Alice&#34;</span>, <span style="color:#66d9ef">nil</span>, <span style="color:#e6db74">&#34;Eileen&#34;</span>, <span style="color:#e6db74">&#34;Margarethe&#34;</span>, <span style="color:#e6db74">&#34;Alura&#34;</span>, <span style="color:#66d9ef">nil</span>, <span style="color:#66d9ef">nil</span>, <span style="color:#e6db74">&#34;Momoko&#34;</span>]
+<span style="color:#66d9ef">for</span> <span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> name? <span style="color:#66d9ef">in</span> names {
+  <span style="color:#75715e">/// Print all the names</span>
 }
-</code></pre>
-
-<h2 id="type-casting-pattern">Type Casting Pattern</h2>
-
+</code></pre></div><h2 id="type-casting-pattern">Type Casting Pattern</h2>
 <p>This pattern allows to avoid casting if you want more safety and it allows you to check for object types if you ever need to. There&rsquo;s to forms to this pattern:</p>
-
 <ul>
 <li>You can check if an object is of a certain type with the <code>is</code> keyword.</li>
 <li>You can match and cast to see if an object is of a type and cast to it immediately to use it.</li>
 </ul>
-
 <p>The former is only available in <code>switch</code> statements. The latter gives you more flexibility and chances are you have used it before, in the form of <code>if let foo = myObject as? Class {}</code>.</p>
-
 <p>Using the <code>is</code> keyword is really easy, and you can use it if you only case about the type of an object, and not about its properties or other kind of data.</p>
-
 <p>In the following example, we will check if a vehicle is of a given type and let the user know what matches:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vehicle</span> {}
 
-<pre><code class="language-swift">public class Vehicle {}
-
-public class Car: Vehicle  {
-  let wheels: Int
-  let size: Int
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span>: Vehicle  {
+  <span style="color:#66d9ef">let</span> wheels: Int
+  <span style="color:#66d9ef">let</span> size: Int
   
-  init(wheels: Int, size: Int) {
-    self.wheels = wheels
-    self.size = size
+  <span style="color:#66d9ef">init</span>(wheels: Int, size: Int) {
+    <span style="color:#66d9ef">self</span>.wheels = wheels
+    <span style="color:#66d9ef">self</span>.size = size
   }
 }
 
-public class Airplane: Vehicle {
-  let wings: Int
-  let capacity: Int
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Airplane</span>: Vehicle {
+  <span style="color:#66d9ef">let</span> wings: Int
+  <span style="color:#66d9ef">let</span> capacity: Int
   
-  init(wings: Int, capacity: Int) {
-    self.wings = wings
-    self.capacity = capacity
+  <span style="color:#66d9ef">init</span>(wings: Int, capacity: Int) {
+    <span style="color:#66d9ef">self</span>.wings = wings
+    <span style="color:#66d9ef">self</span>.capacity = capacity
   }
 }
 
-func makeVehicle() -&gt; Vehicle {
-  return Airplane(wings: 2, capacity: 200)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">makeVehicle</span>() -&gt; Vehicle {
+  <span style="color:#66d9ef">return</span> Airplane(wings: <span style="color:#ae81ff">2</span>, capacity: <span style="color:#ae81ff">200</span>)
 }
 
-let aVehicle = makeVehicle()
-switch aVehicle {
-case is Car:
-  print(&quot;The vehicle is a car&quot;)
-case is Airplane:
-  print(&quot;The vehicle is an airplane&quot;)
-default:
-  print(&quot;unknown vehicle&quot;)
+<span style="color:#66d9ef">let</span> aVehicle = makeVehicle()
+<span style="color:#66d9ef">switch</span> aVehicle {
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">is</span> Car:
+  print(<span style="color:#e6db74">&#34;The vehicle is a car&#34;</span>)
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">is</span> Airplane:
+  print(<span style="color:#e6db74">&#34;The vehicle is an airplane&#34;</span>)
+<span style="color:#66d9ef">default</span>:
+  print(<span style="color:#e6db74">&#34;unknown vehicle&#34;</span>)
 }
-</code></pre>
-
-<p>Now if you need to know the type of an object and do need to access its properties, you need to use the &ldquo;casting&rdquo; form of this pattern. Once again, you have probably used a variation of this, but I like this other form because it doesn&rsquo;t rely on optionals and it writes very neat code for the most part (I&rsquo;m not a fan of having to specify a default case):</p>
-
-<pre><code class="language-swift">let vehicle = makeVehicle()
-switch vehicle {
-case let vehicle as Car:
-  print(&quot;This car has \(vehicle.wheels) and it's size is \(vehicle.size)&quot;)
-case let vehicle as Airplane:
-  print(&quot;This airplane has \(vehicle.wings) wings and a capacity for \(vehicle.capacity) people&quot;)
-default:
-  print(&quot;Unknown vehicle&quot;)
+</code></pre></div><p>Now if you need to know the type of an object and do need to access its properties, you need to use the &ldquo;casting&rdquo; form of this pattern. Once again, you have probably used a variation of this, but I like this other form because it doesn&rsquo;t rely on optionals and it writes very neat code for the most part (I&rsquo;m not a fan of having to specify a default case):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> vehicle = makeVehicle()
+<span style="color:#66d9ef">switch</span> vehicle {
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> vehicle <span style="color:#66d9ef">as</span> Car:
+  print(<span style="color:#e6db74">&#34;This car has </span><span style="color:#e6db74">\(</span>vehicle.wheels<span style="color:#e6db74">)</span><span style="color:#e6db74"> and it&#39;s size is </span><span style="color:#e6db74">\(</span>vehicle.size<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">let</span> vehicle <span style="color:#66d9ef">as</span> Airplane:
+  print(<span style="color:#e6db74">&#34;This airplane has </span><span style="color:#e6db74">\(</span>vehicle.wings<span style="color:#e6db74">)</span><span style="color:#e6db74"> wings and a capacity for </span><span style="color:#e6db74">\(</span>vehicle.capacity<span style="color:#e6db74">)</span><span style="color:#e6db74"> people&#34;</span>)
+<span style="color:#66d9ef">default</span>:
+  print(<span style="color:#e6db74">&#34;Unknown vehicle&#34;</span>)
 }
-</code></pre>
-
-<p>Do note that this pattern matches both the class you specify and any subclasses of it, so make sure you order your cases accordingly.</p>
-
+</code></pre></div><p>Do note that this pattern matches both the class you specify and any subclasses of it, so make sure you order your cases accordingly.</p>
 <h2 id="the-expression-pattern">The Expression Pattern</h2>
-
 <p>This pattern represents the value of an expression. This pattern can only appear inside <code>switch</code> statements.</p>
-
 <p>This pattern users the <code>~=</code>. This operator by default compares values of the same type using <code>==</code>. It can also match elements in ranges, checking to see if the value is within the range. You can implement this function for your own types.</p>
-
-<pre><code class="language-swift">let coord = (1, 1)
-switch coord {
-case (-5...5, -5...5):
-  print(&quot;Both coordinates are within the same range. x is \(coord.0) and y is \(coord.1)&quot;)
-default:
-  print(&quot;no matches&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> coord = (<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+<span style="color:#66d9ef">switch</span> coord {
+<span style="color:#66d9ef">case</span> (<span style="color:#f92672">-</span><span style="color:#ae81ff">5.</span>..<span style="color:#ae81ff">5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">5.</span>..<span style="color:#ae81ff">5</span>):
+  print(<span style="color:#e6db74">&#34;Both coordinates are within the same range. x is </span><span style="color:#e6db74">\(</span>coord.<span style="color:#ae81ff">0</span><span style="color:#e6db74">)</span><span style="color:#e6db74"> and y is </span><span style="color:#e6db74">\(</span>coord.<span style="color:#ae81ff">1</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">default</span>:
+  print(<span style="color:#e6db74">&#34;no matches&#34;</span>)
 }
-</code></pre>
-
-<h1 id="conclusion">Conclusion</h1>
-
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
 <p>Pattern matching is a really powerful and interesting feature. It can help you write cleaner code and there&rsquo;s many ways to do it. You can use pattern matching in many different places to improve the quality of your code.</p>
-
-<hr>
-
+<!-- raw HTML omitted -->
 <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
-
 <p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.58.3" />
+<meta name="generator" content="Hugo 0.65.3" />
 
     
     
@@ -23,12 +23,12 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="AIiCloudSync"/>
 <meta name="twitter:description" content="GitHub Repository
- AIiCloudSync AIiCloudSync is a simple Package written in Swift to synchronize specific UserDefaults with the iCloud Key Value store (NSUbiquitousKeyValueStore).
+AIiCloudSync AIiCloudSync is a simple Package written in Swift to synchronize specific UserDefaults with the iCloud Key Value store (NSUbiquitousKeyValueStore).
 To use this package, create a single instance of AIiCloudSync, and keep a reference to it. Once you create it, you don&rsquo;t need to worry about it any longer. It will automatically sync changes between iCloud and your local UserDefaults through the lifetime of your application. You can optionally receive notifications when the iCloud Syncs change so you can react accordingly."/>
 
 <meta property="og:title" content="AIiCloudSync" />
 <meta property="og:description" content="GitHub Repository
- AIiCloudSync AIiCloudSync is a simple Package written in Swift to synchronize specific UserDefaults with the iCloud Key Value store (NSUbiquitousKeyValueStore).
+AIiCloudSync AIiCloudSync is a simple Package written in Swift to synchronize specific UserDefaults with the iCloud Key Value store (NSUbiquitousKeyValueStore).
 To use this package, create a single instance of AIiCloudSync, and keep a reference to it. Once you create it, you don&rsquo;t need to worry about it any longer. It will automatically sync changes between iCloud and your local UserDefaults through the lifetime of your application. You can optionally receive notifications when the iCloud Syncs change so you can react accordingly." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.andyibanez.com/projects/aiicloudsync/" />
@@ -48,7 +48,7 @@ To use this package, create a single instance of AIiCloudSync, and keep a refere
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -210,40 +210,23 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p><a href="https://github.com/AndyIbanez/AIiCloudSync">GitHub Repository</a></p>
-
-<hr>
-
+    <p><a href="https://github.com/AndyIbanez/AIiCloudSync">GitHub Repository</a></p>
+<!-- raw HTML omitted -->
 <h1 id="aiicloudsync">AIiCloudSync</h1>
-
 <p>AIiCloudSync is a simple Package written in Swift to synchronize specific UserDefaults with the iCloud Key Value store (<code>NSUbiquitousKeyValueStore</code>).</p>
-
 <p>To use this package, create a single instance of <code>AIiCloudSync</code>, and keep a reference to it. Once you create it, you don&rsquo;t need to worry about it any longer. It will automatically sync changes between iCloud and your local UserDefaults through the lifetime of your application. You can optionally receive notifications when the iCloud Syncs change so you can react accordingly.</p>
-
 <h1 id="usage">Usage</h1>
-
 <p>Using AIiCloudSync is as &ldquo;set-and-forget&rdquo; as possible. You create instances for all the User Defaults suite names you want to sync. You can optionally pass in <code>nil</code> if you want to synchronize with the standard User Defaults.</p>
-
 <p>Add a property to your app delegate or scene delegate with the following code:</p>
-
-<pre><code class="language-swift">let myCustomDefaultsSync = AIiCloudSync(prefix: &quot;sync&quot;, suiteName: &quot;mySuiteName&quot;) // For defaults with a suite name
-let standardDefaultsSync = AIiCloudSync(prefix: &quot;sync&quot;) // For standard user defaults.
-</code></pre>
-
-<p>AIiCloudSync will only sync the defaults that have the specified prefix.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> myCustomDefaultsSync = AIiCloudSync(<span style="color:#66d9ef">prefix</span>: <span style="color:#e6db74">&#34;sync&#34;</span>, suiteName: <span style="color:#e6db74">&#34;mySuiteName&#34;</span>) <span style="color:#75715e">// For defaults with a suite name</span>
+<span style="color:#66d9ef">let</span> standardDefaultsSync = AIiCloudSync(<span style="color:#66d9ef">prefix</span>: <span style="color:#e6db74">&#34;sync&#34;</span>) <span style="color:#75715e">// For standard user defaults.</span>
+</code></pre></div><p>AIiCloudSync will only sync the defaults that have the specified prefix.</p>
 <h2 id="notifications">Notifications</h2>
-
 <p>AIiCloudSync can notify you when it receives changes from the iCloud key value store. To receive notifications, you can register to receive  <code>AIiCloudSync.didUpdateToLatest</code> notifications from the notification center. When you receive this notification, the dictionary may include a <code>userInfo</code> dictionary with additional information. The framework has a  <code>AIiCloudSync.UserInfoKey</code> class with the following static properties to access the user info keys:</p>
-
 <ul>
 <li><code>suiteName</code>: This key will be included and will contain the suiteName of the user defaults that just changed. If you initialized a <code>AIiCloudSync</code> object with no <code>suiteName</code>, this key will not be included.</li>
 </ul>
-
 <p>The following snippet shows how you can register for these notifications:</p>
-
 <pre><code>let ns = NotificationCenter.default
 
 ns.addObserver(
@@ -259,26 +242,16 @@ queue: nil) { (notification) in
         }
     }
 }
-</code></pre>
-
-<p>If you don&rsquo;t understand how <code>NSNotificationCenter</code> works, you can read a primer on it <a href="https://www.andyibanez.com/posts/nsnotificationcenter/">here</a>.</p>
-
+</code></pre><p>If you don&rsquo;t understand how <code>NSNotificationCenter</code> works, you can read a primer on it <a href="https://www.andyibanez.com/posts/nsnotificationcenter/">here</a>.</p>
 <h2 id="other-recommendations">Other Recommendations</h2>
-
 <p>Avoid having User Default keys that use a dash symbol (<code>-</code>) in their name. Internally, AIiCloudSync uses this symbol for some operations in the sync progress.</p>
-
 <h1 id="changelog">Changelog</h1>
-
-<h2 id="1-0-0">1.0.0</h2>
-
+<h2 id="100">1.0.0</h2>
 <ul>
 <li>Initial release.</li>
 </ul>
-
 <h1 id="credits-and-thanks">Credits and Thanks</h1>
-
 <p>This project is a pure Swift implementation of <a href="https://github.com/MugunthKumar/MKiCloudSync">MKiCloudSync</a>, an Objective-C dependency for syncing User Defaults with the iCloud Ubiquity Store, created by Mugunth Kumar. I created this project because the original code hasn&rsquo;t seen an update in over 5 years, and because my own needs demand I avoid Objective-C as much as possible.</p>
-
 <p>Additionally, this version has one more additional feature which lets you specify the <code>UserDefaults</code> to sync with using a suite name. The existing implementation can only use the standard User Defaults. This also allows you to synchronize iCloud defaults with multiple different User Defaults with different suite names.</p>
 
   </div>
