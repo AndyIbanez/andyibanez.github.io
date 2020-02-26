@@ -18,7 +18,7 @@
       
       <guid>https://www.andyibanez.com/posts/analyzing-text-nltagger/</guid>
       <description>Analyzing Text with NLTagger
-In the past few weeks, we have explored how we can tokenize natural language text and how to recognize the language a natural language text is written in. This week we will continue exploring more natural language APIs provided by the Speech framework. We will learn about the NLTagger class, which allows us to to analyze natural language text to find parts of speech, lexical classes, lemma, scripts, and more.</description>
+In the past few weeks, we have explored how we can tokenize natural language text and how to recognize the language a natural language text is written in. This week we will continue exploring more natural language APIs provided by the NaturalLanguage framework. We will learn about the NLTagger class, which allows us to to analyze natural language text to find parts of speech, lexical classes, lemma, scripts, and more.</description>
     </item>
     
     <item>
