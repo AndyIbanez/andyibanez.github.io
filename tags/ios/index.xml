@@ -6,10 +6,20 @@
     <description>Recent content in ios on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 Feb 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 26 Feb 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Analyzing Natural Language Text with NLTagger</title>
+      <link>https://www.andyibanez.com/posts/analyzing-text-nltagger/</link>
+      <pubDate>Wed, 26 Feb 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/analyzing-text-nltagger/</guid>
+      <description>Analyzing Text with NLTagger
+In the past few weeks, we have explored how we can tokenize natural language text and how to recognize the language a natural language text is written in. This week we will continue exploring more natural language APIs provided by the Speech framework. We will learn about the NLTagger class, which allows us to to analyze natural language text to find parts of speech, lexical classes, lemma, scripts, and more.</description>
+    </item>
     
     <item>
       <title>Recognizing the language in a Natural Language Text with NLanguageRecognizer</title>
