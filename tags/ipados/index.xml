@@ -6,10 +6,22 @@
     <description>Recent content in ipados on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Feb 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 04 Mar 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ipados/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Finding Related Words with NLEmbedding</title>
+      <link>https://www.andyibanez.com/posts/using-nlembeddings/</link>
+      <pubDate>Wed, 04 Mar 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/using-nlembeddings/</guid>
+      <description>There may be cases in which you need to find related words to others. With the NSLEmbedding class, you can find related strings based on the proximity of their vectors.
+Using NLEmbedding Using NLEmbedding is very straight forward. A simple task is to get an array of related words, which come as an array of (String, NLDistance) back.
+The distance between words tells you how &amp;ldquo;related&amp;rdquo; they are
+let embedding = NLEmbedding.</description>
+    </item>
     
     <item>
       <title>Analyzing Natural Language Text with NLTagger</title>
