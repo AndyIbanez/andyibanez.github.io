@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ArgumentParser on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/argumentparser/</link>
+    <description>Recent content in ArgumentParser on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Mar 2020 07:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/argumentparser/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 1: Introduction &amp; Basic Usage</title>
+      <link>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part1/</link>
+      <pubDate>Wed, 18 Mar 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part1/</guid>
+      <description>A few weeks ago, the Swift project introduced the ArgumentParser package. This package makes it easy to write command line tools by providing automatic parsing, documentation generation, and more.
+In this article, we will explore ArgumentParser, and how we can start building some command line tools with it, using the basic building blocks, which are three Property Wrappers called Argument, Option, and Flag.
+Project Configuration Open Xcode and create a new project of type &amp;ldquo;Command Line Tool&amp;rdquo;.</description>
+    </item>
+    
+  </channel>
+</rss>
