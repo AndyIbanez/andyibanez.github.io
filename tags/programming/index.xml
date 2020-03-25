@@ -6,10 +6,20 @@
     <description>Recent content in programming on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Mar 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 25 Mar 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 2: Validation &amp; Errors</title>
+      <link>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part2/</link>
+      <pubDate>Wed, 25 Mar 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part2/</guid>
+      <description>Last week we explored how we can build a simple command line tool. We learned how to use @Argument, @Option, and @Flag as the building blocks for ArgumentParser command line tools. We we saw last week was enough to build many simple tools, but there&amp;rsquo;s still a lot to explore, and cool things to learn.
+This week we will learn about input validation and errors, so we can build better tools that take more constrained parameters when relevant.</description>
+    </item>
     
     <item>
       <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 1: Introduction &amp; Basic Usage</title>
