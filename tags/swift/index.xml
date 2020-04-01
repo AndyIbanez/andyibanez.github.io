@@ -6,10 +6,20 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Mar 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 01 Apr 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 2: Subcommands</title>
+      <link>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part3/</link>
+      <pubDate>Wed, 01 Apr 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part3/</guid>
+      <description>We have been having a lot of fun with ArgumentParser in the last two weeks, and the fun is not about to end any time soon. We have explored how we can build basic commands with the basic building blocks of the framework, and how we can perform advanced validation and error handling. This week, we will something very useful: Subcommands.
+Subcommands If you have used git directly from the command line before, you have used subcommands before.</description>
+    </item>
     
     <item>
       <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 2: Validation &amp; Errors</title>
