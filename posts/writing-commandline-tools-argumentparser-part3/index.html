@@ -302,7 +302,8 @@ OPTIONS:
 
 SUBCOMMANDS:
   direct-string   
-</code></pre><h3 id="propagating-options-with-optiongroup">Propagating Options with @OptionGroup</h3>
+</code></pre><p><code>CommandConfiguration</code> can also take a <code>defaultCommand</code> to run, which you can use when your command is run without specifying a subcommand.</p>
+<h3 id="propagating-options-with-optiongroup">Propagating Options with @OptionGroup</h3>
 <p>Introducing now a new property wrapper to your <code>ArgumentParser</code> toolbox, we have <code>@OptionGroup</code>. This property wrapper allows us to receive the arguments defined in a <code>ParsableArguments</code> type.</p>
 <p>To use, simply add a line like the following in a subcommand:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@OptionGroup() <span style="color:#66d9ef">var</span> parentOptions: Options
@@ -424,6 +425,11 @@ SUBCOMMANDS:
       <span class="navigation-tittle">Writing Command Line Tools in Swift Using ArgumentParser, Part 2: Validation &amp; Errors</span>
     </a>
     
+    
+    <a href="/posts/writing-commandline-tools-argumentparser-part4/" class="navigation-next">
+      <span class="navigation-tittle">Writing Command Line Tools in Swift Using ArgumentParser, Part 4: Customizing Help</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
     
 </div>
 

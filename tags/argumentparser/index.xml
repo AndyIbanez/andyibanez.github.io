@@ -6,10 +6,21 @@
     <description>Recent content in ArgumentParser on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Apr 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/argumentparser/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 4: Customizing Help</title>
+      <link>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part4/</link>
+      <pubDate>Wed, 08 Apr 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part4/</guid>
+      <description>Writing Command Line Tools in Swift Using ArgumentParser, Part 4: Customizing Help
+In the past few weeks, we have explored how to use ArgumentParser and many of its features. It&amp;rsquo;s great that ArgumentParser provides a lot of functionality for free, but it wouldn&amp;rsquo;t make sense to build great tools that users can&amp;rsquo;t figure out how to use. This week is all about that.
+We saw how ArgumentParser can build a lot of documentation for free, but we can actually do more.</description>
+    </item>
     
     <item>
       <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 3: Subcommands</title>
