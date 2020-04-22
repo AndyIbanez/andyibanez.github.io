@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 15 Apr 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 22 Apr 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 6: Releasing And Installing Our Command Line Tool</title>
+      <link>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part6/</link>
+      <pubDate>Wed, 22 Apr 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part6/</guid>
+      <description>I wasn&amp;rsquo;t sure if I should include this article as part of this series. But for the sake of completion, I decided to include it. This article is very short, but it tells us how to actually install our own tool in a system so we can start using it without writing its full path.
+To recap, and before I end my series in Swift&amp;rsquo;s ArgumentParser, let&amp;rsquo;s give a quick overview of everything we have learned so far:</description>
+    </item>
     
     <item>
       <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 5: Tools with Asynchronous APIs</title>
