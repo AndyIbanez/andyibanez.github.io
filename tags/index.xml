@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Apr 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 27 Apr 2020 00:51:02 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,63 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 22 Apr 2020 07:00:00 -0400</pubDate>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dynamiccallable</title>
+      <link>https://www.andyibanez.com/tags/dynamiccallable/</link>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/dynamiccallable/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dynamicmemberlookup</title>
+      <link>https://www.andyibanez.com/tags/dynamicmemberlookup/</link>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/dynamicmemberlookup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dynamism</title>
+      <link>https://www.andyibanez.com/tags/dynamism/</link>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/dynamism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift-evolution</title>
+      <link>https://www.andyibanez.com/tags/swift-evolution/</link>
+      <pubDate>Mon, 27 Apr 2020 00:51:02 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift-evolution/</guid>
       <description></description>
     </item>
     
@@ -26,24 +80,6 @@
       <pubDate>Wed, 22 Apr 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/argumentparser/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 22 Apr 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 22 Apr 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
     </item>
     
