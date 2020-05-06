@@ -6,10 +6,20 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 27 Apr 2020 00:51:02 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 03 May 2020 22:24:46 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quick Introduction Reflection in Swift</title>
+      <link>https://www.andyibanez.com/posts/quick-introduction-reflection-swift/</link>
+      <pubDate>Sun, 03 May 2020 22:24:46 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/quick-introduction-reflection-swift/</guid>
+      <description>If you have been programming for a few years, you have undoubtedly come across the term Reflection. This feature allows us to inspect and work with the members of a type.
+if this doesn&amp;rsquo;t make sense, suppose you wanted to check what members a type has. How would you do this? Ideally you&amp;rsquo;d like to iterate over its members and print them. This is a very basic application of Reflection, but it should let think of other potential uses for it.</description>
+    </item>
     
     <item>
       <title>Understanding @dynamicMemberLookup and @dynamicCallable in Swift</title>
