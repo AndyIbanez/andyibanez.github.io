@@ -4,7 +4,57 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2020-05-06T22:24:46-04:00</lastmod>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/dependency-injection-storyboards/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ios/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/macos/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/storyboard/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/tvos/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/watchos/</loc>
+    <lastmod>2020-05-13T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -23,32 +73,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2020-05-06T22:24:46-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2020-05-06T22:24:46-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/posts/quick-introduction-reflection-swift/</loc>
     <lastmod>2020-05-06T22:24:46-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/reflection/</loc>
-    <lastmod>2020-05-06T22:24:46-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2020-05-06T22:24:46-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
     <lastmod>2020-05-06T22:24:46-04:00</lastmod>
   </url>
   
@@ -138,32 +168,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2020-03-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
     <lastmod>2020-03-04T07:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2020-03-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/natural-language/</loc>
-    <lastmod>2020-03-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/tvos/</loc>
-    <lastmod>2020-03-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/watchos/</loc>
     <lastmod>2020-03-04T07:00:00-04:00</lastmod>
   </url>
   

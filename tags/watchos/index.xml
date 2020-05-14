@@ -6,10 +6,22 @@
     <description>Recent content in watchos on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Mar 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/watchos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Dependency Injection with Storyboards on Apple Platforms</title>
+      <link>https://www.andyibanez.com/posts/dependency-injection-storyboards/</link>
+      <pubDate>Wed, 13 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/dependency-injection-storyboards/</guid>
+      <description>Every iOS developer has written a line of code like this one at least once:
+class DollInfoViewController: UIViewController { var dollModel: Doll? override func viewDidLoad() { super.viewDidLoad() // Do any additional setup after loading the view. } } Or in the worst case, you may have seen code like this:
+var dollModel: Doll! Then, when you want to create a view controller of that type you&amp;rsquo;d do:
+// First we need to check if we can actually instantiate the view controller.</description>
+    </item>
     
     <item>
       <title>Finding Related Words with NLEmbedding</title>
