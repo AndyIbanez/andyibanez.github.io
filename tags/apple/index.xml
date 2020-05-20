@@ -6,10 +6,21 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 May 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 20 May 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Writing Content Blockers for iOS</title>
+      <link>https://www.andyibanez.com/posts/content-blockers-in-ios/</link>
+      <pubDate>Wed, 20 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/content-blockers-in-ios/</guid>
+      <description>A few years ago, Apple introduced the Content Blocking APIs to Safari. Using these APIs, developers are able to write extensions that allow Safari to block content users do not want to see.
+Most commonly used for ads, content blockers are not really ad blockers. While they can, and commonly do, block ads, developers can write content blockers for all kind of content, including profanity, or other questionable content.
+Content Blocking VS Ad Blocking.</description>
+    </item>
     
     <item>
       <title>Dependency Injection with Storyboards on Apple Platforms</title>

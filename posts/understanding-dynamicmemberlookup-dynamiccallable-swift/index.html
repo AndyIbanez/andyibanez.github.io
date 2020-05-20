@@ -251,7 +251,7 @@ if (!doNotTrack) {
 <p>Swift started adding features that allows it to behave closer to the behavior of more dynamic languages. The long term implication is that this allows Swift to work alongside such languages without too many downsides.</p>
 <p>In this article we will talk about two features Swift has added in the last two major versions to make this possible, and how they work without necessarily weakening Swift&rsquo;s features that ultimately make it a safe language.</p>
 <h1 id="accessing-member-properties-with-dynamicmemberlookup">Accessing Member Properties with @dynamicMemberLookup</h1>
-<p>Introduced in Swift 4.2, Swift introduced <code>@dynamicMemberLookup</code>. Marking your objects with this class will require them to a implement a subscript with the following signature:</p>
+<p>Introduced in Swift 4.2, Swift introduced <code>@dynamicMemberLookup</code>. Marking your objects with this attribute will require them to a implement a subscript with the following signature:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">subscript</span>(dynamicMember member: String) -&gt; AnyObject
 </code></pre></div><p>Where <code>AnyObject</code> can be any type. <code>@dynamicMemberLookup</code> allows you to specify any property in your class - even if it doesn&rsquo;t exist -, and return a value for it.</p>
 <p>Consider the following example:</p>
