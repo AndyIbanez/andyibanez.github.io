@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 20 May 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
@@ -23,16 +23,34 @@
     <item>
       <title>ios</title>
       <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 20 May 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>keychain</title>
+      <link>https://www.andyibanez.com/tags/keychain/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/keychain/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>macos</title>
       <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Wed, 20 May 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/macos/</guid>
       <description></description>
@@ -41,7 +59,7 @@
     <item>
       <title>programming</title>
       <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 20 May 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/programming/</guid>
       <description></description>
@@ -50,9 +68,27 @@
     <item>
       <title>swift</title>
       <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 20 May 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvos</title>
+      <link>https://www.andyibanez.com/tags/tvos/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/tvos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -62,24 +98,6 @@
       <pubDate>Wed, 13 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/storyboard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tvos</title>
-      <link>https://www.andyibanez.com/tags/tvos/</link>
-      <pubDate>Wed, 13 May 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/tvos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 13 May 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -170,15 +188,6 @@
       <pubDate>Wed, 11 Mar 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/wwdc2019/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 04 Mar 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
       <description></description>
     </item>
     

@@ -6,10 +6,20 @@
     <description>Recent content in macos on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 May 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 27 May 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using the iOS Keychain in Swift</title>
+      <link>https://www.andyibanez.com/posts/using-ios-keychain-swift/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/using-ios-keychain-swift/</guid>
+      <description>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &amp;ldquo;Using the iOS Keychain&amp;rdquo;. Originally written in Objective-C, the old version has been archived but it is accesible here.
+The Keychain is the place where you would store sensitive data. As secure as iOS currently is, the keychain is the right place to store passwords, authentication tokens, and other sensitive data. You should not store this kind of data in UserDefaults, even if iOS has made it harder to access that data for normal users in the latest versions.</description>
+    </item>
     
     <item>
       <title>Writing Content Blockers for iOS</title>
