@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.65.3" />
+
+    
+    
+    
+
+<title>Using the iOS Keychain with Biometrics • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using the iOS Keychain with Biometrics"/>
+<meta name="twitter:description" content="Learn how to use the iOS Keychain with Biometrics, such as Touch ID or Face ID."/>
+
+<meta property="og:title" content="Using the iOS Keychain with Biometrics" />
+<meta property="og:description" content="Learn how to use the iOS Keychain with Biometrics, such as Touch ID or Face ID." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/ios-keychain-touch-id-face-id/" />
+<meta property="article:published_time" content="2020-06-03T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-06-03T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2020 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Using the iOS Keychain with Biometrics</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jun 3, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/keychain">keychain</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 6 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>If you have been <a href="https://www.andyibanez.com/posts/using-ios-keychain-swift/">using the keychain on your iOS apps</a> you may want to start using Face ID/Touch ID to let your user access your app and their data. This is a common use case but it&rsquo;s very easy to do incorrectly.</p>
+<p>Apple introduced Touch ID all the way back in 2013, and ever since then, every iOS device has come with some sort of biometric authentication method, be it Touch ID or Face ID. This has allowed developers to implement convenient unlocking into their apps to access sensitive data without having to ask for the passcode. If your app &ldquo;locks&rdquo; access in any way your users are probably expecting to &ldquo;unlock&rdquo; with their finger or Face ID, so it is your responsibility to implement in a way that is secure and can&rsquo;t be vulnered.</p>
+<h1 id="the-wrong-way">The Wrong Way</h1>
+<p>If you have implemented Touch ID or Face ID in your app before, you have probably seen articles or tutorials that let you to grab the boolean of a biometric authentication operation and work from there. Something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">  <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">requestBiometricUnlock</span>() {
+    <span style="color:#66d9ef">let</span> context = LAContext()
+    
+    <span style="color:#66d9ef">var</span> error: NSError? = <span style="color:#66d9ef">nil</span>
+    
+    <span style="color:#66d9ef">let</span> canEvaluate = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &amp;error)
+    
+    <span style="color:#66d9ef">if</span> canEvaluate {
+      <span style="color:#66d9ef">if</span> context.biometryType <span style="color:#f92672">!=</span> .<span style="color:#66d9ef">none</span> {
+        print(<span style="color:#e6db74">&#34;We got a biometric&#34;</span>)
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: <span style="color:#e6db74">&#34;To access your data&#34;</span>) { (success, error) <span style="color:#66d9ef">in</span>
+          <span style="color:#66d9ef">if</span> success {
+            print(<span style="color:#e6db74">&#34;Authenticated successfully!&#34;</span>)
+          }
+        }
+      }
+    }
+  }
+</code></pre></div><p>In the above code, first we check if we have any available biometrics. If we do, we will try authenticating with the existing biometric. Once the function calls our closure, it will contain a boolean indicating if the authentication succeeded or if it failed. If it was successfull, you can access your data.</p>
+<p>This is actually a very naïve approach because in theory, a jailbreak tweak could hook into your app, trick it to believe a successful biometric scan was performed, and steal any information behind that simple <code>if true</code> call.</p>
+<p>This code <em>probably</em> has some uses and it should be used strictly for convenience and not for actual security. The right way to lock sensitive data in the keychain while allowing for biometric access is to create your keychain item with a specific access policy, also known as an access control.</p>
+<p>There is a nice article <a href="https://medium.com/@pig.wig45/touch-id-authentication-bypass-on-evernote-and-dropbox-ios-apps-7985219767b2">here</a> about how easy it is to bypass the Touch ID/Face ID prompt, using the Evernote and Dropbox iOS apps as examples.</p>
+<h1 id="keychain-and-access-control">Keychain and Access Control</h1>
+<p>When you create an access control, you specify two conditions under which a keychain item should be available:</p>
+<ul>
+<li>The level of accessibility for the item: Whether you want the item to be accessible after the user unlocks the device, every time they authenticate, or other.</li>
+<li>The authentication level: This flag lets us specify if the item can be accessed any time, as in, only when the user is present, and more. This condition lets us set the biometric conditions to allow our keychain items to be accessed.</li>
+</ul>
+<p>These APIs are governed by the <code>Security</code> framework just like the keychain, so make sure you import it before moving on.</p>
+<h2 id="creating-an-access-control">Creating An Access Control.</h2>
+<p>To create an access control, you use the <code>SecAccessControlCreateWithFlags</code> function. This function takes four parameters, of which we mostly care about the second and third one.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> accessControl = SecAccessControlCreateWithFlags(
+  <span style="color:#66d9ef">nil</span>,
+  kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+  .userPresence,
+  <span style="color:#66d9ef">nil</span>)
+</code></pre></div><p>The first parameter is an allocator. When we use nil, we use the default one. I do not know when it would be appropriate to use a different allocator.</p>
+<p>The second parameter allows us to specify the accessibility level. Using the <code>kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly</code> constraints the item into only being accessed when the device has a passcode set (the <code>WhenPasscodeSet</code> part of the constant name) - if the device has no passcode, trying to add a new keychain item is not going to do anything -, and for this device only (the <code>ThisDeviceOnly</code> part of the constant), meaning the item will not be shared via iCloud Keychain or even from a backup. It is exclusive to the device that created it.</p>
+<p>The <code>SecAccessControlCreateFlags.userPresence</code> flag lets us specify that we want the user to be there when the keychain is accessed. To do this, under this specific flag, the system will prompt for a biometric authentication, falling back to the device&rsquo;s passcode when necessary. You can restrict the item to use only biometric with <code>.biometricCurrentSet</code> or only the device passcode with <code>.devicePasscode</code>. You have a lot of flexibility, but <code>.userPresence</code> is the most used one, as it defaults to biometrics and fallbacks to passcode automatically.</p>
+<h2 id="adding-items-with-an-access-control">Adding Items With An Access Control.</h2>
+<p>To add a new keychain item with your new access control, you don&rsquo;t have to do much different like when you add an item with <code>SecItemAdd</code>. The only difference is your query will have a <code>kSecAttrAccessControl</code> key with your access control.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> accessControl = SecAccessControlCreateWithFlags(
+  <span style="color:#66d9ef">nil</span>,
+  kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+  .userPresence,
+  <span style="color:#66d9ef">nil</span>)<span style="color:#f92672">!</span>
+
+<span style="color:#66d9ef">let</span> query = [
+  kSecClass: kSecClassInternetPassword,
+  kSecAttrAccount: <span style="color:#e6db74">&#34;andyibanez&#34;</span>,
+  kSecValueData: <span style="color:#e6db74">&#34;Pullip2020&#34;</span>.data(using: .utf8)<span style="color:#f92672">!</span>,
+  kSecAttrServer: <span style="color:#e6db74">&#34;pullipstyle.com&#34;</span>,
+  kSecAttrAccessControl: accessControl,
+  kSecReturnData: <span style="color:#66d9ef">true</span>
+] <span style="color:#66d9ef">as</span> CFDictionary
+
+<span style="color:#66d9ef">var</span> result: AnyObject?
+
+<span style="color:#66d9ef">let</span> status = SecItemAdd(query, &amp;result)
+</code></pre></div><p>As you can see, our dictionary is not too different. One key to set the access control and that is all we need. From now on, whenever we need this item, we will need to authenticate the user, either with biometrics or passcode (because we used the <code>.userPresent</code> setting).</p>
+<h2 id="retrieving-items-with-authentication">Retrieving Items with Authentication</h2>
+<p>To retrieve items, once again you just have to write a common query. But you do not have to specify the access control this time.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> searchQuery = [
+  kSecClass: kSecClassInternetPassword,
+  kSecAttrAccount: <span style="color:#e6db74">&#34;andyibanez.com&#34;</span>,
+  kSecAttrServer: <span style="color:#e6db74">&#34;pullipstyle.com&#34;</span>,
+  kSecMatchLimit: kSecMatchLimitOne,
+  kSecReturnData: <span style="color:#66d9ef">true</span>,
+  kSecReturnAttributes: <span style="color:#66d9ef">true</span>,
+  kSecUseOperationPrompt: <span style="color:#e6db74">&#34;Access your data&#34;</span>
+] <span style="color:#66d9ef">as</span> CFDictionary
+
+<span style="color:#66d9ef">var</span> item: AnyObject?
+
+<span style="color:#66d9ef">let</span> status = SecItemCopyMatching(searchQuery, &amp;item)
+</code></pre></div><p>The system is smart enough to prompt for the biometrics when it finds an item that was created with a given access control. The <code>kSecUseOperationPrompt</code> key allows us to specify a user-visible string, and it&rsquo;s optional.</p>
+<p>You may be wondering how does this work when your query matches multiple items, some of which may not have an access control associated to them? If you want to perform a wide search, the item will return all the items that match, but it will ask you to provide authentication for every protected item. You can perform wide searches skipping the ones with a biometric access control by providing the <code>kSecUseAuthenticationUI</code> key with the <code>kSecUseAuthenticationUISkip</code> value in your search query.</p>
+<p><strong>Note:</strong> To test this, you will need to run your code in the simulator. Because you can&rsquo;t set a device passcode in the simulator, this code runs and finished immediately after you run it, even if you enroll Touch ID/Face ID in the simulator. This gives you the impression it is not working properly, so keep that in mind if you are using this feature.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Using biometrics with the keychain is very easy, so you should definitely use it if you are planning to hide credentials behind Touch ID/Face ID. I&rsquo;ve seen a lot of code who don&rsquo;t do this, and it is dangerous to do. There&rsquo;s very little use to use the LocalAuthentication framework directly when dealing with credentials, so use the keychain this way when you need to.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/using-ios-keychain-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Using the iOS Keychain in Swift</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
