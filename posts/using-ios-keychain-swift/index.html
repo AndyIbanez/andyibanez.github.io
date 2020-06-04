@@ -445,28 +445,28 @@ print(<span style="color:#e6db74">&#34;Username: </span><span style="color:#e6db
 print(<span style="color:#e6db74">&#34;Password: </span><span style="color:#e6db74">\(</span>password<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 </code></pre></div><p>If the query doesn&rsquo;t find any items to return, <code>result</code> will be nil, so make sure you check for that.</p>
 <p>To return more than one, we will specify <code>kSecMatchLimit</code> to a high enough number to return all the entries:</p>
-<pre><code>let query = [
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> query = [
   kSecClass: kSecClassInternetPassword,
-  kSecAttrServer: &quot;pullipstyle.com&quot;,
-  kSecReturnAttributes: true,
-  kSecReturnData: true,
-  kSecMatchLimit: 5
-] as CFDictionary
+  kSecAttrServer: <span style="color:#e6db74">&#34;pullipstyle.com&#34;</span>,
+  kSecReturnAttributes: <span style="color:#66d9ef">true</span>,
+  kSecReturnData: <span style="color:#66d9ef">true</span>,
+  kSecMatchLimit: <span style="color:#ae81ff">5</span>
+] <span style="color:#66d9ef">as</span> CFDictionary
 
-var result: AnyObject?
-let status = SecItemCopyMatching(query, &amp;result)
+<span style="color:#66d9ef">var</span> result: AnyObject?
+<span style="color:#66d9ef">let</span> status = SecItemCopyMatching(query, &amp;result)
 
-print(&quot;Operation finished with status: \(status)&quot;)
-let array = result as! [NSDictionary]
+print(<span style="color:#e6db74">&#34;Operation finished with status: </span><span style="color:#e6db74">\(</span>status<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+<span style="color:#66d9ef">let</span> array = result <span style="color:#66d9ef">as</span>! [NSDictionary]
 
-array.forEach { dic in
-  let username = dic[kSecAttrAccount] ?? &quot;&quot;
-  let passwordData = dic[kSecValueData] as! Data
-  let password = String(data: passwordData, encoding: .utf8)!
-  print(&quot;Username: \(username)&quot;)
-  print(&quot;Password: \(password)&quot;)
+array.forEach { dic <span style="color:#66d9ef">in</span>
+  <span style="color:#66d9ef">let</span> username = dic[kSecAttrAccount] ?? <span style="color:#e6db74">&#34;&#34;</span>
+  <span style="color:#66d9ef">let</span> passwordData = dic[kSecValueData] <span style="color:#66d9ef">as</span>! Data
+  <span style="color:#66d9ef">let</span> password = String(data: passwordData, encoding: .utf8)<span style="color:#f92672">!</span>
+  print(<span style="color:#e6db74">&#34;Username: </span><span style="color:#e6db74">\(</span>username<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+  print(<span style="color:#e6db74">&#34;Password: </span><span style="color:#e6db74">\(</span>password<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
 }
-</code></pre><p>Now the code has been adapted to work with an array instead of a dictionary, and we can now get all the entries that match the query.</p>
+</code></pre></div><p>Now the code has been adapted to work with an array instead of a dictionary, and we can now get all the entries that match the query.</p>
 <p>One annoying detail of specifying <code>kSecMatchLimit</code> is that when your query produces zero results, <code>result</code> will again be <code>nil</code> instead of an empty array, so keep that in mind.</p>
 <p>The more attribute keys you add, the more specific your queries become.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> query = [
