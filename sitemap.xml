@@ -4,27 +4,72 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/scanning-and-text-recognition-with-visionkit/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ocr/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/scanning/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/vision-framework/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/visionkit/</loc>
+    <lastmod>2020-06-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -34,26 +79,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2020-06-03T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
     <lastmod>2020-06-03T07:00:00-04:00</lastmod>
   </url>
   

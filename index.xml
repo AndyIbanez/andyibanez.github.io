@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Document Scanning and Text Recognition With Vision and VisionKit on iOS</title>
+      <link>https://www.andyibanez.com/posts/scanning-and-text-recognition-with-visionkit/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/scanning-and-text-recognition-with-visionkit/</guid>
+      <description>It is amazing what we can do with smartphones these days. Document scanning and text recognition are nothing new. But being able to have such a functionality in our pockets is pretty neat. These days we can create apps that have such features very quickly thanks to the push Apple has been doing to promote Machine Learning and Artifical Intelligence on their devices.
+Starting on iOS 11, we can natively scan documents with a system framework called VisionKit, and we can perform operations on images using a framework called Vision.</description>
+    </item>
+    
+    <item>
       <title>Using the iOS Keychain with Biometrics</title>
       <link>https://www.andyibanez.com/posts/ios-keychain-touch-id-face-id/</link>
       <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>

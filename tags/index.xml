@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jun 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>ios</title>
       <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios/</guid>
       <description></description>
@@ -32,9 +32,63 @@
     <item>
       <title>ipados</title>
       <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ocr</title>
+      <link>https://www.andyibanez.com/tags/ocr/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ocr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scanning</title>
+      <link>https://www.andyibanez.com/tags/scanning/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/scanning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vision framework</title>
+      <link>https://www.andyibanez.com/tags/vision-framework/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/vision-framework/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visionkit</title>
+      <link>https://www.andyibanez.com/tags/visionkit/</link>
+      <pubDate>Wed, 10 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/visionkit/</guid>
       <description></description>
     </item>
     
@@ -53,24 +107,6 @@
       <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
     </item>
     
