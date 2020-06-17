@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 17 Jun 2020 11:22:35 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Please Help, Apple Is Threatening To Terminate My Apple Developer Account With No Clear Reason.</title>
+      <link>https://www.andyibanez.com/posts/please-help-apple-threatening-terminate-apple-developer-account/</link>
+      <pubDate>Wed, 17 Jun 2020 11:22:35 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/please-help-apple-threatening-terminate-apple-developer-account/</guid>
+      <description>Hello guys.
+I have been holding off to write this in case I was able to solve this problem on my own (which I tried to do very patiently), but the fact that I cannot talk to a human at Apple has prompted me to write this. Today I received another generic response from them (probably from a bot), so I&amp;rsquo;m prompted to write this to try to reach out to someone who can help.</description>
+    </item>
     
     <item>
       <title>Document Scanning and Text Recognition With Vision and VisionKit on iOS</title>
