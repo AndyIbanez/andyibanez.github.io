@@ -231,7 +231,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 12 min read
+    <i class="fas fa-clock"></i> 15 min read
 </div>
 
 
@@ -241,6 +241,20 @@ if (!doNotTrack) {
   <div class="post">
     <p><strong>UPDATE</strong></p>
 <p>June 18, 2020 at 10:24 PM EST: I have made contact with a human at Apple after they reached to me via Resolution Center. We are working on solving the issues, and while I have not been told &ldquo;yes, your account will not be terminated&rdquo;, I believe in good faith we will work something out. Yes, the issue was my fault after all, but they are being very understanding and are letting me redeem myself by uploading a new binary. A proper update on this issue will come at a later date.</p>
+<p><strong>SECOND AND FINAL UPDATE</strong></p>
+<p>June 19, 11:47 PM EST:</p>
+<p>After talking to Bill from Apple, I managed to avoid getting terminated.</p>
+<p>The issue was indeed my fault. Turns out that at some point after the first public TestFlight build, I built some internal features to help me test the app easier. These features were not meant to reach any public builds, but they slipped (guess who didn&rsquo;t know about <code>#available</code> a few years ago). One of these internal test tools was the ability to import data so I could test known servers that worked with the app. These testing features were found by the App Review team post-approval (many years after approval, in fact), and they decided to remove the app and flag me for termination because it looked like I was shadily deploying un-reviewed features to my users to bypass the App Store. Couple that with the fact the App had been on TestFlight for three years, and it really looked like I was bypassing the App Store breaking the rules.</p>
+<p>I was reached on the Resolution Center of my app after this article blew up and I was given a phone number I could call. I do not know if my article triggered a human to contact me, or if they were going to do it eventually, but I was told they read this. On the first call, I was explained what the problem was. After a few calls I was told that I was being given a second chance by the App Review team, and I have been working to fix the issue since.</p>
+<p>It was hard to reach a human at Apple when my account was flagged, but after I finally managed to, everything progressed smoothly.</p>
+<p>There are a few lessons to learn from this:</p>
+<ul>
+<li>If you build internal functionality on your app, make sure it is completely removed from public builds.</li>
+<li>Apple can and will re-review apps years after they have been approved to check for compliance. This means both App Store and TestFlight apps. This is a good thing for users, as it helps fight really shady apps that start doing something else, probably with a server flag. We have known that Apple silently reviews App Store apps again years or months after they are approved - now we know this applies to TestFlight builds as well.</li>
+<li>Reaching humans is hard, but extremely rewarding when you manage to do it. To be clear, you can reach a human most of the time when dealing with App Review. They have forms and easy methods to do just that. But when your issue leaves the realm of App Review (in my case, I&rsquo;m guessing my issue was handled by some sort of Fraud department), it&rsquo;s <em>hard</em>.</li>
+<li>This is still speculation, but my guess that the app was on TestFlight for too long wasn&rsquo;t an issue on its own. It&rsquo;s the fact that a internal features were deployed AND it looked like I had been deploying these features secretely for years that got me flagged. I lean towards saying that having an app on TestFlight for years is not an issue on its own, but I will probably refrain from doing that for now on. At the very least, I will remove builds and force them to go through manual review every couple of months. Especially after WWDC, because I will be busy doing changes that work well for iOS 14 and I&rsquo;m sure the app will be mutating a lot. :-)</li>
+</ul>
+<p>In this article, I said that I was ready to accept any punishment done to me if it indeed turned out it was my fault. Turns out I was entirely to blame, but Apple (specifically Bill), managed to prevent my termination from the program. I cannot thank Bill enough for his kindness and understanding, despite the fact that the issue was, in fact, quite big. It&rsquo;s always great when you can reach a human, and it shouldn&rsquo;t be complicated to do when you really need to reach out.</p>
 <p><strong>ORIGINAL POST</strong></p>
 <!-- raw HTML omitted -->
 <p>Hello guys.</p>
