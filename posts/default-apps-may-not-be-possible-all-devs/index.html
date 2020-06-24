@@ -256,7 +256,7 @@ if (!doNotTrack) {
 <p>Please note the vast majority of my thoughts here are based on a very short response I received on the dev forums. I may be awfully wrong. I am leaving a link to my original question in the dev forums so you can check it out, and reach your own conclusions. The link can be viewed by anyone and it&rsquo;s not locked behind an Apple Developer membership.</p>
 <p>I spent a good amount - if not all - of my free time today trying to figure out how someone would make an app that can be set as the default Web Browser or default E-Mail client on iOS. After not finding any documentation on how would devs create such an app, I asked on the <a href="https://developer.apple.com/forums/thread/650027">Apple Dev Forums</a>.</p>
 <p>The answer I got makes me think that not all web browsers and e-mail clients may obtain the privilege of being used as default apps on iOS.</p>
-<p>To be able to be set as a default app, an iOS app must:</p>
+<p>To be able to be set as a default default web browser, an iOS app must:</p>
 <ul>
 <li>Get the <code>com.apple.developer.default-web-browser</code> &ldquo;managed entitlement&rdquo;. By &ldquo;managed entitlement&rdquo;, I understand that only Apple can give you it. It wouldn&rsquo;t be the first API hidden behind an entitlement that not everyone can get.</li>
 <li>You must adopt minimum functionality. This is fully expected and I wouldn&rsquo;t argue against it as link handling would have to be done exactly the same way Safari does it.</li>
