@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wwdc2020 on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/wwdc2020/</link>
+    <description>Recent content in wwdc2020 on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Jun 2020 22:42:31 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/wwdc2020/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Making Default Web Browsers and E-mail Clients May Not Be Possible For iOS All Devs.</title>
+      <link>https://www.andyibanez.com/posts/default-apps-may-not-be-possible-all-devs/</link>
+      <pubDate>Tue, 23 Jun 2020 22:42:31 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/default-apps-may-not-be-possible-all-devs/</guid>
+      <description>I hate that my first WWDC article is going to be as lazy as this, but I thought I&amp;rsquo;d write about it anyway so as to at least give an starting point to devs who will want to try their own default web browser or e-mail client on iOS and iPadOS.
+Please note the vast majority of my thoughts here are based on a very short response I received on the dev forums.</description>
+    </item>
+    
+  </channel>
+</rss>
