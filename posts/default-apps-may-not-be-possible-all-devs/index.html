@@ -255,11 +255,11 @@ if (!doNotTrack) {
     <p>I hate that my first WWDC article is going to be as lazy as this, but I thought I&rsquo;d write about it anyway so as to at least give an starting point to devs who will want to try their own default web browser or e-mail client on iOS and iPadOS.</p>
 <p>Please note the vast majority of my thoughts here are based on a very short response I received on the dev forums. I may be awfully wrong in the end. I am leaving a link to my original question in the dev forums so you can check it out, and reach your own conclusions.</p>
 <p>I spent a good amount - if not all - of my free time today trying to figure out how someone would make an app that can be set as the default Web Browser or default E-Mail client on iOS.</p>
-<p>After not finding any documentation on how would devs create such an app, I asked on the [https://developer.apple.com/forums/thread/650027 Apple Dev Forums].</p>
+<p>After not finding any documentation on how would devs create such an app, I asked on the <a href="https://developer.apple.com/forums/thread/650027">Apple Dev Forums</a>.</p>
 <p>The answer I got makes me think that not all web browsers and e-mail clients may obtain the privilege of being used as default apps on iOS.</p>
 <p>To be able to be set as a default app, an iOS app must:</p>
 <ul>
-<li>Get the <code>com.apple.developer.default-web-browser</code> &ldquo;managed entitlement&rdquo;. By &ldquo;managed entitlement&rdquo;, I understand that only Apple can give you it. It wouldn&rsquo;t be the first APIs hidden behind an entitlement that not everyone can get.</li>
+<li>Get the <code>com.apple.developer.default-web-browser</code> &ldquo;managed entitlement&rdquo;. By &ldquo;managed entitlement&rdquo;, I understand that only Apple can give you it. It wouldn&rsquo;t be the first API hidden behind an entitlement that not everyone can get.</li>
 <li>You must adopt minimum functionality. This is fully expected and I wouldn&rsquo;t argue against it as link handling would have to be done exactly the same way Safari does it.</li>
 <li>If you want more guidance on these steps, you have to email &ldquo;<a href="mailto:default-app-requests@apple.com">default-app-requests@apple.com</a>&rdquo;. I was told to tell them about my app (I have no Web Browser in the works, so I won&rsquo;t e-mail them just yet), so I&rsquo;m thinking they will choose to give you the entitlement or not based on what you tell them.</li>
 </ul>
