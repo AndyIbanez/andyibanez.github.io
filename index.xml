@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>UIMenu Improvements in iOS 14</title>
+      <link>https://www.andyibanez.com/posts/uimenu-improvements-ios14/</link>
+      <pubDate>Wed, 24 Jun 2020 15:12:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/uimenu-improvements-ios14/</guid>
+      <description>UIMenu is a new set of APIs that were originally introduced in iOS 13. The API allows us to add menus to different parts of our UIs, including binding actions to key combinations when using your iOS or iPadOS device with a keyboard. Starting on iOS and iPadOS 14 (and ported to macOS Catalyst), this object is more prevalent in the UI thanks to the fact it can be invoqued from different actions.</description>
+    </item>
+    
+    <item>
       <title>The secret entitlements behind Default Apps on iOS</title>
       <link>https://www.andyibanez.com/posts/default-apps-may-not-be-possible-all-devs/</link>
       <pubDate>Tue, 23 Jun 2020 22:42:31 -0400</pubDate>

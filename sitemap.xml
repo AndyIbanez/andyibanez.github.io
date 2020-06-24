@@ -4,36 +4,61 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2020-06-23T22:42:31-04:00</lastmod>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2020-06-23T22:42:31-04:00</lastmod>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2020-06-23T22:42:31-04:00</lastmod>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ios/</loc>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ipados/</loc>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2020-06-23T22:42:31-04:00</lastmod>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/</loc>
-    <lastmod>2020-06-23T22:42:31-04:00</lastmod>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/default-apps-may-not-be-possible-all-devs/</loc>
-    <lastmod>2020-06-23T22:42:31-04:00</lastmod>
+    <loc>https://www.andyibanez.com/posts/uimenu-improvements-ios14/</loc>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/wwdc2020/</loc>
+    <lastmod>2020-06-24T15:12:07-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/default-apps-may-not-be-possible-all-devs/</loc>
     <lastmod>2020-06-23T22:42:31-04:00</lastmod>
   </url>
   
@@ -53,27 +78,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2020-06-18T22:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2020-06-18T22:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2020-06-18T22:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2020-06-18T22:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
     <lastmod>2020-06-18T22:00:00-04:00</lastmod>
   </url>
   

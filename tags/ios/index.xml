@@ -6,10 +6,19 @@
     <description>Recent content in ios on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jun 2020 22:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 24 Jun 2020 15:12:07 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>UIMenu Improvements in iOS 14</title>
+      <link>https://www.andyibanez.com/posts/uimenu-improvements-ios14/</link>
+      <pubDate>Wed, 24 Jun 2020 15:12:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/uimenu-improvements-ios14/</guid>
+      <description>UIMenu is a new set of APIs that were originally introduced in iOS 13. The API allows us to add menus to different parts of our UIs, including binding actions to key combinations when using your iOS or iPadOS device with a keyboard. Starting on iOS and iPadOS 14 (and ported to macOS Catalyst), this object is more prevalent in the UI thanks to the fact it can be invoqued from different actions.</description>
+    </item>
     
     <item>
       <title>Error Protocol Specializations in Swift</title>
