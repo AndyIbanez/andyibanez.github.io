@@ -271,7 +271,7 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <p>Earlier this week I was scrolling through my Twitter feed as usual and I found <a href="https://twitter.com/harlanhaskins/status/1270399151730118656?s=20">this tweet</a> that made me realize I may have been handling errors incorrectly in Swift all my life. This prompted me to research a bit more about error handling in Swift, and it turns out there&rsquo;s many specialized <code>Error</code> protocols you can conform to, and you should probably be using them over the default <code>Error</code> provided by the language. All these specializations comform to <code>Error</code> themselves. In this article, we will explore a few specializations we can use when dealing with errors in Swift.</p>
+    <p>Earlier this week I was scrolling through my Twitter feed as usual and I found <a href="https://twitter.com/harlanhaskins/status/1270399151730118656?s=20">this tweet</a> that made me realize I may have been handling errors incorrectly in Swift all my life. This prompted me to research a bit more about error handling in Swift, and it turns out there&rsquo;s many specialized <code>Error</code> protocols you can conform to, and you should probably be using them over the default <code>Error</code> provided by the language. All these specializations conform to <code>Error</code> themselves. In this article, we will explore a few specializations we can use when dealing with errors in Swift.</p>
 <p>Keep in mind that they are part of the Foundation framework though, so they may not work when used outside Apple&rsquo;s platforms.</p>
 <h2 id="localizederror">LocalizedError</h2>
 <p><a href="https://developer.apple.com/documentation/foundation/localizederror"><code>LocalizedError</code></a> provides four properties to display your user information about errors in their native language.</p>
@@ -386,7 +386,7 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>Also bridged to <code>NSError</code>, this is the &ldquo;rawest&rdquo; error I could find that can be bridged to Objective-C. Since you provide the <code>userInfo</code> yourself, you don&rsquo;t have to worry about about what keys it has. It has a lot of flexibility, but more compliecated to work with.</p>
 <h2 id="mashing-them-together">Mashing Them Together</h2>
-<p>Remember that these are protocols, and you are allowed to comform to more than one protocol at the same time, so nothing prevents you from, say, creating a recoverable localized error.</p>
+<p>Remember that these are protocols, and you are allowed to conform to more than one protocol at the same time, so nothing prevents you from, say, creating a recoverable localized error.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">NetworkError</span>: LocalizedError, RecoverableError {
   <span style="color:#66d9ef">case</span> noNetwork
   <span style="color:#66d9ef">case</span> unexpectedResponse

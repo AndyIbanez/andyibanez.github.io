@@ -306,7 +306,7 @@ let foundContent = detector.matches(
 <pre><code>URL: http://andyibanez.com
 DATE: Optional(2020-01-30 12:00:00 +0000)
 DATE: Optional(2020-01-31 16:00:00 +0000)
-</code></pre><p>Dates are in UTC, so you may need to operate on them when you  receive them. If your string contains text that can be used to to deduce the timezone, you can access the <code>timezone</code> property of <code>NSTextCheckingResult</code>.</p>
+</code></pre><p>Dates are in UTC, so you may need to operate on them when you  receive them. If your string contains text that can be used to deduce the timezone, you can access the <code>timezone</code> property of <code>NSTextCheckingResult</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> string = <span style="color:#e6db74">&#34;Visit me tomorrow at 8 UTC+4&#34;</span>
 <span style="color:#75715e">//...</span>
 <span style="color:#66d9ef">case</span> NSTextCheckingResult.CheckingType.date:
