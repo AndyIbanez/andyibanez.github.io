@@ -276,7 +276,7 @@ if (!doNotTrack) {
 <h1 id="introducing-the-visionkit-framework">Introducing the VisionKit Framework</h1>
 <p>Apple introduced the Vision framework on iOS 11 and it offers very quick APIs to do document scanning. The framework comes with a view controller that you can use to do the scanning, so you don&rsquo;t have to worry about wiring your own UI for this. The framework comes with a delegate so you can be notified as scanning events take place.</p>
 <h2 id="scanning-documents-with-vndocumentcameraviewcontroller">Scanning Documents with VNDocumentCameraViewController</h2>
-<p><code>VNDocumentCameraViewController</code> is the object we use to perform scanning. Setting it up is pretty straightforward. This object comes from the <code>VisionKit</code> framework, so make sure you import that. You will also need to comform to <code>VNDocumentCameraViewControllerDelegate</code> in order to receive events.</p>
+<p><code>VNDocumentCameraViewController</code> is the object we use to perform scanning. Setting it up is pretty straightforward. This object comes from the <code>VisionKit</code> framework, so make sure you import that. You will also need to conform to <code>VNDocumentCameraViewControllerDelegate</code> in order to receive events.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">VisionKit</span>
 
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController, VNDocumentCameraViewControllerDelegate {

@@ -287,7 +287,7 @@ if (!doNotTrack) {
       }
     }
   }
-</code></pre></div><p>In the above code, first we check if we have any available biometrics. If we do, we will try authenticating with the existing biometric. Once the function calls our closure, it will contain a boolean indicating if the authentication succeeded or if it failed. If it was successfull, you can access your data.</p>
+</code></pre></div><p>In the above code, first we check if we have any available biometrics. If we do, we will try authenticating with the existing biometric. Once the function calls our closure, it will contain a boolean indicating if the authentication succeeded or if it failed. If it was successful, you can access your data.</p>
 <p>This is actually a very naïve approach because in theory, a jailbreak tweak could hook into your app, trick it to believe a successful biometric scan was performed, and steal any information behind that simple <code>if true</code> call.</p>
 <p>This code <em>probably</em> has some uses and it should be used strictly for convenience and not for actual security. The right way to lock sensitive data in the keychain while allowing for biometric access is to create your keychain item with a specific access policy, also known as an access control.</p>
 <p>There is a nice article <a href="https://medium.com/@pig.wig45/touch-id-authentication-bypass-on-evernote-and-dropbox-ios-apps-7985219767b2">here</a> about how easy it is to bypass the Touch ID/Face ID prompt, using the Evernote and Dropbox iOS apps as examples.</p>

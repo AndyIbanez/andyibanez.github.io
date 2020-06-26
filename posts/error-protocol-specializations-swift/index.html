@@ -271,7 +271,7 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <p>Earlier this week I was scrolling through my Twitter feed as usual and I found <a href="https://twitter.com/harlanhaskins/status/1270399151730118656?s=20">this tweet</a> that made me realize I may have been handling errors incorrectly in Swift all my life. This prompted me to research a bit more about error handling in Swift, and it turns out there&rsquo;s many specialized <code>Error</code> protocols you can comform to, and you should probably be using them over the default <code>Error</code> provided by the language. All these specializations comform to <code>Error</code> themselves. In this article, we will explore a few specializations we can use when dealing with errors in Swift.</p>
+    <p>Earlier this week I was scrolling through my Twitter feed as usual and I found <a href="https://twitter.com/harlanhaskins/status/1270399151730118656?s=20">this tweet</a> that made me realize I may have been handling errors incorrectly in Swift all my life. This prompted me to research a bit more about error handling in Swift, and it turns out there&rsquo;s many specialized <code>Error</code> protocols you can conform to, and you should probably be using them over the default <code>Error</code> provided by the language. All these specializations comform to <code>Error</code> themselves. In this article, we will explore a few specializations we can use when dealing with errors in Swift.</p>
 <p>Keep in mind that they are part of the Foundation framework though, so they may not work when used outside Apple&rsquo;s platforms.</p>
 <h2 id="localizederror">LocalizedError</h2>
 <p><a href="https://developer.apple.com/documentation/foundation/localizederror"><code>LocalizedError</code></a> provides four properties to display your user information about errors in their native language.</p>
@@ -359,7 +359,7 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>Once again the properties can be accessed via <code>NSError</code>'s <code>userInfo</code>, by using the <code>NSLocalizedRecoveryOptionsErrorKey</code> for the <code>recoveryOptions</code> and the <code>NSRecoveryAttempterErrorKey</code> key to access the recovery options.</p>
 <h2 id="customnserror">CustomNSError</h2>
-<p>Finally, the the <a href="https://developer.apple.com/documentation/foundation/customnserror"><code>CustomNSError</code></a> specialization provides us with properties to create a well-known <code>NSError</code> object, that has an error domain, error code, and the user info. All the properties are required, but you are provided with a default implementation for each:</p>
+<p>Finally, the <a href="https://developer.apple.com/documentation/foundation/customnserror"><code>CustomNSError</code></a> specialization provides us with properties to create a well-known <code>NSError</code> object, that has an error domain, error code, and the user info. All the properties are required, but you are provided with a default implementation for each:</p>
 <ul>
 <li><code>errorDomain</code>: If you worked with Objective-C, you know this one. It&rsquo;s the domain of the error, in reverse DNS notation.</li>
 <li><code>errorCode</code>: An error code, as an int.</li>
