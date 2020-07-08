@@ -30,5 +30,15 @@
 Please note the vast majority of my thoughts here are based on a very short response I received on the dev forums.</description>
     </item>
     
+    <item>
+      <title>New UIDatePicker in iOS 14</title>
+      <link>https://www.andyibanez.com/posts/new-uidatepicker-ios14/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/new-uidatepicker-ios14/</guid>
+      <description>WWDC2020 brought many interesting and unexpected updates to many old and well known APIs. In this article, we will explore what&amp;rsquo;s new with UIDatePicker on iOS, an API that has existed since the dawn of time and hasn&amp;rsquo;t changed much since its introduction.
+A Short History on Pickers UIDatePicker is an API that has existed since the very early days of the iOS SDK - it goes all the way back to iOS 2.</description>
+    </item>
+    
   </channel>
 </rss>
