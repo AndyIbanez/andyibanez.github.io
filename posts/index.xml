@@ -70,12 +70,22 @@ Apple introduced Touch ID all the way back in 2013, and ever since then, every i
     </item>
     
     <item>
+      <title>New UIDatePicker in iOS 14</title>
+      <link>https://www.andyibanez.com/posts/new-uidatepicker-ios14/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/new-uidatepicker-ios14/</guid>
+      <description>WWDC2020 brought many interesting and unexpected updates to many old and well known APIs. In this article, we will explore what&amp;rsquo;s new with UIDatePicker on iOS, an API that has existed since the dawn of time and hasn&amp;rsquo;t changed much since its introduction.
+A Short History on Pickers UIDatePicker is an API that has existed since the very early days of the iOS SDK - it goes all the way back to iOS 2.</description>
+    </item>
+    
+    <item>
       <title>Using the iOS Keychain in Swift</title>
       <link>https://www.andyibanez.com/posts/using-ios-keychain-swift/</link>
       <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/using-ios-keychain-swift/</guid>
-      <description>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &amp;ldquo;Using the iOS Keychain&amp;rdquo;. Originally written in Objective-C, the old version has been archived but it is accesible here.
+      <description>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &amp;ldquo;Using the iOS Keychain&amp;rdquo;. Originally written in Objective-C, the old version has been archived but it is accessible here.
 The Keychain is the place where you would store sensitive data. As secure as iOS currently is, the keychain is the right place to store passwords, authentication tokens, and other sensitive data. You should not store this kind of data in UserDefaults, even if iOS has made it harder to access that data for normal users in the latest versions.</description>
     </item>
     

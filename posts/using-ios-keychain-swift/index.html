@@ -271,7 +271,7 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <p><em>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &ldquo;Using the iOS Keychain&rdquo;. Originally written in Objective-C, the old version has been archived but it is accesible <a href="https://www.andyibanez.com/old-content/">here</a>.</em></p>
+    <p><em>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &ldquo;Using the iOS Keychain&rdquo;. Originally written in Objective-C, the old version has been archived but it is accessible <a href="https://www.andyibanez.com/old-content/">here</a>.</em></p>
 <p>The Keychain is the place where you would store sensitive data. As secure as iOS currently is, the keychain is the right place to store passwords, authentication tokens, and other sensitive data. You should not store this kind of data in <code>UserDefaults</code>, even if iOS has made it harder to access that data for normal users in the latest versions.</p>
 <p>In this article we will explore how to use the iOS keychain (which is also applicable to iPadOS, watchOS, and even tvOS) using Swift. The APIs are similar to the ones used in macOS, but the way both systems work with their keychain is different enough to consider them separate. The keychain APIs are very old and as such we will be written some &ldquo;ugly&rdquo; Swift code to get everything to work, although these days it&rsquo;s much easier to do the bridging to Core Foundation and back. With that said, using the keychain isn&rsquo;t too hard, and you should use it if you find yourself needing to store sensitive data.</p>
 <h1 id="basic-keychain-concepts">Basic Keychain Concepts</h1>
@@ -559,8 +559,8 @@ SecItemDelete(query)
     </a>
     
     
-    <a href="/posts/ios-keychain-touch-id-face-id/" class="navigation-next">
-      <span class="navigation-tittle">Using the iOS Keychain with Biometrics</span>
+    <a href="/posts/new-uidatepicker-ios14/" class="navigation-next">
+      <span class="navigation-tittle">New UIDatePicker in iOS 14</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
