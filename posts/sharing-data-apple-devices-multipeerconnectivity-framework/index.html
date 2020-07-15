@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.65.3" />
+
+    
+    
+    
+
+<title>Sharing Data Across Apple Devices with the MultipeerConnectivity Framework • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sharing Data Across Apple Devices with the MultipeerConnectivity Framework"/>
+<meta name="twitter:description" content="How to use the Speech framework to detect speech on iOS."/>
+
+<meta property="og:title" content="Sharing Data Across Apple Devices with the MultipeerConnectivity Framework" />
+<meta property="og:description" content="How to use the Speech framework to detect speech on iOS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/sharing-data-apple-devices-multipeerconnectivity-framework/" />
+<meta property="article:published_time" content="2020-07-15T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-07-15T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2020 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Sharing Data Across Apple Devices with the MultipeerConnectivity Framework</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 15, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/multipeerconnectivity">multipeerconnectivity</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 9 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>There are times when we may want to share data across instances of our app running on different physical devices. You could develop a server or even leverage cloud storage, but did you know Apple provides a framework to share data <em>directly</em> across devices, without having to use an intermediary? This framework is the MultipeerConnectivity framework, and it has actually been around for a while. In this article, we will explore this framework to understand how we can use it to share data across instances of our app in different devices directly.</p>
+<h1 id="the-multipeerconnectivity-framework">The MultipeerConnectivity Framework.</h1>
+<p>This framework is actually very old. It was introduced in iOS 7 all the way back in 2013. macOS later supported in OS X 10.10 Yosemite in 2014, and it&rsquo;s even supported by tvOS starting on tvOS 10.0. It supports a wide arrange of devices.</p>
+<p>The framework allows you to send basically any kind of data, whether it is short strings of text or images.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>Before we dive deep into the code, we need to understand, superficially, the technologies it uses under the hood. This is important because you will be able to understand the capabilities and limitations of the framework in case you ever come across code that you expect to work, but doesn&rsquo;t.</p>
+<p>What&rsquo;s important to know is that the framework can use different mediums to share data and not all devices support the same mediums.</p>
+<h3 id="ios-support">iOS Support</h3>
+<p>In iOS, the framework can use the following as the underlying medium for data sharing:</p>
+<ul>
+<li>Infrastructure Wi-Fi (AKA the Wi-Fi you have in your house).</li>
+<li>Peer-to-peer Wi-Fi.</li>
+<li>Bluetooth Personal Area Network (PANs).</li>
+</ul>
+<h3 id="macos-and-tvos">macOS and tvOS</h3>
+<p>tvOS and macOS both support the same transport mechanisms:</p>
+<ul>
+<li>Infrastructure Wi-Fi</li>
+<li>Peer-to-peer Wi-Fi</li>
+<li>Ethernet</li>
+</ul>
+<h2 id="overall-architecture">Overall Architecture</h2>
+<p>Devices cannot connect and send data to <em>any</em> device willy-nilly. Before two devices can share data, they need to establish a Session (a <a href="https://developer.apple.com/documentation/multipeerconnectivity/mcsession"><code>MCSession</code></a> object) with each other.</p>
+<p>To do this, one of the device becomes the advertiser and it starts broadcasting to nearby devices. It simply tells them &ldquo;hey all, I am willing to connect to one, as long as you guys are offering a session of this type. This is done with the <a href="https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyserviceadvertiser"><code>MCNearbyServiceAdvertiser</code></a>, object, or with the <a href="https://developer.apple.com/documentation/multipeerconnectivity/mcadvertiserassistant"><code>MCAdvertiserAssistant</code></a> object. The only difference between these two objects is that the latter provides an UI to accept invitations. If you want to create your own UI to let your user manage their invitations, you can use the former.</p>
+<p>Other apps can start looking for advertisers using the <a href="https://developer.apple.com/documentation/multipeerconnectivity/mcnearbyservicebrowser"><code>MCNearbyServiceBrowser</code></a> or <a href="https://developer.apple.com/documentation/multipeerconnectivity/mcbrowserviewcontroller"><code>MCBrowserViewController</code></a> objects. These two objects will let you see which devices are advertising the service type you want to connect to. Just like advertiser objects, the latter provides you with a standard UI, but you can build your own UI with the former if you want.</p>
+<p>Finally, all apps running an instance of the app have a <a href="MCPeerID"><code>MCPeerID</code></a> associated to them. This ID is unique to each device.</p>
+<h2 id="playing-with-the-multipeerconnectivity-framework">Playing with the MultipeerConnectivity Framework</h2>
+<p>With all that theory out of the way, it&rsquo;s time to write a bit of code. We will explore a few more concepts as we do, so you can understand better how to use this framework.</p>
+<p>If you want to use the code here, you may want to get two devices. I will provide a sample project at the end that you can install on two devices so you can see them share data with each other.</p>
+<h3 id="becoming-the-advertiser">Becoming the Advertiser</h3>
+<p>We will explore how to become an advertiser using <code>MCNearbyServiceAdvertiser</code> first, as this gives us more control over the UI and experience when establishing a session.</p>
+<p>Establishing an <code>MCSession</code> is a two-step progress. The first step is the <strong>discovery step</strong>. In the discovery step, a device can start looking for devices to connect to (advertisers who have a <code>MCNearbyNearbyAdvertiser</code> or <code>MCAdvertiserAssistant</code> currently advertising) using the <code>MCNearbyServiceBrowser</code> object.</p>
+<p>Advertisers can start a session with code like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">var</span> advertiser: MCNearbyServiceAdvertiser?
+    <span style="color:#66d9ef">let</span> serviceType = <span style="color:#e6db74">&#34;MPCTutorial&#34;</span>
+    <span style="color:#66d9ef">var</span> myId = MCPeerID(displayName: UIDevice.current.name)
+
+<span style="color:#75715e">//...</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">becomeAdvertiser</span>() {
+    <span style="color:#66d9ef">let</span> discoveryInfo = [
+        <span style="color:#e6db74">&#34;Device Type&#34;</span>: UIDevice.current.model,
+        <span style="color:#e6db74">&#34;OS&#34;</span>: UIDevice.current.systemName,
+        <span style="color:#e6db74">&#34;OS Version&#34;</span>: UIDevice.current.systemVersion
+    ]
+    
+    advertiser = MCNearbyServiceAdvertiser(peer: advertiserId, discoveryInfo: discoveryInfo, serviceType: serviceType)
+    
+    advertiser?.delegate = <span style="color:#66d9ef">self</span>
+    
+    advertiser?.startAdvertisingPeer()
+}
+
+</code></pre></div><p>There is a bit going on here. First, we create a dictionary called <code>discoveryInfo</code>. During the discovery step, before the devices have had the opportunity to establish a session, they can broadcast limited activity about themselves using this dictionary. In our case we are offering the device name, OS, and OS Version to be seen by other devices who want to connect to us. In certain scenarios this can help provide more information to the devices to ensure they connect to the right one.</p>
+<p>When we create our <code>MCNearbyServiceAdvertiser</code> object, we need to pass in our <code>MCPeerID</code>. We create our peer ID also using the device name. The <code>discoveryInfo</code> is the same dictionary we defined earlier. Finally, the <code>serviceType</code> can be any string you want, as long as it is a maximum of 15 characters long, ASCII characters only, and/or hyphen.</p>
+<p>You should only use the <code>init(displayName)</code> initializer when creating a peer locally. You can persist <code>MCPeerdID</code> long term to be used later on.</p>
+<p>We assign the delegate to self. This is a <code>MCNearbyServiceAdvertiserDelegate</code> object that will receive events related to device discovery with devices coming to us. We will implement its only method in a bit.</p>
+<p>We call <code>startAdvertisingPeer()</code> and we are ready to be seen by other devices. There is a matching <code>stopAdvertisingPeer()</code> we can use when we no longer want to be discoverable too.</p>
+<h3 id="searching-for-devices-to-connect-to">Searching for devices to connect to</h3>
+<p>As part of the <strong>discovery step</strong>, other devices start looking for advertisers. This can be done as easily as:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> myId = MCPeerID(displayName: UIDevice.current.name)
+<span style="color:#66d9ef">var</span> browser: MCNearbyServiceBrowser?
+<span style="color:#66d9ef">var</span> connectedPeer: MCPeerID?
+
+<span style="color:#75715e">//...</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">searchForDevices</span>() {
+    browser = MCNearbyServiceBrowser(peer: inviteeId, serviceType: serviceType)
+    
+    browser?.delegate = <span style="color:#66d9ef">self</span>
+    
+    browser?.startBrowsingForPeers()
+}
+</code></pre></div><p>We do not need to provide much info to browsers, as most of the info comes from advertisers. Set the delegate as it will receive all the events related to peer discovery. You can <code>startBrowsingForPeers()</code> and <code>stopBrowsingForPeers()</code> as you see fit.</p>
+<p>Once you start browsing for peers, the browser will call two delegate methods:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">browser</span>(<span style="color:#66d9ef">_</span> browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+    print(<span style="color:#e6db74">&#34;We found a peer!&#34;</span>)
+    print(<span style="color:#e6db74">&#34;ID: </span><span style="color:#e6db74">\(</span>peerID.displayName<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+    print(<span style="color:#e6db74">&#34;Device Type: </span><span style="color:#e6db74">\(</span>info?[<span style="color:#e6db74">&#34;Device Type&#34;</span>] ?? <span style="color:#e6db74">&#34;&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+    print(<span style="color:#e6db74">&#34;Version: </span><span style="color:#e6db74">\(</span>info?[<span style="color:#e6db74">&#34;OS Version&#34;</span>] ?? <span style="color:#e6db74">&#34;&#34;</span><span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">browser</span>(<span style="color:#66d9ef">_</span> browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+    print(<span style="color:#e6db74">&#34;We lost peer </span><span style="color:#e6db74">\(</span>peerID.displayName<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+}
+</code></pre></div><p>So, one by one, you will receive information about peers that show up and peers that disappear, easy as that.</p>
+<h3 id="inviting-devices-to-connect-to-us">Inviting devices to connect to us</h3>
+<p>We are following the manual approach in this article, so we will do the manual connecting process.</p>
+<p>Once we find a peer we want to connect to (with <code>browser(foundPeer:peerID:withDiscoveryInfo</code>), we need to create a <code>MCSession</code>. We use this object to connect to other peers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">invitePeerToConnect</span>(peerID: MCPeerID) {
+    session = MCSession(peer: myId)
+    session?.delegate = <span style="color:#66d9ef">self</span>
+    <span style="color:#66d9ef">self</span>.connectedPeer = peerID
+    browser?.invitePeer(peerID, to: session!, withContext: <span style="color:#66d9ef">nil</span>, timeout: <span style="color:#ae81ff">30</span>)
+}
+</code></pre></div><p>You need to set the session delegate to receive events regarding the session, including when the session state changes and when you receive any data.</p>
+<p>A bit of discussion on <code>MCSession</code> is in order. <code>MCSession</code> has more than one initializer. The second initializer can be used to create secure and encrypted communication channels between both devices. We will not discuss &ldquo;secure&rdquo; <code>MCSession</code>s in this article, but be aware of the <code>init(peer:securityIdentity:encryptionPreference</code> initializer, as there may need a case in which you need to verify a peer and/or you&rsquo;ll have the need to share encrypted information. Encryption handling is very transparent. MCEncryptionPreference is just an enum, and you can use encryption without verifying the peer. in iOS 9 and above, it will require encryption by default.</p>
+<p>the <code>context</code> parameter is an optional data that you can use to pass anything to provide even more context. <strong>Do not send any sensitive data with this</strong>. The connection has not been established yet, so if you are using encryption, this particular piece of data will not be encrypted.</p>
+<p>When you invite an advertiser to connect, the <code>advertiser</code> delegate will call the <code>advertiser(didReceiveInvitationFromPeer peerID:context:invitationHandler</code> delegate method.</p>
+<p>In this example, we will immediately accept the invitation to connect:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">advertiser</span>(<span style="color:#66d9ef">_</span> advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -&gt; Void) {
+    print(<span style="color:#e6db74">&#34;Invitation to connect from </span><span style="color:#e6db74">\(</span>peerID.displayName<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+    print(<span style="color:#e6db74">&#34;Accepting invite&#34;</span>)
+    session = MCSession(peer: advertiserId)
+    invitationHandler(<span style="color:#66d9ef">true</span>, session)
+}
+</code></pre></div><h3 id="sharing-data---the-session-phase">Sharing Data - The Session Phase.</h3>
+<p>After the advertiser has accepted the invite, the session phase will start. When the connection state has changed, the <code>session(peer:didChange)</code> delegate method of <code>MCSession</code> gets called. When the state is <code>.connected</code>, we are ready to send data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sendImage</span>(toPeer peer: MCPeerID) {
+    <span style="color:#66d9ef">let</span> bundledImage = Bundle.main.url(forResource: <span style="color:#e6db74">&#34;cucoo&#34;</span>, withExtension: <span style="color:#e6db74">&#34;png&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> imageData = <span style="color:#66d9ef">try</span>! Data(contentsOf: bundledImage)
+    DispatchQueue.main.asyncAfter(deadline: .now() <span style="color:#f92672">+</span> .seconds(<span style="color:#ae81ff">5</span>)) {
+        <span style="color:#66d9ef">try</span>! <span style="color:#66d9ef">self</span>.session?.send(imageData, toPeers: [peer], with: .reliable)
+    }
+}
+</code></pre></div><p>On the receiving device, the <code>session(_:didReceive:fromPeer:)</code> from peer will get called, and you can process the image then.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">session</span>(<span style="color:#66d9ef">_</span> session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+    print(<span style="color:#e6db74">&#34;Did receive data&#34;</span>)
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageData = UIImage(data: data) {
+        DispatchQueue.main.async {
+            <span style="color:#66d9ef">self</span>.imageView.image = imageData
+        }
+    }
+}
+</code></pre></div><p>The session can receive other kinds of information as well, and it even supports streaming!</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">session</span>(<span style="color:#66d9ef">_</span> session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">session</span>(<span style="color:#66d9ef">_</span> session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+    
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">session</span>(<span style="color:#66d9ef">_</span> session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
+    
+}
+</code></pre></div><h1 id="sample-project">Sample Project</h1>
+<p>I have created a sample project of everything here. You can download it from <a href="/archives/MultipeerApp.zip">here</a>. You need to install it on two devices to see how it works. The UI simply contains three buttons: One to become an advertiser, one to search for devices, and another to send a default image. When you search for a peer, it will automatically send an invite to the first device it sees. After you tap &ldquo;Search for Devices&rdquo;, wait a few seconds and tap &ldquo;send image&rdquo; on either device. A glorious image of a cucoo will show up on the destination device.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>MultipeerConnectivity provides an easy interface to share data between devices. It will automatically choose the right medium to send data. There&rsquo; a few things to keep in mind:</p>
+<ul>
+<li>It currently supports 8 peers connected at the same time.</li>
+<li>When the state changes to <code>.connected</code>, the connection only lasts a bit when idle. You should try to send data as soon as the connection is established.</li>
+<li>We can get it to work with Bonjour and other APIs if we do manual peer management. That is out of the scope of this article.</li>
+</ul>
+<h1 id="conclusion-1">Conclusion</h1>
+<p>Reflection is a very interesting feature that allows to create some sort of <em>meta-programming</em> in Swift. While not applicable to many use cases, it&rsquo;s important to be aware of its existence.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/new-uidatepicker-ios14/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">New UIDatePicker in iOS 14</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
