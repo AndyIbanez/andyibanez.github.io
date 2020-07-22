@@ -325,21 +325,21 @@ SUBCOMMANDS:
     
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">run</span>() {
       <span style="color:#66d9ef">let</span> whiteSpacechars = string.filter { $0 == <span style="color:#e6db74">&#34; &#34;</span> }.count
-      <span style="color:#66d9ef">let</span> alwaysSubstract = parentOptions.ignoringWhitespace ? whiteSpacechars : <span style="color:#ae81ff">0</span>
+      <span style="color:#66d9ef">let</span> alwaysSubtract = parentOptions.ignoringWhitespace ? whiteSpacechars : <span style="color:#ae81ff">0</span>
       <span style="color:#66d9ef">let</span> mult = parentOptions.multiplier
       
       <span style="color:#66d9ef">if</span> parentOptions.countingConfig == .all {
-        print((string.count <span style="color:#f92672">-</span> alwaysSubstract) <span style="color:#f92672">*</span> mult)
+        print((string.count <span style="color:#f92672">-</span> alwaysSubtract) <span style="color:#f92672">*</span> mult)
       }
       
       <span style="color:#66d9ef">if</span> parentOptions.countingConfig == .uppercaseOnly {
         <span style="color:#66d9ef">let</span> count = string.filter { $0.isUppercase }.count
-        print((count <span style="color:#f92672">-</span> alwaysSubstract) <span style="color:#f92672">*</span> mult)
+        print((count <span style="color:#f92672">-</span> alwaysSubtract) <span style="color:#f92672">*</span> mult)
       }
       
       <span style="color:#66d9ef">if</span> parentOptions.countingConfig == .lowercaseOnly {
         <span style="color:#66d9ef">let</span> count = string.filter { $0.isLowercase }.count
-        print((count <span style="color:#f92672">-</span> alwaysSubstract) <span style="color:#f92672">*</span> mult)
+        print((count <span style="color:#f92672">-</span> alwaysSubtract) <span style="color:#f92672">*</span> mult)
       }
     }
   }
