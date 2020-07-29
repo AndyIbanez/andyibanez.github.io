@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.65.3" />
+
+    
+    
+    
+
+<title>Adding Custom SwiftUI Views and Modifiers to the Xcode Library • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Adding Custom SwiftUI Views and Modifiers to the Xcode Library"/>
+<meta name="twitter:description" content="Learn how to add custom views and modifiers to the Xcode library using the LibraryContentProvider protocol."/>
+
+<meta property="og:title" content="Adding Custom SwiftUI Views and Modifiers to the Xcode Library" />
+<meta property="og:description" content="Learn how to add custom views and modifiers to the Xcode library using the LibraryContentProvider protocol." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/custom-views-modifiers-xcode-library-swiftui/" />
+<meta property="article:published_time" content="2020-07-29T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-07-29T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2020 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Adding Custom SwiftUI Views and Modifiers to the Xcode Library</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 29, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/swiftui">swiftui</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/xcode12">xcode12</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 4 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Xcode 12 introduces the ability for developers to add their own SwiftUI views and modifiers to the Xcode library. This allows people using your code to discover your custom views, makes your codebase easier to learn, and it allows you to visually edit complex views visually rather than with code.</p>
+<p>In this short article we will explore how we can add our own views and modifiers to the Xcode library.</p>
+<h1 id="the-librarycontentprovider-protocol">The LibraryContentProvider Protocol</h1>
+<p>The fun thing about doing this is that it is done entirely in code. You do not have to mess with settings panes or anything of the sort in order to create and add your own SwiftUI content to the Xcode Library. Instead, all you need to do is to conform to the <code>LibraryContentProvider</code> protocol. This has the advantage that your custom views in the Library are per-project and the Library won&rsquo;t be polluted with possibly irrelevant views.</p>
+<p>The protocol looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">LibraryViewContent</span>: LibraryContentProvider {
+    @LibraryContentBuilder
+    <span style="color:#66d9ef">var</span> views: [LibraryItem]
+    
+    @LibraryContentBuilder
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">modifiers</span>(base: ModifierBase) -&gt; [LibraryItem]
+}
+</code></pre></div><p>Simple enough - We have an array of views, and a function to return an array of modifiers, both of the type <code>[LibraryItem]</code>.</p>
+<p>Xcode scans your code for objects conforming to this protocol and adds them to the library.</p>
+<h2 id="the-libraryitem-object">The LibraryItem Object</h2>
+<p>The <code>LibraryItem</code> object, at the very least, expects the view that it will represent in the XcodeLibrary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">LibraryItem(MyView())
+</code></pre></div><p>But we can provide it with more information:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">LibraryItem(
+	MyView(),
+	visibility: <span style="color:#66d9ef">true</span>, <span style="color:#75715e">// Whether the item should be visible in the library</span>
+	title: <span style="color:#e6db74">&#34;My View&#34;</span>, <span style="color:#75715e">// An optional title for the view.</span>
+	category: .control, <span style="color:#75715e">// The category this view belongs to</span>
+)
+</code></pre></div><p><code>category</code> is a <code>LibraryItem.Category</code> enum. It can be <code>.control</code>, <code>.effect</code>, <code>.layout</code>, and <code>.other</code>.</p>
+<h2 id="conforming-to-librarycontentprovider">Conforming to LibraryContentProvider</h2>
+<h3 id="librarycontentprovider-for-views">LibraryContentProvider For Views</h3>
+<p>We are going to add this rounded rectangle view as an example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">RoundedTextView</span>: View {
+    <span style="color:#66d9ef">var</span> text: String
+    <span style="color:#66d9ef">var</span> body: some View {
+        Text(text)
+            .padding(<span style="color:#ae81ff">10</span>)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: <span style="color:#ae81ff">30</span>, style: .continuous))
+    }
+}
+</code></pre></div><p>It looks like this:</p>
+<p><img src="/img/round_rect_library_item.png" alt="Rounded rect text view"></p>
+<p>And that&rsquo;s it for views! Now when you open the Library (Tapping the <code>+</code> button, or pressing <code>Shift + Command + L</code>), you can search for your view and drag it and click it like you would any other view:</p>
+<p><img src="/img/library_view_round_rect.png" alt="Custom view in Library"></p>
+<p>By default, you can see it&rsquo;s in a section called <code>customviewtexts</code>. This is group is the name of your project. You cannot really get rid of it, but if you specify another category such as <code>.control</code> you can have better control over the grouping:</p>
+<p><img src="/img/custom_library_category.png" alt="Custom View with Another Category"></p>
+<p>You can add the same view as many times as you want but with different configurations. In our example, you could create a view with a different text and add that as a different item in the library. If you make properties such as the foreground and background colors, you could add them as different configurations as well.</p>
+<h3 id="librarycontentprovider-for-modifiers">LibraryContentProvider for Modifiers</h3>
+<p>To add custom modifiers, start by creating your custom modifier on the view it applies to. In this example we will make a modifier for any view, but you can be as specific as you want:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">View</span> {
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">shadowAndSaturation</span>(saturation: Double) -&gt; some View {
+        <span style="color:#66d9ef">self</span>
+            .shadow(color: Color.red, radius: <span style="color:#ae81ff">30</span>)
+            .saturation(saturation)
+    }
+}
+</code></pre></div><p>Now, we need to implement the <code>modifiers</code> function of <code>LibraryContentProvider</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@LibraryContentBuilder
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">modifiers</span>(base: ModifierBase) -&gt; [LibraryItem] {
+}
+</code></pre></div><p>The <code>ModifierBase</code> is the type of view our modifier should apply to. If you created your modifier in an extension for <code>Text</code>, then you would use text; if you used <code>Image</code>, you would specify <code>Image</code>. In our case it applies to any view, so we will leave it as <code>AnyView</code>.</p>
+<p>And done! If you bring up the Library pane now, you can now see your custom modifier in the Modifiers section:</p>
+<p><img src="/img/custom_modifier_library.png" alt="Custom Modifier in Library"></p>
+<h1 id="final-discussion">Final Discussion</h1>
+<p>Another neat thing about using this system is that you don&rsquo;t have to build and run your project in order for them to appear in the library. Xcode automatically scan and adds <code>LibraryContentProvider</code>s without your intervention. Even when your code is not in a runnable state, Xcode can scan and add custom views to its library.</p>
+<p>When compiling your code for distribution, all <code>LibraryContentProvider</code>s are stripped from your code. And you can use them in Swift Packages as well.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Being able to add your own views and modifiers to the library is a great feature. They are project-specific and you can add them with the SPM. Consider using this feature if you have a lot of reusable custom views.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/wrapping-asynchronous-apis-into-combine-futures/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Wrapping Asynchronous APIs into Combine Futures</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

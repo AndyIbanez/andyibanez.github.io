@@ -277,7 +277,7 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <p>In the <a href="/posts/background-execution-in-iOS.html">article from last week</a>, we explored the basic background execution APIs introduced since iOS 7. We explored how we could request additional time for a task to complete after entering the background, how we could defer downloads with URLSession, and how we could use silent push notifications to trigger background tasks.</p>
+    <p>In the <a href="/posts/background-execution-in-ios/">article from last week</a>, we explored the basic background execution APIs introduced since iOS 7. We explored how we could request additional time for a task to complete after entering the background, how we could defer downloads with URLSession, and how we could use silent push notifications to trigger background tasks.</p>
 <p>The story with background tasks does not end there. iOS 13 introduced more APIs to do better background tasks, and that allow you to do things that weren&rsquo;t possible before. Apple gave us the new shiny <a href="https://developer.apple.com/documentation/backgroundtasks"><code>BackgroundTasks</code></a> framework on WWDC2019. This framework gives developers more flexibility and less constraints to execute code while their apps are in the background. Not only that, but the old Background App Refresh APIs have now been deprecated in favor of a new, modern way to perform them for your app. This changes unifies with the new Background Processing tasks which lets you do more work in the background, while a device is charging, and more.</p>
 <p>In this article, we will explore the following APIs, all part of the new <code>BackgroundTasks</code> framework:</p>
 <ol>
