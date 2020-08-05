@@ -6,10 +6,19 @@
     <description>Recent content in programming on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jul 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Common Reasons for Background Tasks to Fail in iOS</title>
+      <link>https://www.andyibanez.com/posts/common-reasons-background-tasks-fail-ios/</link>
+      <pubDate>Wed, 05 Aug 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/common-reasons-background-tasks-fail-ios/</guid>
+      <description>Apple introduced modern background tasks last year on iOS 13. These new APIs have been out for a little over year (counting the beta period). Many developers have tried to adopt them to moderate success. Many of them have found them to be very unpredictable and that only work a fraction of the time. If you look around the internet (and even on the comments in that article), you will see many developers weren&amp;rsquo;t able to get them to work as expected.</description>
+    </item>
     
     <item>
       <title>Adding Custom SwiftUI Views and Modifiers to the Xcode Library</title>
