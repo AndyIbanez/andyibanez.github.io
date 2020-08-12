@@ -6,10 +6,21 @@
     <description>Recent content in ios on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Aug 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A File Download Queue Combine</title>
+      <link>https://www.andyibanez.com/posts/file-download-queue-combine/</link>
+      <pubDate>Wed, 12 Aug 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/file-download-queue-combine/</guid>
+      <description>Combine allows us to create pipelines for a lot of tasks. Thanks to the fact it can do work concurrently without leveraging callbacks, it is very easy to build things that would otherwise be very complex.
+In this short article, we will build a file download queue that downloads images sequentially. You can use this as the base for more complex queues.
+The queue will download an array of images sequentially.</description>
+    </item>
     
     <item>
       <title>Common Reasons for Background Tasks to Fail in iOS</title>
