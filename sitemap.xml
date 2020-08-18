@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.andyibanez.com/posts/andyibanez-com-turns-one-year-old/</loc>
+    <lastmod>2020-08-18T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2020-08-18T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/posts/file-download-queue-combine/</loc>
     <lastmod>2020-08-12T07:00:00-04:00</lastmod>
   </url>
@@ -39,11 +49,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2020-08-12T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
     <lastmod>2020-08-12T07:00:00-04:00</lastmod>
   </url>
   
