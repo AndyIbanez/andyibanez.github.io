@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.65.3" />
+
+    
+    
+    
+
+<title>Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift"/>
+<meta name="twitter:description" content="Learn how to use the Data Protection APIs on iOS and iPadOS."/>
+
+<meta property="og:title" content="Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift" />
+<meta property="og:description" content="Learn how to use the Data Protection APIs on iOS and iPadOS." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/introduction-apples-unified-logging-system-ios14-swift/" />
+<meta property="article:published_time" content="2020-08-26T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-08-26T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/bolivia/">
+						<span>Bolivia</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2020 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Aug 26, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/logging">logging</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/oslog">oslog</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 7 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>title: &ldquo;Simpler File Encryption on iOS&rdquo;
+date: 2020-08-19T07:00:00-04:00
+originalDate: 2020-08-17T14:22:06-04:00
+draft: false
+publishDate: 2020-08-19T07:00:00-04:00</p>
+<p>It is no surprise that software tend to write logs to a local file as they execute. As events, errors, or exceptional situations occur, a lot of software takes note of them using a local logging solution. This is done because these practices can allow us to troubleshoot problems for our users, find bugs, and in general understand the behavior of our software in untested or lesser tested scenarios.</p>
+<p>When comes to iOS and other Apple platforms, there have always been third party dependencies that allow you to do this. A lot of developers roll their own solution and write events in plain text files. It wasn&rsquo;t until iOS 8 and macOS 10.10 that Apple provided us with a unified logging system that is easy to use and is very performant - <a href="https://developer.apple.com/documentation/os/oslog"><code>OSLog</code></a>.</p>
+<p><code>OSLog</code> provided a lot of first party facilities for local logging, but it&rsquo;s not quite there.</p>
+<p>This year, at WWDC2020, Apple showed us further improvements to their unified logging systems, providing a simple and consistent API that is easy to use, performant, and optimized for different logging scenarios.</p>
+<p>In this series of articles we will explore these new unified logging APIs and how you can use them in your apps. Note that we will be focusing on the new WWDC2020 APIs. If you need to implement logging in earlier versions, you will need to leverage <code>OSLog</code> instead.</p>
+<h1 id="introducing-logging">Introducing Logging</h1>
+<p>When our users report problems and bugs, having a timeline of series of events that executed in our apps can be a great tool to help us find our issues. Having a continuous registry of your app&rsquo;s behavior can help you in many ways:</p>
+<ul>
+<li>When you cannot attach your app to the debugger, because you are trying to troubleshoot an issue on a client&rsquo;s device.</li>
+<li>When the issue is intermittent, and you haven&rsquo;t had any luck catching it when debugging your app.</li>
+<li>When you want to understand how your app behaves, how it runs, when things start and end.</li>
+</ul>
+<p>Traditional logging frameworks will always write their events to a file. Apple&rsquo;s logging solution is very powerful, and it can persist events only in memory or to disk if necessary. There is default configurations to how the system stores logs, but you can change them to suit your needs, including logging absolutely everything to a file, or everything to memory (which wouldn&rsquo;t make much sense).</p>
+<p>When logging to a file, this is not a plain text file. Instead, Apple has a logging format that is performant and it can do a lot of things for you, including removing sensitive data from logs (without losing filtering options), and more.</p>
+<p>Details to view your logs will come at a later time. For now, be aware that Apple provides many ways to view them, including using the Mac&rsquo;s Console.app, the <code>log</code> command-line tool, and the Xcode debugging console. We also have the option to read logs programmatically via the older <code>OSLog</code> system.</p>
+<h2 id="writing-logs-from-your-code">Writing Logs From Your Code</h2>
+<h3 id="logging-practices">Logging Practices</h3>
+<p>Before we get into the actual logging, let us establish some good practices you may use when you want to start logging events, including good places to place the logging code:</p>
+<ul>
+<li>At the beginning and end of functions of tasks. Non-trivial functions are a good place to place logging code. If you have more complex tasks composed of smaller function calls, they are also good candidates for logging.</li>
+<li>Any general events: When networking calls succeed or fail, when opening files, etc.</li>
+<li>When significant errors take place. Unexpected errors that can leave your app in a weird state and significant errors in general should be logged.</li>
+<li>Unusual code paths. If there&rsquo;s code paths that should barely happen, log them as well. This is great to find weird bugs or bugs that happen due to unusual user actions.</li>
+<li>Log after each line of a multi-step execution.</li>
+</ul>
+<p>When logging messages, you can log more than just static strings. You can incorporate static strings, numbers, and other Objective-C objects into your logging. Even with this huge flexibility, the system will by default automatically remove sensitive information from your login.</p>
+<h3 id="creating-logs">Creating Logs</h3>
+<p>A log object centralizes all the logs that occur at a specific place of your app. All unified logging is done through this logging object. In Swift, you can use the <code>Logger</code> object introduced at WWDC. Objective-C folks will have to continue <code>OSLog</code>.</p>
+<p>Logging objects come with two basic filtering options. You can use them to filter out information as you try to diagnose issues in a specific place of your app. Because unified logging can produce an overwhelming amount of logs, you should make good use of these two options:</p>
+<ul>
+<li>The <strong>Subsystem</strong> is a functional area of your part. Multiple processes should be their own subsystems. You can even define a screen as a &ldquo;screen&rdquo; in your app. The subsystem can be anything that contextually makes sense in your app. I like to define a subsystem as an internal framework of my app. It is a good idea to use reverse DNS notation to name your subsystems.</li>
+<li>The <strong>Category</strong> can be used to define a component of your app inside a given subsystem. You may categorize your subsystem based on the UI that drives your interactions, the data processed by the component, or networking code related to that category. Once again, you have to define the category based on the context of your usage. Unlike the Subsystem, you are free to use any format for these strings, not just reverse DNS notation.</li>
+</ul>
+<h4 id="log-levels">Log Levels</h4>
+<p>There are different log levels, and you should choose the right level for everything you need to log. Because different log levels store the logs differently by default, it is important to understand all the levels before you implement unified logging into your apps:</p>
+<ul>
+<li><strong>Debug</strong>: Generally used to log &ldquo;everything&rdquo; when developing your app. Because debug logging can be aggressive, the logs are not stored on disk as they are only useful during development.</li>
+<li><strong>Info</strong>: This level only stores logs on disk when collected with the <code>log</code> tool. Use it when you need to collect important but not essential information about your app.</li>
+<li><strong>Notice</strong>: This is also the default level. Use it to capture information that may be important to diagnose issues, such as tasks that may cause errors. These are persisted to disk up to a storage limit.</li>
+<li><strong>Error</strong>: Persisted to disk, up to a storage limit. Use this level to capture any error. Log information related to the error itself to make it easier to troubleshoot either.</li>
+<li><strong>Fault</strong>:  Persisted to disk, up to a storage limit. Log situations that can leave your app in an invalid state or that may cause bugs. Essentially, use this to log harsher conditions than simple errors.</li>
+</ul>
+<p>If you log messages with <code>log</code>, you can make it so <code>Info</code> messages are also stored on disk. The last three are compressed before being stored, so they are very efficient.</p>
+<h4 id="creating-logs-in-code">Creating Logs In Code.</h4>
+<p>With all that theory out of the way, we will explore the simplest use case for logging in this article - static strings. In a later article we will explore advanced logging with dynamic and stripped data, as it&rsquo;s a topic that deserves its own article.</p>
+<p>To create a <code>Logger</code>, you can use the default initializer that takes no parameters to use the default subsystem. This is not recommended. You should use the <code>init(subsystem:category)</code> initializer instead.</p>
+<p>Don&rsquo;t forget to import <code>OSLog</code>, you need regardless of if you need Swift only or Objective-C support.</p>
+<pre><code>import OSLog
+
+var logger = Logger(subsystem: &quot;com.andyibanez.com.nae.profile&quot;, category: &quot;Networking&quot;)
+</code></pre><p>Finally, actually logging strings is really easy. The object has a method for each level.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">logger.debug(<span style="color:#e6db74">&#34;Initializing networking object&#34;</span>)
+
+logger.info(<span style="color:#e6db74">&#34;Initialized networking object&#34;</span>)
+
+logger.notice(<span style="color:#e6db74">&#34;Networking object is currently nil&#34;</span>)
+
+logger.error(<span style="color:#e6db74">&#34;An error occured initializing network object&#34;</span>)
+
+logger.fault(<span style="color:#e6db74">&#34;Networking object has gone away prematurely&#34;</span>)
+</code></pre></div><p>And that&rsquo;s it for static strings! In subsequent articles in this series we will explore how to create dynamic logging and how to read the files created by this framework.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Logging can help you diagnose issues that just don&rsquo;t occur at development time. It can also help you troubleshoot other issues your users may experience. The unified logging system is very performant and very easy to use for this task.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/simpler-file-encryption-ios/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Simpler File Encryption on iOS</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

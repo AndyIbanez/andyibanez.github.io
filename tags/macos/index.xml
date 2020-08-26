@@ -6,10 +6,20 @@
     <description>Recent content in macos on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Aug 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 26 Aug 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift</title>
+      <link>https://www.andyibanez.com/posts/introduction-apples-unified-logging-system-ios14-swift/</link>
+      <pubDate>Wed, 26 Aug 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/introduction-apples-unified-logging-system-ios14-swift/</guid>
+      <description>title: &amp;ldquo;Simpler File Encryption on iOS&amp;rdquo; date: 2020-08-19T07:00:00-04:00 originalDate: 2020-08-17T14:22:06-04:00 draft: false publishDate: 2020-08-19T07:00:00-04:00
+It is no surprise that software tend to write logs to a local file as they execute. As events, errors, or exceptional situations occur, a lot of software takes note of them using a local logging solution. This is done because these practices can allow us to troubleshoot problems for our users, find bugs, and in general understand the behavior of our software in untested or lesser tested scenarios.</description>
+    </item>
     
     <item>
       <title>A File Download Queue in Combine for Swift</title>

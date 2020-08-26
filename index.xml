@@ -6,10 +6,30 @@
     <description>Recent content on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 31 Dec 2019 18:38:56 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift</title>
+      <link>https://www.andyibanez.com/posts/introduction-apples-unified-logging-system-ios14-swift/</link>
+      <pubDate>Wed, 26 Aug 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/introduction-apples-unified-logging-system-ios14-swift/</guid>
+      <description>title: &amp;ldquo;Simpler File Encryption on iOS&amp;rdquo; date: 2020-08-19T07:00:00-04:00 originalDate: 2020-08-17T14:22:06-04:00 draft: false publishDate: 2020-08-19T07:00:00-04:00
+It is no surprise that software tend to write logs to a local file as they execute. As events, errors, or exceptional situations occur, a lot of software takes note of them using a local logging solution. This is done because these practices can allow us to troubleshoot problems for our users, find bugs, and in general understand the behavior of our software in untested or lesser tested scenarios.</description>
+    </item>
+    
+    <item>
+      <title>Sponsor Me</title>
+      <link>https://www.andyibanez.com/sponsorship/</link>
+      <pubDate>Thu, 20 Aug 2020 00:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/sponsorship/</guid>
+      <description>Each month, over 35,000 developers from all over the world find their way to this website, looking to read about iOS, iPadOS, and Swift development in general. Since the site was launched a year ago, it has enjoyed constant growth and an increase in visitors every month.
+If you are interested in sponsoring andyibanez.com, please send an e-mail to sponsor@andyibanez.com. I take care to reply to all inquiries sent to this address within 24 hours.</description>
+    </item>
     
     <item>
       <title>Simpler File Encryption on iOS</title>
