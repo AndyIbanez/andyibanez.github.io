@@ -280,12 +280,6 @@ if (!doNotTrack) {
 <p>This year, at WWDC2020, Apple showed us further improvements to their unified logging systems, providing a simple and consistent API that is easy to use, performant, and optimized for different logging scenarios.</p>
 <p>In this series of articles we will explore these new unified logging APIs and how you can use them in your apps. Note that we will be focusing on the new WWDC2020 APIs. If you need to implement logging in earlier versions, you will need to leverage <code>OSLog</code> instead.</p>
 <h1 id="introducing-logging">Introducing Logging</h1>
-<p>When our users report problems and bugs, having a timeline of series of events that executed in our apps can be a great tool to help us find our issues. Having a continuous registry of your app&rsquo;s behavior can help you in many ways:</p>
-<ul>
-<li>When you cannot attach your app to the debugger, because you are trying to troubleshoot an issue on a client&rsquo;s device.</li>
-<li>When the issue is intermittent, and you haven&rsquo;t had any luck catching it when debugging your app.</li>
-<li>When you want to understand how your app behaves, how it runs, when things start and end.</li>
-</ul>
 <p>Traditional logging frameworks will always write their events to a file. Apple&rsquo;s logging solution is very powerful, and it can persist events only in memory or to disk if necessary. There is default configurations to how the system stores logs, but you can change them to suit your needs, including logging absolutely everything to a file, or everything to memory (which wouldn&rsquo;t make much sense).</p>
 <p>When logging to a file, this is not a plain text file. Instead, Apple has a logging format that is performant and it can do a lot of things for you, including removing sensitive data from logs (without losing filtering options), and more.</p>
 <p>Details to view your logs will come at a later time. For now, be aware that Apple provides many ways to view them, including using the Mac&rsquo;s Console.app, the <code>log</code> command-line tool, and the Xcode debugging console. We also have the option to read logs programmatically via the older <code>OSLog</code> system.</p>
@@ -299,9 +293,9 @@ if (!doNotTrack) {
 <li>Unusual code paths. If there&rsquo;s code paths that should barely happen, log them as well. This is great to find weird bugs or bugs that happen due to unusual user actions.</li>
 <li>Log after each line of a multi-step execution.</li>
 </ul>
-<p>When logging messages, you can log more than just static strings. You can incorporate static strings, numbers, and other Objective-C objects into your logging. Even with this huge flexibility, the system will by default automatically remove sensitive information from your login.</p>
+<p>When logging messages, you can log more than just static strings. You can incorporate static strings, numbers, and other Objective-C objects into your logging. Even with this huge flexibility, the system will by default automatically remove sensitive information from your messages.</p>
 <h3 id="creating-logs">Creating Logs</h3>
-<p>A log object centralizes all the logs that occur at a specific place of your app. All unified logging is done through this logging object. In Swift, you can use the <code>Logger</code> object introduced at WWDC. Objective-C folks will have to continue <code>OSLog</code>.</p>
+<p>A log object centralizes all the logs that occur at a specific place of your app. All unified logging is done through this logging object. In Swift, you can use the <code>Logger</code> object introduced at WWDC. Objective-C folks will have to continue using <code>OSLog</code>.</p>
 <p>Logging objects come with two basic filtering options. You can use them to filter out information as you try to diagnose issues in a specific place of your app. Because unified logging can produce an overwhelming amount of logs, you should make good use of these two options:</p>
 <ul>
 <li>The <strong>Subsystem</strong> is a functional area of your part. Multiple processes should be their own subsystems. You can even define a screen as a &ldquo;screen&rdquo; in your app. The subsystem can be anything that contextually makes sense in your app. I like to define a subsystem as an internal framework of my app. It is a good idea to use reverse DNS notation to name your subsystems.</li>
@@ -320,7 +314,7 @@ if (!doNotTrack) {
 <h4 id="creating-logs-in-code">Creating Logs In Code.</h4>
 <p>With all that theory out of the way, we will explore the simplest use case for logging in this article - static strings. In a later article we will explore advanced logging with dynamic and stripped data, as it&rsquo;s a topic that deserves its own article.</p>
 <p>To create a <code>Logger</code>, you can use the default initializer that takes no parameters to use the default subsystem. This is not recommended. You should use the <code>init(subsystem:category)</code> initializer instead.</p>
-<p>Don&rsquo;t forget to import <code>OSLog</code>, you need regardless of if you need Swift only or Objective-C support.</p>
+<p>Don&rsquo;t forget to import <code>OSLog</code>, you need it regardless if you need Swift only or Objective-C support.</p>
 <pre><code>import OSLog
 
 var logger = Logger(subsystem: &quot;com.andyibanez.com.nae.profile&quot;, category: &quot;Networking&quot;)
