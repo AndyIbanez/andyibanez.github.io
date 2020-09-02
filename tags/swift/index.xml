@@ -6,10 +6,19 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 26 Aug 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 02 Sep 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using ASWebAuthenticationSession with SwiftUI</title>
+      <link>https://www.andyibanez.com/posts/using-aswebauthenticationaession-swiftui/</link>
+      <pubDate>Wed, 02 Sep 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/using-aswebauthenticationaession-swiftui/</guid>
+      <description>Working with REST APIs you have no control over can be a little monotonous. This is especially for OAuth 2.0 API that need you to do a little bit of setup, get your API keys with the service provider, and then you need to do the setup on your app&amp;rsquo;s size: Configure your URL scheme, deal with that URL Scheme, and write code that does something when your app gets called with that URL.</description>
+    </item>
     
     <item>
       <title>Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift</title>
