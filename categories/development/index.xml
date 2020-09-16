@@ -6,10 +6,22 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 09 Sep 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 14 Sep 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>WWDC2020: What&#39;s new in CryptoKit</title>
+      <link>https://www.andyibanez.com/posts/wwdc2020-whats-new-cryptokit/</link>
+      <pubDate>Mon, 14 Sep 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/wwdc2020-whats-new-cryptokit/</guid>
+      <description>CryptoKit, introduced in WWDC2019, allows us to [https://www.andyibanez.com/posts/common-cryptographic-operations-with-cryptokit/ perform cryptographic operations very easily].
+While CryptoKit still doesn&amp;rsquo;t offer many algorithms and functionality, it&amp;rsquo;s still growing, and this year CryptoKit and do more.
+HKDF Key derivation functions have been available from day one, but it wasn&amp;rsquo;t possible to derive keys independently. It was only possible to do so if you were using elliptic curve key agreement protocols.
+To do this, there is a new HKDF object with static methods.</description>
+    </item>
     
     <item>
       <title>Logging Messages With the Unified Logging System on Apple Platforms</title>
