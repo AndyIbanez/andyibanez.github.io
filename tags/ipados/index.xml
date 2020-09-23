@@ -12,13 +12,13 @@
     
     
     <item>
-      <title>A Short Guide to Localization Apple Platforms</title>
+      <title>A Short Guide to Localization on Apple Platforms</title>
       <link>https://www.andyibanez.com/posts/a-short-guide-localization-apple-platforms/</link>
       <pubDate>Wed, 23 Sep 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/a-short-guide-localization-apple-platforms/</guid>
-      <description> title: &amp;ldquo;WWDC2020: What&amp;rsquo;s new in CryptoKit&amp;rdquo; date: 2020-09-14T07:00:00-04:00 originalDate: 2020-09-14T07:00:00-04:00 draft: false publishDate: 2020-09-14T07:00:00-04:00 highlightjslanguages:
- swift objectivec tags: swift programming apple ios ipados macos tvos watchos cryptokit wwdc2020 categories: development description: &amp;ldquo;Learn about the new features Apple added to CryptoKit in WWDC2020.&amp;rdquo; keywords: swift cryptokit ios tvos ipados watchos wwdc2020   </description>
+      <description>Translating our apps in different languages helps us reach wider audiences of different cultures. This reach can increase our app usage considerably and offer more monetization properties.
+In this short article we will mention the features Apples gives us to translate our apps to different languages, namely NSLocalizedString and and stringsdict files. You will also understand when you will want to use each, as they have different use cases and an app that takes localization seriously will use both.</description>
     </item>
     
     <item>

@@ -17,14 +17,14 @@
     
     
 
-<title>A Short Guide to Localization Apple Platforms • Andy Ibanez</title>
+<title>A Short Guide to Localization on Apple Platforms • Andy Ibanez</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="A Short Guide to Localization Apple Platforms"/>
+<meta name="twitter:title" content="A Short Guide to Localization on Apple Platforms"/>
 <meta name="twitter:description" content="Learn the technologies used to localized your iOS, iPadOS, watchOS, tvOS, and macOS apps."/>
 
-<meta property="og:title" content="A Short Guide to Localization Apple Platforms" />
+<meta property="og:title" content="A Short Guide to Localization on Apple Platforms" />
 <meta property="og:description" content="Learn the technologies used to localized your iOS, iPadOS, watchOS, tvOS, and macOS apps." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.andyibanez.com/posts/a-short-guide-localization-apple-platforms/" />
@@ -206,7 +206,7 @@ if (!doNotTrack) {
     
 <article>
   <header>
-    <h1>A Short Guide to Localization Apple Platforms</h1>
+    <h1>A Short Guide to Localization on Apple Platforms</h1>
     
     
 <div class="post__meta">
@@ -260,7 +260,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 1 min read
+    <i class="fas fa-clock"></i> 7 min read
 </div>
 
 
@@ -268,40 +268,188 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <hr>
-<p>title: &ldquo;WWDC2020: What&rsquo;s new in CryptoKit&rdquo;
-date: 2020-09-14T07:00:00-04:00
-originalDate: 2020-09-14T07:00:00-04:00
-draft: false
-publishDate: 2020-09-14T07:00:00-04:00
-highlightjslanguages:</p>
-<ul>
-<li>swift</li>
-<li>objectivec
-tags:</li>
-<li>swift</li>
-<li>programming</li>
-<li>apple</li>
-<li>ios</li>
-<li>ipados</li>
-<li>macos</li>
-<li>tvos</li>
-<li>watchos</li>
-<li>cryptokit</li>
-<li>wwdc2020
-categories:</li>
-<li>development
-description: &ldquo;Learn about the new features Apple added to CryptoKit in WWDC2020.&rdquo;
-keywords:</li>
-<li>swift</li>
-<li>cryptokit</li>
-<li>ios</li>
-<li>tvos</li>
-<li>ipados</li>
-<li>watchos</li>
-<li>wwdc2020</li>
-</ul>
-<hr>
+    <p>Translating our apps in different languages helps us reach wider audiences of different cultures. This reach can increase our app usage considerably and offer more monetization properties.</p>
+<p>In this short article we will mention the features Apples gives us to translate our apps to different languages, namely <code>NSLocalizedString</code> and and <code>stringsdict</code> files. You will also understand when you will want to use each, as they have different use cases and an app that takes localization seriously will use both.</p>
+<h1 id="nslocalizedstring-and-localizablestrings">NSLocalizedString and Localizable.strings</h1>
+<p><code>NSLocalizedString</code> allows us to do simple &ldquo;mappings&rdquo;. One string in one language corresponds to another language. Use <code>NSLocalizedString</code> when you need to create mostly static strings or dynamic strings that do not need to deal with pluralization.</p>
+<p>For example, if you wanted to translate the words <code>apples</code>, <code>oranges</code>, <code>pears</code>:</p>
+<pre><code>NSLocalizedString(&quot;apples&quot;, comment: &quot;The delicious red fruit&quot;)
+NSLocalizedString(&quot;oranges&quot;, comment: &quot;&quot;)
+NSLocalizedString(&quot;pears&quot;, comment: &quot;&quot;)
+</code></pre><p>By using <code>NSLocalizedString</code>, you are telling the system to search for these strings whenever a string is found. Specify a <code>comment</code> to provide more contexts to translators. This is important because of many issues with languages, including having synonyms in English that are two different words in other languages such as Spanish, and more.</p>
+<p>All your NSLocalizedStrings should create in your <code>Localizable.strings</code> file. This is the file that does the actual mapping of your string to other languages.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// Localizable.strings (es)</span>
+
+<span style="color:#75715e">// The delicious red fruit</span>
+<span style="color:#e6db74">&#34;apples&#34;</span> = <span style="color:#e6db74">&#34;manzanas&#34;</span>;
+
+<span style="color:#e6db74">&#34;oranges&#34;</span> = <span style="color:#e6db74">&#34;naranjas&#34;</span>;
+
+<span style="color:#e6db74">&#34;pears&#34;</span> = <span style="color:#e6db74">&#34;peras&#34;</span>;
+</code></pre></div><p>You can also create strings with dynamic parameters. For example, suppose you want your app to have a string that reads &ldquo;this shop sells pears&rdquo;. You could probably create three different localized strings for each fruit. But what happens if your fruits come from another source such as an API? You won&rsquo;t be able to have a string for each fruit. So you can instead create one <code>this shop sells &quot;x&quot;</code> string and have <code>x</code> be the right fruit. The string is a bit more complex, but nothing out of this world.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> fruitName = <span style="color:#75715e">//... A fruit name from another source, or maybe even a local source</span>
+
+String.localizedStringWithFormat(NSLocalizedString(<span style="color:#e6db74">&#34;This shop sells %@&#34;</span>, comment: <span style="color:#e6db74">&#34;Tells the user what kind of fruits a shop sells&#34;</span>), fruitName)
+</code></pre></div><p>And in the <code>Localizable.strings</code> file:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// Tells the user what kind of fruits a shop sells</span>
+<span style="color:#e6db74">&#34;This shop sells %@&#34;</span> = <span style="color:#e6db74">&#34;Esta tienda vende %@&#34;</span>;
+</code></pre></div><p>There are different formatters. <code>%@</code> is to specify strings and other data. You can also use <code>%d</code> for integers and all other types you&rsquo;d use in <code>NSLog</code>.</p>
+<p>You can also have strings with multiple variables. For example, to write a string such as &ldquo;Number of apples available: 3&rdquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> fruitName = NSLocalizedString(<span style="color:#e6db74">&#34;apples&#34;</span>, comment: <span style="color:#e6db74">&#34;The delicious red fruit&#34;</span>)
+<span style="color:#66d9ef">let</span> availableAmount = <span style="color:#ae81ff">3</span>
+
+String.localizedStringWithFormat(NSLocalizedString(<span style="color:#e6db74">&#34;Number of %@ available: %d&#34;</span>, comment: <span style="color:#e6db74">&#34;Tells the user how many of each fruit are available in the shop&#34;</span>), fruitName, availableAmount)
+</code></pre></div><p><code>NSLocalizedString</code> is great for mostly static strings or strings with simple parameters, but if you need pluralization, you need to work with <code>stringsdict</code> files.</p>
+<h1 id="pluralizing-strings-with-stringsdict-files">Pluralizing Strings with Stringsdict files.</h1>
+<p>In the last example of the above section, we saw this string:</p>
+<pre><code>Number of apples available: 1
+</code></pre><p>But what if we want to say something like &ldquo;There are only 3 apples left&rdquo; or &ldquo;There is only one apple left&rdquo;? How can we do that?</p>
+<p>You may recall that some older software always showed strings like this:</p>
+<pre><code>There are only 1 apples available
+</code></pre><p>Functionally, the string does its job, but in this day and age, where computers are more accessible than ever, many users may find it odd.</p>
+<p>The naïve approach would be to put if-else checks and then decide which <code>NSLocalizedString</code> to get with it. But we don&rsquo;t need that.</p>
+<p>The good news is that in all of Apple&rsquo;s platforms, we can make it more natural by making it read &ldquo;there is only 1 apple available&rdquo; or my personal favorite, even &ldquo;there is only one apple available&rdquo; when there is only one apple left, or &ldquo;there are only 3 apples available&rdquo; when there&rsquo;s 3 left very easily. <code>stringsdict</code> files will take care of choosing the right string for us.</p>
+<p>There are two parts to using <code>stringsdict</code>: You will still need to use <code>NSLocalizedString</code>, and then use a <code>stringsdict</code> file which is a property list of values.</p>
+<p><code>NSLocalizedString</code> is our entry point for any localization needs. When a <code>NSLocalizedString</code> is found, the system will look for its right counterpart in either <code>Localizable.strings</code> or the <code>stringsdict</code> file (commonly called <code>Localizable.stringsdict</code>). If the string cannot be found in a stringsdict file, the system will look for it in Localizable.strings, and if the string is in neither, it will use the raw string within the NSLocalizedString itself.</p>
+<p>With that discussion out of the way, we will now use a <code>stringsdict</code> file to create the following strings:</p>
+<pre><code>There is only one apple left.
+There are no apples left.
+There are only 3 apples left.
+</code></pre><p>Also, we will use the XML representation of the file, because it&rsquo;s easier to work with.</p>
+<p>When you create a stringsdict file for the first time, you will see the following content:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	&lt;key&gt;StringKey&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;NSStringLocalizedFormatKey&lt;/key&gt;
+		&lt;string&gt;%#@VARIABLE@&lt;/string&gt;
+		&lt;key&gt;VARIABLE&lt;/key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSStringFormatSpecTypeKey&lt;/key&gt;
+			&lt;string&gt;NSStringPluralRuleType&lt;/string&gt;
+			&lt;key&gt;NSStringFormatValueTypeKey&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+			&lt;key&gt;zero&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+			&lt;key&gt;one&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+			&lt;key&gt;two&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+			&lt;key&gt;few&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+			&lt;key&gt;many&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+			&lt;key&gt;other&lt;/key&gt;
+			&lt;string&gt;&lt;/string&gt;
+		&lt;/dict&gt;
+	&lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre><p>Depending on the language we are working with, we may need to pluralize differently for zero, one, two, few and many objects. In the case of English (and Spanish), we can only care about zero, one, and many, so delete all the other keys.</p>
+<p>Start by changing <code>StringKey</code> to <code>APPLES_LEFT_STRING</code>. This <code>StringKey</code> is that one that will be used for the <code>NSLocalizedString</code> search.</p>
+<p>Then, for <code>NSStringLocalizedFormatKey</code>, write the following string.</p>
+<pre><code>There are %#@VARIABLE@ apples left.
+</code></pre><p><code>%#@VARIABLE@</code> will be matched against the numeral keys (<code>zero</code>, <code>one</code>, <code>many</code>). More on this in a second.</p>
+<p>Then, the <code>NSStringFormatSpecTypeKey</code> can only have one value for now, which is <code>NSStringPluralRuleType</code>. It&rsquo;s likely <code>stringsdict</code> files will have more uses beyond pluralization in the future and Apple added this for future proofing.</p>
+<p>For <code>NSStringFormatValueTypeKey</code>, write <code>u</code>. This specifies our variable <code>%#@VARIABLE@</code> is an unsigned integer.</p>
+<p>Then, for <code>zero</code>, <code>one</code>, and <code>many</code>, write the following:</p>
+<pre><code>&lt;key&gt;zero&lt;/key&gt;
+&lt;string&gt;There are no apples left.&lt;/string&gt;
+&lt;key&gt;one&lt;/key&gt;
+&lt;string&gt;There is one apple left.&lt;/string&gt;
+&lt;key&gt;many&lt;/key&gt;
+&lt;string&gt;There are %#@VARIABLE@ apples left.&lt;/string&gt;
+</code></pre><p>So, when our <code>%#@VARIABLE@</code> is 0, our string will be <code>There are no apples left.</code>, and so on.</p>
+<p>Your final <code>stringsdict</code> file should look like this:</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;dict&gt;
+	&lt;key&gt;StringKey&lt;/key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;NSStringLocalizedFormatKey&lt;/key&gt;
+		&lt;string&gt;There are %#@VARIABLE@ apples left.&lt;/string&gt;
+		&lt;key&gt;VARIABLE&lt;/key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSStringFormatSpecTypeKey&lt;/key&gt;
+			&lt;string&gt;NSStringPluralRuleType&lt;/string&gt;
+			&lt;key&gt;NSStringFormatValueTypeKey&lt;/key&gt;
+			&lt;string&gt;u&lt;/string&gt;
+			&lt;key&gt;zero&lt;/key&gt;
+			&lt;string&gt;There are no apples left.&lt;/string&gt;
+			&lt;key&gt;one&lt;/key&gt;
+			&lt;string&gt;There is one apple left.&lt;/string&gt;
+			&lt;key&gt;many&lt;/key&gt;
+			&lt;string&gt;There are %#@VARIABLE@ apples left.&lt;/string&gt;
+		&lt;/dict&gt;
+	&lt;/dict&gt;
+&lt;/dict&gt;
+&lt;/plist&gt;
+</code></pre><p>We are not done yet, we want to use this string, we need to call it and wrap it in <code>NSLocalizedString</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> applesLeft = <span style="color:#ae81ff">1</span>
+String.localizedStringWithFormat(NSLocalizedString(<span style="color:#e6db74">&#34;APPLES_LEFT_STRING&#34;</span>, comment: <span style="color:#e6db74">&#34;Tells the user how many Apples are left&#34;</span>), applesLeft)
+</code></pre></div><p>We do not need to specify formats for the variables in this case, as they have already been specified in the <code>stringsdict</code> file.</p>
+<p>Now when you run that code, the string will be formatted differently depending on the value of <code>applesLeft</code>:</p>
+<pre><code>let applesLeft = 0 // There are no apples left.
+let applesLeft = 1 // There is one apple left.
+let applesLeft = 2 // There are 2 apples left.
+let applesLeft = 49 // There are 49 apples left.
+</code></pre><p>And for the record, you can specify strings that take more than one value, so if you needed to say &ldquo;There are 6 apples spread throughout 2 boxes&rdquo;, you can solve that creating another variable in your stringsdict. The following is a stringsdict I use to say &ldquo;Read 20 chapters out of 35&rdquo;:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">&lt;dict&gt;
+		&lt;key&gt;NSStringLocalizedFormatKey<span style="color:#f92672">&lt;/</span>key&gt;
+		&lt;string&gt;<span style="color:#f92672">%</span>#@VOLUMES@ <span style="color:#f92672">%</span>#@TOTAL_VOLUMES@<span style="color:#f92672">&lt;/</span>string&gt;
+		&lt;key&gt;VOLUMES<span style="color:#f92672">&lt;/</span>key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSStringFormatSpecTypeKey<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;NSStringPluralRuleType<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;NSStringFormatValueTypeKey<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;u<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;other<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;read <span style="color:#f92672">%</span>u<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;zero<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;read nothing<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;one<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;read one<span style="color:#f92672">&lt;/</span>string&gt;
+		<span style="color:#f92672">&lt;/</span>dict&gt;
+		&lt;key&gt;TOTAL_VOLUMES<span style="color:#f92672">&lt;/</span>key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSStringFormatSpecTypeKey<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;NSStringPluralRuleType<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;NSStringFormatValueTypeKey<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;u<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;other<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;out of <span style="color:#f92672">%</span>u volumes<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;zero<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;one<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;out of one volume<span style="color:#f92672">&lt;/</span>string&gt;
+		<span style="color:#f92672">&lt;/</span>dict&gt;
+	<span style="color:#f92672">&lt;/</span>dict&gt;
+	&lt;key&gt;EPISODES_BEHIND_TEXT<span style="color:#f92672">&lt;/</span>key&gt;
+	&lt;dict&gt;
+		&lt;key&gt;NSStringLocalizedFormatKey<span style="color:#f92672">&lt;/</span>key&gt;
+		&lt;string&gt;<span style="color:#f92672">%</span>#@EPISODE_COUNT@<span style="color:#f92672">&lt;/</span>string&gt;
+		&lt;key&gt;EPISODE_COUNT<span style="color:#f92672">&lt;/</span>key&gt;
+		&lt;dict&gt;
+			&lt;key&gt;NSStringFormatSpecTypeKey<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;NSStringPluralRuleType<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;NSStringFormatValueTypeKey<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;u<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;zero<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;No episodes behind<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;one<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;one episode behind<span style="color:#f92672">&lt;/</span>string&gt;
+			&lt;key&gt;other<span style="color:#f92672">&lt;/</span>key&gt;
+			&lt;string&gt;<span style="color:#f92672">%</span>u episodes behind<span style="color:#f92672">&lt;/</span>string&gt;
+		<span style="color:#f92672">&lt;/</span>dict&gt;
+	<span style="color:#f92672">&lt;/</span>dict&gt;
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>Localization is important, even more in modern computers, even more so. Apple provides developers with tools to make both &ldquo;direct&rdquo; translations easier and to make pluralization make sense in the context of any language.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
 
   </div>
   
