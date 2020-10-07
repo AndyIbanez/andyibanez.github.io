@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Sep 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
@@ -23,9 +23,63 @@
     <item>
       <title>ios</title>
       <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>metrickit</title>
+      <link>https://www.andyibanez.com/tags/metrickit/</link>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/metrickit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc19</title>
+      <link>https://www.andyibanez.com/tags/wwdc19/</link>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc20</title>
+      <link>https://www.andyibanez.com/tags/wwdc20/</link>
+      <pubDate>Wed, 07 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc20/</guid>
       <description></description>
     </item>
     
@@ -35,15 +89,6 @@
       <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/ios14/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
       <description></description>
     </item>
     
@@ -62,24 +107,6 @@
       <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/nsformatter/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 30 Sep 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
     </item>
     
