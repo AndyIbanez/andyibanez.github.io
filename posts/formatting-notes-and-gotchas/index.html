@@ -261,7 +261,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 7 min read
+    <i class="fas fa-clock"></i> 8 min read
 </div>
 
 
@@ -347,6 +347,17 @@ ListFormatter.localizedString(byJoining: historic) <span style="color:#75715e">/
 
 <span style="color:#66d9ef">let</span> historic = [<span style="color:#e6db74">&#34;incas&#34;</span>, <span style="color:#e6db74">&#34;aymaras&#34;</span>]
 ListFormatter.localizedString(byJoining: historic) <span style="color:#75715e">// incas y aymaras</span>
+</code></pre></div><h2 id="the-oxford-comma">The Oxford Comma</h2>
+<p>When <a href="https://twitter.com/steipete">@steipete</a> <a href="https://twitter.com/steipete/status/1314113507529568256?s=20">shared this article on Twitter</a>, I looked into the comments and remmebered the (in)famous <a href="https://www.rd.com/article/oxford-comma-proper-use/">Oxford comma</a>. Turns out that the formatter will even take into account when to use it. When your locale is the UK, it will not use the comma, whereas when it is the USA, it will.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> items = [<span style="color:#e6db74">&#34;apples&#34;</span>, <span style="color:#e6db74">&#34;eggs&#34;</span>, <span style="color:#e6db74">&#34;pears&#34;</span>]
+
+<span style="color:#66d9ef">let</span> formatter = ListFormatter()
+formatter.locale = Locale(identifier: <span style="color:#e6db74">&#34;en_UK&#34;</span>)
+
+print(formatter.string(from: items)) <span style="color:#75715e">// apples, eggs and pears</span>
+
+formatter.locale = Locale(identifier: <span style="color:#e6db74">&#34;en_US&#34;</span>)
+print(formatter.string(from: items)) <span style="color:#75715e">//  apples, eggs, and pears</span>
 </code></pre></div><p>Starting on iOS 14 and the rest of the OSes introduced in WWDC2020, <code>ListFormatter</code> will use the right grammatical rules for your lists. In earlier versions you may get unexpected results for some lists.</p>
 <h1 id="numbers">Numbers</h1>
 <p>Like we mentioned earlier, different locales separate decimals and thousands with a different symbol. Most English people will use commas for thousands, whereas in Spanish speaking countries we normally separate with periods.</p>
