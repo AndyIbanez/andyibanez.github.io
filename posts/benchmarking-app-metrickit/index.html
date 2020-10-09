@@ -309,7 +309,7 @@ if (!doNotTrack) {
 <p>With Diagnostics, we can get more detailed info for hangs, crashes, disk writes, and CPU exceptions. It allow us to literally get a stack trace of the call site.</p>
 <p>To make use of this, all we need to do is implement a new method of <code>MXMetricManagerSubscriber</code>. <code>didReceive(_:)</code>, but this time, it will pass you an array of <code>MXDiagnosticPayload</code> instead of <code>MXMetricPayload</code>. And that&rsquo;s it. It will work exactly the same way as the other protocol method.</p>
 <p>The API for dealing with <code>MXDiagnosticPayload</code> is pretty much the same as <code>MXMetricPayload</code>. Where we had <code>MXMetric</code> as the base class for all metric objects, we now have <code>MXDiagnostic</code> which fulfills that paper for diagnostics. <code>MXDiagnosticPayload</code> will wrap a bunch of <code>MXDiagnostic</code> subclasses the same way <code>MXMetricDiagonistic</code> does for wrapping <code>MXMetric</code> subclasses.</p>
-<p>It also includes a <code>MXCallStackTree</code> object. This encapsulates stack traces for the moments when regressions occurred. It is important to note that these stack traces are unsymbolicated, so make sure you don&rsquo;t store them in your app unless you want to leak implementation details of certain functionality.</p>
+<p>It also includes a <code>MXCallStackTree</code> object. This encapsulates stack traces for the moments when regressions occurred. These stacktraces are unsymbolicated.</p>
 <p>The new subclasses introduced in WWDC2020 for diagnostics are:</p>
 <ul>
 <li><code>MXHangDiagnostic</code></li>
