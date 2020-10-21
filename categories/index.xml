@@ -6,7 +6,7 @@
     <description>Recent content in Categories on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Oct 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>development</title>
       <link>https://www.andyibanez.com/categories/development/</link>
-      <pubDate>Wed, 14 Oct 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 21 Oct 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/categories/development/</guid>
       <description></description>
@@ -44,6 +44,51 @@
       <pubDate>Tue, 20 Aug 2019 13:59:15 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/categories/command-line/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS App</title>
+      <link>https://www.andyibanez.com/categories/ios-app/</link>
+      <pubDate>Mon, 08 May 2017 21:06:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/categories/ios-app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Command Line Tool</title>
+      <link>https://www.andyibanez.com/categories/command-line-tool/</link>
+      <pubDate>Sun, 26 Jun 2016 19:49:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/categories/command-line-tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>https://www.andyibanez.com/categories/web/</link>
+      <pubDate>Wed, 26 Mar 2014 19:13:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/categories/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mac App</title>
+      <link>https://www.andyibanez.com/categories/mac-app/</link>
+      <pubDate>Sat, 04 Jan 2014 22:15:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/categories/mac-app/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS Tweak</title>
+      <link>https://www.andyibanez.com/categories/ios-tweak/</link>
+      <pubDate>Sat, 04 Jan 2014 22:07:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/categories/ios-tweak/</guid>
       <description></description>
     </item>
     

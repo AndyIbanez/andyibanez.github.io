@@ -6,10 +6,21 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Oct 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A More Practical Custom Formatter</title>
+      <link>https://www.andyibanez.com/posts/a-more-practical-custom-formatter/</link>
+      <pubDate>Wed, 21 Oct 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/a-more-practical-custom-formatter/</guid>
+      <description>I had announced that I wouldn&amp;rsquo;t be able to write an article this week due to it being Elections Day in my country. that said I just can&amp;rsquo;t leave you guys without article, so this is a short one.
+We will write another NSFormatter subclass. It will allow us to compose E-mails easily. This should also help show that formatters can format string into anything else really.
+In short, we will be able to &amp;ldquo;compose&amp;rdquo; emails using raw strings, like this:</description>
+    </item>
     
     <item>
       <title>Writing Custom NSFormatters in Swift</title>

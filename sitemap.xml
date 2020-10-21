@@ -3,53 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.andyibanez.com/posts/a-more-practical-custom-formatter/</loc>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/nsformatter/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/</loc>
-    <lastmod>2020-10-14T07:00:00-04:00</lastmod>
+    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -778,8 +783,18 @@
   </url>
   
   <url>
+    <loc>https://www.andyibanez.com/categories/ios-app/</loc>
+    <lastmod>2017-05-08T21:06:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/projects/nextanimeepisode1/</loc>
     <lastmod>2017-05-08T21:06:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/categories/command-line-tool/</loc>
+    <lastmod>2016-06-26T19:49:00-04:00</lastmod>
   </url>
   
   <url>
@@ -794,6 +809,11 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/php/</loc>
+    <lastmod>2014-03-26T19:13:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/categories/web/</loc>
     <lastmod>2014-03-26T19:13:00-04:00</lastmod>
   </url>
   
@@ -813,12 +833,22 @@
   </url>
   
   <url>
+    <loc>https://www.andyibanez.com/categories/mac-app/</loc>
+    <lastmod>2014-01-04T22:15:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/projects/cecrecy/</loc>
     <lastmod>2014-01-04T22:07:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/cydia/</loc>
+    <lastmod>2014-01-04T22:07:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/categories/ios-tweak/</loc>
     <lastmod>2014-01-04T22:07:00-04:00</lastmod>
   </url>
   
