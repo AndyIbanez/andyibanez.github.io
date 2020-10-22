@@ -23,6 +23,15 @@ In short, we will be able to &amp;ldquo;compose&amp;rdquo; emails using raw stri
     </item>
     
     <item>
+      <title>Silvianna for Anilist</title>
+      <link>https://www.andyibanez.com/projects/silvianna/</link>
+      <pubDate>Sat, 17 Oct 2020 11:48:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/silvianna/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Writing Custom NSFormatters in Swift</title>
       <link>https://www.andyibanez.com/posts/writing-custom-nsformatters-swift/</link>
       <pubDate>Wed, 14 Oct 2020 07:00:00 -0400</pubDate>
@@ -722,6 +731,17 @@ rclone is a command line tool, similar to rsync, with the difference that it can
       <description>Andy Ibanez K built the Next Anime Episode app as a Commercial app. This SERVICE is provided by Andy Ibanez K and is intended for use as is.
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 If you choose to use my Service, then you agree to the collection and use of information in relation to this policy.</description>
+    </item>
+    
+    <item>
+      <title>Silvianna for Anilist - Privacy Policy</title>
+      <link>https://www.andyibanez.com/privacy-policies/privacy_policy_silvianna/</link>
+      <pubDate>Mon, 19 Aug 2019 22:29:10 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/privacy-policies/privacy_policy_silvianna/</guid>
+      <description>The Privacy Policy for Silvianna can be resumed in one sentence:
+Silvianna will not store your information, personal or otherwise, in any third-party servers not owned by Anilist.co, Apple, or RevenueCat.
+Silvianna is a client for https://anilist.co (hereafter simply called &amp;ldquo;Anilist&amp;rdquo;), the popular anime and manga database service. As such, Silvianna will interact with Anilist in order to do any work at all. With Silvianna, you can view information stored on Anilist, and that includes any personal information you may have provided to them.</description>
     </item>
     
     <item>
