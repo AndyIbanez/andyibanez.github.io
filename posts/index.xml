@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Oct 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 04 Nov 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quick Tip: Hosting JSON Files on Github for Free</title>
+      <link>https://www.andyibanez.com/posts/quick-tip-hosting-json-files-github-for-free/</link>
+      <pubDate>Wed, 04 Nov 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/quick-tip-hosting-json-files-github-for-free/</guid>
+      <description>There are times in which you may want to host small JSON (or other small types of files) somewhere because your app needs them. Maybe you want to configure feature flags, or maybe you want to host IAP identifiers somewhere so as to not hardcode them in your app. This last case is something I did recently.
+The immediate thought will be get a cheap server somewhere - after all, using something like Vultr you can get cheap hosting for as low as $2.</description>
+    </item>
     
     <item>
       <title>Parsing Tricky JSON With Codable in Swift</title>
