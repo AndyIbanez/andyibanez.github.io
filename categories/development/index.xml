@@ -6,10 +6,19 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Nov 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 11 Nov 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Understanding KeyPaths in Swift</title>
+      <link>https://www.andyibanez.com/posts/understanding-keypaths-swift/</link>
+      <pubDate>Wed, 11 Nov 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/understanding-keypaths-swift/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Quick Tip: Hosting JSON Files on Github for Free</title>
