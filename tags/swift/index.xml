@@ -17,7 +17,8 @@
       <pubDate>Wed, 11 Nov 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/understanding-keypaths-swift/</guid>
-      <description></description>
+      <description>KeyPath. It sounds like a very fancy word. And it is a feature you have likely used it, either knowingly or unknowingly. KeyPaths are one of my favorite features in Swift, but they can be a bit tricky to understand. In this article we will explore what KeyPaths are, and when you may want to use them.
+Understanding KeyPaths In simple words, a KeyPath is a reference to an actual property instead of a value.</description>
     </item>
     
     <item>
