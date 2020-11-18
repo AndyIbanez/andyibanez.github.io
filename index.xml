@@ -12,6 +12,17 @@
     
     
     <item>
+      <title>Quick Tip: Custom Debug Printing with CustomDebugStringConvertible in Swift</title>
+      <link>https://www.andyibanez.com/posts/quick-tip-custom-debug-printing-customdebugstringconvertible-swift/</link>
+      <pubDate>Sun, 15 Nov 2020 15:58:59 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/quick-tip-custom-debug-printing-customdebugstringconvertible-swift/</guid>
+      <description>Printing stuff to the console is a simple but powerful step we can take when debugging our apps. But there are times when we want to print an object and we actually get something entirely different, often also useless.
+For example, this commonly happens when working with classes and printing instances of them.
+class User { let id: Int let name: String init(id: Int, name: String) { self.id = id self.</description>
+    </item>
+    
+    <item>
       <title>Understanding KeyPaths in Swift</title>
       <link>https://www.andyibanez.com/posts/understanding-keypaths-swift/</link>
       <pubDate>Wed, 11 Nov 2020 07:00:00 -0400</pubDate>
