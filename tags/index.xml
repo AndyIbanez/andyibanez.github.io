@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 15 Nov 2020 15:58:59 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 25 Nov 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,27 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Sun, 15 Nov 2020 15:58:59 -0400</pubDate>
+      <pubDate>Wed, 25 Nov 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sequences</title>
+      <link>https://www.andyibanez.com/tags/sequences/</link>
+      <pubDate>Wed, 25 Nov 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/sequences/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Wed, 25 Nov 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
     </item>
     
@@ -26,15 +44,6 @@
       <pubDate>Sun, 15 Nov 2020 15:58:59 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Sun, 15 Nov 2020 15:58:59 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
     </item>
     
