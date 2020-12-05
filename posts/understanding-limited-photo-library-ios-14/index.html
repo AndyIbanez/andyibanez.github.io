@@ -274,6 +274,7 @@ if (!doNotTrack) {
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> library = PHPhotoLibrary.shared()
 library.presentLimitedLibraryPicker(from: viewController)
 </code></pre></div><p>The system prompt can be annoying. The good news is that we can suppress it by setting <code>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</code> key in our <code>Info.plist</code> to yes. If you already deal with the new limited photo library, you don&rsquo;t need the system to alert your users, as you have code to show the picker as necessary.</p>
+<p>Note that you need to <code>import PhotosUI</code> to use this feature.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>The new limited photo library exists for privacy reason. Before you even make use of these APIs, you should ask yourself if you really need to access user photos, or if the new <code>PHPhotoPicker</code> can do the work for you. If you must access the assets directly, adopt the new features and suppress the alert to make the photo picker experience smoother.</p>
 <!-- raw HTML omitted -->
