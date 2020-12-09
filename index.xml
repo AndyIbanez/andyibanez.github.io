@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Getting Started App Store Connect Api</title>
+      <link>https://www.andyibanez.com/posts/getting-started-app-store-connect-api/</link>
+      <pubDate>Wed, 09 Dec 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/getting-started-app-store-connect-api/</guid>
+      <description>In 2018, Apple introduced the App Store Connect API. We as iOS developers interact with App Store Connect almost daily. We like to see our sales reports, analytics, check how our apps are doing. Occasionally, we may need to register a new device or manage our users.
+Many of these tasks are so common that it was necessary to get an App Store Connect API at some point. Having an API allows us to automatize some aspects of our day to day tasks on App Store Connect, and to make some tasks easier and faster.</description>
+    </item>
+    
+    <item>
       <title>Understanding the Limited Photo Library in iOS 14</title>
       <link>https://www.andyibanez.com/posts/understanding-limited-photo-library-ios-14/</link>
       <pubDate>Wed, 02 Dec 2020 07:00:00 -0400</pubDate>
