@@ -6,10 +6,21 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Dec 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 16 Dec 2020 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The &#34;ExpressibleBy-&#34; Protocols in Swift</title>
+      <link>https://www.andyibanez.com/posts/expressibleby-protocols-swift/</link>
+      <pubDate>Wed, 16 Dec 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/expressibleby-protocols-swift/</guid>
+      <description>Swift gives us many interesting features to write cleaner and more obvious code. This code is more readable, and it help both SDK consumers and code maintainers.
+One such feature Swift has is the ExpressibleBy- family of protocols. This is a set of protocols that allow you to instantiate objects by providing some native Swift object. For example, we can instantiate an object providing a Boolean, or a String.
+This family of protocols consist of the following protocols (this is not a complete list):</description>
+    </item>
     
     <item>
       <title>Understanding the Limited Photo Library in iOS 14</title>
