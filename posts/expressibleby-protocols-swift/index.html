@@ -327,10 +327,10 @@ print(<span style="color:#e6db74">&#34;myNumber is </span><span style="color:#e6
   }
 }
 </code></pre></div><p>These protocols use associated types to assign the data type of the elements. In our case, our object can be initialized with an array of integers, so we assign <code>ArrayLiteralElement</code> to <code>Int</code>.</p>
-<pre><code class="language-Swif" data-lang="Swif">let myNumbers: ArrayNumberMultipler = [2, 4, 6]
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Swift" data-lang="Swift"><span style="color:#66d9ef">let</span> myNumbers: ArrayNumberMultipler = [<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">6</span>]
 
-print(myNumbers.numbers) // Prints &quot;[4, 16, 36]&quot;
-</code></pre><h2 id="expressiblebydictionaryliteral">ExpressibleByDictionaryLiteral</h2>
+print(myNumbers.numbers) <span style="color:#75715e">// Prints &#34;[4, 16, 36]&#34;</span>
+</code></pre></div><h2 id="expressiblebydictionaryliteral">ExpressibleByDictionaryLiteral</h2>
 <p>Finally, the last <code>ExpressibleBy-</code> protocol we will explore will allow us to instantiate objects with a dictionary. This can be very cool and handy in certain cases.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Doll</span>: ExpressibleByDictionaryLiteral {
   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">typealias</span> Key = String
