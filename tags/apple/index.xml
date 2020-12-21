@@ -6,10 +6,21 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 Dec 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 20 Dec 2020 15:53:06 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Happy 2021! And Short Break Notice</title>
+      <link>https://www.andyibanez.com/posts/happy-2021-short-break-notice/</link>
+      <pubDate>Sun, 20 Dec 2020 15:53:06 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/happy-2021-short-break-notice/</guid>
+      <description>This has been quite a year! Not only did we have the bad stuff happen (COVID-19), it has also been a crazy year for my personal development and for the growth of my blog.
+Thanks to the events that happened mid-year, the reach of my blog has reached wide, and I have connected to a bunch of people thanks to all that.
+I want to take one minute to thank you all who have reached to me with questions about my articles, ideas, and even suggestions to improve my writing.</description>
+    </item>
     
     <item>
       <title>The &#34;ExpressibleBy-&#34; Protocols in Swift</title>
