@@ -235,7 +235,7 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <p>Swift gives us many interesting features to write cleaner and more obvious code. This code is more readable, and it help both SDK consumers and code maintainers.</p>
+    <p>Swift gives us many interesting features to write cleaner and more obvious code. This code is more readable, and it helps both SDK consumers and code maintainers.</p>
 <p>One such feature Swift has is the <code>ExpressibleBy-</code> family of protocols. This is a set of protocols that allow you to instantiate objects by providing some native Swift object. For example, we can instantiate an object providing a Boolean, or a String.</p>
 <p>This family of protocols consist of the following protocols (this is not a complete list):</p>
 <ul>
@@ -251,7 +251,7 @@ if (!doNotTrack) {
 <h1 id="using-the-expressibleby--protocols">Using the ExpressibleBy- Protocols</h1>
 <p>The different variations of these protocols have different requirements. We will explore a few of them so you can get up to speed and know what to do when you find a situation when you can use them.</p>
 <h2 id="expressiblebynilliteral">ExpressibleByNilLiteral</h2>
-<p>Suppose you have a requirement that requires that, when an object gets initialized with <code>nil</code>, you don&rsquo;t want the whole object instead. You may have a custom requirement in which you need to consider <code>nil</code> something different.</p>
+<p>Suppose you have a requirement that requires that, when an object gets initialized with <code>nil</code>, you don&rsquo;t want the whole object to be nil. You may have a custom requirement in which you need to consider <code>nil</code> something different.</p>
 <p>For example, suppose you want to treat the existence of an object that actually does exist, but has all its properties set to <code>nil</code>.</p>
 <p>To use <code>ExpressibleByNilLiteral</code>, you need to implement the <code>print(&quot;New doll: \(doll.name)&quot;)</code> method.</p>
 <p>Consider the following example:</p>
