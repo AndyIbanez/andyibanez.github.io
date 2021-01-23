@@ -298,7 +298,7 @@ if (!doNotTrack) {
 <h1 id="exploring-the-api">Exploring the API</h1>
 <p>With all that theory out of the way, it&rsquo;s time to get our feet wet. We will be running these examples in a simple Command Line project in Xcode.</p>
 <h2 id="nsblockoperation">NSBlockOperation</h2>
-<p>Using <code>NSBlockOperation</code> is very easy. In the example below, we will create two different <code>NSBlockOperation</code>. One will count from 1 to 10, and the other one will count from 1 to 20. You will see that there&rsquo;s no consistent order in how the numbers are printed, despite the fact that we queue the <code>from1to10</code>operation before <code>from11to20</code>.</p>
+<p>Using <code>NSBlockOperation</code> is very easy. In the example below, we will create two different <code>NSBlockOperation</code>. One will count from 1 to 10, and the other one will count from 11 to 20. You will see that there&rsquo;s no consistent order in how the numbers are printed, despite the fact that we queue the <code>from1to10</code>operation before <code>from11to20</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NumberCounter</span>: NSObject {
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">startCounting</span>() {
         
