@@ -6,10 +6,20 @@
     <description>Recent content in structures on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jan 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 27 Jan 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/structures/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Understanding Basic Data Structures in Swift: Dictionaries in Depth</title>
+      <link>https://www.andyibanez.com/posts/understanding-basic-data-structures-dictionaries-in-depth/</link>
+      <pubDate>Wed, 27 Jan 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/understanding-basic-data-structures-dictionaries-in-depth/</guid>
+      <description>Whether you are a seasoned developer with a lot of code out in the wild world, or you started learning programming this week, chances are you hace used (and seen) dictionaries being used in many places. Also known as hashmaps or hash tables, dictionaries allow us to store key-value mappings, from one object to another.
+In this article we will study this structure which is known by everyone, and we will also learn about its quirks and unknown features.</description>
+    </item>
     
     <item>
       <title>Understanding Basic Data Structures in Swift: Sets</title>
