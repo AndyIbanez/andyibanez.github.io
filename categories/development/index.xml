@@ -6,7 +6,7 @@
     <description>Recent content in development on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 27 Jan 2021 07:00:00 -0401</lastBuildDate>
+    <lastBuildDate>Wed, 27 Jan 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/categories/development/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Understanding Basic Data Structures in Swift: Dictionaries in Depth</title>
       <link>https://www.andyibanez.com/posts/understanding-basic-data-structures-dictionaries-in-depth/</link>
-      <pubDate>Wed, 27 Jan 2021 07:00:00 -0401</pubDate>
+      <pubDate>Wed, 27 Jan 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/understanding-basic-data-structures-dictionaries-in-depth/</guid>
       <description>Whether you are a seasoned developer with a lot of code out in the wild world, or you started learning programming this week, chances are you hace used (and seen) dictionaries being used in many places. Also known as hashmaps or hash tables, dictionaries allow us to store key-value mappings, from one object to another.
