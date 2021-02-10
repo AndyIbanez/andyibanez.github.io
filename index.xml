@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Intercepting iOS Network Request Calls with Proxyman</title>
+      <link>https://www.andyibanez.com/posts/intercepting-ios-network-request-calls-proxyman/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/intercepting-ios-network-request-calls-proxyman/</guid>
+      <description>Intercepting iOS Network Request Calls with Proxyman
+Working with network APIs can be tricky, especially when debugging. You oftentimes have to ask yourself if your app is sending and receiving the expected information. You also often worry about whether the web service returns whatever it promises it will return. Working with APIs is both easy and tricky due to all the implications behind the scenes. What happens if the service goes down and sends unexpected responses?</description>
+    </item>
+    
+    <item>
       <title>nil-null-mess in Objective-C and Swift</title>
       <link>https://www.andyibanez.com/posts/nil-null-mess-objective-c-and-swift/</link>
       <pubDate>Wed, 03 Feb 2021 07:00:00 -0400</pubDate>

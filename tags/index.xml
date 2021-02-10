@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Feb 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 10 Feb 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,81 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 03 Feb 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ios</title>
+      <link>https://www.andyibanez.com/tags/ios/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://www.andyibanez.com/tags/macos/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>networking</title>
+      <link>https://www.andyibanez.com/tags/networking/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxy</title>
+      <link>https://www.andyibanez.com/tags/proxy/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/proxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reverse engineering</title>
+      <link>https://www.andyibanez.com/tags/reverse-engineering/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/reverse-engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvos</title>
+      <link>https://www.andyibanez.com/tags/tvos/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/tvos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -129,15 +201,6 @@
     </item>
     
     <item>
-      <title>ios</title>
-      <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 13 Jan 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>programming</title>
       <link>https://www.andyibanez.com/tags/programming/</link>
       <pubDate>Wed, 16 Dec 2020 07:00:00 -0400</pubDate>
@@ -197,42 +260,6 @@
       <pubDate>Wed, 11 Nov 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/keypaths/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 04 Nov 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>macos</title>
-      <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Wed, 04 Nov 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tvos</title>
-      <link>https://www.andyibanez.com/tags/tvos/</link>
-      <pubDate>Wed, 04 Nov 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/tvos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 04 Nov 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -629,33 +656,6 @@
       <pubDate>Wed, 04 Dec 2019 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/property-wrappers/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>networking</title>
-      <link>https://www.andyibanez.com/tags/networking/</link>
-      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/networking/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>proxy</title>
-      <link>https://www.andyibanez.com/tags/proxy/</link>
-      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reverse engineering</title>
-      <link>https://www.andyibanez.com/tags/reverse-engineering/</link>
-      <pubDate>Wed, 20 Nov 2019 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/reverse-engineering/</guid>
       <description></description>
     </item>
     

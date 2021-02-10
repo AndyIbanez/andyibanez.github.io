@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.65.3" />
+
+    
+    
+    
+
+<title>Intercepting iOS Network Request Calls with Proxyman • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Intercepting iOS Network Request Calls with Proxyman"/>
+<meta name="twitter:description" content="Learn how to intercept network calls in your iOS apps with Proxyman."/>
+
+<meta property="og:title" content="Intercepting iOS Network Request Calls with Proxyman" />
+<meta property="og:description" content="Learn how to intercept network calls in your iOS apps with Proxyman." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/intercepting-ios-network-request-calls-proxyman/" />
+<meta property="article:published_time" content="2021-02-10T07:00:00-04:00" />
+<meta property="article:modified_time" content="2021-02-10T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Intercepting iOS Network Request Calls with Proxyman</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Feb 10, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/reverse-engineering">reverse engineering</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/proxy">proxy</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/networking">networking</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 7 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Intercepting iOS Network Request Calls with Proxyman</p>
+<p>Working with network APIs can be tricky, especially when debugging. You oftentimes have to ask yourself if your app is sending and receiving the expected information. You also often worry about whether the web service returns whatever it promises it will return. Working with APIs is both easy and tricky due to all the implications behind the scenes. What happens if the service goes down and sends unexpected responses? Or if your app loses internet connection? Using a proxy to intercept network calls will help us answer these questions.</p>
+<!-- raw HTML omitted -->
+<p><!-- raw HTML omitted -->Full Disclosure<!-- raw HTML omitted --></p>
+<p>I was reached out by the team at <a href="https://proxyman.io">Proxyman</a> and they gave me a full year license. In turn I&rsquo;d write at least one article about the program.</p>
+<p>I think that proxy tools are important, and while we have some established tools, I genuinely like Proxyman.</p>
+<p>If you need to intercept network calls and you can&rsquo;t or don&rsquo;t want to pay, there are some alternatives available. Including mitmproxy, for which I have an article on <a href="https://www.andyibanez.com/posts/intercepting-network-mitmproxy/">here</a>. mitmproxy is a free and open source alternative to Proxyman. I personally find Proxyman easier to use, but mitmproxy is not a bad alternative by any means.</p>
+<p>On andyibanez.com, I make the promise to disclose whenever I have been asked to write about a certain product, and I will only write about said product if I like it. I also make the promise that, shall this become a more common occurrence in the future, my website will see two new posts weekly: One post for the product, and my usual weekly article.</p>
+<hr>
+<!-- raw HTML omitted -->
+<h1 id="installing-proxyman">Installing Proxyman</h1>
+<p>Proxyman is available through Homebrew, so if you already have Homebrew installed, you simply need to type the following in a Terminal window:</p>
+<pre><code>brew install proxyman
+</code></pre><p>Otherwise you can get it from <a href="here">https://proxyman.io</a>.</p>
+<h2 id="setting-up">Setting up</h2>
+<p>When you launch Proxyman, you will see a window that shows all the network calls going on in your system. We will first set it up to work with the iOS Simulator.</p>
+<p>For this article, I will be proxying my own app, <a href="https://apps.apple.com/us/app/next-anime-episode/id1227965532">Next Anime Episode</a>. Feel free to use your own app, or you can use this one when install it on your phone.</p>
+<p>In this case of Next Anime Episode, we will intercept calls that come from the Anilist domain.</p>
+<p><img src="/img/proxyman_anilist_screen.png.png" alt="Proxyman Anilist"></p>
+<p>The basic use for a proxy tool like this is we want to observer the requests we do, and the requests we make. To the bottom-left we have views where we can choose if we want to see our headers sent, our requests, or the server responses.</p>
+<p>Because the app is using HTTPS, we cannot observer any traffic yet. To the bottom-right we will have the options to enable proxying, either all the domains of the app, or just that specific domain.</p>
+<p>Once you click either button you will be prompted to install and trust Proxyman&rsquo;s certificate. This is necessary in order to decrypt HTTPS traffic. Do note that Proxyman cannot intercept calls when dealing with certificate pinning. There is no tool that can currently do this.</p>
+<p><img src="/img/proxyman_install_ssl_cert.png" alt="Installing the Certificate"></p>
+<p>Once you install the certificate, proxyman will prompt you to run the request again. Simply repeat an action on the app that would trigger a request.</p>
+<p><img src="/img/proxyman_re-run_req.png" alt="Proxyman (Almost) Ready"></p>
+<p>Once you re-run the request, you will find that you are not quite ready yet. Now the app will refuse to run as it (rightfully) thinks someone else is trying to act as them. To fix this, we now need to install the matching key on the simulators. Open the request you just re-did and look to the bottom-right.</p>
+<p><img src="/img/proxyman_re_ran_req.png" alt="Proxyman Re-Run Request"></p>
+<p>Proxyman automatically knows the request came from the simulator. Click the &ldquo;Install Certificate&rdquo; button to show a window where you can install the certificate on the simulators with a simple click.</p>
+<p><img src="/img/proxyman_ios_setup.png" alt="iOS Setup Screen"></p>
+<p>We are almost done. Click the &ldquo;Reset iOS Simulators&rdquo; button. Next time when they launch, the certificate will be installed, and you will be able to intercept networking calls.</p>
+<p>Now relaunch a request, and take a look at the panel below. Finally, some data!</p>
+<p><img src="/img/proxyman_now_working.png" alt="Proxyman Displaying Data"></p>
+<h2 id="advanced-features">Advanced Features</h2>
+<p>Proxyman offers some features that makes it very valuable when it comes to debugging networking. They are very easily accessible and easy to use.</p>
+<h3 id="repeat-and-edit-and-repeat">Repeat and Edit and Repeat</h3>
+<p>The most basic advanced feature is repeating a request. When you are debugging and working with your backend team at the same time, it could be useful to repeat a request without having to relaunch your app.</p>
+<p>To <strong>Repeat</strong> a request, go the <code>Flow</code> menu or press <code>Cmd + Enter</code>. This will repeat the request you have highlighted with no modifications whatsoever.</p>
+<p>You can also <strong>Edit and Repeat</strong> a request (<code>Flow</code> menu or <code>Option + Cmd + Enter</code>). You will get a window where you can edit your request. If your API does not send JSON, you can also choose to show <code>Form</code> instead of text.</p>
+<p><img src="/img/proxyman_edit_and_repeat.png" alt="Edit and Repeat"></p>
+<p>This is a very useful feature. For my particular job, and when dealing with private APIs in general, this allows me to write stronger code for my requests and find requests that prevent me from bombing the server.</p>
+<p>Worth nothing you can edit everything about the request, including the header, so you can use this feature when experimenting with an API for the first time.</p>
+<p>Similar to editing, you can compose new requests from scratch, by going to <code>Tools &gt; Compose</code>. This will show window very similar to the Edit and Repeat one, and you will be able to compose a request from scratch.</p>
+<h2 id="breakpoints">Breakpoints</h2>
+<p>One final handy feature I want to talk about are breakpoints. If you are debugging with traditional iOS app debugging, you know breakpoints. They work the same way.</p>
+<p>With Proxyman, you can set breakpoints on certain URLs with paths, you can choose what HTTP method should trigger it, and whether it should trigger for Requests, Responses, or both. To use the breakpoints feature, go to <code>Tools &gt; Breakpoints &gt; Rules</code>, and click <code>+</code>.</p>
+<p><img src="/img/proxyman_breakpoint_config.png" alt="Proxyman Breakpoint Config"></p>
+<p>The specific API I use on Next Anime Episode is a GraphQL API, so there&rsquo;s only one URL I can interact with.</p>
+<p>When a breakpoint is hit, you can edit it the contents. Whether you chose the breakpoint to be triggered on requests or responses, you can edit it before sending it off to its destination.</p>
+<p>When a breakpoint is hit, you will see the <strong>Breakpoints</strong> screen, and you will be able to edit your requests immediately.</p>
+<p><img src="/img/proxyman_edit_breakpoint_req.png" alt="Proxyman Edit From Breakpoint"></p>
+<p>Editing responses works the same way. Editing responses is useful as you can modify a response before it hits its destination. This is useful when debugging on an actual device.</p>
+<h2 id="setting-up-a-physical-ios-device">Setting up a Physical iOS Device</h2>
+<p>Proxyman allows you to use your physical device. You can configure your device to point to a proxy on your Mac running a Proxyman instance and inspect and modify all and any traffic sent from and meant to your phone.</p>
+<p>To do the setup, make sure both your Mac and device are connected to the same network. Then, configure your phone&rsquo;s WiFi to use the proxy by pointing the Proxy settings to <code>YOUR_MAC_IP:9090</code>, where <code>YOUR_MAC_IP</code> is the IP address for your Mac and 9090 is the default port for Proxyman. Note that you can change the port used by Proxyman by going to <code>Proxyman &gt; Preferences</code>.</p>
+<p><img src="/img/proxyman_ios_settings.png" alt="iOS Proxyman Settings"></p>
+<p>Once that&rsquo;s done, visit <a href="http://proxy.man/ssl">http://proxy.man/ssl</a> from Safari on your phone. You will be prompted to install a certificate.</p>
+<p><img src="/img/proxyman_install_cert_ios.jpg" alt="Proxyman Install Cert on iOS"></p>
+<p>Then, go to <code>Settings &gt; General &gt; Profile</code> on your phone, and select the Proxyman profile.</p>
+<p><img src="/img/proxyman_install_cert_ios_final.jpeg" alt="Install Proxyman Cert on iOS"></p>
+<p>Finally, go to <code>Settings &gt; General &gt; About &gt; Certificate Trust Settings</code>, and enable the switch for the Proxyman certificate.</p>
+<p><img src="/img/proxyman_enable_cert.png" alt="Trusting the Proxyman Cert"></p>
+<p>You will now be able to debug your network requests from your physical device.</p>
+<h2 id="final-word">Final Word</h2>
+<p>Don&rsquo;t forget to disable the certificates on both your Mac and iOS when you are done with them. An attacker could in theory be running Proxyman and be able to capture your requests when connected to public WiFi. Also remember you cannot observe traffic on apps with SSL pinning.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Proxyman is a wonderful debugging tool. I find it easier than mitmproxy, and even friendlier than Charles. If you can afford it, I strongly recommend Proxyman, as it makes network debugging a breeze.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/nil-null-mess-objective-c-and-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">nil-null-mess in Objective-C and Swift</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

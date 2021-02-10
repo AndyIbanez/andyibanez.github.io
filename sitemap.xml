@@ -4,17 +4,72 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2021-02-03T07:00:00-04:00</lastmod>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2021-02-03T07:00:00-04:00</lastmod>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2021-02-03T07:00:00-04:00</lastmod>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/intercepting-ios-network-request-calls-proxyman/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ios/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ipados/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/macos/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/networking/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/proxy/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/reverse-engineering/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/tvos/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/watchos/</loc>
+    <lastmod>2021-02-10T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -43,17 +98,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2021-02-03T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2021-02-03T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
     <lastmod>2021-02-03T07:00:00-04:00</lastmod>
   </url>
   
@@ -104,11 +149,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/development/</loc>
-    <lastmod>2021-01-13T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/ios/</loc>
     <lastmod>2021-01-13T07:00:00-04:00</lastmod>
   </url>
   
@@ -183,27 +223,7 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2020-11-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2020-11-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/posts/quick-tip-hosting-json-files-github-for-free/</loc>
-    <lastmod>2020-11-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/tvos/</loc>
-    <lastmod>2020-11-04T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/watchos/</loc>
     <lastmod>2020-11-04T07:00:00-04:00</lastmod>
   </url>
   
@@ -729,21 +749,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/posts/intercepting-network-mitmproxy/</loc>
-    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/networking/</loc>
-    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/proxy/</loc>
-    <lastmod>2019-11-20T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/reverse-engineering/</loc>
     <lastmod>2019-11-20T07:00:00-04:00</lastmod>
   </url>
   
