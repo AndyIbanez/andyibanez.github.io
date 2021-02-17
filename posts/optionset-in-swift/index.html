@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.65.3" />
+
+    
+    
+    
+
+<title>OptionSet in Swift • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OptionSet in Swift"/>
+<meta name="twitter:description" content="Learn what OptionSet is in Swift and how to use it."/>
+
+<meta property="og:title" content="OptionSet in Swift" />
+<meta property="og:description" content="Learn what OptionSet is in Swift and how to use it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/optionset-in-swift/" />
+<meta property="article:published_time" content="2021-02-17T07:30:00-04:00" />
+<meta property="article:modified_time" content="2021-02-17T07:30:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.a3bdc37d9526f67538a8c6f647c86cfb8b5c0c50c4a1b0adf763b347e53bb98a.css" integrity="sha256-o73DfZUm9nU4qMb2R8hs&#43;4tcDFDEobCt92OzR&#43;U7uYo=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>OptionSet in Swift</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Feb 17, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/optionset">optionset</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 5 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Creating configurable APIs for other developers can be a fun task. But depending on what languages and tools you are using, you may sometimes create customizable APIs that are more pleasant than others.</p>
+<p>In today&rsquo;s article, we will explore a tiny feature in Swift that allows us to create configurable APIs easily that are a joy to use by other developers: OptionSet.</p>
+<h1 id="introducing-optionset">Introducing OptionSet</h1>
+<p>Like its name implies, an OptionSet gives us a group of options. These options are pre-defined for our users, and when create an OptionSet, our users are constrained to using the values we are providing within.</p>
+<h2 id="optionset-throughout-apples-apis">OptionSet Throughout Apple&rsquo;s APIs</h2>
+<p>We will create our own OptionSets soon, but before we do, let&rsquo;s explore a few areas you may have seen them being used across Apple&rsquo;s frameworks. It&rsquo;s very likely you have used them without noticing it.</p>
+<h3 id="nsjsonserialization">NSJSONSerialization</h3>
+<p>If you have been parsing JSON before Codable was a thing, it&rsquo;s possible you have used the <code>NSJSONSerialization</code> object. For example, to create an object from <code>Data</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> json = JSONSerialization.jsonObject(with: data, options: .allowFragments)
+</code></pre></div><p>Focusing on the <code>options</code> parameter (of type <code>JSONSerialization.ReadingOptions</code>), it is simply a <code>struct</code> with the following values:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> mutableContainers: JSONSerialization.ReadingOptions { <span style="color:#66d9ef">get</span> }
+
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> mutableLeaves: JSONSerialization.ReadingOptions { <span style="color:#66d9ef">get</span> }
+
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> fragmentsAllowed: JSONSerialization.ReadingOptions { <span style="color:#66d9ef">get</span> }
+
+        @available(iOS, introduced: <span style="color:#ae81ff">5.0</span>, deprecated: <span style="color:#ae81ff">100000</span>, renamed: <span style="color:#e6db74">&#34;JSONSerialization.ReadingOptions.fragmentsAllowed&#34;</span>)
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> allowFragments: JSONSerialization.ReadingOptions { <span style="color:#66d9ef">get</span> }
+</code></pre></div><p>The thing about OptionSet is that it can take either none, one, or many options. You may think, looking at the syntax, that it can only use one at a time (in the example above, we are using <code>.allowFragments</code>), but an option set can actually take multiple values if you pass in an array-like value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> json = JSONSerialization.jsonObject(with: data, options: [.allowFragments, .mutableContainers, .mutableContainers])
+</code></pre></div><p>Finally, if you don&rsquo;t want to pass in any options, you need to specify an empty array.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> json = JSONSerialization.jsonObject(with: data, options: [])
+</code></pre></div><p>It&rsquo;s hard to know at first glance if you are using an option set or just passing in some random enumerators, so the documentation across Apple&rsquo;s frameworks will come in handy.</p>
+<h2 id="creating-your-own-optionset">Creating your own OptionSet</h2>
+<p>Of course, OptionSets wouldn&rsquo;t be half as interesting unless you were able to create your own.</p>
+<p>To create your own option set, you need to conform to the <code>OptionSet</code> protocol and specify. The protocol will constrain you to requiring a <code>rawValue</code> property.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Currency</span>: OptionSet {
+  <span style="color:#66d9ef">let</span> rawValue: Int
+  
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> bolivianBoliviano = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> argentinianPeso = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> chileanPeso = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> usd = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> canadianDollar = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> mexicanPeso = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">5</span>)
+}
+</code></pre></div><p>For the sake of efficiency, the raw value is an <code>Int</code>. These Ints are increasing in powers of 2, and library will internally optimize storage for the option set. If you try to use a different datatype for the raw value, you will likely encounter an error saying that your OptionSet must conform to <code>SetAlgebra</code>. We will explore <code>SetAlgebra</code> a little bit later.</p>
+<p>You can even go ahead and create option combinations for popular options. In the example above, we can create groupings for South American currencies and North American currencies.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> southAmericanCurrencies: [Currency] = [.bolivianBoliviano, .argentinianPeso, .chileanPeso]
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> northAmericanCurrencies: [Currency] = [.usd, .canadianDollar, .mexicanPeso]
+  
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> all: [Currency] = <span style="color:#66d9ef">Self</span>.southAmericanCurrencies <span style="color:#f92672">+</span> <span style="color:#66d9ef">Self</span>.northAmericanCurrencies
+</code></pre></div><p>The final declaration looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Swift" data-lang="Swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Currency</span>: OptionSet {
+  <span style="color:#66d9ef">let</span> rawValue: Int
+  
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> bolivianBoliviano = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">0</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> argentinianPeso = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">1</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> chileanPeso = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">2</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> usd = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">3</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> canadianDollar = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">4</span>)
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> mexicanPeso = Currency(rawValue: <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#ae81ff">5</span>)
+  
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> southAmericanCurrencies: [Currency] = [.bolivianBoliviano, .argentinianPeso, .chileanPeso]
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> northAmericanCurrencies: [Currency] = [.usd, .canadianDollar, .mexicanPeso]
+  
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> all: [Currency] = <span style="color:#66d9ef">Self</span>.southAmericanCurrencies <span style="color:#f92672">+</span> <span style="color:#66d9ef">Self</span>.northAmericanCurrencies
+}
+</code></pre></div><h3 id="the-necessity-of-setalgebra">The Necessity of SetAlgebra</h3>
+<p>If you tried making your OptionSet have a different raw value that isn&rsquo;t an <code>Int</code>, you have likely found yourself being yelled at by the compiler for not conforming to SetAlgebra.</p>
+<p>If you don&rsquo;t understand the <code>Set</code> data structure found in Swift and virtually all common libraries of other languages, I recommend you read <a href="https://www.andyibanez.com/posts/understanding-basic-data-structures-swift-sets/">my article on sets</a>. The advantages of having an option set conform to <code>SetAlgebra</code> is that we can do set operations in order to grab the OptionSet data when we need to operate with it.</p>
+<p>You can, for example, do the simplest operation, which is checking if a set contains a given option:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Swift" data-lang="Swift">Currency.southAmericanCurrencies.contains(.bolivianBoliviano)
+</code></pre></div><p>To more complex set operations, such as joins, checking set membership in bigger sets, and more.</p>
+<h2 id="using-your-own-optionsets">Using your Own OptionSets</h2>
+<p>Finally, to use your OptionSet you just treat it as a set. When a method takes a <code>Currency</code>, it&rsquo;s taking a set. You can use that set to perform operations based on the values provided for said set.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">convertUSDTo</span>(<span style="color:#66d9ef">_</span> currencies: Currency, value: Double) -&gt; [CurrencyPair] {
+  <span style="color:#75715e">// Grab the values of the set and operate on it</span>
+  <span style="color:#66d9ef">if</span> currencies.contains(.bolivianBoliviano) {
+    <span style="color:#75715e">// calculate bob</span>
+  }
+  
+  <span style="color:#66d9ef">if</span> currencies.contains(.chileanPeso) {
+    <span style="color:#75715e">// Calculate</span>
+  }
+  <span style="color:#75715e">//...</span>
+}
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>Building configurable APIs is not necessarily a challenge, but it can always be improved. OptionSet provides us with a way to let user configure their calls to our APIs and internally they are essentially sets.</p>
+<!-- raw HTML omitted -->
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/intercepting-ios-network-request-calls-proxyman/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Intercepting iOS Network Request Calls with Proxyman</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

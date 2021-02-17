@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>optionset on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/optionset/</link>
+    <description>Recent content in optionset on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Feb 2021 07:30:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/optionset/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OptionSet in Swift</title>
+      <link>https://www.andyibanez.com/posts/optionset-in-swift/</link>
+      <pubDate>Wed, 17 Feb 2021 07:30:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/optionset-in-swift/</guid>
+      <description>Creating configurable APIs for other developers can be a fun task. But depending on what languages and tools you are using, you may sometimes create customizable APIs that are more pleasant than others.
+In today&amp;rsquo;s article, we will explore a tiny feature in Swift that allows us to create configurable APIs easily that are a joy to use by other developers: OptionSet.
+Introducing OptionSet Like its name implies, an OptionSet gives us a group of options.</description>
+    </item>
+    
+  </channel>
+</rss>
