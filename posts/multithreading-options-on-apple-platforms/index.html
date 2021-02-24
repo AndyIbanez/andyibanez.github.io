@@ -288,7 +288,7 @@ if (!doNotTrack) {
 <p>NSOperation and its related APIs are actually one of my favorite set of tools we have for concurrency, not only on Apple&rsquo;s platforms, but overall.</p>
 <p>These APIs are very high level, and as such they offer us some features that don&rsquo;t exist, or are harder to implement in other concurrency technologies.</p>
 <p>NSOperationQueue and co. allow us to easily set tasks that depend on others, so you can easily start a concurrent task after another concurrent task has finished. It also allows you easily cancel other tasks.</p>
-<p>You submit operations to a <code>NSOperationQueue</code> in the form of blocks, so it even offers really high syntax.</p>
+<p>You submit operations to a <code>NSOperationQueue</code> in the form of blocks, so it even offers really high level syntax.</p>
 <p>I won&rsquo;t be talking much about these APIs here - despite the fact that I <em>love</em> <code>NSOperationQueue</code> -, because I have dedicated a whole article to it which you can find here: <a href="https://www.andyibanez.com/posts/exploring-the-nsoperation-apis/">Exploring the NSOperation APIs for Apple&rsquo;s Platforms</a></p>
 <p>In general, I like using these APIs when I have to setup dependencies between tasks and I want an easy way to cancel them. Think of an app that can batch-download pictures and apply a filter to them without freezing your main thread.</p>
 <h1 id="the-grand-central-dispatch">The Grand Central Dispatch</h1>
