@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Feb 2021 07:30:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 24 Feb 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,108 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 17 Feb 2021 07:30:00 -0400</pubDate>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gcd</title>
+      <link>https://www.andyibanez.com/tags/gcd/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/gcd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>grand central dispatch</title>
+      <link>https://www.andyibanez.com/tags/grand-central-dispatch/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/grand-central-dispatch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ios</title>
+      <link>https://www.andyibanez.com/tags/ios/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://www.andyibanez.com/tags/macos/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multithreading</title>
+      <link>https://www.andyibanez.com/tags/multithreading/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/multithreading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nsoperation</title>
+      <link>https://www.andyibanez.com/tags/nsoperation/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/nsoperation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tvos</title>
+      <link>https://www.andyibanez.com/tags/tvos/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/tvos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
@@ -26,51 +125,6 @@
       <pubDate>Wed, 17 Feb 2021 07:30:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/optionset/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 17 Feb 2021 07:30:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 17 Feb 2021 07:30:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ios</title>
-      <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>macos</title>
-      <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/macos/</guid>
       <description></description>
     </item>
     
@@ -98,24 +152,6 @@
       <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/reverse-engineering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tvos</title>
-      <link>https://www.andyibanez.com/tags/tvos/</link>
-      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/tvos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 10 Feb 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
       <description></description>
     </item>
     
