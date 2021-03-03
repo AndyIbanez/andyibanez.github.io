@@ -3,18 +3,38 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.andyibanez.com/tags/app-transfer/</loc>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2021-02-24T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2021-02-24T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2021-02-24T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/what-i-learned-from-selling-an-app/</loc>
+    <lastmod>2021-03-03T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -58,22 +78,12 @@
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2021-02-24T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.andyibanez.com/tags/programming/</loc>
     <lastmod>2021-02-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2021-02-24T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
     <lastmod>2021-02-24T07:00:00-04:00</lastmod>
   </url>
   
