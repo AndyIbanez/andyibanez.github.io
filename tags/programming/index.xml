@@ -6,10 +6,20 @@
     <description>Recent content in programming on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Feb 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 17 Mar 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using CoreLocation With SwiftUI</title>
+      <link>https://www.andyibanez.com/posts/using-corelocation-with-swiftui/</link>
+      <pubDate>Wed, 17 Mar 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/using-corelocation-with-swiftui/</guid>
+      <description>SwiftUI forces us to change our way of thinking when building iOS apps. It makes us change from writing our apps in MVC to MVVM.
+In this article, we will explore how SwiftUI can be used with certain frameworks that aren&amp;rsquo;t &amp;ldquo;SwiftUI ready&amp;rdquo;. While this article uses CoreLocation as an example, keep in mind that you can use what you learn from this to integrate almost any other framework with SwiftUI, whether it is provided by Apple or not.</description>
+    </item>
     
     <item>
       <title>Multithreading Options on Apple Platforms</title>
