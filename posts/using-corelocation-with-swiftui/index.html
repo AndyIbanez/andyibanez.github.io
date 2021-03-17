@@ -252,7 +252,7 @@ if (!doNotTrack) {
   
   <div class="post">
     <p>SwiftUI forces us to change our way of thinking when building iOS apps. It makes us change from writing our apps in MVC to MVVM.</p>
-<p>In this article, we will explore how SwiftUI can be used with certain frameworks that aren&rsquo;t &ldquo;SwiftUI ready&rdquo;. While this article uses CoreLocation as an example, keep in mind that you can use what you learn from this to integrate almost any other framework with SwiftUI, whether it is provided by Apple or not.</p>
+<p>In  this article, we will explore how SwiftUI can be used with certain frameworks that aren&rsquo;t &ldquo;SwiftUI ready&rdquo;. While this article uses CoreLocation as an example, keep in mind that you can use what you learn from this to integrate almost any other framework with SwiftUI, whether it is provided by Apple or not.</p>
 <h1 id="understanding-the-complexities">Understanding the Complexities</h1>
 <p>If you have tried to use SwiftUI with CoreLocation or similar frameworks that make use of a delegate, you may have found it to be very hard. Specifically, you may have found it that your core locations keep getting called over and over again with no clear reason.</p>
 <p>One thing to keep in mind is that SwiftUI continuously creates and destroys views. When there is a state change, all views depending on it will be destroyed and recreated. This happens quite aggressively throughout the lifecycle of our SwiftUI apps.</p>
