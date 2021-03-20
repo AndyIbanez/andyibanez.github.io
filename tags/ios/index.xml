@@ -27,7 +27,7 @@ In this article, we will explore how SwiftUI can be used with certain frameworks
       <pubDate>Wed, 10 Mar 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/getting-to-know-the-simulator-better/</guid>
-      <description>Every iOS developer has used the simulator. Alongside Xcode, it&amp;rsquo;s probably one of the most used tool by us all. We use the simulator to test our iOS, iPadOS, and watchOS apps without having to run them in an iOS developer.
+      <description>Every iOS developer has used the simulator. Alongside Xcode, it&amp;rsquo;s probably one of the most used tool by us all. We use the simulator to test our iOS, iPadOS, and watchOS apps without having to run them in an iOS device.
 But other than helping us test our apps, the simulator actually has many nice features that can help make our job a little bit easier. With the use of these features we can avoid using physical devices until it&amp;rsquo;s time to do an actual test run or one.</description>
     </item>
     
