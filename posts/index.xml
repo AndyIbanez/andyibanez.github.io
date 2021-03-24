@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 17 Mar 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 24 Mar 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Using NSMeasurement For Working with Dimensions and Units</title>
+      <link>https://www.andyibanez.com/posts/using-nsmeasurement-for-working-with-dimensions-and-units/</link>
+      <pubDate>Wed, 24 Mar 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/using-nsmeasurement-for-working-with-dimensions-and-units/</guid>
+      <description>Software development can be an easy thing, as it can be a very complex thing. And one of those complex things is keeping in mind all the different languages, locations, and standards users may use in their daily lives. This makes working with certain information. From different date formats to entirely different measuring system, software is challenging, especially when working with anything that requires localization. The situation is just so bad that a lot of software just make assumptions about their users environment and don&amp;rsquo;t let you change any settings.</description>
+    </item>
     
     <item>
       <title>Using CoreLocation With SwiftUI</title>

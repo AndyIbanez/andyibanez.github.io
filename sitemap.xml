@@ -4,46 +4,61 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/ipados/</loc>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/nsformatter/</loc>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swiftui/</loc>
-    <lastmod>2021-03-17T07:00:00-04:00</lastmod>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/using-nsmeasurement-for-working-with-dimensions-and-units/</loc>
+    <lastmod>2021-03-24T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swiftui/</loc>
     <lastmod>2021-03-17T07:00:00-04:00</lastmod>
   </url>
   
@@ -54,11 +69,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/posts/getting-to-know-the-simulator-better/</loc>
-    <lastmod>2021-03-10T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/ipados/</loc>
     <lastmod>2021-03-10T07:00:00-04:00</lastmod>
   </url>
   
@@ -304,11 +314,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/posts/a-more-practical-custom-formatter/</loc>
-    <lastmod>2020-10-21T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/nsformatter/</loc>
     <lastmod>2020-10-21T07:00:00-04:00</lastmod>
   </url>
   
