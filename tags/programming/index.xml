@@ -6,10 +6,19 @@
     <description>Recent content in programming on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Mar 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 07 Apr 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Xcode New File Templates</title>
+      <link>https://www.andyibanez.com/posts/xcode-new-file-templates/</link>
+      <pubDate>Wed, 07 Apr 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/xcode-new-file-templates/</guid>
+      <description>As you work on projects, you may notice that there&amp;rsquo;s one thing that can be really improved: Creating new files. Every single developer has gone to the File &amp;gt; New File screen on Xcode to create files before. Whether to create new view controllers, data models, or whatever else, it is one of the most common places you may use in your day to day life as an iOS developers.</description>
+    </item>
     
     <item>
       <title>Using NSMeasurement For Working with Dimensions and Units</title>
