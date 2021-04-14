@@ -6,10 +6,20 @@
     <description>Recent content in swift on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Apr 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 14 Apr 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JavaScriptCore and Swift</title>
+      <link>https://www.andyibanez.com/posts/javascriptcore-and-swift/</link>
+      <pubDate>Wed, 14 Apr 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/javascriptcore-and-swift/</guid>
+      <description>JavaScriptCore and Swift
+Regardless how you feel about JavaScript as a programming language, there is one simple fact: JavaScript is pretty ubiquitous, and its uses have expanded beyond web scripting. It has become a pretty popular language for a vast array of domains. For this reason, making languages interoperate with it is pretty important, and both Swift and Objective-C are no exception. We can work with JavaScript, not only by executing JavaScript code directly from our Swift code, but we can even expose code from Swift and Objective-C to JavaScript.</description>
+    </item>
     
     <item>
       <title>Xcode New File Templates</title>
