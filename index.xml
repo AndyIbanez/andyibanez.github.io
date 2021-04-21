@@ -12,6 +12,16 @@
     
     
     <item>
+      <title>Raw Strings in Swift</title>
+      <link>https://www.andyibanez.com/posts/raw-strings-swift/</link>
+      <pubDate>Wed, 21 Apr 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/raw-strings-swift/</guid>
+      <description>We have all worked with strings before. Printing a piece of text, or displaying some information to users in a label, can all be done in strings. But regardless of how popular strings are, they actually have a lot of complex or unknown functionality that can help developers, but they struggle to see the light of day.
+In this article, we will explore a very interesting aspect of strings in Swift: Raw Strings, what they are, and how they can be helpful to your every day job.</description>
+    </item>
+    
+    <item>
       <title>JavaScriptCore and Swift</title>
       <link>https://www.andyibanez.com/posts/javascriptcore-and-swift/</link>
       <pubDate>Wed, 14 Apr 2021 07:00:00 -0400</pubDate>

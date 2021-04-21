@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Raw Strings in Swift • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Raw Strings in Swift"/>
+<meta name="twitter:description" content="Learn what Raw Strings are in Swift and how to use them."/>
+
+<meta property="og:title" content="Raw Strings in Swift" />
+<meta property="og:description" content="Learn what Raw Strings are in Swift and how to use them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/raw-strings-swift/" />
+<meta property="article:published_time" content="2021-04-21T07:00:00-04:00" />
+<meta property="article:modified_time" content="2021-04-21T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Raw Strings in Swift</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Apr 21, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 3 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>We have all worked with strings before. Printing a piece of text, or displaying some information to users in a label, can all be done in strings. But regardless of how popular strings are, they actually have a lot of complex or unknown functionality that can help developers, but they struggle to see the light of day.</p>
+<p>In this article, we will explore a very interesting aspect of strings in Swift: Raw Strings, what they are, and how they can be helpful to your every day job.</p>
+<h1 id="introducing-raw-strings">Introducing Raw Strings</h1>
+<p>Raw strings (denoted by starting and ending pound symbols (<code>#</code>) before and after the quotation marks), allow us to create strings that will print exactly what you see. As you know, there are certain escape sequences that can make our strings print differently. For example, writing a <code>\n</code> will cause your string to break your string in separate lines. If you want to actually print or use a <code>\</code> character, you need to write it twice. All this functionality of strings is there to help us create memorable text. But sometimes, this behavior if not wanted.</p>
+<p>Consider the following example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> message = <span style="color:#e6db74">&#34;Hey there cowboy! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> In reverse land, the current date is 2020</span><span style="color:#ae81ff">\01\10</span><span style="color:#e6db74">!&#34;</span>
+</code></pre></div><p>The first obvious problem is that your program won&rsquo;t compile at all, because <code>\1</code> and <code>\0</code> are not valid escape sequences. If you want to get this to compile, you have to add an extra backslash to each existing one:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> message = <span style="color:#e6db74">&#34;Hey there cowboy! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> In reverse land, the current date is 2020</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">01</span><span style="color:#ae81ff">\\</span><span style="color:#e6db74">10!&#34;</span>
+</code></pre></div><p>This now compiles, and shall you print it you will get:</p>
+<pre><code>Hey there cowboy! 
+ In reverse land, the current date is 2020\01\10!
+</code></pre><p>This is all cool and dandy, but that extra backslash was just <em>annoying</em>. If we make this a raw string, it will prevent Swift from executing escape sequences:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> message = #<span style="color:#e6db74">&#34;Hey there cowboy! </span><span style="color:#ae81ff">\n</span><span style="color:#e6db74"> In reverse land, the current date is 2020</span><span style="color:#ae81ff">\01\10</span><span style="color:#e6db74">!&#34;</span>#
+</code></pre></div><p>We now have a valid string whose escape sequences have not been executed. If you print the string you will get the following output:</p>
+<pre><code>Hey there cowboy! \n In reverse land, the current date is 2020\01\10!
+</code></pre><p>We no longer need to escape our backslashes twice, but we have lost the line break, which you may have wanted. We have not lost completely the ability to use escape sequences. Instead, every backslash you use now, that you want to be executed as a escaping sequence, must be followed by a <code>#</code> and then the sequence you want to execute.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> message = #<span style="color:#e6db74">&#34;Hey there cowboy! \#n In reverse land, the current date is 2020</span><span style="color:#ae81ff">\01\10</span><span style="color:#e6db74">!&#34;</span>#
+
+print(message)
+</code></pre></div><pre><code>Hey there cowboy! 
+ In reverse land, the current date is 2020\01\10!
+</code></pre><p>This also means that if you intend to use string interpolation, you will need to follow the backslash with a pound.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> age = <span style="color:#ae81ff">29</span>
+<span style="color:#66d9ef">let</span> string2 = #<span style="color:#e6db74">&#34;This year I turn </span><span style="color:#e6db74">\(</span>age<span style="color:#e6db74">)</span><span style="color:#e6db74"> years old&#34;</span>#
+print(string)
+
+<span style="color:#75715e">//...</span>
+
+<span style="color:#66d9ef">let</span> string2 = #<span style="color:#e6db74">&#34;This year I turn \#(age) years old&#34;</span>#
+print(string2)
+</code></pre></div><pre><code>This year I turn \(age) years old // string
+This year I turn 29 years old // string2
+</code></pre><p>Finally, you can also use raw strings with multiline strings.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> badPoem =
+#<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">This year \
+</span><span style="color:#e6db74">I shall turn \
+</span><span style="color:#e6db74">\#(age) years old
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>#
+
+print(badPoem)
+</code></pre></div><pre><code>This year \
+I shall turn \
+29 years old
+</code></pre><p>Keep in mind that everything you can do with raw strings, can be done without, so this is not a mandatory tool in your toolbox, but it is nice to have, especially when working with Regex.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Raw strings are useful and good to have in your toolbox. While most of its uses are not immediately visible, you will <em>know</em> when you can use them, so it&rsquo;s good to keep them in mind.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/javascriptcore-and-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">JavaScriptCore and Swift</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

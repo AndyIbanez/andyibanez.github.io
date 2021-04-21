@@ -4,17 +4,42 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/programming/</loc>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/raw-strings-swift/</loc>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/swift/</loc>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/tags/</loc>
+    <lastmod>2021-04-21T07:00:00-04:00</lastmod>
   </url>
   
   <url>
@@ -24,26 +49,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/posts/javascriptcore-and-swift/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2021-04-14T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/tags/</loc>
     <lastmod>2021-04-14T07:00:00-04:00</lastmod>
   </url>
   
