@@ -6,10 +6,20 @@
     <description>Recent content in programming on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Apr 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 28 Apr 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Swift&#39;s print in Depth</title>
+      <link>https://www.andyibanez.com/posts/swift-print-in-depth/</link>
+      <pubDate>Wed, 28 Apr 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/swift-print-in-depth/</guid>
+      <description>Ah, print. Probably the most known, the most used, the most popular debugging tool, and probably the most loved line of code of all time. You have undoubtedly used print before, if not in Swift, in other languages. The vast majority of programmers have started their software building skills with a print or equivalent somewhere.
+We have all used print before, but this short article is about using the function to the max - it actually has a secret or two you might not know about.</description>
+    </item>
     
     <item>
       <title>Raw Strings in Swift</title>
