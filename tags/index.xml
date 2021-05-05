@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 28 Apr 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 05 May 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,16 +14,34 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 28 Apr 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 05 May 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>foundation</title>
+      <link>https://www.andyibanez.com/tags/foundation/</link>
+      <pubDate>Wed, 05 May 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/foundation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nsdate</title>
+      <link>https://www.andyibanez.com/tags/nsdate/</link>
+      <pubDate>Wed, 05 May 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/nsdate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>programming</title>
       <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 28 Apr 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 05 May 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/programming/</guid>
       <description></description>
@@ -32,7 +50,7 @@
     <item>
       <title>swift</title>
       <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 28 Apr 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 05 May 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/swift/</guid>
       <description></description>
@@ -278,15 +296,6 @@
       <pubDate>Wed, 27 Jan 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/dictionary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>foundation</title>
-      <link>https://www.andyibanez.com/tags/foundation/</link>
-      <pubDate>Wed, 27 Jan 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/foundation/</guid>
       <description></description>
     </item>
     
