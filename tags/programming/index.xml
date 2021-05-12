@@ -404,6 +404,16 @@ var dollModel: Doll! Then, when you want to create a view controller of that typ
     </item>
     
     <item>
+      <title>Integrating FaceID/TouchID with SwiftUI</title>
+      <link>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</link>
+      <pubDate>Tue, 12 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</guid>
+      <description>As SwiftUI is still relatively new, and it is not clear yet for many people how to use MVVM on iOS, I decided to write this short article in which I explain how one would integrate Face ID/Touch ID with SwiftUI.
+Let&amp;rsquo;s remember that SwiftUI uses the MVVM design pattern over the traditional MVC, and this can be confusing for people who are migrating to the new pattern for the first time.</description>
+    </item>
+    
+    <item>
       <title>Quick Introduction Reflection in Swift</title>
       <link>https://www.andyibanez.com/posts/quick-introduction-reflection-swift/</link>
       <pubDate>Wed, 06 May 2020 22:24:46 -0400</pubDate>

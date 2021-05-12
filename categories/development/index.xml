@@ -474,6 +474,16 @@ The Keychain is the place where you would store sensitive data. As secure as iOS
     </item>
     
     <item>
+      <title>Integrating FaceID/TouchID with SwiftUI</title>
+      <link>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</link>
+      <pubDate>Tue, 12 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</guid>
+      <description>As SwiftUI is still relatively new, and it is not clear yet for many people how to use MVVM on iOS, I decided to write this short article in which I explain how one would integrate Face ID/Touch ID with SwiftUI.
+Let&amp;rsquo;s remember that SwiftUI uses the MVVM design pattern over the traditional MVC, and this can be confusing for people who are migrating to the new pattern for the first time.</description>
+    </item>
+    
+    <item>
       <title>Writing Command Line Tools in Swift Using ArgumentParser, Part 6: Releasing And Installing Our Command Line Tool</title>
       <link>https://www.andyibanez.com/posts/writing-commandline-tools-argumentparser-part6/</link>
       <pubDate>Wed, 22 Apr 2020 07:00:00 -0400</pubDate>
