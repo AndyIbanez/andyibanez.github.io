@@ -6,7 +6,7 @@
     <description>Recent content in touchid on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 May 2020 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 12 May 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/touchid/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Integrating FaceID/TouchID with SwiftUI</title>
       <link>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</link>
-      <pubDate>Tue, 12 May 2020 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 12 May 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</guid>
       <description>As SwiftUI is still relatively new, and it is not clear yet for many people how to use MVVM on iOS, I decided to write this short article in which I explain how one would integrate Face ID/Touch ID with SwiftUI.

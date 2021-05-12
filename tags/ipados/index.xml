@@ -6,10 +6,20 @@
     <description>Recent content in ipados on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Mar 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 12 May 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/ipados/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Integrating FaceID/TouchID with SwiftUI</title>
+      <link>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</link>
+      <pubDate>Wed, 12 May 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</guid>
+      <description>As SwiftUI is still relatively new, and it is not clear yet for many people how to use MVVM on iOS, I decided to write this short article in which I explain how one would integrate Face ID/Touch ID with SwiftUI.
+Let&amp;rsquo;s remember that SwiftUI uses the MVVM design pattern over the traditional MVC, and this can be confusing for people who are migrating to the new pattern for the first time.</description>
+    </item>
     
     <item>
       <title>Using NSMeasurement For Working with Dimensions and Units</title>
@@ -289,16 +299,6 @@ Apple introduced Touch ID all the way back in 2013, and ever since then, every i
       <guid>https://www.andyibanez.com/posts/using-ios-keychain-swift/</guid>
       <description>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &amp;ldquo;Using the iOS Keychain&amp;rdquo;. Originally written in Objective-C, the old version has been archived but it is accessible here.
 The Keychain is the place where you would store sensitive data. As secure as iOS currently is, the keychain is the right place to store passwords, authentication tokens, and other sensitive data. You should not store this kind of data in UserDefaults, even if iOS has made it harder to access that data for normal users in the latest versions.</description>
-    </item>
-    
-    <item>
-      <title>Integrating FaceID/TouchID with SwiftUI</title>
-      <link>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</link>
-      <pubDate>Tue, 12 May 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/integrating-face-id-touch-id-swiftui/</guid>
-      <description>As SwiftUI is still relatively new, and it is not clear yet for many people how to use MVVM on iOS, I decided to write this short article in which I explain how one would integrate Face ID/Touch ID with SwiftUI.
-Let&amp;rsquo;s remember that SwiftUI uses the MVVM design pattern over the traditional MVC, and this can be confusing for people who are migrating to the new pattern for the first time.</description>
     </item>
     
     <item>
