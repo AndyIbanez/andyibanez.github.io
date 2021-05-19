@@ -257,7 +257,7 @@ if (!doNotTrack) {
 <p>The way to achieve is to simply store, somewhere, the latest app version that you have released to the public, and to have your app check against that version every so often, maybe on every lunch, or every 24 hours, the criteria is up to you.</p>
 <p>My particular approach involves <a href="https://www.andyibanez.com/posts/quick-tip-hosting-json-files-github-for-free/">hosting a JSON File on GitHub, which you can do for free</a>. As a simple example, your JSON can look like this:</p>
 <pre><code>{
-	latestVersion: &quot;5.2.9&quot;
+	&quot;latestVersion&quot;: &quot;5.2.9&quot;
 }
 </code></pre><p>You have two choices here: You can either store your build number there, which would make it very simply to check against the build number inside your bundle, or you can store the short (aka &ldquo;marketing&rdquo;) version of your app here, which requires a bit more work to parse the value.</p>
 <p>Storing your build number may sound like a good idea but it depends on how you use build numbers in general. For my own apps, I always bump the build number for every version I upload to the App Store. For my jobby-job app, the build number gets reset for every new version. We only bump the build number when we need to modify the app before App Review and we need to do last minute changes, or when we deal with rejection and need to upload a new build.</p>
