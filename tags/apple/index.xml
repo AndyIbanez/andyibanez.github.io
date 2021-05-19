@@ -6,10 +6,19 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 May 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 19 May 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Quick Tip: Notifying Users of App Updates - For Free</title>
+      <link>https://www.andyibanez.com/posts/quick-tip-notifying-users-app-updates-for-free/</link>
+      <pubDate>Wed, 19 May 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/quick-tip-notifying-users-app-updates-for-free/</guid>
+      <description>This may sound surprising to you, but even though we have app autoupdate on iOS now (and we have had it for a very long time), many people don&amp;rsquo;t have it on, or the system simply doesn&amp;rsquo;t prioritize app updates because users don&amp;rsquo;t prioritize it enough. In fact, in my day job, in which I maintain a user-facing banking app, the vast majority of users are not even in the latest version.</description>
+    </item>
     
     <item>
       <title>Integrating FaceID/TouchID with SwiftUI</title>
