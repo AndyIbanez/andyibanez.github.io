@@ -315,7 +315,7 @@ if (!doNotTrack) {
     }
 }
 </code></pre></div><p>When you build and run your app, you should see this:</p>
-<p>![Main App Screen](/img/Face ID_Touch ID_swiftui_main.png)</p>
+<p><img src="/img/Face+ID_Touch+ID_swiftui_main.png" alt="Main App Screen"></p>
 <p>With this, we have a full functional app without Face ID login. We are going to add the Face ID part now, and we will start by designing a simple Face ID screen.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// Face IDLoginView.swift</span>
 <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Face</span> IDLoginView: View {
@@ -345,7 +345,7 @@ if (!doNotTrack) {
         .padding()
     }
 }
-</code></pre></div><p>![Face ID Login Screen](/img/Face ID_swiftui_login_view.png)</p>
+</code></pre></div><p><img src="/img/Face+ID_swiftui_login_view.png" alt="Face ID Login Screen"></p>
 <p>These are the only two views we need for this simple. We will now setup the logic to allow Face ID to unlock the app later. We will also add a very temporary logic to ensure our login view looks properly when running it on the simulator.</p>
 <p>We will use that <code>@Binding</code> variable (appUnlocked) to control a boolean passed from somewhere else. For now, make your button change the value of this variable to <code>true</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Button(action: {
@@ -469,7 +469,7 @@ struct Touch IDswiftuiApp: App {
 </code></pre><p>You could use an <code>@EnvironmentObject</code> instead of <code>@ObservedObject</code>, but I prefer to use <code>@EnvironmentObject</code> when there is a deep hierarchy of views spread across different files. Since in this case we only have one level &ldquo;deep&rdquo;, I decided to use <code>@ObservedObject</code>, but feel free to experiment with <code>@EnvironmentObject</code> if you want.</p>
 <p>And with this, our app works. We can login with Face ID without an issue now. On the simulator, feel free to go to Hardware &gt; Face ID to simulate Face ID and successful face reads. It&rsquo;s useful when testing apps that require on biometric unlock on iOS.</p>
 <h1 id="sample-project">Sample Project.</h1>
-<p>You can delete a sample project from [here](/archives/Touch IDswiftui.zip). It has a little bonus, which is transition animations when the Face ID scan is successful.</p>
+<p>You can delete a sample project from <a href="/archives/Touch+IDswiftui.zip">here</a>. It has a little bonus, which is transition animations when the Face ID scan is successful.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>Integrating SwiftUI with Face ID and Touch ID is not at all complicated. Really, once you understand MVVM and how it plays out in the SwiftUI world, you will be able to integrate almost anything with SwiftUI. If you are still struggling to understand how MVVM works, maybe my <a href="https://www.andyibanez.com/posts/using-corelocation-with-swiftui/">Using CoreLocation with SwiftUI</a> article will help you.</p>
 
