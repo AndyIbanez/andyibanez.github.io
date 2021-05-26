@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wwdc on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/wwdc/</link>
+    <description>Recent content in wwdc on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 May 2021 07:00:07 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/wwdc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My WWDC 2021 Wishlist</title>
+      <link>https://www.andyibanez.com/posts/my-wwdc-2021-wishlist/</link>
+      <pubDate>Wed, 26 May 2021 07:00:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/my-wwdc-2021-wishlist/</guid>
+      <description>WWDC is undoubtly my favorite event of the year, and it has been for the past 11 years. This week I&amp;rsquo;m taking a break from writing technical articles and I want to talk about my personal wishlist, both for features and developers tools.
+Writing Actual ViewControllers for the Settings App The iOS Settings.app was supposed to be a place where youm as a user, have a centralized place to configure all your settings for all your apps.</description>
+    </item>
+    
+  </channel>
+</rss>

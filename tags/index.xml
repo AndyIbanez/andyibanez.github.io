@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 19 May 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 26 May 2021 07:00:07 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,9 +14,36 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 19 May 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 26 May 2021 07:00:07 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc</title>
+      <link>https://www.andyibanez.com/tags/wwdc/</link>
+      <pubDate>Wed, 26 May 2021 07:00:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc20</title>
+      <link>https://www.andyibanez.com/tags/wwdc20/</link>
+      <pubDate>Wed, 26 May 2021 07:00:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc20/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc2021</title>
+      <link>https://www.andyibanez.com/tags/wwdc2021/</link>
+      <pubDate>Wed, 26 May 2021 07:00:07 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc2021/</guid>
       <description></description>
     </item>
     
@@ -359,15 +386,6 @@
       <pubDate>Wed, 09 Dec 2020 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/app-store-connect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wwdc20</title>
-      <link>https://www.andyibanez.com/tags/wwdc20/</link>
-      <pubDate>Wed, 02 Dec 2020 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/wwdc20/</guid>
       <description></description>
     </item>
     
