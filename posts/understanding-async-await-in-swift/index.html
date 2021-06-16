@@ -528,8 +528,8 @@ performMessyStuff()
 <p>&lsquo;async&rsquo; call in a function that does not support concurrency
 Add &lsquo;async&rsquo; to function &lsquo;performDownload()&rsquo; to make it asynchronous</p>
 </blockquote>
-<p>The compiles is suggesting we mark <code>performDownload</code> as async.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performDownload</span>() await {
+<p>The compiler is suggesting we mark <code>performDownload</code> as async.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performDownload</span>() async {
     <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadMetadata(<span style="color:#66d9ef">for</span>: <span style="color:#ae81ff">1</span>)
 }
 </code></pre></div><p>But this is not always possible. What if <code>performDownload</code> is in a view controller or in another place that can&rsquo;t give you an asynchronous context?</p>
