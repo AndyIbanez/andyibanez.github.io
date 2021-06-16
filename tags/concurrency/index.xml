@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>multithreading on Andy Ibanez</title>
-    <link>https://www.andyibanez.com/tags/multithreading/</link>
-    <description>Recent content in multithreading on Andy Ibanez</description>
+    <title>concurrency on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/concurrency/</link>
+    <description>Recent content in concurrency on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 16 Jun 2021 07:01:00 -0400</lastBuildDate>
     
-	<atom:link href="https://www.andyibanez.com/tags/multithreading/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andyibanez.com/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -30,16 +30,6 @@ If you have been writing callback-based concurrency, keep in mind that the imple
       <guid>https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/</guid>
       <description>Introduction This is a tutorial series focused on the new async/await APIs Apple introduced in WWDC2021. I do not know how many articles it is going to have yet, but they will be posted in the upcoming weeks.
 The WWDC2021 session videos do a great job explaining these new APIs, but I feel they can still be overwhelming for both newcomers and long-time developers alike. My intention with this series is to talk about the new concurrency APIs, one step a time, covering a few concepts on each article, until you can feel confident with your understanding of these APIs.</description>
-    </item>
-    
-    <item>
-      <title>Multithreading Options on Apple Platforms</title>
-      <link>https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/</link>
-      <pubDate>Wed, 24 Feb 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/</guid>
-      <description>We have reached the point in which computers are really fast. Especially Apple&amp;rsquo;s, as they have control of both the hardware and software, so, oftentimes, some tasks that could be sped up with multithreading, are not necessary anymore. But, for those cases when you do need multithreading, we have many options available.
-On Apple&amp;rsquo;s platforms there is a surprising amount of concurrency tools. You are likely familiar with the most used one, the Grand Central Dispatch, DispatchQueue, which is pretty good and it covers the vast majority of use cases.</description>
     </item>
     
   </channel>

@@ -12,6 +12,27 @@
     
     
     <item>
+      <title>Understanding async/await in Swift</title>
+      <link>https://www.andyibanez.com/posts/understanding-async-await-in-swift/</link>
+      <pubDate>Wed, 16 Jun 2021 07:01:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/understanding-async-await-in-swift/</guid>
+      <description>This article is part of my Modern Concurrency in Swift article series.
+Before you try to dive in with concurrency in Swift, you need to understand async/await. There&amp;rsquo;s no way around it. While async/await are not the only concurrency options, Apple&amp;rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.
+If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is very different to anything you have seen before in Apple&amp;rsquo;s technologies.</description>
+    </item>
+    
+    <item>
+      <title>Modern Concurrency in Swift: Introduction</title>
+      <link>https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/</link>
+      <pubDate>Wed, 16 Jun 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/</guid>
+      <description>Introduction This is a tutorial series focused on the new async/await APIs Apple introduced in WWDC2021. I do not know how many articles it is going to have yet, but they will be posted in the upcoming weeks.
+The WWDC2021 session videos do a great job explaining these new APIs, but I feel they can still be overwhelming for both newcomers and long-time developers alike. My intention with this series is to talk about the new concurrency APIs, one step a time, covering a few concepts on each article, until you can feel confident with your understanding of these APIs.</description>
+    </item>
+    
+    <item>
       <title>Strategies For Asking Users to Rate Your App</title>
       <link>https://www.andyibanez.com/posts/strategies-asking-users-rate-your-app/</link>
       <pubDate>Wed, 02 Jun 2021 07:00:00 -0400</pubDate>
