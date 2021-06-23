@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>article series on Andy Ibanez</title>
-    <link>https://www.andyibanez.com/categories/article-series/</link>
-    <description>Recent content in article series on Andy Ibanez</description>
+    <title>modern concurrency in swift article series on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/categories/modern-concurrency-in-swift-article-series/</link>
+    <description>Recent content in modern concurrency in swift article series on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 23 Jun 2021 07:00:00 -0400</lastBuildDate>
     
-	<atom:link href="https://www.andyibanez.com/categories/article-series/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.andyibanez.com/categories/modern-concurrency-in-swift-article-series/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

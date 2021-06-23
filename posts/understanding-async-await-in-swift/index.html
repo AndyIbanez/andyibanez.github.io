@@ -220,6 +220,9 @@ if (!doNotTrack) {
               •
           
               <a class="badge badge-category" href="/categories/modern-concurrency-article-series">MODERN CONCURRENCY ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-in-swift-article-series">MODERN CONCURRENCY IN SWIFT ARTICLE SERIES</a>
               
           
       
@@ -273,7 +276,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 15 min read
+    <i class="fas fa-clock"></i> 16 min read
 </div>
 
 
@@ -281,7 +284,13 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    <p><em>This article is part of my <a href="/posts/modern-concurrency-in-swift-introduction.md">Modern Concurrency in Swift</a> article series.</em></p>
+    <p><em>This article is part of my <a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift</a> article series.</em></p>
+<h6 id="table-of-contents">Table of Contents</h6>
+<ol>
+<li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
+<li><strong>Understanding async/await in Swift</strong></li>
+<li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
+</ol>
 <p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&rsquo;s no way around it. While async/await are not the only <a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options</a>, Apple&rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.</p>
 <p>This article will explore async/await and nothing else. Once you understand these concepts, we will start moving on to more advanced articles where we cover structured concurrency, unstructured currency, SwiftUI, and more.</p>
 <p>If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is <em>very</em> different to anything you have seen before in Apple&rsquo;s technologies. It basically throws what you know about concurrent programming out of the window. It&rsquo;s important to keep that in mind to read this article.</p>
@@ -540,7 +549,7 @@ Add &lsquo;async&rsquo; to function &lsquo;performDownload()&rsquo; to make it a
     }
 }
 </code></pre></div><p>We are explicitly creating an asynchronous context, and it will behave as such.</p>
-<h2 id="get-await">get await</h2>
+<h2 id="get-async">get async</h2>
 <p>To make things even better, properties that are read-only can be <code>await</code>ed.</p>
 <p>Suppose you have the following wrapper object:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Character</span> {
@@ -618,6 +627,7 @@ Add &lsquo;async&rsquo; to function &lsquo;performDownload()&rsquo; to make it a
 <blockquote>
 <p>3 async/await will run in order just like procedural programming. When it finds an <code>await</code> call, the job will  suspend and will give control back to the system instead of the caller. Unlike callback-based concurrency, it will not continue execution of the statements under it until it has finished. The system will make use of the thread to perform other work, and when it decides it&rsquo;s time to revisit your function, it will, and execution will resume linearly.</p>
 </blockquote>
+<p>When you are ready, you can proceed to the third article in the series, <a href="/posts/converting-closure-based-code-into-async-await-in-swift.md">Converting Closure-based code into async/await in Swift</a> to learn more about continuations, explicit continuations, and how to bridge closure-based and delegate-based code into async/await.</p>
 <h3 id="notes">Notes</h3>
 <p>*: Well, except when you put bugs in.</p>
 <p>**: This is not obvious in this example, but there exists asynchronous code that is much faster than a network call and it may finish much faster than expected, altering the output of the console on each run.</p>
@@ -640,6 +650,11 @@ Add &lsquo;async&rsquo; to function &lsquo;performDownload()&rsquo; to make it a
       <span class="navigation-tittle">Modern Concurrency in Swift: Introduction</span>
     </a>
     
+    
+    <a href="/posts/converting-closure-based-code-into-async-await-in-swift/" class="navigation-next">
+      <span class="navigation-tittle">Converting closure-based code into async/await in Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
     
 </div>
 
