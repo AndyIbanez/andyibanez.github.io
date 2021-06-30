@@ -6,10 +6,20 @@
     <description>Recent content in async on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Jun 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jun 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/async/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Structured Concurrency in Swift: Using async let</title>
+      <link>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</link>
+      <pubDate>Wed, 30 Jun 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</guid>
+      <description>This article is part of my Modern Concurrency in Swift article series.
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let  Understanding async/await is a pre-requisite to read this article. If you aren&amp;rsquo;t familiar with that concept, feel free to read the first part of this article series: Understanding async/await in Swift.</description>
+    </item>
     
     <item>
       <title>Converting closure-based code into async/await in Swift</title>
@@ -29,7 +39,7 @@ I was debating whether this article should be its own or if its contents should 
       
       <guid>https://www.andyibanez.com/posts/understanding-async-await-in-swift/</guid>
       <description>This article is part of my Modern Concurrency in Swift article series.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift  Before you try to dive in with concurrency in Swift, you need to understand async/await. There&amp;rsquo;s no way around it. While async/await are not the only concurrency options, Apple&amp;rsquo;s SDKs are starting to make heavy use of them.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let  Before you try to dive in with concurrency in Swift, you need to understand async/await. There&amp;rsquo;s no way around it. While async/await are not the only concurrency options, Apple&amp;rsquo;s SDKs are starting to make heavy use of them.</description>
     </item>
     
     <item>

@@ -323,7 +323,7 @@ task.resume()
 task.resume()
 </code></pre></div><p>As the calls get nested and nested (and nested), it can become a problem when it comes to readability. You can take action and move every &ldquo;pyramid floor&rdquo; into its own function, but that&rsquo;s more of a patch than a real solution as you end up polluting your scope.</p>
 <h2 id="callback-based-concurrency-for-api-designers">Callback-based concurrency for API Designers</h2>
-<p>Now suppose you were tasked with creating a function that downloads and image and resizes it to create a thumbnail. You may end up writing something like this:</p>
+<p>Now suppose you were tasked with creating a function that downloads an image and resizes it to create a thumbnail. You may end up writing something like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">fetchThumbnail</span>(<span style="color:#66d9ef">for</span> id: String, completion: @escaping (UIImage?, Error?) -&gt; Void) {
     <span style="color:#66d9ef">let</span> request = thumbnailURLRequest(<span style="color:#66d9ef">for</span>: id)
     <span style="color:#66d9ef">let</span> task = URLSession.shared.dataTask(with: request) { data, response, error <span style="color:#66d9ef">in</span>
@@ -346,7 +346,7 @@ task.resume()
     task.resume()
 }
 </code></pre></div><p><em>(This code was taken directly as-is from Apple&rsquo;s <a href="https://developer.apple.com/videos/play/wwdc2021/10132/">Meet async/await in Swift</a> session)</em></p>
-<p>The first thing you will notice is that this code is a mouthful. Just sit down and appreciate how <em>long</em> it is. It begins by downloading an image, and then it tries to resize it. Both the network call and the thumbnail resizing call are asynchronous calls. Not only that, but your call needs tot pass in their own completion handler as well.</p>
+<p>The first thing you will notice is that this code is a mouthful. Just sit down and appreciate how <em>long</em> it is. It begins by downloading an image, and then it tries to resize it. Both the network call and the thumbnail resizing call are asynchronous calls. Not only that, but your call needs to pass in their own completion handler as well.</p>
 <p>This code has bugs too, and they may be hard to find. Remember that if you write a callback-based function, you need to call the passed callback regardless of what happens. The developer calling your function can find cases in which their callback is never called. In the example above, there&rsquo;s two places where this can happen. I have marked those places as <code>(1)</code> and <code>(2)</code>. As you are not calling the completion handler in these places, you will leave the API caller waiting for a response that will never arrive - at the very least you won&rsquo;t be blocking the thread, though.</p>
 <p>So, the first problem we can find here is that you are responsible from calling the callback when you are done with your job. This isn&rsquo;t too bad for small functions, but it can become overwhelming when you realize there&rsquo;s many edge cases you need to think of.</p>
 <p>But one thing I have always disliked about callback-based APIs is that all the information about the &ldquo;return&rdquo; type and the error are part of the closure you are given. Because of this, you cannot have a clean API that states its return type and whether it can yield an error not. There&rsquo;s no such thing as throwing an error. With these APIs. You have to provide them to the callback. While static typing does not disappear, it does get more abstracted (not to mention autocomplete isn&rsquo;t as useful, as there times it decides not to work when making such calls). And as a cherry on top, your API consumers may decide to discard the error if they so choose - this is not necessarily a bad thing, but there&rsquo;s times when you want them to <em>really</em> take some action.</p>
@@ -365,7 +365,7 @@ task.resume()
 <ol>
 <li><a href="/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
-<li>Structured concurrency</li>
+<li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
 <li>Unstructured concurrency</li>
 <li>Understanding Actors in Swift</li>
 <li>The AsyncSequence Protocol in Swift</li>

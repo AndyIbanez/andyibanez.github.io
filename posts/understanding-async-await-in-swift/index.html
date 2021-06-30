@@ -290,7 +290,9 @@ if (!doNotTrack) {
 <li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
 <li><strong>Understanding async/await in Swift</strong></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
+<li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
 </ol>
+<!-- raw HTML omitted -->
 <p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&rsquo;s no way around it. While async/await are not the only <a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options</a>, Apple&rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.</p>
 <p>This article will explore async/await and nothing else. Once you understand these concepts, we will start moving on to more advanced articles where we cover structured concurrency, unstructured currency, SwiftUI, and more.</p>
 <p>If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is <em>very</em> different to anything you have seen before in Apple&rsquo;s technologies. It basically throws what you know about concurrent programming out of the window. It&rsquo;s important to keep that in mind to read this article.</p>
@@ -433,7 +435,7 @@ performMessyStuff()
 <li>To create a &ldquo;bridge&rdquo; between synchronous and asynchronous code. We will show an example of this after we write our first <code>async</code> function.</li>
 <li>To spawn asynchronous tasks in parallel.</li>
 </ul>
-<p>In this article, we will only explore the former two, but the second use case will come in a later article in the series.</p>
+<p>In this article, we will only explore the former two, but the third use case will come in a later article in the series.</p>
 <p>To mark a function as <code>async</code>, simply put the keyword after the function&rsquo;s closing parenthesis and before the arrow, like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(id: Int) async -&gt; UIImage? { ... }
 </code></pre></div><p>Or:</p>
@@ -444,7 +446,7 @@ performMessyStuff()
 <p><code>await</code> is where the magic happens. Whenever the program finds the <code>await</code> keywords, it has the option of suspending the function. It may or may not do so, and the decision is up to the system.</p>
 <p>If the system does suspend the function, <code>await</code> will return control, not to the caller, but to the system. The system will then use the thread to perform other work until the suspended function is done. The statements below <code>await</code> will not be executed until it has finished. The system decides what&rsquo;s important to execute, and at some point, it will return control back to you after it sees the <code>await</code>ed function has finished.</p>
 <p>You can think of it as a traffic light. If you are driving down the road and you find a red light, chances are you will stop. But if it is 4 AM in the morning and there&rsquo;s no cars coming you may just run it. ***</p>
-<p><strong>What you need to understand about await is that, shall it choose to suspend, nothing below it will execute until the system tells it to, and the system will use the thread to do other work.</strong></p>
+<p><strong>What you need to understand about await is that, it it does choose to suspend, nothing below it will execute until the system tells it to, and the system will use the thread to do other work.</strong></p>
 <p>Every call to an <code>async</code> function, must be marked as <code>await</code>.</p>
 <p>To better understand this, we will rewrite our <code>downloadImageAndMetadata</code> function, this time using <code>async</code> and using <code>await</code> within the body.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
@@ -627,7 +629,7 @@ Add &lsquo;async&rsquo; to function &lsquo;performDownload()&rsquo; to make it a
 <blockquote>
 <p>3 async/await will run in order just like procedural programming. When it finds an <code>await</code> call, the job will  suspend and will give control back to the system instead of the caller. Unlike callback-based concurrency, it will not continue execution of the statements under it until it has finished. The system will make use of the thread to perform other work, and when it decides it&rsquo;s time to revisit your function, it will, and execution will resume linearly.</p>
 </blockquote>
-<p>When you are ready, you can proceed to the third article in the series, <a href="/posts/converting-closure-based-code-into-async-await-in-swift.md">Converting Closure-based code into async/await in Swift</a> to learn more about continuations, explicit continuations, and how to bridge closure-based and delegate-based code into async/await.</p>
+<p>When you are ready, you can proceed to the third article in the series, <a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting Closure-based code into async/await in Swift</a> to learn more about continuations, explicit continuations, and how to bridge closure-based and delegate-based code into async/await.</p>
 <h3 id="notes">Notes</h3>
 <p>*: Well, except when you put bugs in.</p>
 <p>**: This is not obvious in this example, but there exists asynchronous code that is much faster than a network call and it may finish much faster than expected, altering the output of the console on each run.</p>

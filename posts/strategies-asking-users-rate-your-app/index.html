@@ -23,11 +23,11 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Strategies For Asking Users to Rate Your App"/>
 <meta name="twitter:description" content="Having our apps have good reviews is generally a good thing. After all, many users look into how many stars an app has before deciding on downloading it. Apps with a general poor rating may not get many downloads (unless they are &ldquo;essential&rdquo; apps of any kind, such as companion app to another service).
-We all as developers have experience that users are quick to give a one-star review when something doesn&rsquo;t work right, but they are never inclined to rate 5 stars when they are satisfied with an app."/>
+We all as developers have experienced that users are quick to give a one-star review when something doesn&rsquo;t work right, but they are never inclined to rate 5 stars when they are satisfied with an app."/>
 
 <meta property="og:title" content="Strategies For Asking Users to Rate Your App" />
 <meta property="og:description" content="Having our apps have good reviews is generally a good thing. After all, many users look into how many stars an app has before deciding on downloading it. Apps with a general poor rating may not get many downloads (unless they are &ldquo;essential&rdquo; apps of any kind, such as companion app to another service).
-We all as developers have experience that users are quick to give a one-star review when something doesn&rsquo;t work right, but they are never inclined to rate 5 stars when they are satisfied with an app." />
+We all as developers have experienced that users are quick to give a one-star review when something doesn&rsquo;t work right, but they are never inclined to rate 5 stars when they are satisfied with an app." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.andyibanez.com/posts/strategies-asking-users-rate-your-app/" />
 <meta property="article:published_time" content="2021-06-02T07:00:00-04:00" />
@@ -248,7 +248,7 @@ if (!doNotTrack) {
   
   <div class="post">
     <p>Having our apps have good reviews is generally a good thing. After all, many users look into how many stars an app has before deciding on downloading it. Apps with a general poor rating may not get many downloads (unless they are &ldquo;essential&rdquo; apps of any kind, such as companion app to another service).</p>
-<p>We all as developers have experience that users are quick to give a one-star review when something doesn&rsquo;t work right, but they are never inclined to rate 5 stars when they are satisfied with an app.</p>
+<p>We all as developers have experienced that users are quick to give a one-star review when something doesn&rsquo;t work right, but they are never inclined to rate 5 stars when they are satisfied with an app.</p>
 <p>Luckily  for us, Apple has given us the <code>SKStoreReviewController.requestReview()</code> API. Introduced in iOS 13, we can call this method (rather, its non-deprecated sibling, <code>SKStoreReviewController.requestReview(scene:)</code>) to prompt users to rate our app.</p>
 <p><a href="/img/review_request_prompt.png">Request Rating Review</a></p>
 <p>Of course the ability to ask for ratings does come with some restrictions. First, users can turn off this prompt completely at the system level, and second, while you can call this method as many times as you like, it will only be displayed to your user at most 3 times per <em>year</em>. So it&rsquo;s not a good idea to go around willy nilly calling it everywhere. Instead, you need to think of ways to call this method without being annoying and without wasting the alert&rsquo;s presentation.</p>
@@ -292,7 +292,7 @@ if (!doNotTrack) {
 <h1 id="strategies-for-getting-the-best-out-of-review-prompts">Strategies for getting the best out of review prompts</h1>
 <p>I can&rsquo;t stress this enough, but you have three opportunities to ask your users for a rating in a 365-day cycle. You should avoid wasting these opportunities at all costs. Actually having an strategy that governs your review prompt display can yield many positive results.</p>
 <h2 id="look-for-specific-satisfying-actions-to-make-the-call-on">Look for specific satisfying actions to make the call on</h2>
-<p>If you do not want to spend much time thinking on a strategy for your review prompt, spend a few hours thinking on the key ares or your app that bring value to your users, and attach the call to those actions. Don&rsquo;t blindly put your calls when launching your app and call it a day.</p>
+<p>If you do not want to spend much time thinking on a strategy for your review prompt, spend a few hours thinking on the key areas or your app that bring value to your users, and attach the call to those actions. Don&rsquo;t blindly put your calls when launching your app and call it a day.</p>
 <h2 id="piggyback-on-existing-score-prompts-to-call-the-review-prompt">Piggyback on existing score prompts to call the review prompt</h2>
 <p>At my day job, I maintain the iOS app for a bank, and one of the things we do, is to ask users what their experience was like after doing a transfer. We ask them every 14 days after the last transfer. This prompt is not linked to the App Store prompt. Instead, it&rsquo;s linked to our internal analytics database.</p>
 <p>If you have something like that, feel free to piggy back on it and show a review prompt if the user has given a positive score to your previous prompt. In general, users who had a positive experience and are likely to say they had a good experience with something, they are likely to do it again even if they were just asked a second ago. Very few users may still give you 1-star reviews, but the vast majority of them who are satisfied will not.</p>
