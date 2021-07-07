@@ -4,111 +4,116 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/article-series/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/async/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/await/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/concurrency/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/development/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/ipados/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/macos/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/modern-concurrency-article-series/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/categories/modern-concurrency-in-swift-article-series/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/multithreading/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/posts/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/programming/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <loc>https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/</loc>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/swift/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/watchos/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/wwdc/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/wwdc20/</loc>
-    <lastmod>2021-06-30T07:00:00-04:00</lastmod>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.andyibanez.com/tags/wwdc2021/</loc>
+    <lastmod>2021-07-07T07:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</loc>
     <lastmod>2021-06-30T07:00:00-04:00</lastmod>
   </url>
   

@@ -6,10 +6,20 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 30 Jun 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 07 Jul 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Structured Concurrency With Group Tasks in Swift</title>
+      <link>https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/</link>
+      <pubDate>Wed, 07 Jul 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/</guid>
+      <description>This article is part of my Modern Concurrency in Swift Article Series.
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift  Understanding Structured Concurrency and async let is a pre-requisite to read this article. If you aren&amp;rsquo;t familiar with that concept, feel free to read the third part of this article series: Beginning Concurrency in Swift: Structured Concurrency and async-let.</description>
+    </item>
     
     <item>
       <title>Structured Concurrency in Swift: Using async let</title>
