@@ -301,7 +301,7 @@ if (!doNotTrack) {
 
 <span style="color:#66d9ef">let</span> task = URLSession.shared.dataTask(with: ...) { data, response, error <span style="color:#66d9ef">in</span>
     <span style="color:#75715e">// ... (2)</span>
-}.resume()
+}
 
 task.resume()
 
@@ -318,7 +318,7 @@ task.resume()
     }
     taskThatNeedsPreviousResponse.resume()
     
-}.resume()
+}
 
 task.resume()
 </code></pre></div><p>As the calls get nested and nested (and nested), it can become a problem when it comes to readability. You can take action and move every &ldquo;pyramid floor&rdquo; into its own function, but that&rsquo;s more of a patch than a real solution as you end up polluting your scope.</p>
@@ -356,7 +356,7 @@ task.resume()
 <p>Second, I feel it&rsquo;s not used enough. Combine was introduced in 2019 and it has(had?) a big role driving the existence of SwiftUI. But I just get the feeling that it hasn&rsquo;t seen much adoption in the few years it has been out in the wild. There&rsquo;s no evidence people are adopting it to replace their callback-based code, and both the lack of community resources (a few exist, and are awesome) and lack of updates on the framework make it seem that it may not be wise to invest much time on it until we know what Apple&rsquo;s plans for it are.</p>
 <p>Combine will not be mentioned much throughout this tutorial series unless it&rsquo;s relevant. In general, I no longer consider it a candidate to replace callback-based code - I was a huge fan of wrapping asynchronous code in Futures, though.</p>
 <h1 id="a-new-way-of-thinking">A new way of thinking</h1>
-<p>Finally, before diving in to the articles below, I recommend you try to throw your current knowledge of concurrency outside the window, because the implementation for async/await is very different, and it&rsquo;s important to understand this mindset before you truly understand how it works. Once you understand async/await, the rest of the toolset is easier to understand.</p>
+<p>Finally, before diving in to the articles below, I recommend you try to throw your current knowledge of concurrency out of the window, because the implementation for async/await is very different, and it&rsquo;s important to understand this mindset before you truly understand how it works. Once you understand async/await, the rest of the toolset is easier to understand.</p>
 <p>I am not saying your current concurrency knowledge will be irrelevant. Far from it, but it&rsquo;s interesting how imposing an easier to write concurrency code requires us to rethink how we have been thinking about concurrency in Apple&rsquo;s platforms in the past decades. I actually think async/await is easier to understand for people who have never seen asynchronous code before, because the way it&rsquo;s implemented doesn&rsquo;t derive much from procedural programming.</p>
 <h1 id="without-further-ado">Without further ado&hellip;</h1>
 <p>The table of contents below list the articles of this series. As the series is not complete at the time of this writing, this table may change overtime, adding or removing topics, or reordering them, as the series progresses. They are designed to be independent of each other, so you don&rsquo;t need to read the early articles if you just need the last ones. That said if you are new to async/await, you should read them all in order.</p>
@@ -366,6 +366,7 @@ task.resume()
 <li><a href="/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
+<li><a href="/posts//posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 <li>Unstructured concurrency</li>
 <li>Understanding Actors in Swift</li>
 <li>The AsyncSequence Protocol in Swift</li>

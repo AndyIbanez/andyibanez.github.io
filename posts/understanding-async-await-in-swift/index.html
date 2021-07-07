@@ -291,10 +291,11 @@ if (!doNotTrack) {
 <li><strong>Understanding async/await in Swift</strong></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
+<li><a href="/posts//posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&rsquo;s no way around it. While async/await are not the only <a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options</a>, Apple&rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.</p>
-<p>This article will explore async/await and nothing else. Once you understand these concepts, we will start moving on to more advanced articles where we cover structured concurrency, unstructured currency, SwiftUI, and more.</p>
+<p>This article will explore async/await and nothing else. Once you understand these concepts, we will start moving on to more advanced articles where we cover structured concurrency, unstructured concurrency, SwiftUI, and more.</p>
 <p>If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is <em>very</em> different to anything you have seen before in Apple&rsquo;s technologies. It basically throws what you know about concurrent programming out of the window. It&rsquo;s important to keep that in mind to read this article.</p>
 <p>In this article, we will write a function that downloads an image and then its metadata using a different network call. We will show you how doing this with callback-based concurrency can become hard to manage quickly, and how async/await solves this problem beautifully.</p>
 <h1 id="refreshing-concepts">Refreshing Concepts</h1>
@@ -418,7 +419,7 @@ performMessyStuff()
 <p>In the case of callback-based asynchronous code, control is given back whenever completion handlers are executed.</p>
 <p>And as you may imagine, these calls can be come more and more complex and nested.</p>
 <h1 id="introducing-asyncawait">Introducing async/await</h1>
-<p>If I had to explain async/await in as many few words as possible, I&rsquo;d say this:</p>
+<p>If I had to explain async/await in few words, I&rsquo;d say this:</p>
 <blockquote>
 <p>async/await is like a hybrid between procedural programming and callback-based closures.</p>
 </blockquote>
