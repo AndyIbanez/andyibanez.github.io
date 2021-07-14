@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Introduction to Unstructured Concurrency in Swift • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Introduction to Unstructured Concurrency in Swift"/>
+<meta name="twitter:description" content="Learn how to use unstructured concurrency in Swift with the new mechanism, when structured concurrency doesn&#39;t suit your needs."/>
+
+<meta property="og:title" content="Introduction to Unstructured Concurrency in Swift" />
+<meta property="og:description" content="Learn how to use unstructured concurrency in Swift with the new mechanism, when structured concurrency doesn&#39;t suit your needs." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/" />
+<meta property="article:published_time" content="2021-07-14T07:00:00-04:00" />
+<meta property="article:modified_time" content="2021-07-14T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Introduction to Unstructured Concurrency in Swift</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 14, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/article-series">ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-article-series">MODERN CONCURRENCY ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-in-swift-article-series">MODERN CONCURRENCY IN SWIFT ARTICLE SERIES</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/concurrency">concurrency</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/async">async</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/await">await</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2021">wwdc2021</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/multithreading">multithreading</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 8 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p><em>This article is part of my <a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series</a>.</em></p>
+<h6 id="table-of-contents">Table of Contents</h6>
+<ol>
+<li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
+<li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
+<li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><strong>Introduction to Unstructured Concurrency in Swift</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p><em>Understanding Structured Concurrency in Swift is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a> and <a href="">Structured Concurrency With Group Tasks in Swift</a> articles of this series.</em></p>
+<p>So far, we have focused in exploring Structured Concurrency with the new APIs introduced in Swift 5.5. Structured Concurrency is great to keep a linear flow in our programs, keeping a hierarchy of tasks that is easy to follow. Structured Concurrency helps a lot with keeping task cancellation in track and making error handling as obvious as it would be with no concurrency. Structured concurrency is a great tool to execute various tasks at once, without having our code run out of control with readability.</p>
+<h1 id="introducing-unstructured-concurrency">Introducing unstructured concurrency.</h1>
+<p>Despite the fact that structured concurrency is really useful, there will be times (although hopefully a minority) in which your tasks will have no structured pattern of any kind at all. For these cases, we can leverage unstructured concurrency which will give us more control over the asks, in exchange of some simplicity. The great news is that Swift 5.5 gives us the tools to do this without having to sacrifice a lot of the simplicity. One example of this is giving users the ability to download images, but also giving them the option to cancel the downloads.</p>
+<p>There are some situations in which you will feel the need to use unstructured concurrency:</p>
+<ul>
+<li>Launching tasks from non-async contexts. They can outlive their scopes.</li>
+<li>Detached tasks, for tasks that won&rsquo;t inherit any information about their parent task.</li>
+</ul>
+<p>In this article, we will focus on the former.</p>
+<h2 id="launching-tasks-from-non-async-contexts">Launching tasks from non-async contexts</h2>
+<p>We have actually done this before, and this time we will explain <code>async {}</code> blocks in depth. Recall when we began talking about <code>async/await</code>, we mentioned that when you need to <code>await</code> on a task, you need to be within an <code>async</code> context. If you are inside a function that has <code>async</code> in the signature, then you are fine, and you can <code>await</code> without doing anything special.</p>
+<p>The problem is that throughout Apple&rsquo;s SDKs, they weren&rsquo;t designed to support concurrency from the beginning. Take <code>UIKit</code> as an example. None of the methods that are part of the lifestyle of a view controller are marked as <code>async</code>, such as <code>viewDidAppear</code>. If you need to perform concurrency or simply <code>await</code> on an <code>async</code> task, you can&rsquo;t, unless you use an <code>async</code> block.</p>
+<p>We actually did this when we talked about <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>. In case you didn&rsquo;t read the original article, by the end of it we ended up with code like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> - Definitions</span>
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ImageMetadata</span>: Codable {
+    <span style="color:#66d9ef">let</span> name: String
+    <span style="color:#66d9ef">let</span> firstAppearance: String
+    <span style="color:#66d9ef">let</span> year: Int
+}
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">DetailedImage</span> {
+    <span style="color:#66d9ef">let</span> image: UIImage
+    <span style="color:#66d9ef">let</span> metadata: ImageMetadata
+}
+
+<span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">ImageDownloadError</span>: Error {
+    <span style="color:#66d9ef">case</span> badImage
+    <span style="color:#66d9ef">case</span> invalidMetadata
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+    <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadImage(imageNumber: imageNumber)
+    <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span> await downloadMetadata(<span style="color:#66d9ef">for</span>: imageNumber)
+    <span style="color:#66d9ef">return</span> DetailedImage(image: image, metadata: metadata)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; UIImage {
+    <span style="color:#66d9ef">let</span> imageUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.png&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> imageRequest = URLRequest(url: imageUrl)
+    <span style="color:#66d9ef">let</span> (data, imageResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: imageRequest)
+    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> image = UIImage(data: data), (imageResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">throw</span> ImageDownloadError.badImage
+    }
+    <span style="color:#66d9ef">return</span> image
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadMetadata</span>(<span style="color:#66d9ef">for</span> id: Int) async <span style="color:#66d9ef">throws</span> -&gt; ImageMetadata {
+    <span style="color:#66d9ef">let</span> metadataUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>id<span style="color:#e6db74">)</span><span style="color:#e6db74">.json&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> metadataRequest = URLRequest(url: metadataUrl)
+    <span style="color:#66d9ef">let</span> (data, metadataResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: metadataRequest)
+    <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
+    }
+    
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
+}
+
+<span style="color:#75715e">//...</span>
+
+<span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidAppear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
+    <span style="color:#66d9ef">super</span>.viewDidAppear(animated)
+    
+    async {
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">self</span>.imageView.image = imageDetail.image
+            <span style="color:#66d9ef">self</span>.metadata.text = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>imageDetail.metadata.name<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>imageDetail.metadata.firstAppearance<span style="color:#e6db74">)</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">\(</span>imageDetail.metadata.year<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
+        }
+    }
+}
+</code></pre></div><p>In the code above, we have a few methods that can be <code>await</code>ed. We want to call them from <code>viewDidAppear</code>, but because <code>viewDidAppear</code> does not have <code>async</code> as part of the function signature, we can&rsquo;t do so directly. Instead, we need to create an async context using <code>async</code>, and we can <code>await</code> inside of it.</p>
+<p>The implications of doing this are interesting. First, <code>async {}</code> actually creates an explicit task. Second, because this launches a new task, anything underneath the <code>async {}</code> block will continue executing alongside anything inside the <code>async {}</code> block.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
+
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
+        <span style="color:#66d9ef">super</span>.viewDidLoad()
+        <span style="color:#75715e">// Do any additional setup after loading the view.</span>
+    }
+    
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidAppear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
+        <span style="color:#66d9ef">super</span>.viewDidAppear(animated)
+        
+        async {
+            <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
+                print(<span style="color:#e6db74">&#34;Image downloaded&#34;</span>)
+            }
+        }
+        
+        print(<span style="color:#e6db74">&#34;Continue execution alongside the async block&#34;</span>)
+    }
+}
+</code></pre></div><p>If you run this, you will notice that the output is:</p>
+<pre><code>Continue execution alongside the async block
+Image downloaded
+</code></pre><p>Executing linear code is much faster than downloading anything from the network, so you are pretty much guaranteed to receive this output every time you run it. It follows to say that, if you have multiple <code>async {}</code> blocks, you are launching an async task on each.</p>
+<p>Finally (and this is the most interesting part), using <code>async</code> this way will actually return you a value of type <code>Task.Handle&lt;T, E: Error&gt;</code>. You can later store this handle somewhere and use it to explicitly cancel the task, await its result, and more.</p>
+<p>This is where the &ldquo;unstructured&rdquo; part comes into play. We can begin a task somewhere, and then we can cancel it from a completely unrelated place.</p>
+<p>For example, we can begin the download from the tap of a button:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// You can get the full code at the end of the article.</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
+<span style="color:#75715e">// ...</span>
+<span style="color:#66d9ef">var</span> downloadAndShowTask: Task.Handle&lt;Void, Never&gt;? {
+    <span style="color:#66d9ef">didSet</span> {
+        <span style="color:#66d9ef">if</span> downloadAndShowTask == <span style="color:#66d9ef">nil</span> {
+            triggerButton.setTitle(<span style="color:#e6db74">&#34;Download&#34;</span>, <span style="color:#66d9ef">for</span>: .normal)
+        } <span style="color:#66d9ef">else</span> {
+            triggerButton.setTitle(<span style="color:#e6db74">&#34;Cancel&#34;</span>, <span style="color:#66d9ef">for</span>: .normal)
+        }
+    }
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadAndShowRandomImage</span>() {
+    <span style="color:#66d9ef">let</span> imageNumber = Int.random(<span style="color:#66d9ef">in</span>: <span style="color:#ae81ff">1.</span>..<span style="color:#ae81ff">3</span>)
+    downloadAndShowTask = async {
+        <span style="color:#66d9ef">do</span> {
+            <span style="color:#66d9ef">let</span> imageMetadata = <span style="color:#66d9ef">try</span> await downloadImageAndMetadata(imageNumber: imageNumber)
+            imageView.image = imageMetadata.image
+            <span style="color:#66d9ef">let</span> metadata = imageMetadata.metadata
+            metadataLabel.text = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>metadata.name<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>metadata.firstAppearance<span style="color:#e6db74">)</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">\(</span>metadata.year<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
+        } <span style="color:#66d9ef">catch</span> {
+            showErrorAlert(<span style="color:#66d9ef">for</span>: error)
+        }
+        downloadAndShowTask = <span style="color:#66d9ef">nil</span>
+    }
+}
+
+<span style="color:#75715e">// Inside ViewController</span>
+<span style="color:#66d9ef">@IBAction</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">triggerButtonTouchUpInside</span>(<span style="color:#66d9ef">_</span> sender: Any) {
+    <span style="color:#66d9ef">if</span> downloadTask == <span style="color:#66d9ef">nil</span> {
+        <span style="color:#75715e">// If we have no task going, we have now running task. Therefore, download.</span>
+        async {
+            await downloadAndShowRandomImage()
+        }
+    } <span style="color:#66d9ef">else</span> {
+        <span style="color:#75715e">// We have a task, let&#39;s cancel it.</span>
+        cancelDownload()
+    }
+}
+
+<span style="color:#75715e">// ...</span>
+}
+</code></pre></div><p>And cancel the download when the user wishes to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">cancelDownload</span>() {
+    downloadAndShowTask?.cancel()
+}
+</code></pre></div><p>The full program contains a <code>triggerButton</code> whose label changes when <code>downloadAndShowTask</code>'s value changes. When it is nil, there&rsquo;s no task going on, so we will use the button to download an image. Otherwise, we will use the button to cancel the action.</p>
+<p><code>downloadAndShowTask</code> is of type <code>Task.Handle&lt;Void, Never&gt;</code> because the task itself doesn&rsquo;t return anything and it doesn&rsquo;t throw an error. Our button will download the image and set the labels.</p>
+<p>If you needed to download the images but not process them directly, you may want to define your tasks in such way that they return specific values.</p>
+<p>The following example is more involved, but it shows you the flexibility you have with <code>async {}</code> unstructured tasks.</p>
+<p>First, we will add <code>@MainActor</code> to the declaration of the view controller. It&rsquo;s possible that other threads other than the main one will want to access the values of the view controller.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@MainActor
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController <span style="color:#75715e">//...</span>
+</code></pre></div><p>Next, we will change <code>downloadAndShowTask</code> to <code>downloadTask</code> and we will change the signature to <code>Task.Handle&lt;DetailedImage, Error&gt;</code>. This will allow us to <code>await</code> on the <code>DetailedImage</code>, or to throw an error from within the task if necessary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> downloadTask: Task.Handle&lt;DetailedImage, Error&gt;? {
+    <span style="color:#66d9ef">didSet</span> {
+        <span style="color:#66d9ef">if</span> downloadTask == <span style="color:#66d9ef">nil</span> {
+            triggerButton.setTitle(<span style="color:#e6db74">&#34;Download&#34;</span>, <span style="color:#66d9ef">for</span>: .normal)
+        } <span style="color:#66d9ef">else</span> {
+            triggerButton.setTitle(<span style="color:#e6db74">&#34;Cancel&#34;</span>, <span style="color:#66d9ef">for</span>: .normal)
+        }
+    }
+}
+</code></pre></div><p>Next, we will create a new method, <code> beginDownloadingRandomImage</code>, which will start an image download and store it in the <code>downloadTask</code> handle. We will create the code that updates the outlets accordingly while we are on it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">beginDownloadingRandomImage</span>() {
+    <span style="color:#66d9ef">let</span> imageNumber = Int.random(<span style="color:#66d9ef">in</span>: <span style="color:#ae81ff">1.</span>..<span style="color:#ae81ff">3</span>)
+    downloadTask = async {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await downloadImageAndMetadata(imageNumber: imageNumber)
+    }
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">showImageInfo</span>(imageMetadata: DetailedImage) {
+    imageView.image = imageMetadata.image
+    <span style="color:#66d9ef">let</span> metadata = imageMetadata.metadata
+    metadataLabel.text = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>metadata.name<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>metadata.firstAppearance<span style="color:#e6db74">)</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">\(</span>metadata.year<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
+}
+</code></pre></div><p>We will update the implementation of <code>downloadAndShowRandomImage</code> so it makes use of the two new functions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadAndShowRandomImage</span>() async {
+    beginDownloadingRandomImage()
+    <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadTask?.<span style="color:#66d9ef">get</span>() {
+            showImageInfo(imageMetadata: image)
+        }
+    } <span style="color:#66d9ef">catch</span> {
+        showErrorAlert(<span style="color:#66d9ef">for</span>: error)
+    }
+    downloadTask = <span style="color:#66d9ef">nil</span>
+}
+</code></pre></div><p>This method will now call <code>beginDownloadingImage</code>, which will assign a value to <code>downloadTask</code> within. Then, we call <code>downloadTask?.get()</code>. <code>.get()</code> will return us the image when it&rsquo;s done downloading, which is why it&rsquo;s <code>await</code>ed.</p>
+<p><code>cancelDownload</code> is the same as always. We can cancel (and start) the download at any point.</p>
+<p>Tasks created this way also inherit the priority, local values, and the actor. They can outlive their scope and therefore give you more control over their lifetimes.</p>
+<h1 id="summary">Summary</h1>
+<p>We have explored what <code>async</code> actually does. We have used it to create an explicit task that we can later cancel manually and explicitly. We can use <code>async {}</code> tasks to work with unstructured concurrency that doesn&rsquo;t have any kind of structure. This is useful when we want to have more control over the tasks. Being able to cancel tasks when deemed necessary can help improve the experience of our users, specially if very long-running tasks are involved. These tasks can outlive the original scope they are defined in, enforcing the idea that they create unstructured concurrency.</p>
+<p>There is a <a href="/archives/UnstructuredConcurrencyIntro.zip">a small project</a> with the last pieces of code that you can use to play around and explore to better understand <code>async {}</code>. The program has a <code>Download</code> button that cancels into a <code>Cancel</code> button when a download is in progress. Rapidly tapping the button will show you an alert that says &ldquo;cancelled&rdquo; as you cancelled the task explicitly without giving a change to the image to download.</p>
+<p><img src="/img/async_unstructured_1.png" alt="Download image"></p>
+<p><img src="/img/async_unstructured_2.png" alt="Cancel image download"></p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/structured-concurrency-with-group-tasks-in-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Structured Concurrency With Group Tasks in Swift</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

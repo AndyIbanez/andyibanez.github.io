@@ -292,6 +292,7 @@ if (!doNotTrack) {
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
 <li><strong>Structured Concurrency With Group Tasks in Swift</strong></li>
+<li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding Structured Concurrency and <code>async let</code> is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the third part of this article series: <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a>.</em></p>
@@ -335,16 +336,17 @@ if (!doNotTrack) {
 <li>You should only capture value types, actors, classes, or other objects that implement their own synchronization. We will explore actors in a future article.</li>
 </ul>
 <p>With this knowledge in mind, we can fix our Task Group above. When you create a Task Group with either <code>withThrowingTaskGroup</code> or <code>withTaskGroup</code>, the task group takes as a parameter the return type your concurrent tasks will create.</p>
-<pre><code class="language-swiftfunc" data-lang="swiftfunc">    try await withThrowingTaskGroup(of: DetailedImage.self, body: { group in
-        for image in images {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadMultipleImagesWithMetadata</span>(images: Int...) async <span style="color:#66d9ef">throws</span> -&gt; [DetailedImage]{
+    <span style="color:#66d9ef">try</span> await withThrowingTaskGroup(of: DetailedImage.<span style="color:#66d9ef">self</span>, body: { group <span style="color:#66d9ef">in</span>
+        <span style="color:#66d9ef">for</span> image <span style="color:#66d9ef">in</span> images {
             group.async {
-                async let image = downloadImageAndMetadata(imageNumber: image)
-                return try await image
+                async <span style="color:#66d9ef">let</span> image = downloadImageAndMetadata(imageNumber: image)
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await image
             }
         }
     })
 }
-</code></pre><p>The implementation of our method is not complete yet, but going step by step, it has received a few important modifications:</p>
+</code></pre></div><p>The implementation of our method is not complete yet, but going step by step, it has received a few important modifications:</p>
 <ul>
 <li>The <code>of</code> parameter of <code>withThrowingTaskGroup</code> now specifies that it takes <code>DetailedImage</code>s.</li>
 <li>Instead of appending to an array, <code>group.async</code> will now return an <code>await</code>ed <code>DetailedImage</code> on each run of the loop.</li>
@@ -406,6 +408,11 @@ if (!doNotTrack) {
       <span class="navigation-tittle">Structured Concurrency in Swift: Using async let</span>
     </a>
     
+    
+    <a href="/posts/introduction-to-unstructured-concurrency-in-swift/" class="navigation-next">
+      <span class="navigation-tittle">Introduction to Unstructured Concurrency in Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
     
 </div>
 
