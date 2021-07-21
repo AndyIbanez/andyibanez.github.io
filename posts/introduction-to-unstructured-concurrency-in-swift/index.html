@@ -276,7 +276,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 8 min read
+    <i class="fas fa-clock"></i> 9 min read
 </div>
 
 
@@ -285,6 +285,7 @@ if (!doNotTrack) {
   
   <div class="post">
     <p><em>This article is part of my <a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series</a>.</em></p>
+<p><em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.</em></p>
 <h6 id="table-of-contents">Table of Contents</h6>
 <ol>
 <li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
@@ -293,6 +294,7 @@ if (!doNotTrack) {
 <li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
 <li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 <li><strong>Introduction to Unstructured Concurrency in Swift</strong></li>
+<li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding Structured Concurrency in Swift is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a> and <a href="">Structured Concurrency With Group Tasks in Swift</a> articles of this series.</em></p>
@@ -306,8 +308,8 @@ if (!doNotTrack) {
 </ul>
 <p>In this article, we will focus on the former.</p>
 <h2 id="launching-tasks-from-non-async-contexts">Launching tasks from non-async contexts</h2>
-<p>We have actually done this before, and this time we will explain <code>async {}</code> blocks in depth. Recall when we began talking about <code>async/await</code>, we mentioned that when you need to <code>await</code> on a task, you need to be within an <code>async</code> context. If you are inside a function that has <code>async</code> in the signature, then you are fine, and you can <code>await</code> without doing anything special.</p>
-<p>The problem is that throughout Apple&rsquo;s SDKs, they weren&rsquo;t designed to support concurrency from the beginning. Take <code>UIKit</code> as an example. None of the methods that are part of the lifestyle of a view controller are marked as <code>async</code>, such as <code>viewDidAppear</code>. If you need to perform concurrency or simply <code>await</code> on an <code>async</code> task, you can&rsquo;t, unless you use an <code>async</code> block.</p>
+<p>We have actually done this before, and this time we will explain <code>Task {}</code> blocks in depth. Recall when we began talking about <code>async/await</code>, we mentioned that when you need to <code>await</code> on a task, you need to be within an <code>async</code> context. If you are inside a function that has <code>async</code> in the signature, then you are fine, and you can <code>await</code> without doing anything special.</p>
+<p>The problem is that throughout Apple&rsquo;s SDKs, they weren&rsquo;t designed to support concurrency from the beginning. Take <code>UIKit</code> as an example. None of the methods that are part of the lifestyle of a view controller are marked as <code>async</code>, such as <code>viewDidAppear</code>. If you need to perform concurrency or simply <code>await</code> on an <code>async</code> task, you can&rsquo;t, unless you use a <code>Task</code> block.</p>
 <p>We actually did this when we talked about <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>. In case you didn&rsquo;t read the original article, by the end of it we ended up with code like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> - Definitions</span>
 
@@ -350,7 +352,7 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
         <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
     }
-    
+
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
 }
 
@@ -358,8 +360,8 @@ if (!doNotTrack) {
 
 <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidAppear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
     <span style="color:#66d9ef">super</span>.viewDidAppear(animated)
-    
-    async {
+
+    Task {
         <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
             <span style="color:#66d9ef">self</span>.imageView.image = imageDetail.image
             <span style="color:#66d9ef">self</span>.metadata.text = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>imageDetail.metadata.name<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>imageDetail.metadata.firstAppearance<span style="color:#e6db74">)</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">\(</span>imageDetail.metadata.year<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
@@ -367,37 +369,37 @@ if (!doNotTrack) {
     }
 }
 </code></pre></div><p>In the code above, we have a few methods that can be <code>await</code>ed. We want to call them from <code>viewDidAppear</code>, but because <code>viewDidAppear</code> does not have <code>async</code> as part of the function signature, we can&rsquo;t do so directly. Instead, we need to create an async context using <code>async</code>, and we can <code>await</code> inside of it.</p>
-<p>The implications of doing this are interesting. First, <code>async {}</code> actually creates an explicit task. Second, because this launches a new task, anything underneath the <code>async {}</code> block will continue executing alongside anything inside the <code>async {}</code> block.</p>
+<p>The implications of doing this are interesting. First, <code>Task {}</code> actually creates an explicit task. Second, because this launches a new task, anything underneath the <code>Task {}</code> block will continue executing alongside anything inside the <code>Task {}</code> block.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
 
     <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
         <span style="color:#66d9ef">super</span>.viewDidLoad()
         <span style="color:#75715e">// Do any additional setup after loading the view.</span>
     }
-    
+
     <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidAppear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
         <span style="color:#66d9ef">super</span>.viewDidAppear(animated)
-        
+
         async {
             <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
                 print(<span style="color:#e6db74">&#34;Image downloaded&#34;</span>)
             }
         }
-        
+
         print(<span style="color:#e6db74">&#34;Continue execution alongside the async block&#34;</span>)
     }
 }
 </code></pre></div><p>If you run this, you will notice that the output is:</p>
 <pre><code>Continue execution alongside the async block
 Image downloaded
-</code></pre><p>Executing linear code is much faster than downloading anything from the network, so you are pretty much guaranteed to receive this output every time you run it. It follows to say that, if you have multiple <code>async {}</code> blocks, you are launching an async task on each.</p>
-<p>Finally (and this is the most interesting part), using <code>async</code> this way will actually return you a value of type <code>Task.Handle&lt;T, E: Error&gt;</code>. You can later store this handle somewhere and use it to explicitly cancel the task, await its result, and more.</p>
+</code></pre><p>Executing linear code is much faster than downloading anything from the network, so you are pretty much guaranteed to receive this output every time you run it. It follows to say that, if you have multiple <code>Task {}</code> blocks, you are launching an async task on each.</p>
+<p>Finally (and this is the most interesting part), using <code>Task</code> this way will actually return you a handle of type <code>Task&lt;T, Error&gt;</code>. You can later store this handle somewhere and use it to explicitly cancel the task explicitly, await its result, and more.</p>
 <p>This is where the &ldquo;unstructured&rdquo; part comes into play. We can begin a task somewhere, and then we can cancel it from a completely unrelated place.</p>
 <p>For example, we can begin the download from the tap of a button:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// You can get the full code at the end of the article.</span>
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
 <span style="color:#75715e">// ...</span>
-<span style="color:#66d9ef">var</span> downloadAndShowTask: Task.Handle&lt;Void, Never&gt;? {
+<span style="color:#66d9ef">var</span> downloadAndShowTask: Task&lt;Void, Never&gt;? {
     <span style="color:#66d9ef">didSet</span> {
         <span style="color:#66d9ef">if</span> downloadAndShowTask == <span style="color:#66d9ef">nil</span> {
             triggerButton.setTitle(<span style="color:#e6db74">&#34;Download&#34;</span>, <span style="color:#66d9ef">for</span>: .normal)
@@ -426,7 +428,7 @@ Image downloaded
 <span style="color:#66d9ef">@IBAction</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">triggerButtonTouchUpInside</span>(<span style="color:#66d9ef">_</span> sender: Any) {
     <span style="color:#66d9ef">if</span> downloadTask == <span style="color:#66d9ef">nil</span> {
         <span style="color:#75715e">// If we have no task going, we have now running task. Therefore, download.</span>
-        async {
+        Task {
             await downloadAndShowRandomImage()
         }
     } <span style="color:#66d9ef">else</span> {
@@ -442,14 +444,14 @@ Image downloaded
     downloadAndShowTask?.cancel()
 }
 </code></pre></div><p>The full program contains a <code>triggerButton</code> whose label changes when <code>downloadAndShowTask</code>'s value changes. When it is nil, there&rsquo;s no task going on, so we will use the button to download an image. Otherwise, we will use the button to cancel the action.</p>
-<p><code>downloadAndShowTask</code> is of type <code>Task.Handle&lt;Void, Never&gt;</code> because the task itself doesn&rsquo;t return anything and it doesn&rsquo;t throw an error. Our button will download the image and set the labels.</p>
+<p><code>downloadAndShowTask</code> is of type <code>Task&lt;Void, Never&gt;</code> because the task itself doesn&rsquo;t return anything and it doesn&rsquo;t throw an error. Our button will download the image and set the labels.</p>
 <p>If you needed to download the images but not process them directly, you may want to define your tasks in such way that they return specific values.</p>
-<p>The following example is more involved, but it shows you the flexibility you have with <code>async {}</code> unstructured tasks.</p>
+<p>The following example is more involved, but it shows you the flexibility you have with <code>Task {}</code> unstructured tasks.</p>
 <p>First, we will add <code>@MainActor</code> to the declaration of the view controller. It&rsquo;s possible that other threads other than the main one will want to access the values of the view controller.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@MainActor
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController <span style="color:#75715e">//...</span>
-</code></pre></div><p>Next, we will change <code>downloadAndShowTask</code> to <code>downloadTask</code> and we will change the signature to <code>Task.Handle&lt;DetailedImage, Error&gt;</code>. This will allow us to <code>await</code> on the <code>DetailedImage</code>, or to throw an error from within the task if necessary.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> downloadTask: Task.Handle&lt;DetailedImage, Error&gt;? {
+</code></pre></div><p>Next, we will change <code>downloadAndShowTask</code> to <code>downloadTask</code> and we will change the signature to <code>Task&lt;DetailedImage, Error&gt;</code>. This will allow us to <code>await</code> on the <code>DetailedImage</code>, or to throw an error from within the task if necessary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> downloadTask: Task&lt;DetailedImage, Error&gt;? {
     <span style="color:#66d9ef">didSet</span> {
         <span style="color:#66d9ef">if</span> downloadTask == <span style="color:#66d9ef">nil</span> {
             triggerButton.setTitle(<span style="color:#e6db74">&#34;Download&#34;</span>, <span style="color:#66d9ef">for</span>: .normal)
@@ -461,7 +463,7 @@ Image downloaded
 </code></pre></div><p>Next, we will create a new method, <code> beginDownloadingRandomImage</code>, which will start an image download and store it in the <code>downloadTask</code> handle. We will create the code that updates the outlets accordingly while we are on it.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">beginDownloadingRandomImage</span>() {
     <span style="color:#66d9ef">let</span> imageNumber = Int.random(<span style="color:#66d9ef">in</span>: <span style="color:#ae81ff">1.</span>..<span style="color:#ae81ff">3</span>)
-    downloadTask = async {
+    downloadTask = Task {
         <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await downloadImageAndMetadata(imageNumber: imageNumber)
     }
 }
@@ -475,7 +477,7 @@ Image downloaded
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadAndShowRandomImage</span>() async {
     beginDownloadingRandomImage()
     <span style="color:#66d9ef">do</span> {
-        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadTask?.<span style="color:#66d9ef">get</span>() {
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadTask?.value {
             showImageInfo(imageMetadata: image)
         }
     } <span style="color:#66d9ef">catch</span> {
@@ -483,12 +485,12 @@ Image downloaded
     }
     downloadTask = <span style="color:#66d9ef">nil</span>
 }
-</code></pre></div><p>This method will now call <code>beginDownloadingImage</code>, which will assign a value to <code>downloadTask</code> within. Then, we call <code>downloadTask?.get()</code>. <code>.get()</code> will return us the image when it&rsquo;s done downloading, which is why it&rsquo;s <code>await</code>ed.</p>
+</code></pre></div><p>This method will now call <code>beginDownloadingImage</code>, which will assign a value to <code>downloadTask</code> within. Then, we call <code>downloadTask?.value</code>. <code>.value</code> will return us the image when it&rsquo;s done downloading, which is why it&rsquo;s <code>await</code>ed.</p>
 <p><code>cancelDownload</code> is the same as always. We can cancel (and start) the download at any point.</p>
 <p>Tasks created this way also inherit the priority, local values, and the actor. They can outlive their scope and therefore give you more control over their lifetimes.</p>
 <h1 id="summary">Summary</h1>
-<p>We have explored what <code>async</code> actually does. We have used it to create an explicit task that we can later cancel manually and explicitly. We can use <code>async {}</code> tasks to work with unstructured concurrency that doesn&rsquo;t have any kind of structure. This is useful when we want to have more control over the tasks. Being able to cancel tasks when deemed necessary can help improve the experience of our users, specially if very long-running tasks are involved. These tasks can outlive the original scope they are defined in, enforcing the idea that they create unstructured concurrency.</p>
-<p>There is a <a href="/archives/UnstructuredConcurrencyIntro.zip">a small project</a> with the last pieces of code that you can use to play around and explore to better understand <code>async {}</code>. The program has a <code>Download</code> button that cancels into a <code>Cancel</code> button when a download is in progress. Rapidly tapping the button will show you an alert that says &ldquo;cancelled&rdquo; as you cancelled the task explicitly without giving a change to the image to download.</p>
+<p>We have explored what <code>async</code> actually does. We have used it to create an explicit task that we can later cancel manually and explicitly. We can use <code>Task {}</code> tasks to work with unstructured concurrency that doesn&rsquo;t have any kind of structure. This is useful when we want to have more control over the tasks. Being able to cancel tasks when deemed necessary can help improve the experience of our users, specially if very long-running tasks are involved. These tasks can outlive the original scope they are defined in, enforcing the idea that they create unstructured concurrency.</p>
+<p>There is a <a href="/archives/UnstructuredConcurrencyIntro.zip">a small project</a> with the last pieces of code that you can use to play around and explore to better understand <code>Task {}</code>. The program has a <code>Download</code> button that cancels into a <code>Cancel</code> button when a download is in progress. Rapidly tapping the button will show you an alert that says &ldquo;cancelled&rdquo; as you cancelled the task explicitly without giving a change to the image to download.</p>
 <p><img src="/img/async_unstructured_1.png" alt="Download image"></p>
 <p><img src="/img/async_unstructured_2.png" alt="Cancel image download"></p>
 

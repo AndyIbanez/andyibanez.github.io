@@ -285,14 +285,16 @@ if (!doNotTrack) {
   
   <div class="post">
     <p><em>This article is part of my <a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift</a> article series.</em></p>
+<p><em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.</em></p>
 <h6 id="table-of-contents">Table of Contents</h6>
 <ol>
 <li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
 <li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><strong>Structured Concurrency in Swift: Using async let</strong></li>
-<li><a href="/posts//posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
+<li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding async/await is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the first part of this article series: <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>.</em></p>
@@ -325,7 +327,7 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
         <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
     }
-    
+
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
 }
 
@@ -400,7 +402,7 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> DetailedImage(image: await image, metadata: await metadata)
 }
 </code></pre></div><p>When we call <code>downloadImageAndMetadata</code>, it will inherit all the attributes from the parent task. Each call to <code>async let</code> will create a new task - this task is the <em>child task</em> of the task the current function is running on.</p>
-<p><img src="/images/async_let_diagram.png" alt="async let diagram"></p>
+<p><img src="/img/async_let_diagram.png" alt="async let diagram"></p>
 <p>Our <code>downloadImageAndMetadata</code> function can potentially span two child tasks: One for the image, and one for the metadata, and all this code will (again potentially) be running at the same time.</p>
 <p><code>downloadImageAndMetadata</code> will inherit the attributes of whatever task it&rsquo;s running on, and <code>downloadImage</code> and <code>downloadMetadata</code> will in turn inherit the properties from <code>downloadImageAndMetadata</code>.</p>
 <p>It&rsquo;s important to note that tasks are not children of the <em>functions</em> they are running on, although their lifetimes may be tied to them.</p>
@@ -431,7 +433,7 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
         <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
     }
-    
+
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
 }
 

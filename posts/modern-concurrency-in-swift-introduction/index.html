@@ -285,6 +285,7 @@ if (!doNotTrack) {
   
   <div class="post">
     <h1 id="introduction">Introduction</h1>
+<p><em>This article series was originally written creating examples using Xcode 13 beta 1. The articles in the series, code samples, and provided sample projects have been updated for Xcode 13 beta 3.</em></p>
 <p>This is a tutorial series focused on the new async/await APIs Apple introduced in WWDC2021. I do not know how many articles it is going to have yet, but they will be posted in the upcoming weeks.</p>
 <p>The WWDC2021 session videos do a great job explaining these new APIs, but I feel they can still be overwhelming for both newcomers and long-time developers alike. My intention with this series is to talk about the new concurrency APIs, one step a time, covering a few concepts on each article, until you can feel confident with your understanding of these APIs. When I see it necessary, I may use or modify Apple&rsquo;s provided snippets. I will explicitly mark this external code as such.</p>
 <p>The knowledge you will see throughout the series is knowledge I have obtained from the WWDC2021 sessions (the relevant sessions will be linked in each article), playing around with them myself, and other sources. I do not claim to know everything about the new await/async APIs, and while the Evolution proposal was approved ahead of WWDC2021, I am building this series with the knowledge I have as I did not explore the proposal before WWDC2021</p>
@@ -317,7 +318,7 @@ task.resume()
         evenMoreNestedNetworking.resume()
     }
     taskThatNeedsPreviousResponse.resume()
-    
+
 }
 
 task.resume()
@@ -366,9 +367,9 @@ task.resume()
 <li><a href="/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
-<li><a href="/posts//posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
-<li>Understanding Actors in Swift</li>
+<li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 <li>The AsyncSequence Protocol in Swift</li>
 </ol>
 

@@ -285,14 +285,16 @@ if (!doNotTrack) {
   
   <div class="post">
     <p><em>This article is part of my <a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift</a> article series.</em></p>
+<p><em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.</em></p>
 <h6 id="table-of-contents">Table of Contents</h6>
 <ol>
 <li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
 <li><a href="/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><strong>Converting closure-based code into async/await in Swift</strong></li>
 <li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
-<li><a href="/posts//posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
+<li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>To better benefit from this article, you should be familiar with async/await. If you aren&rsquo;t, feel free to read the first part of this article series: <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>.</em></p>
@@ -312,7 +314,7 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
         <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
     }
-    
+
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
 }
 </code></pre></div><p>In this example, the keyword <code>await</code> will (may) trigger a data download task in a different thread. Everything underneath <code>await</code> (that is, starting on the line with a <code>guard</code>), is a <em>continuation</em>.</p>
@@ -392,7 +394,7 @@ metadataTask.resume()
 <p>Continuations <strong>must be called exactly once</strong>, therefore there must be a continuation call within every branch of <code>withCheckedThrowingContinuation</code>. If you forget to call a <code>.resume</code>, things could go awry. Luckily, Swift will let you know.</p>
 <p><strong>Note</strong>: <em>Or least, it is supposed to. This article is based on the last few minutes of the <a href="https://developer.apple.com/videos/play/wwdc2021/10132/?time=1733">Meet async/await in Swift</a> session. At least as of Beta 1, I was able to have code with branches that don&rsquo;t call <code>resume</code>.</em></p>
 <p>And just like that, we have converted closure-based code into something prettier! Using the <code>async/await</code> version of this function is as easy as:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">async {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Task {
     <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
         <span style="color:#66d9ef">self</span>.imageView.image = imageDetail.image
         <span style="color:#66d9ef">self</span>.metadata.text = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>imageDetail.metadata.name<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>imageDetail.metadata.firstAppearance<span style="color:#e6db74">)</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">\(</span>imageDetail.metadata.year<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
@@ -403,10 +405,10 @@ metadataTask.resume()
 <p>Up to now we have seen how you can convert callback-based code into async/await. You can also do this with delegate-based code. While delegate-based APIs have mostly disappeared in favor of callbacks, it is still common to encounter them, especially if the APIs in question are event-driven (Bluetooth, Location, etc). As such, you may benefit from knowing you can also bridge these to async/await.</p>
 <p>Suppose you have an UIKit app that lets users choose contacts in a ViewController. In its simplest form, it may look similar to this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController, CNContactPickerDelegate {
-    
-    
+
+
     <span style="color:#66d9ef">@IBOutlet</span> <span style="color:#66d9ef">weak</span> <span style="color:#66d9ef">var</span> contactNameLabel: UILabel!
-    
+
     <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
         <span style="color:#66d9ef">super</span>.viewDidLoad()
         <span style="color:#75715e">// Do any additional setup after loading the view.</span>
@@ -415,13 +417,13 @@ metadataTask.resume()
     <span style="color:#66d9ef">@IBAction</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">chooseContactTouchUpInside</span>(<span style="color:#66d9ef">_</span> sender: Any) {
         showContactPicker()
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">showContactPicker</span>() {
         <span style="color:#66d9ef">let</span> picker = CNContactPickerViewController()
         picker.delegate = <span style="color:#66d9ef">self</span>
         present(picker, animated: <span style="color:#66d9ef">true</span>)
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contactPicker</span>(<span style="color:#66d9ef">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact) {
         <span style="color:#66d9ef">self</span>.contactNameLabel.text = contact.givenName
         picker.dismiss(animated: <span style="color:#66d9ef">true</span>, completion: <span style="color:#66d9ef">nil</span>)
@@ -434,25 +436,25 @@ metadataTask.resume()
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@MainActor
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContactPicker</span>: NSObject, CNContactPickerDelegate {
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">typealias</span> ContactCheckedContinuation = CheckedContinuation&lt;CNContact, Never&gt;
-    
+
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">unowned</span> <span style="color:#66d9ef">var</span> viewController: UIViewController
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> contactContinuation: ContactCheckedContinuation?
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> picker: CNContactPickerViewController
-    
+
     <span style="color:#66d9ef">init</span>(viewController: UIViewController) {
         <span style="color:#66d9ef">self</span>.viewController = viewController
         picker = CNContactPickerViewController()
         <span style="color:#66d9ef">super</span>.<span style="color:#66d9ef">init</span>()
         picker.delegate = <span style="color:#66d9ef">self</span>
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pickContact</span>() async -&gt; CNContact {
         viewController.present(picker, animated: <span style="color:#66d9ef">true</span>)
         <span style="color:#66d9ef">return</span> await withCheckedContinuation({ (continuation: ContactCheckedContinuation) <span style="color:#66d9ef">in</span>
             <span style="color:#66d9ef">self</span>.contactContinuation = continuation
         })
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contactPicker</span>(<span style="color:#66d9ef">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact) {
         contactContinuation?.resume(returning: contact)
         contactContinuation = <span style="color:#66d9ef">nil</span>
@@ -472,7 +474,7 @@ metadataTask.resume()
         <span style="color:#66d9ef">let</span> contactPicker = ContactPicker(viewController: <span style="color:#66d9ef">self</span>)
         <span style="color:#66d9ef">let</span> contact = await contactPicker.pickContact()
         <span style="color:#66d9ef">self</span>.contactNameLabel.text = contact.givenName
-        
+
     }
 }
 </code></pre></div><p>But, note that our implementation has a flaw. If you have used the <code>ContactsUI</code> framework before, you may have caught it.</p>
@@ -480,31 +482,31 @@ metadataTask.resume()
 <p>To solve this, we have two options: We can throw an error when users cancel, or we can pass in a nil contact. It doesn&rsquo;t make much sense to throw an error in this case, so we will modify the code to take a nil contact instead.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContactPicker</span>: NSObject, CNContactPickerDelegate {
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">typealias</span> ContactCheckedContinuation = CheckedContinuation&lt;CNContact?, Never&gt;
-    
+
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">unowned</span> <span style="color:#66d9ef">var</span> viewController: UIViewController
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> contactContinuation: ContactCheckedContinuation?
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> picker: CNContactPickerViewController
-    
+
     <span style="color:#66d9ef">init</span>(viewController: UIViewController) {
         <span style="color:#66d9ef">self</span>.viewController = viewController
         picker = CNContactPickerViewController()
         <span style="color:#66d9ef">super</span>.<span style="color:#66d9ef">init</span>()
         picker.delegate = <span style="color:#66d9ef">self</span>
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pickContact</span>() async -&gt; CNContact? {
         viewController.present(picker, animated: <span style="color:#66d9ef">true</span>)
         <span style="color:#66d9ef">return</span> await withCheckedContinuation({ (continuation: ContactCheckedContinuation) <span style="color:#66d9ef">in</span>
             <span style="color:#66d9ef">self</span>.contactContinuation = continuation
         })
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contactPicker</span>(<span style="color:#66d9ef">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact) {
         contactContinuation?.resume(returning: contact)
         contactContinuation = <span style="color:#66d9ef">nil</span>
         picker.dismiss(animated: <span style="color:#66d9ef">true</span>, completion: <span style="color:#66d9ef">nil</span>)
     }
-    
+
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contactPickerDidCancel</span>(<span style="color:#66d9ef">_</span> picker: CNContactPickerViewController) {
         contactContinuation?.resume(returning: <span style="color:#66d9ef">nil</span>)
         contactContinuation = <span style="color:#66d9ef">nil</span>
