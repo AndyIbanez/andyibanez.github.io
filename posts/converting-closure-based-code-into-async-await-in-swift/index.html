@@ -301,7 +301,7 @@ if (!doNotTrack) {
 <p><em>I was debating whether this article should be its own or if its contents should be appended to Introducing async/await in Swift. I decided to make the previous article shorter in an attempt to not overload the articles with information, and to hopefully make it easier to understand these API with smaller articles.</em></p>
 <p>Last week, we had a long discussion on async/await. We contrasted how it compares to callbacks, and we showed examples that hopefully convinced async/await is really neat.</p>
 <p>We are just one step away from actual concurrency. Before we dive in into concurrency - with <em>structured concurrency</em> - next week, I want to show you how you can convert closure-based and delegate-based code into async/await code. The idea behind this article is to give you all the tools so that you can start adopting async/await in your projects, baby steps at a time.</p>
-<p>If you are a library vendor, you will be able to provide async/await code for all your closure-based APIs, so not only you will you be able to start using it for your uses, you will be able to ship async/await to your users.</p>
+<p>If you are a library vendor, you will be able to provide async/await code for all your closure-based APIs, so not only will you be able to start using it for your uses, you will be able to ship async/await to your users.</p>
 <p>If you are not a library vendor, but you do have an app in production, it&rsquo;s likely that your own app is using asynchronous code that notifies you via callbacks. If you want to start migrating that project, you can start by implementing <code>async</code> versions of your async methods. If you are using a third party library that is not offering async/await versions of their calls, you can easily provide your own.</p>
 <h1 id="understanding-continuations">Understanding Continuations</h1>
 <p>If you have read the <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">first part</a> of this article series, you may remember what a Continuation is, but let&rsquo;s have a quick refresher before we move on.</p>
@@ -352,7 +352,7 @@ metadataTask.resume()
     <span style="color:#66d9ef">case</span> invalidMetadata
 }
 
-<span style="color:#75715e">//</span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> - Function</span>
+<span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> - Functions</span>
 
 <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(
     imageNumber: Int,
@@ -377,7 +377,7 @@ metadataTask.resume()
     }
     imageTask.resume()
 }
-</code></pre></div><p>And suppose you are not the original author of it, and it&rsquo;s closed source, preventing you from modifying it directly. If you wanted to start your async/await migration with this method, the simplest way to do would be by wrapping a call to <code>downloadImageAndMetadata(for:imageNumber:completionHandler)</code> inside the <code>withCheckedThrowingContinuation</code> method.</p>
+</code></pre></div><p>And suppose you are not the original author of it, and it&rsquo;s closed source, preventing you from modifying it directly. If you wanted to start your async/await migration with this method, the simplest way to do it would be by wrapping a call to <code>downloadImageAndMetadata(for:imageNumber:completionHandler)</code> inside the <code>withCheckedThrowingContinuation</code> method.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await withCheckedThrowingContinuation({
         (continuation: CheckedContinuation&lt;DetailedImage, Error&gt;) <span style="color:#66d9ef">in</span>
@@ -405,7 +405,6 @@ metadataTask.resume()
 <p>Up to now we have seen how you can convert callback-based code into async/await. You can also do this with delegate-based code. While delegate-based APIs have mostly disappeared in favor of callbacks, it is still common to encounter them, especially if the APIs in question are event-driven (Bluetooth, Location, etc). As such, you may benefit from knowing you can also bridge these to async/await.</p>
 <p>Suppose you have an UIKit app that lets users choose contacts in a ViewController. In its simplest form, it may look similar to this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController, CNContactPickerDelegate {
-
 
     <span style="color:#66d9ef">@IBOutlet</span> <span style="color:#66d9ef">weak</span> <span style="color:#66d9ef">var</span> contactNameLabel: UILabel!
 
@@ -474,7 +473,6 @@ metadataTask.resume()
         <span style="color:#66d9ef">let</span> contactPicker = ContactPicker(viewController: <span style="color:#66d9ef">self</span>)
         <span style="color:#66d9ef">let</span> contact = await contactPicker.pickContact()
         <span style="color:#66d9ef">self</span>.contactNameLabel.text = contact.givenName
-
     }
 }
 </code></pre></div><p>But, note that our implementation has a flaw. If you have used the <code>ContactsUI</code> framework before, you may have caught it.</p>

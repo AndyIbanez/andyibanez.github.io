@@ -292,7 +292,7 @@ if (!doNotTrack) {
 <li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><strong>Structured Concurrency in Swift: Using async let</strong></li>
-<li><a href="/posts/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 </ol>
@@ -357,7 +357,7 @@ if (!doNotTrack) {
 </code></pre></div><p>The downloads take place sequentially, which is exactly what you want most of the time. The function will download the image first, and the metadata later, one at a time. This is great in many cases, but there are times when the tasks don&rsquo;t have any dependencies with each other and it&rsquo;s therefore possible to execute them concurrently.</p>
 <p>In this example, the image download and metadata download are two independent tasks, so we can give the function a little push to download both at the same time and therefore finish earlier.</p>
 <p>Before we move on, think about how you would do this with closure-based code. First, you would need to launch to <code>URLSession</code> data tasks, each with its own completion handler. But then what? How will the tasks coordinate the completion for this task? What happens if the image downloads first? What happens if the metadata finishes first? How are we gonna &ldquo;lock&rdquo; and guarantee access and that the final completion handler is called?</p>
-<p>In truth, doing this task with pure closure-based code (and even with delegate-based code), it becomes pretty messy quick. And we are just talking about a measly <em>two</em> tasks at once!</p>
+<p>In truth, doing this task with pure closure-based code (and even with delegate-based code), it becomes pretty messy real quick. And we are just talking about a measly <em>two</em> tasks at once!</p>
 <p>In Swift, we have two ways to work with structured concurrency:</p>
 <ul>
 <li><code>async let</code></li>

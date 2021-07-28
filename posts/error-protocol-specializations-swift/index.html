@@ -376,7 +376,7 @@ if (!doNotTrack) {
     ]
   }
 }
-</code></pre></div><p>Also bridged to <code>NSError</code>, this is the &ldquo;rawest&rdquo; error I could find that can be bridged to Objective-C. Since you provide the <code>userInfo</code> yourself, you don&rsquo;t have to worry about about what keys it has. It has a lot of flexibility, but more compliecated to work with.</p>
+</code></pre></div><p>Also bridged to <code>NSError</code>, this is the &ldquo;rawest&rdquo; error I could find that can be bridged to Objective-C. Since you provide the <code>userInfo</code> yourself, you don&rsquo;t have to worry about about what keys it has. It has a lot of flexibility, but more complicated to work with.</p>
 <h2 id="mashing-them-together">Mashing Them Together</h2>
 <p>Remember that these are protocols, and you are allowed to conform to more than one protocol at the same time, so nothing prevents you from, say, creating a recoverable localized error.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">NetworkError</span>: LocalizedError, RecoverableError {

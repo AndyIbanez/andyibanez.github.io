@@ -6,10 +6,21 @@
     <description>Recent content in macos on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Jul 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 28 Jul 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/macos/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Unstructured Concurrency With Detached Tasks in Swift</title>
+      <link>https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/</link>
+      <pubDate>Wed, 28 Jul 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/</guid>
+      <description>This article is part of my Modern Concurrency in Swift Article Series.
+This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  Understanding async tasks is a requirement to read this article.</description>
+    </item>
     
     <item>
       <title>Introduction to Unstructured Concurrency in Swift</title>
