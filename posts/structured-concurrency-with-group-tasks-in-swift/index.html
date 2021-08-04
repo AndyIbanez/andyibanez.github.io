@@ -295,13 +295,14 @@ if (!doNotTrack) {
 <li><strong>Structured Concurrency With Group Tasks in Swift</strong></li>
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
+<li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding Structured Concurrency and <code>async let</code> is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the third part of this article series: <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a>.</em></p>
 <p>Task Groups are the second form of structured concurrency in Swift. When we explored <code>async let</code>, we noticed one particular restriction: We cannot run a variable number of tasks at the same time, because when we try to do so, say in a loop, we need to <code>await</code> the results. This won&rsquo;t allow us to, for example, download multiple pictures at once, because we are restricted to waiting on each download.</p>
 <p>To perform a variable number of tasks, Swift gives us Task Groups.</p>
 <h1 id="group-tasks">Group Tasks</h1>
-<p>Group Tasks offered more flexibility than <code>async let</code> without giving up the simplicity of structured concurrency.</p>
+<p>Group Tasks offer more flexibility than <code>async let</code> without giving up the simplicity of structured concurrency.</p>
 <p>A <code>Task Group</code> is a form of structured concurrency designed to provide a dynamic amount of concurrency. With it, we can launch multiple tasks, launch them in a <em>group</em>, and have them execute all at the same time.</p>
 <p>We have two ways to launch group tasks:</p>
 <ul>
@@ -353,7 +354,7 @@ if (!doNotTrack) {
 <li>The <code>of</code> parameter of <code>withThrowingTaskGroup</code> now specifies that it takes <code>DetailedImage</code>s.</li>
 <li>Instead of appending to an array, <code>group.async</code> will now return an <code>await</code>ed <code>DetailedImage</code> on each run of the loop.</li>
 </ul>
-<p>Essentially, we are &ldquo;filling the group&rdquo; with <code>DetailedImage</code>s that we will eventually - unless an error occurs. If an error occurs, the child tasks will be cancelled, and the tasks will need to be stopped. Recall from <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a> that you are responsible from keeping cancellation in mind when designing your code, but luckily it&rsquo;s a one-line call in the case of structured concurrency.</p>
+<p>Essentially, we are &ldquo;filling the group&rdquo; with <code>DetailedImage</code>s that we will eventually return - unless an error occurs. If an error occurs, the child tasks will be cancelled, and the tasks will need to be stopped. Recall from <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a> that you are responsible from keeping cancellation in mind when designing your code, but luckily it&rsquo;s a one-line call in the case of structured concurrency.</p>
 <p>Our <code>group</code> variable is of type <code>ThrowingTaskGroup&lt;DetailedImage, Error&gt;</code>. And surprise, this is a collection! You can iterate over it or apply some functional programming into them such as <code>filter</code>, <code>map</code>, and <code>reduce</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadMultipleImagesWithMetadata</span>(images: Int...) async <span style="color:#66d9ef">throws</span> -&gt; [DetailedImage]{
     <span style="color:#66d9ef">var</span> imagesMetadata: [DetailedImage] = []
@@ -373,7 +374,7 @@ if (!doNotTrack) {
 </code></pre></div><p>The <code>for try await</code> part may throw you off the loop (no pun intended). But alongside all the new concurrency APIs introduced in Swift 5.5, we have a new <code>AsyncSequence</code> type. This protocol is implemented by types that will receive values over time. In our <code>downloadMultipleImagesWithMetadata</code> function, we use <code>group.async</code> to launch a dynamic amount of <code>DetailedImage</code> downloads. As the downloads end, they will be delivered in our <code>for in</code> loop, one image at a time, making it safe to modify variables within it, and more.</p>
 <p>Note that the <code>await</code> in the for loop behaves the same way as any other <code>await</code> call. Execution will suspend when reaching that point, and when a new image is delivered, execution will continue. This is important to keep in mind because if you have anything underneath the <code>for-in</code> loop, it will not be executed until all the elements in the group have been sent through it. If you want to download three images, the three images may download concurrently at the same time, but the for loop will only give you one at a time. If you download a considerable amount of images, they will all have to be downloaded before executing anything underneath <code>for-in</code>. This also means that shall an error be thrown, your <code>for-in</code> will stop executing (or it may not even execute if the first download fails).</p>
 <p>We will explore <code>AsyncSequence</code> in depth in a future article.</p>
-<p>When we are dealing with Task Groups, we actually have a bit more flexibility. We can for example launch a task asynchronously with a given priority:\</p>
+<p>When we are dealing with Task Groups, we actually have a bit more flexibility. We can for example launch a task asynchronously with a given priority:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">group.async(priority: .userInitiated) {
 <span style="color:#75715e">//...</span>
 }

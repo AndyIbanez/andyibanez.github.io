@@ -19,7 +19,7 @@
       <guid>https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/</guid>
       <description>This article is part of my Modern Concurrency in Swift Article Series.
 This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  Understanding async tasks is a requirement to read this article.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift  Understanding async tasks is a requirement to read this article.</description>
     </item>
     
     <item>
@@ -30,7 +30,7 @@ Table of Contents  Modern Concurrency in Swift: Introduction Understanding async
       <guid>https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/</guid>
       <description>This article is part of my Modern Concurrency in Swift Article Series.
 This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  Understanding Structured Concurrency in Swift is a pre-requisite to read this article.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift  Understanding Structured Concurrency in Swift is a pre-requisite to read this article.</description>
     </item>
     
     <item>
@@ -41,7 +41,7 @@ Table of Contents  Modern Concurrency in Swift: Introduction Understanding async
       <guid>https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/</guid>
       <description>This article is part of my Modern Concurrency in Swift Article Series.
 This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  Understanding Structured Concurrency and async let is a pre-requisite to read this article.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift  Understanding Structured Concurrency and async let is a pre-requisite to read this article.</description>
     </item>
     
     <item>
@@ -52,7 +52,7 @@ Table of Contents  Modern Concurrency in Swift: Introduction Understanding async
       <guid>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</guid>
       <description>This article is part of my Modern Concurrency in Swift article series.
 This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  Understanding async/await is a pre-requisite to read this article.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift  Understanding async/await is a pre-requisite to read this article.</description>
     </item>
     
     <item>
@@ -63,7 +63,7 @@ Table of Contents  Modern Concurrency in Swift: Introduction Understanding async
       <guid>https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/</guid>
       <description>This article is part of my Modern Concurrency in Swift article series.
 This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  To better benefit from this article, you should be familiar with async/await.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift  To better benefit from this article, you should be familiar with async/await.</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@ Table of Contents  Modern Concurrency in Swift: Introduction Understanding async
       <guid>https://www.andyibanez.com/posts/understanding-async-await-in-swift/</guid>
       <description>This article is part of my Modern Concurrency in Swift article series.
 This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift  Before you try to dive in with concurrency in Swift, you need to understand async/await.</description>
+Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift  Before you try to dive in with concurrency in Swift, you need to understand async/await.</description>
     </item>
     
     <item>
