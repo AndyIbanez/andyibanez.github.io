@@ -377,9 +377,9 @@ if (!doNotTrack) {
     print(<span style="color:#e6db74">&#34;Done resetting&#34;</span>)
 }
 </code></pre></div><p>Then, create a new function, <code>foo</code>, and start calling <code>reset()</code> within it. You will see that the autocomplete suggestions will suggest you autofill with <code>reset()</code>.</p>
-<p><img src="/images/actors_foo.png" alt="Calling reset() within the actor"></p>
+<p><img src="/img/actors_foo.png" alt="Calling reset() within the actor"></p>
 <p>Whereas, if you call <code>reset</code> externally, you will see that the <code>reset()</code> method has <code>async</code> on its signature.</p>
-<p><a href="/images/actors_reset_async.png">Calling reset() outside the actor</a>.</p>
+<p><img src="/img/actors_reset_async.png" alt="Calling reset() outside the actor">.</p>
 <p>You can see that anything called within the actor is synchronous (as you can tell due to the lack of the <code>async</code> keyword), but calling the very same methods externally are <code>async</code>. Synchronous code on the actor <em>always</em> runs to completion without being interrupted. You will notice you cannot await on the actor&rsquo;s properties or methods, although nothing prevents the actor from calling async methods from other actors or other places.</p>
 <h1 id="actor-reentrancy">Actor reentrancy</h1>
 <p>While actors isolate their own state from others, they rarely work alone. They are likely to interact with other actors or with the rest of your codebase in general.</p>
