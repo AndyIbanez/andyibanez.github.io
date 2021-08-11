@@ -292,16 +292,17 @@ if (!doNotTrack) {
 <li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
-<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift</a></li>
 <li><strong>Introduction to Unstructured Concurrency in Swift</strong></li>
 <li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 <li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift.md">@MainActor and Global Actors in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding Structured Concurrency in Swift is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the <a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let</a> and <a href="">Structured Concurrency With Group Tasks in Swift</a> articles of this series.</em></p>
-<p>So far, we have focused in exploring Structured Concurrency with the new APIs introduced in Swift 5.5. Structured Concurrency is great to keep a linear flow in our programs, keeping a hierarchy of tasks that is easy to follow. Structured Concurrency helps a lot with keeping task cancellation in track and making error handling as obvious as it would be with no concurrency. Structured concurrency is a great tool to execute various tasks at once, without having our code run out of control with readability.</p>
+<p>So far we have focused in exploring Structured Concurrency with the new APIs introduced in Swift 5.5. Structured Concurrency is great to keep a linear flow in our programs, keeping a hierarchy of tasks that is easy to follow. Structured Concurrency helps a lot with keeping task cancellation on track and making error handling as obvious as it would be with no concurrency. Structured concurrency is a great tool to execute various tasks at once, without making our code more difficult to read.</p>
 <h1 id="introducing-unstructured-concurrency">Introducing unstructured concurrency.</h1>
-<p>Despite the fact that structured concurrency is really useful, there will be times (although hopefully a minority) in which your tasks will have no structured pattern of any kind at all. For these cases, we can leverage unstructured concurrency which will give us more control over the asks, in exchange of some simplicity. The great news is that Swift 5.5 gives us the tools to do this without having to sacrifice a lot of the simplicity. One example of this is giving users the ability to download images, but also giving them the option to cancel the downloads.</p>
+<p>Despite the fact that structured concurrency is really useful, there will be times (although hopefully a minority) in which your tasks will have no structured pattern of any kind at all. For these cases, we can leverage unstructured concurrency which will give us more control over the asks, in exchange for some simplicity. The great news is that Swift 5.5 gives us the tools to do this without having to sacrifice a lot of the simplicity. One example of this is giving users the ability to download images, but also giving them the option to cancel the downloads.</p>
 <p>There are some situations in which you will feel the need to use unstructured concurrency:</p>
 <ul>
 <li>Launching tasks from non-async contexts. They can outlive their scopes.</li>
@@ -310,7 +311,7 @@ if (!doNotTrack) {
 <p>In this article, we will focus on the former.</p>
 <h2 id="launching-tasks-from-non-async-contexts">Launching tasks from non-async contexts</h2>
 <p>We have actually done this before, and this time we will explain <code>Task {}</code> blocks in depth. Recall when we began talking about <code>async/await</code>, we mentioned that when you need to <code>await</code> on a task, you need to be within an <code>async</code> context. If you are inside a function that has <code>async</code> in the signature, then you are fine, and you can <code>await</code> without doing anything special.</p>
-<p>The problem is that throughout Apple&rsquo;s SDKs, they weren&rsquo;t designed to support concurrency from the beginning. Take <code>UIKit</code> as an example. None of the methods that are part of the lifestyle of a view controller are marked as <code>async</code>, such as <code>viewDidAppear</code>. If you need to perform concurrency or simply <code>await</code> on an <code>async</code> task, you can&rsquo;t, unless you use a <code>Task</code> block.</p>
+<p>The problem is that Apple&rsquo;s SDKs were not designed to support concurrency from the beginning. Take <code>UIKit</code> as an example. None of the methods that are part of the lifecycle of a view controller are marked as <code>async</code>, such as <code>viewDidAppear</code>. If you need to perform concurrency or simply <code>await</code> on an <code>async</code> task, you can&rsquo;t, unless you use a <code>Task</code> block.</p>
 <p>We actually did this when we talked about <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>. In case you didn&rsquo;t read the original article, by the end of it we ended up with code like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> - Definitions</span>
 
@@ -490,8 +491,8 @@ Image downloaded
 <p><code>cancelDownload</code> is the same as always. We can cancel (and start) the download at any point.</p>
 <p>Tasks created this way also inherit the priority, local values, and the actor. They can outlive their scope and therefore give you more control over their lifetimes.</p>
 <h1 id="summary">Summary</h1>
-<p>We have explored what <code>async</code> actually does. We have used it to create an explicit task that we can later cancel manually and explicitly. We can use <code>Task {}</code> tasks to work with unstructured concurrency that doesn&rsquo;t have any kind of structure. This is useful when we want to have more control over the tasks. Being able to cancel tasks when deemed necessary can help improve the experience of our users, specially if very long-running tasks are involved. These tasks can outlive the original scope they are defined in, enforcing the idea that they create unstructured concurrency.</p>
-<p>There is a <a href="/archives/UnstructuredConcurrencyIntro.zip">a small project</a> with the last pieces of code that you can use to play around and explore to better understand <code>Task {}</code>. The program has a <code>Download</code> button that cancels into a <code>Cancel</code> button when a download is in progress. Rapidly tapping the button will show you an alert that says &ldquo;cancelled&rdquo; as you cancelled the task explicitly without giving a change to the image to download.</p>
+<p>We have explored what <code>async</code> actually does. We have used it to create an explicit task that we can later cancel manually and explicitly. We can use <code>Task {}</code> blocks to work with concurrency that doesn&rsquo;t have any kind of structure. This is useful when we want to have more control over the tasks. Being able to cancel tasks when deemed necessary can help improve the user experience, especially if very long-running tasks are involved. These tasks can outlive the original scope they are defined in, enforcing the idea that they create unstructured concurrency.</p>
+<p>There is a <a href="/archives/UnstructuredConcurrencyIntro.zip">a small project</a> with the last pieces of code that you can explore to better understand <code>Task {}</code>. The program has a <code>Download</code> button that cancels into a <code>Cancel</code> button when a download is in progress. Rapidly tapping the button will show you an alert that says &ldquo;cancelled&rdquo; as you cancelled the task explicitly without giving a change to the image to download.</p>
 <p><img src="/img/async_unstructured_1.png" alt="Download image"></p>
 <p><img src="/img/async_unstructured_2.png" alt="Cancel image download"></p>
 
@@ -509,7 +510,7 @@ Image downloaded
     
     <a href="/posts/structured-concurrency-with-group-tasks-in-swift/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Structured Concurrency With Group Tasks in Swift</span>
+      <span class="navigation-tittle">Structured Concurrency With Task Groups in Swift</span>
     </a>
     
     

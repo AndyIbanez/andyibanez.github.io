@@ -291,20 +291,21 @@ if (!doNotTrack) {
 <li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
-<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 <li><strong>Understanding Actors in the New Concurrency Model in Swift</strong></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift.md">@MainActor and Global Actors in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
-<p>When we are working with concurrency, the most common problem developers face are data races. Whether it is a task updating a value at the same time another task is reading it or two tasks writing a value so that it it has an invalid value, data races are probably the main pain point of concurrency. Data races are very easy write, and hard to debug. There are entire books dedicated to the problem of data races and established patterns to avoid them.</p>
-<p>Data races happen when there&rsquo;s shared mutable state. If you are only working with <code>let</code> variables that are never mutated, you are unlikely to encounter them. Unfortunately, even the most trivial of programs does have mutable state at the same point, so racking your brain to make everything immutable is not going to yield results. In general, preferring to use <code>let</code> as much as possible and using value semantics (like <code>struct</code>s) is going to help a lot when dealing with data races.</p>
-<p>Shared mutable state requires synchronization. In the most basic form (which is also the hardest - the case where you are writing all that code yourself), you can make use of locks (a concept that guarantees mutable state will only be modified by one process at a time) and other primitives. In the past few years, many Apple Platform developers have used serial dispatch queues, which are higher level concepts for dealing with concurrency.</p>
-<p>Luckily, with Swift 5.5 and the new concurrency APIs introduced at WWDC2021, Swift now has a much easier to way to deal with mutable state, ensuring only one process at a time modifies a value. Of course, this has the same implications as the other new concurrency APIs we have seen in this series so far, which is easy to use, but may be limiting if you need more control. The good news is that the actors API is going to be enough for the vast majority of developers.</p>
+<p>When we are working with concurrency, the most common problem developers face are data races. Whether it is a task updating a value at the same time another task is reading it or two tasks writing a value so that it it has an invalid value, data races are probably the main pain point of concurrency. Data races are very easy create, and hard to debug. There are entire books dedicated to the problem of data races and established patterns to avoid them.</p>
+<p>Data races happen when there&rsquo;s shared mutable state. If you are only working with <code>let</code> variables that are never mutated, you are unlikely to encounter them. Unfortunately, even the most trivial of programs does have mutable state at some point, so racking your brain to make everything immutable is not going to yield results. In general, preferring to use <code>let</code> as much as possible and using value semantics (like <code>struct</code>s) is going to help a lot when dealing with data races.</p>
+<p>Shared mutable state requires synchronization. In the most basic - and hardest - form, you can make use of locks (a concept that guarantees mutable state will only be modified by one process at a time) and other primitives. In the past few years, many Apple Platform developers have used serial dispatch queues, which are higher level concepts for dealing with concurrency. Going this route requires you to write all that code.</p>
+<p>Luckily, with Swift 5.5 and the new concurrency APIs introduced at WWDC2021, Swift now has a much easier way to deal with mutable state, ensuring that only one process at a time modifies a value. Of course, this has the same implications as the other new concurrency APIs we have seen so far in this series. It iss easy to use, but may be limiting if you need more control. The good news is that the actors API is going to be enough for the vast majority of developers.</p>
 <h1 id="introducing-actors">Introducing actors</h1>
 <p>Actors provide synchronization for mutable state automatically, and they isolate their state from the rest of the program. This means that nobody can modify the shared state unless they go through the actor itself. Because the actor is isolated and you need to talk to it to modify values, the actor ensures that access to its state is mutually exclusive. Only one process will be able to modify its state at a time. Behind the scenes, actors will take care of the manual synchronization for you, and it will &ldquo;queue up&rdquo; processes as they attempt to modify it so they only do so one at a time.</p>
 <h2 id="implementation-details">Implementation details</h2>
-<p><code>actors</code> in Swift are implemented as <code>actor</code> types. Similar to how you define <code>class</code>es, <code>enum</code>s, and <code>struct</code>s, you declare an actor by using the <code>actor</code> keyword. Actors are reference types, meaning that their behaviors are most similar to <code>class</code>es than <code>struct</code>s. Which makes complete sense if you think about it, as actors are all about hiding shared <em>mutable</em> state that other types may need to access. The main differences between <code>actor</code>s and <code>class</code>es is that actors implement all the synchronization mechanisms behind the scenes, their data is isolated from the rest of the program, and <code>actor</code>s cannot inherit or be inherited from, although they can conform to protocols and be extended.</p>
+<p><code>actors</code> in Swift are implemented as <code>actor</code> types. Similar to how you define <code>class</code>es, <code>enum</code>s, and <code>struct</code>s, you declare an actor by using the <code>actor</code> keyword. Actors are reference types, meaning that their behaviors are more similar to <code>class</code>es than <code>struct</code>s. Which makes complete sense if you think about it, as actors are all about hiding shared <em>mutable</em> state that other types may need to access. The main differences between <code>actor</code>s and <code>class</code>es is that actors implement all the synchronization mechanisms behind the scenes, their data is isolated from the rest of the program, and <code>actor</code>s cannot inherit or be inherited from, although they can conform to protocols and be extended.</p>
 <p>Thanks to the fact that actors are integrated deeply into the Swift compiler, Swift will do a lot to protect you against code that may run haywire due to its concurrency needs.</p>
 <p>Consider the following example:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Counter</span> {
@@ -339,7 +340,7 @@ if (!doNotTrack) {
 }
 </code></pre></div><p><em>(Apple uses a similar example in the <a href="https://developer.apple.com/videos/play/wwdc2021/10133/">Protect mutable state with Swift actors</a> WWDC2021 session)</em></p>
 <p><em>Also, I originally intended to provide a sample Playground with these examples, but I couldn&rsquo;t get it to work as of Xcode 13 Beta 4, so I will provide a standard iOS project instead at the end of this article)</em></p>
-<p>In this example, you will attempt to increment the counter variable inside <a href="">detached tasks</a>. There is no locking mechanism or any synchronization that ensures that the code will work as you expect it to work. The system could increment to 0 both times, and the values that get printed can be drastically different on each turn.</p>
+<p>In this example, you are attempting to increment the counter variable inside <a href="">detached tasks</a>. There is no locking mechanism or any synchronization that ensures that the code will work as you expect it to work. The system could increment to 0 both times, and the values that get printed can be drastically different on each turn.</p>
 <p>We can fix it and ensure that the output is always &ldquo;1, 2&rdquo; by making <code>Counter</code> an <code>actor</code> instead of a class.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">actor Counter {
     <span style="color:#66d9ef">var</span> count = <span style="color:#ae81ff">0</span>
@@ -348,16 +349,16 @@ if (!doNotTrack) {
         <span style="color:#66d9ef">return</span> count
     }
 }
-</code></pre></div><p>Simply doing this change will not be enough. Trying to compile and run it will give you this error in both places where we try to print:</p>
+</code></pre></div><p>Simply making this change will not be enough. Trying to compile and run it will give you this error in both places where we try to print:</p>
 <pre><code>Expression is 'async' but is not marked with 'await'
-</code></pre><p>This is beautiful, and it really shows you how deeply concurrency is implemented at the compiler level to save you from writing buggy concurrent code, and to save you the time from having to spend hours, days, months, or even years, to learn how to write concurrency safely yourself. I absolutely love the compiler integration, because it also shows you that all the concepts we have explored throughout these series, converge on this point, and we have the compiler helping us make sense of everything we learned so far.</p>
+</code></pre><p>This is beautiful, and it really shows you how deeply concurrency is implemented at the compiler level to save you from writing buggy concurrent code. It can save you from having to spend hours, days, months, or even years, learning to write concurrent code safely yourself. I absolutely love the compiler integration, because it also shows you that all the concepts we have explored throughout this series converge. The compiler is helping us make sense of everything we learned so far.</p>
 <p>To fix that error, simply add <code>await</code> when you call <code>increment()</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">print(await counter.increment())
-</code></pre></div><p>The way actors are implemented in Swift is that all public methods are automatically made async for the consumers of your interface. This will allow us to safely interact with actors, because using the <code>await</code> keyword will suspend execution until the code is notified that it can go into the actor next and do its job.</p>
+</code></pre></div><p>All of an <code>actor</code>'s public interface are automatic made async for its consumers. This allows us to safely interact with actors, because using the <code>await</code> keyword will suspend execution until the code is notified that it can go into the actor next and do its job.</p>
 <p><em>(This is a good point to stop and think if you actually understand <code>async/await</code>, which are the most basic building blocks for the new concurrency system in Swift. If you think you need a refresher, you can read the <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a> article of this series.)</em></p>
 <p>Do note that this has some implications when attempting to access the properties (in this case, <code>count</code>) directly. First, you can do read-only access, but it has to be done through asynchronous contexts. This therefore, will not work:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">print(counter.count)
-</code></pre></div><p>It will make the compiler yell you with:</p>
+</code></pre></div><p>It will make the compiler yell at you with:</p>
 <pre><code>Actor-isolated property 'count' can only be referenced from inside the actor
 </code></pre><p>This is because, just like methods, properties expose their getters as <code>async</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">async {
@@ -376,7 +377,7 @@ if (!doNotTrack) {
     }
     print(<span style="color:#e6db74">&#34;Done resetting&#34;</span>)
 }
-</code></pre></div><p>Then, create a new function, <code>foo</code>, and start calling <code>reset()</code> within it. You will see that the autocomplete suggestions will suggest you autofill with <code>reset()</code>.</p>
+</code></pre></div><p>Then, create a new function, <code>foo</code>, and typing <code>reset</code> within it. You will see that the autocomplete suggestions will suggest you autofill with <code>reset()</code>.</p>
 <p><img src="/img/actors_foo.png" alt="Calling reset() within the actor"></p>
 <p>Whereas, if you call <code>reset</code> externally, you will see that the <code>reset()</code> method has <code>async</code> on its signature.</p>
 <p><img src="/img/actors_reset_async.png" alt="Calling reset() outside the actor">.</p>
@@ -441,7 +442,7 @@ actor ImageDownloader {
     images <span style="color:#f92672">+=</span> [<span style="color:#66d9ef">try</span>? await downloadedImage]
     images <span style="color:#f92672">+=</span> [<span style="color:#66d9ef">try</span>? await sameDownloadedImage]
 }
-</code></pre></div><p><strong>Important Note:</strong> As of Xcode 13 Beta 4 (and this is an issue that has existed since Beta 1), there is a bug that causes your code to deadlock when entering an actor twice from the same <code>Task</code> via <code>async let</code>. Apple is aware of this issue, and it will hopefully be fixed in a later beta. The implications of this bug is that the workaround is to use <code>Task.detached</code> instead of just <code>Task</code> when using more than one <code>async let</code> binding at the same time. By the time a later Beta comes out, the GM, or the final release comes out, the bug may be fixed. Please keep that in mind as ultimately, normal <code>Task</code>s and <code>Task.detached</code> calls have different uses.</p>
+</code></pre></div><p><strong>Important Note:</strong> As of Xcode 13 Beta 4 (and all the way down to Beta 3), there is a bug that causes your code to deadlock when entering an actor twice from the same <code>Task</code> via <code>async let</code>. Apple is aware of this issue, and it will hopefully be fixed in a later beta. Until this bug is fixed, the workaround is to use <code>Task.detached</code> instead of just <code>Task</code> when using more than one <code>async let</code> binding at the same time. By the time a later Beta comes out, the GM, or the final release comes out, the bug may be fixed. Please keep that in mind as ultimately, normal <code>Task</code>s and <code>Task.detached</code> calls have different uses.</p>
 <p>We are entering the actor via two different <code>async let</code> calls. The first call (<code>downloadedImage</code>) will enter the actor and it will execute until it finds the <code>await</code> call on <code>downloadImages</code>. It will suspend, and the second call, <code>sameDownloadedImage</code> will begin executing. Note that <code>downloadedImage</code> reached the await, and since it suspended, it hasn&rsquo;t had any time to download the image yet. And because the image is not in the cache, <code>sameDownloadedImage</code> will also download the image instead of retrieving it from memory. If you are <em>really unlucky</em>, the server may have updated the image behind the same URL, so <code>downloadedImage</code> and <code>sameDownloadedImage</code> may download different things!</p>
 <p>The problem is we are assuming the program state <em>after</em> the await call. It&rsquo;s like we are telling the program &ldquo;Hey, you will download the image, cache it, and anyone else who access it, will grab the cached version&rdquo;. But in reality, it&rsquo;s impossible to make this guarantee with this code, because there may be different calls attempting to access the actor at the same time, and thus we have this bug that hits the network twice for the same image.</p>
 <p>To work around this, we can make our actor keep the state of each download, and access that state first-thing before our actor tries to download an image:</p>
@@ -498,7 +499,7 @@ actor ImageDownloader {
 <li>Know that state can change at any point after you hit an <code>await</code>. You may need to manually check for some state to determine how it has changed so you can respond to it if necessary.</li>
 </ul>
 <h1 id="actor-isolation">Actor isolation</h1>
-<p>Actors are all about isolation. Their main purpose is to isolate their state from others, so they can manage access to their own properties, ensuring not multiple writes are performed at the same time, leaving your program in a weird state.</p>
+<p>Actors are all about isolation. Their main purpose is to isolate their state from others, so they can manage access to their own properties, ensuring that multiple writes are performed at the same time, which could leave your program in an unexpected state.</p>
 <p>Immutable properties can be accessed at any time.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">actor DollMaker {
     <span style="color:#66d9ef">let</span> id: Int
@@ -520,7 +521,7 @@ actor ImageDownloader {
         hasher.combine(id)
     }
 }
-</code></pre></div><p>On the other hand, this is murky waters. While we also only reference the <code>id</code> field, this method is an instance method. It is supposed to be <code>async</code> to be isolated. Luckily, in this case, we can explicitly mark the method as <code>nonisolated</code> to let the compiler know this is not isolated. The compiler will treat this method as being &ldquo;outside&rdquo; the actor, and move on, as long as you only access immutable properties inside of it. If the hasher was using the <code>dolls</code> property instead of <code>id</code>, this wouldn&rsquo;t work as <code>dolls</code> is mutable.</p>
+</code></pre></div><p>On the other hand, this is getting into murky waters. While we also only reference the <code>id</code> field, this method is an instance method. It is supposed to be <code>async</code> to be isolated. Luckily, in this case, we can explicitly mark the method as <code>nonisolated</code> to let the compiler know this is not isolated. The compiler will treat this method as being &ldquo;outside&rdquo; the actor, and move on, as long as you only access immutable properties inside of it. If the hasher was using the <code>dolls</code> property instead of <code>id</code>, this wouldn&rsquo;t work as <code>dolls</code> is mutable.</p>
 <h1 id="the-sendable-type">The Sendable Type</h1>
 <p>The concurrency model also introduces <code>Sendable</code> types. <code>Sendable</code> types are those that can be shared concurrently safely. The following are some examples of types that are <code>Sendable</code>:</p>
 <ul>
@@ -528,7 +529,7 @@ actor ImageDownloader {
 <li>Actor types</li>
 </ul>
 <p>Classes can be <code>Sendable</code> but only if they are immutable or if they provide their own synchronization within themselves. <code>Sendable</code> classes are exceptional.</p>
-<p>It is recommended that your concurrent code communicates using <code>Sendable</code> types. At some point, Swift will be able to check, at compile time, if you are sharing non <code>Sendable</code> types across functions, but this doesn&rsquo;t appear to be the case as of Xcode 14, Beta 4.</p>
+<p>It is recommended that your concurrent code communicates using <code>Sendable</code> types. At some point, Swift will be able to check, at compile time, if you are sharing non <code>Sendable</code> types across functions, but this doesn&rsquo;t appear to be the case as of Xcode 13, Beta 4.</p>
 <h2 id="the-sendable-protocol">The Sendable Protocol</h2>
 <p>You probably guessed it, but the way we make types <code>Sendable</code> is by making our types conform to the <code>Sendable</code> protocol. Just by specifying the conformance, the Swift compiler will do a lot of work for us.</p>
 <p>Consider the following example:</p>
@@ -566,7 +567,7 @@ actor ImageDownloader {
 </code></pre></div><p>You will get an error like this:</p>
 <pre><code>Stored property 'games' of 'Sendable'-conforming struct 'VideogameMaker' has non-sendable type '[Videogame]'
 </code></pre><h2 id="sendable-and-generics">Sendable and generics</h2>
-<p>A Generic type can be <code>Sendable</code> only if its all arguments are <code>Sendable</code>.</p>
+<p>A Generic type can be <code>Sendable</code> only if its all properties are <code>Sendable</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Pair</span>&lt;T, U&gt; {
     <span style="color:#66d9ef">var</span> first: T
     <span style="color:#66d9ef">var</span> second: T
@@ -575,10 +576,10 @@ actor ImageDownloader {
 <span style="color:#66d9ef">extension</span> <span style="color:#a6e22e">Pair</span>: Sendable <span style="color:#66d9ef">where</span> T: Sendable, U: Sendable {}
 </code></pre></div><h2 id="sendable-functions">Sendable functions</h2>
 <p>For functions that can be passed across actors, they can be made marked as <code>@Sendable</code>.</p>
-<p>When it comes to closures, marking them as <code>@Sendable</code> impose some restrictions. They cannot capture mutable variables from its surrounding scope, everything it captures must be <code>Sendable</code>, and finally, they cannot be both asynchronous and actor isolated.</p>
+<p>When it comes to closures, marking them as <code>@Sendable</code> impose some restrictions. They cannot capture mutable variables from their surrounding scope, everything they capture must be <code>Sendable</code>, and finally, they cannot be both asynchronous and actor isolated.</p>
 <h1 id="conclusion">Conclusion</h1>
 <p>A sample project for the image download can be downloaded from <a href="/archives/Actors.zip">here</a>.</p>
-<p>In this article we explored what actors are and how to use them. We learned that actors isolate their own state and all write access to its properties must be done through the actors. By isolating their own state, actors provide concurrency safety.</p>
+<p>In this article we explored what actors are and how to use them. We learned that an actor isolates its own state and all write access to its properties must be done through the actor itself. By isolating their own state, actors provide concurrency safety.</p>
 <p>We also learned about <code>Sendable</code> types and how they are crucial to the new concurrency system in Swift. Sendable types help provide compile-time checks to write concurrent code. As they provide static checking, it&rsquo;s very hard to write incorrect code that breaks the concurrency model or introduces concurrency bugs.</p>
 
     <hr>
@@ -598,6 +599,11 @@ actor ImageDownloader {
       <span class="navigation-tittle">Unstructured Concurrency With Detached Tasks in Swift</span>
     </a>
     
+    
+    <a href="/posts/mainactor-and-global-actors-in-swift/" class="navigation-next">
+      <span class="navigation-tittle">@MainActor and Global Actors in Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
     
 </div>
 

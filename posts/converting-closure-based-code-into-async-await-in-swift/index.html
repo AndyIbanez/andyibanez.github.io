@@ -292,16 +292,17 @@ if (!doNotTrack) {
 <li><a href="/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><strong>Converting closure-based code into async/await in Swift</strong></li>
 <li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
-<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift</a></li>
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 <li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift.md">@MainActor and Global Actors in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>To better benefit from this article, you should be familiar with async/await. If you aren&rsquo;t, feel free to read the first part of this article series: <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>.</em></p>
 <p><em>I was debating whether this article should be its own or if its contents should be appended to Introducing async/await in Swift. I decided to make the previous article shorter in an attempt to not overload the articles with information, and to hopefully make it easier to understand these API with smaller articles.</em></p>
-<p>Last week, we had a long discussion on async/await. We contrasted how it compares to callbacks, and we showed examples that hopefully convinced async/await is really neat.</p>
-<p>We are just one step away from actual concurrency. Before we dive in into concurrency - with <em>structured concurrency</em> - next week, I want to show you how you can convert closure-based and delegate-based code into async/await code. The idea behind this article is to give you all the tools so that you can start adopting async/await in your projects, baby steps at a time.</p>
+<p>Last week, we had a long discussion on async/await. We contrasted how it compares to callbacks, and we showed examples that hopefully convinced you async/await is really neat.</p>
+<p>We are just one step away from actual concurrency. Before we dive into concurrency - with <em>structured concurrency</em> - next week, I want to show you how you can convert closure-based and delegate-based code into async/await code. The idea behind this article is to give you all the tools so that you can start adopting async/await in your projects, baby steps at a time.</p>
 <p>If you are a library vendor, you will be able to provide async/await code for all your closure-based APIs, so not only will you be able to start using it for your uses, you will be able to ship async/await to your users.</p>
 <p>If you are not a library vendor, but you do have an app in production, it&rsquo;s likely that your own app is using asynchronous code that notifies you via callbacks. If you want to start migrating that project, you can start by implementing <code>async</code> versions of your async methods. If you are using a third party library that is not offering async/await versions of their calls, you can easily provide your own.</p>
 <h1 id="understanding-continuations">Understanding Continuations</h1>
@@ -392,8 +393,8 @@ metadataTask.resume()
     })
 }
 </code></pre></div><p>The magic behind this function occurs inside the <code>withCheckedThrowingContinuation</code> part. This function will give us a <code>CheckedContinuation&lt;T, E&gt; where E: Error</code> object that provides us with methods we need to call. In this example, the original version of <code>downloadImageWithMetadata</code> passes us a <code>DetailedImage</code> or an error, and we need to call the right <code>resume</code> method depending on what we get. If this method called us with a <code>Result&lt;DetailedImage, Error&gt;</code>, we could call <code>.resume(with:)</code> and pass it the <code>result</code> directly.</p>
-<p>Continuations <strong>must be called exactly once</strong>, therefore there must be a continuation call within every branch of <code>withCheckedThrowingContinuation</code>. If you forget to call a <code>.resume</code>, things could go awry. Luckily, Swift will let you know.</p>
-<p><strong>Note</strong>: <em>Or least, it is supposed to. This article is based on the last few minutes of the <a href="https://developer.apple.com/videos/play/wwdc2021/10132/?time=1733">Meet async/await in Swift</a> session. At least as of Beta 1, I was able to have code with branches that don&rsquo;t call <code>resume</code>.</em></p>
+<p>Continuations <strong>must be called exactly once</strong>, therefore there must be a continuation call within every branch of <code>withCheckedThrowingContinuation</code>. If you forget to call <code>.resume</code>, things could go awry. Luckily, Swift will let you know.</p>
+<p><strong>Note</strong>: <em>Or at least, it is supposed to. This article is based on the last few minutes of the <a href="https://developer.apple.com/videos/play/wwdc2021/10132/?time=1733">Meet async/await in Swift</a> session. At least as of Beta 1, I was able to have code with branches that don&rsquo;t call <code>resume</code>.</em></p>
 <p>And just like that, we have converted closure-based code into something prettier! Using the <code>async/await</code> version of this function is as easy as:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Task {
     <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
@@ -435,10 +436,10 @@ metadataTask.resume()
 <p>We can declare <code>ContactPicker</code> as follows:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@MainActor
 <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContactPicker</span>: NSObject, CNContactPickerDelegate {
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">typealias</span> ContactCheckedContinuation = CheckedContinuation&lt;CNContact, Never&gt;
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">typealias</span> ContactCheckedContinuation = CheckedContinuation&lt;CNContact, Never&gt; <span style="color:#75715e">// 1</span>
 
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">unowned</span> <span style="color:#66d9ef">var</span> viewController: UIViewController
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> contactContinuation: ContactCheckedContinuation?
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> contactContinuation: ContactCheckedContinuation? <span style="color:#75715e">// 2</span>
     <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> picker: CNContactPickerViewController
 
     <span style="color:#66d9ef">init</span>(viewController: UIViewController) {
@@ -448,7 +449,7 @@ metadataTask.resume()
         picker.delegate = <span style="color:#66d9ef">self</span>
     }
 
-    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pickContact</span>() async -&gt; CNContact {
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pickContact</span>() async -&gt; CNContact { <span style="color:#75715e">// 3</span>
         viewController.present(picker, animated: <span style="color:#66d9ef">true</span>)
         <span style="color:#66d9ef">return</span> await withCheckedContinuation({ (continuation: ContactCheckedContinuation) <span style="color:#66d9ef">in</span>
             <span style="color:#66d9ef">self</span>.contactContinuation = continuation
@@ -456,7 +457,7 @@ metadataTask.resume()
     }
 
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contactPicker</span>(<span style="color:#66d9ef">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        contactContinuation?.resume(returning: contact)
+        contactContinuation?.resume(returning: contact) <span style="color:#75715e">// 4</span>
         contactContinuation = <span style="color:#66d9ef">nil</span>
         picker.dismiss(animated: <span style="color:#66d9ef">true</span>, completion: <span style="color:#66d9ef">nil</span>)
     }
@@ -464,7 +465,7 @@ metadataTask.resume()
 </code></pre></div><p>What you need to understand here is:</p>
 <ol>
 <li>We are typealiasing <code>CheckedContinuation&lt;CNContact, Never&gt;</code> so it&rsquo;s easier to refer to. Since we can&rsquo;t get an error, the error parameter is <code>Never</code>.</li>
-<li><code>private var contactContinuation: ContactCheckedContinuation?</code> will hold a reference to the continuation itself. This continuation is given to us in the <code>withCheckedContinuation</code> handler. It&rsquo;s an optional, because to avoid it from getting called more than once, we will set it to <code>nil</code> after the first call.</li>
+<li><code>private var contactContinuation: ContactCheckedContinuation?</code> will hold a reference to the continuation itself. This continuation is given to us in the <code>withCheckedContinuation</code> handler. It’s an optional because we will set it to nil after the first call to avoid it being called more than once.</li>
 <li><code>pickContact</code> is <code>async</code>, as it will return the <code>CNContact</code> to us. We call <code>withCheckedContinuation</code> here.</li>
 <li>When the contact is picked, we will call the continuation with <code>resume</code>.</li>
 </ol>
@@ -527,7 +528,7 @@ metadataTask.resume()
 <p>You can download a full version of the contact picker app <a href="/archives/AsyncAwaitContactPicker.zip">here</a>. It&rsquo;s a UIKit app with a simple button and labels that shows you the given name of the contact you selected. Hopefully it will help you better understand the contents of this article.</p>
 <h1 id="summary">Summary</h1>
 <p>In this article we have explored how we can bridge from callback-based code or delegate-based code into <code>async/await</code>. We learned how to use checked continuations to do so, and we enforced the idea of what a continuation actually is.</p>
-<p>With this, you should now know have all the essentials of <code>async/await</code>, You are now ready to tackle actual concurrency, and I&rsquo;m happy to tell you will explore concurrency next week covering <em>structured concurrency</em>. You will learn how to run many tasks in parallel and how to process such results.</p>
+<p>With this, you should now understand all the essentials of <code>async/await</code>. You are now ready to tackle actual concurrency, and next week we will start talking about that, starting with <em>structured concurrency</em>. You will learn how to run many tasks in parallel and how to process such results.</p>
 <h1 id="notes">Notes</h1>
 <p>*: You should always stop and think if going that extra mile is actually worth it or if it is overkill. Over-engineering is a real and common problem in software engineering.</p>
 

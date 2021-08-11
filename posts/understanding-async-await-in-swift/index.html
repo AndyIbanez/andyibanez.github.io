@@ -296,11 +296,12 @@ if (!doNotTrack) {
 <li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 <li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift.md">@MainActor and Global Actors in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&rsquo;s no way around it. While async/await are not the only <a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options</a>, Apple&rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.</p>
 <p>This article will explore async/await and nothing else. Once you understand these concepts, we will start moving on to more advanced articles where we cover structured concurrency, unstructured concurrency, SwiftUI, and more.</p>
-<p>If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is <em>very</em> different to anything you have seen before in Apple&rsquo;s technologies. It basically throws what you know about concurrent programming out of the window. It&rsquo;s important to keep that in mind to read this article.</p>
+<p>If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is <em>very</em> different from anything you have seen before in Apple&rsquo;s technologies. It basically throws what you know about concurrent programming out the window. It&rsquo;s important to keep that in mind as you read this article.</p>
 <p>In this article, we will write a function that downloads an image and then its metadata using a different network call. We will show you how doing this with callback-based concurrency can become hard to manage quickly, and how async/await solves this problem beautifully.</p>
 <h1 id="refreshing-concepts">Refreshing Concepts</h1>
 <h2 id="a-refresher-on-procedural-programming">A Refresher on Procedural Programming</h2>
@@ -411,7 +412,7 @@ performMessyStuff()
 <li>The method calls <code>sayHi()</code> normally.</li>
 <li>We create a variable <code>x</code> and assign it a value.</li>
 <li><code>downloadImageAndMetadata</code> is called, which internally will set up the first variables it needs for its execution (<code>imageUrl</code>).</li>
-<li>We create a variable, once again synchronously, that will hold a <code>dataTask</code> and provide it with a completion handler that will be called after its done downloading.</li>
+<li>We create a variable, once again synchronously, that will hold a <code>dataTask</code> and provide it with a completion handler that will be called after it&rsquo;s done downloading.</li>
 <li>We call <code>resume()</code> on the task to begin the download.</li>
 <li>The contents of the completion handler will not be executed immediately. Instead, while the downloads happen, the program continues its execution.</li>
 <li>The program may, or may not, print <code>&quot;We got results&quot;</code>. In the case of a network download, it will always take a while, but if this were a faster asynchronous operation, it may be called at this point. The program will create a variable <code>y</code>.</li>
@@ -419,7 +420,7 @@ performMessyStuff()
 <li>If the downloads have finished successfully, the program will print <code>&quot;We got results&quot;</code>, otherwise it will call <code>sayBye</code>.</li>
 <li>Somewhere above there and at any point, the program may start the metadata download task after the image task has downloaded.</li>
 </ol>
-<p>This flow of execution is messy. Because downloading data from  the network is asynchronous and all its work happens somewhere else. Anything else may happen on the main thread while the downloads take place. Whatever the console prints may have a different output on each run **. The downloads spawn from the main thread onto another thread, but the program will continue executing the code in the main thread without any issue. This makes it hard to think procedurally, because we rely on the <code>completionHandler</code> to let us know when it has finished its work. If there are tasks that can be performed in the main thread, but they depend on image and/or its metadata, we have to do all that work in the completion handler (while rerouting the work to the main thread with <code>DispatchQueue.main.async</code> whenever relevant).</p>
+<p>This flow of execution is messy, because downloading data from the network is asynchronous and all its work happens somewhere else. Anything else may happen on the main thread while the downloads take place. Whatever the console prints may have a different output on each run **. The downloads spawn from the main thread onto another thread, but the program will continue executing the code in the main thread without any issue. This makes it hard to think procedurally, because we rely on the <code>completionHandler</code> to let us know when it has finished its work. If there are tasks that can be performed in the main thread, but they depend on an image and/or its metadata, we have to do all that work in the completion handler (while rerouting the work to the main thread with <code>DispatchQueue.main.async</code> whenever relevant).</p>
 <p>In the case of callback-based asynchronous code, control is given back whenever completion handlers are executed.</p>
 <p>And as you may imagine, these calls can become more and more complex and nested.</p>
 <h1 id="introducing-asyncawait">Introducing async/await</h1>
@@ -439,11 +440,10 @@ performMessyStuff()
 <li>To tell the compiler when a piece of code is asynchronous.</li>
 <li>To spawn asynchronous tasks in parallel.</li>
 </ul>
-<p>In this article, we will only explore the former two, but the third use case will come in a later article in the series.</p>
 <p>To mark a function as <code>async</code>, simply put the keyword after the function&rsquo;s closing parenthesis and before the arrow, like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(id: Int) async -&gt; UIImage? { ... }
 </code></pre></div><p>Or:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Func downloadImage(id: Int) async <span style="color:#66d9ef">throws</span> -&gt; UIImage { ... }
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(id: Int) async <span style="color:#66d9ef">throws</span> -&gt; UIImage { ... }
 </code></pre></div><p>You can already see a huge advantage here. The completion handler is gone, and our function signature is very clear with its purpose. We can tell at first glance if it is <code>async</code> and what it returns.</p>
 <p><code>async</code> code can only run in <em>concurrent</em> contexts. That is to say, within other <code>async</code> functions, or when manually dispatched via <code>Task {}</code>. We will explore <code>Task {}</code> in a bit.</p>
 <h2 id="await">await</h2>
@@ -477,15 +477,15 @@ performMessyStuff()
     }
 </code></pre></div><p>This is a long function, but it&rsquo;s already much better than the pyramid version of it. Let&rsquo;s highlight the important parts first:</p>
 <ol>
-<li>As soon as the program enters the function, it will procedurally create <code>imageUrl</code> and <code>imageRequest</code>.</li>
-<li>The images sees an async call to <code>URLSession.shared.data(for:)</code>.</li>
+<li>The program procedurally creates <code>imageUrl</code> and <code>imageRequest</code>.</li>
+<li>The program reaches a call to an async call, <code>URLSession.shared.data(for:)</code>.</li>
 <li>The program will make a decision on suspending the function or continuing it. In this case, it&rsquo;s likely it will suspend due to the nature of networking, but don&rsquo;t get used to taking that for granted. We will assume the program suspends the function.</li>
 <li>This will give control back to the system.</li>
-<li>The system may do other work that is not relevant to this task while the download `awaits.</li>
+<li>The system may do other work that is not relevant to this task while the download <code>await</code>s.</li>
 <li>Anything under the first await <em>will not</em> be executed. It will not reach the guard, it will not create the variables for the metadata, it will do <em>nothing</em> until the <code>await</code>ed function finishes.</li>
 <li>After some time, the system will give control back to you, after the <code>await</code>ed function has finished.</li>
 <li>The <code>guard</code> statement is reached, throwing an error if necessary.</li>
-<li>The program will repeat steps 2-8 but for the metadata tasks.</li>
+<li>The program will repeat steps 2-8 but for the metadata task.</li>
 <li>The program will return a new <code>DetailedImage</code>.</li>
 </ol>
 <p>As you can see, it is a pretty linear flow, and the way <code>await</code> suspends the rest of the execution until the system deems it necessary makes it behave very much like procedural programming.</p>
@@ -516,7 +516,7 @@ performMessyStuff()
 
     <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
 }
-</code></pre></div><p>As long as we mark the functions as <code>await</code>, this is possible to do.</p>
+</code></pre></div><p>As long as we mark the functions as <code>async</code>, this is possible to do.</p>
 <p>It is important to note the linearity of this. The metadata and image <strong>are not being downloaded at the same time</strong>. It will download the image first, and the metadata later. We can make it download both the image and metadata at the same time, but this article is not about actual concurrency just yet. We will explore how to do both tasks at the same time when we learn about <em>structured concurrency</em>.</p>
 <p>If you want to see the function suspension in action, simply put some print statements before and after <code>await</code> code. You will see that the print statements will be executed slowly, as the system suspends the download tasks, perform other tasks, and gives control back to you.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
@@ -528,7 +528,7 @@ performMessyStuff()
     print(<span style="color:#e6db74">&#34;Has downloaded metadata&#34;</span>)
     <span style="color:#66d9ef">return</span> DetailedImage(image: image, metadata: metadata)
 }
-</code></pre></div><p>If your internet is a bit too speedy to appreciate the slow prints, Apple gives us a neat method we can call called <code>Task.sleep</code>. This function solely exists to sleep the thread for a given number of time, and you can use it to explore async/await.</p>
+</code></pre></div><p>If your internet is a bit too speedy to appreciate the slow prints, Apple provides us a neat method: <code>Task.sleep</code>. This function solely exists to sleep the thread for a given number of time, and you can use it to explore async/await.</p>
 <ul>
 <li><strong>Note</strong>: <em>Unfortunately <code>Task.sleep</code> appears to crash as of Xcode 13 Beta 1. <code>await Task.sleep(2 * 1_000_000_000) </code>.</em></li>
 </ul>
