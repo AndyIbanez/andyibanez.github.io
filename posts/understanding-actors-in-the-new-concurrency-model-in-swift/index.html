@@ -295,7 +295,8 @@ if (!doNotTrack) {
 <li><a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
 <li><strong>Understanding Actors in the New Concurrency Model in Swift</strong></li>
-<li><a href="/posts/mainactor-and-global-actors-in-swift.md">@MainActor and Global Actors in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift">@MainActor and Global Actors in Swift</a></li>
+<li><a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p>When we are working with concurrency, the most common problem developers face are data races. Whether it is a task updating a value at the same time another task is reading it or two tasks writing a value so that it it has an invalid value, data races are probably the main pain point of concurrency. Data races are very easy create, and hard to debug. There are entire books dedicated to the problem of data races and established patterns to avoid them.</p>

@@ -292,11 +292,12 @@ if (!doNotTrack) {
 <li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
 <li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
-<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift</a></li>
 <li><a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
 <li><strong>Unstructured Concurrency With Detached Tasks in Swift</strong></li>
 <li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
-<li><a href="/posts/mainactor-and-global-actors-in-swift.md">@MainActor and Global Actors in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift</a></li>
+<li><a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding async tasks is a requirement to read this article. If you don&rsquo;t understand async tasks, you can read the <a href="">Introduction to Unstructured Concurrency in Swift</a> article from this Article Series</em></p>
@@ -304,7 +305,7 @@ if (!doNotTrack) {
 <p>In this article, we will explore the final method to implement unstructured concurrency by using the most flexible method provided to us by Swift 5.5: Detached tasks.</p>
 <h1 id="introducing-detached-tasks">Introducing Detached Tasks</h1>
 <p>Out of all the concurrency options we have explored in the new <code>async/await</code> system, detached tasks offer the most flexibility. They can be launched from anywhere, their lifetime is not scoped, you can cancel them manually (through a <code>Task.Handle</code>) and await them, and they are the one type of tasks that don&rsquo;t inherit anything from the parent tasks. Not even the priority. They are independent from their context.</p>
-<p>When are they useful? When you have a task that you need to run, that can in a way be completely independent from the parent task, you can use <code>detached tasks</code>. One example is downloading images from the network, and later caching them to disk (this example is used by Apple in the WWDC2021 <a href="https://developer.apple.com/videos/play/wwdc2021/10134/">Explore Structured Concurrency in Swift</a> talk). The caching operation can happen in a detached task because once we have the image, there is no reason that a cancellation on the download task should cause the caching operation to be cancelled as well.</p>
+<p>Detached tasks are useful when you need to perform a task that is completely independent of the parent task. One example is downloading images from the network, and later caching them to disk (this example is used by Apple in the WWDC2021 <a href="https://developer.apple.com/videos/play/wwdc2021/10134/">Explore Structured Concurrency in Swift</a> talk). The caching operation can happen in a detached task because once we have the image, there is no reason that a cancellation on the download task should cause the caching operation to be cancelled as well.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">storeImageInDisk</span>(image: UIImage) async {
     <span style="color:#66d9ef">guard</span>
         <span style="color:#66d9ef">let</span> imageData = image.pngData(),
@@ -320,11 +321,11 @@ if (!doNotTrack) {
     <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span> await downloadMetadata(<span style="color:#66d9ef">for</span>: imageNumber)
     <span style="color:#66d9ef">return</span> DetailedImage(image: image, metadata: metadata)
 }
-</code></pre></div><p>We have created a <code>storeImageInDisk</code> task. Then we call this method within a <code>Task.detached</code> inside <code>downloadImageAndMetadata</code>. Right after the image is downloaded, we will try to cache it.</p>
+</code></pre></div><p>We have created a <code>storeImageInDisk</code> task. Then we call this method within a <code>Task.detached</code> in <code>downloadImageAndMetadata</code>. Right after the image is downloaded, we will try to cache it.</p>
 <p>It&rsquo;s really simple, and once you understand <code>Task {}</code>, you can understand <code>Task.detached {}</code>. When launching a detached task, you can specify the <code>priority</code>. In our case, we used <code>background</code>, because it&rsquo;s not a user task that needs to finish with high priority. <code>.userInitiated</code> would mean the user cares about that task, and it needs to have high priority.</p>
-<p>Because these tasks are unstructured, <code>Task.detached</code> will return us <code>Task</code> handle we can use to cancel the task at any time. Note that, while <code>Task.detached</code> is independent of the task that launched it, all other tasks started within it will still depend on <code>Task.detached</code>, so if you cancel a <code>Task.detached</code> task, all children of it will be marked as <code>cancelled</code>, save for a case in which you run another <code>Task.detached</code> within <code>Task.detached</code>, and so on.</p>
+<p>Because these tasks are unstructured, <code>Task.detached</code> will return a <code>Task</code> handle we can use to cancel the task at any time. Note that, while <code>Task.detached</code> is independent of the task that launched it, all other tasks started within it will still depend on <code>Task.detached</code>, so if you cancel a <code>Task.detached</code> task, all of its children will be marked as <code>cancelled</code>, save for a case in which you run another <code>Task.detached</code> within <code>Task.detached</code>, and so on.</p>
 <h1 id="summary">Summary</h1>
-<p><code>detachedAsync</code> is not too hard to understand once you understand <code>Task {}</code>. They behave almost the same way. The main differences are <code>Task.detached</code> will not inherit anything from the parent context. You can cancel both manually. They are great to run related by non-dependant tasks at a given time.</p>
+<p><code>Task.detached</code> is not too hard to understand once you understand <code>Task {}</code>. They behave almost the same way. The main differences are <code>Task.detached</code> will not inherit anything from the parent context. You can cancel both manually. They are great for running non-dependent tasks at any given time.</p>
 
     <hr>
 

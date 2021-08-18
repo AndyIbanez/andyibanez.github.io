@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model"/>
+<meta name="twitter:description" content="Learn how the @TaskLocal property wrapper can be used to share data across different concurrent tasks."/>
+
+<meta property="og:title" content="Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model" />
+<meta property="og:description" content="Learn how the @TaskLocal property wrapper can be used to share data across different concurrent tasks." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model/" />
+<meta property="article:published_time" content="2021-08-18T07:00:00-04:00" />
+<meta property="article:modified_time" content="2021-08-18T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Aug 18, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/article-series">ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-article-series">MODERN CONCURRENCY ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-in-swift-article-series">MODERN CONCURRENCY IN SWIFT ARTICLE SERIES</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/concurrency">concurrency</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/async">async</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/await">await</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2021">wwdc2021</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/multithreading">multithreading</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 5 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p><em>This article is part of my <a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series</a>.</em></p>
+<h6 id="table-of-contents">Table of Contents</h6>
+<ol>
+<li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
+<li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
+<li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
+<li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift">@MainActor and Global Actors in Swift</a></li>
+<li><strong>Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p>Sharing Data Across Tasks with @TaskLocal with the new Swift Concurrency Model</p>
+<p>Throughout this tutorial series, we have explored a lot of topics related to concurrency. We have learned the most basic details of how concurrency works, and how we can do more complex work with Detached Tasks.</p>
+<p>One particular topic of interest we have mentioned is the Task Tree (refer to the <a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a> article for a refresher on the details). The task tree is the result of calling multiple tasks within other tasks - unless they are <a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">detached tasks</a> - and the tasks in the tree inherit some information from their parent tasks such as priority and context.</p>
+<p>Just like tasks can share contextual information, wouldn&rsquo;t be it be great if they could share other data as well? Turns out there is a way to do that: The <a href="https://developer.apple.com/documentation/swift/tasklocal">@TaskLocal</a> property wrapper. In this article, we will talk about sharing data with this property wrapper across different tasks.</p>
+<p><strong>Note</strong>: <em>Just like <a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">global actors</a> (excluding <code>@MainActor</code>), the first time I ever saw <code>@TaskLocal</code> being referenced was in Xcode 13 Beta 3&rsquo;s release notes. It is not clear to me if the feature was there before and undocumented or if is completely new.</em></p>
+<h2 id="introducing-the-tasklocal-property-wrapper">Introducing The @TaskLocal Property Wrapper</h2>
+<p><code>TaskLocal</code> values can be read and written to in the context of a task. The value is shared implicitly and it is accessibly by any child tasks the task create, whether they are <code>async let</code> or group tasks.</p>
+<h3 id="using-tasklocal">Using @TaskLocal</h3>
+<p>To use this property wrapper, properties marked as <code>@TaskLocal</code> must be static. They can be optional or have a default value.</p>
+<p>To read their values, you don&rsquo;t need to do anything especial. You can attempt to use the value from anywhere, but if the value was not set by a parent async task beforehand, it will be either nil or the default value you assigned it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
+    @TaskLocal <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> currentVideogame: Videogame?
+    <span style="color:#75715e">// ...</span>
+}
+</code></pre></div><p>In the code above, we have created a <code>TaskLocal</code> <code>currentVideogame</code> property.</p>
+<p>If we want to read it:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">// Outside of ViewController</span>
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">expensiveVidegameOperation</span>() async {
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> vg = await ViewController.currentVideogame {
+        print(<span style="color:#e6db74">&#34;We are processing </span><span style="color:#e6db74">\(</span>vg.title<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+    }
+}
+</code></pre></div><p>Now, if you try to modify <code>currentVideogame</code> directly, from anywhere (including <code>ViewController</code> itself), you will notice that the compiler won&rsquo;t let us because it&rsquo;s a get-only property.</p>
+<p>In order to &ldquo;assign&rdquo; it a value, we need to &ldquo;bind it&rdquo;. To do this, simply access the <code>TaskLocal</code>s projected value and you will have access to a binding method called <code>withValue</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
+    <span style="color:#66d9ef">super</span>.viewDidLoad()
+    <span style="color:#75715e">// Do any additional setup after loading the view.</span>
+    
+    <span style="color:#66d9ef">let</span> vg = Videogame(title: <span style="color:#e6db74">&#34;The Legend of Zelda: Ocarina of Time&#34;</span>, year: <span style="color:#ae81ff">1998</span>)
+    <span style="color:#66d9ef">Self</span>.<span style="color:#960050;background-color:#1e0010">$</span>currentVideogame.withValue(vg) {
+        <span style="color:#75715e">// we cam launch some async tasks here that make use of the LocalValue</span>
+    }
+}
+</code></pre></div><p>In this sample, we are binding <code>vg</code> to our <code>currentVideogame</code> task value. All tasks spawned from here on out will have access to it for as long as they are part of the task tree.</p>
+<p>Consider the following example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
+    @TaskLocal <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> currentVideogame: Videogame?
+
+    <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
+        <span style="color:#66d9ef">super</span>.viewDidLoad()
+        <span style="color:#75715e">// Do any additional setup after loading the view.</span>
+        
+        <span style="color:#66d9ef">let</span> vg = Videogame(title: <span style="color:#e6db74">&#34;The Legend of Zelda: Ocarina of Time&#34;</span>, year: <span style="color:#ae81ff">1998</span>)
+        <span style="color:#66d9ef">Self</span>.<span style="color:#960050;background-color:#1e0010">$</span>currentVideogame.withValue(vg) {
+            Task {
+                await expensiveVidegameOperation()
+                Task {
+                    await expensiveVidegameOperation()
+                    Task.detached {
+                        await expensiveVidegameOperation()
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre></div><p>In the code above, we start launching some tasks after binding our <code>Videogame</code>. We start a <code>Task</code> where we call <code>expensiveVideogameOperation</code>. It will print <code>We are processing The Legend of Zelda: Ocarina of Time</code> After it <code>await</code>s, we launch another <code>Task</code>, which is a child of the current one. Calling <code>expensiveVideogameOperation</code> will also print <code>We are processing The Legend of Zelda: Ocarina of Time</code>, because this child task has access to the same parent. Things are more interesting when we launch a detached task. When we launch the detached task, we also call <code>expensiveVideogameOperation</code>, but this time it prints <code>No videogame found in the task hierarchy!</code>. As we discussed when we talk about <a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/?utm_campaign=iOS%2BDev%2BWeekly&amp;utm_medium=email&amp;utm_source=iOS%2BDev%2BWeekly%2BIssue%2B519">detached tasks</a>, detached tasks are completely independent and they don&rsquo;t really have a parent to speak of (although they can parents of other tasks, as long as they aren&rsquo;t launched as detached tasks). For this reason, our detached task in the code above doesn&rsquo;t have the <code>currentVideogame</code>.</p>
+<p>You can freely bind another videogame within the detached task, launch another task, and have access to that value:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Task.detached {
+    await expensiveVidegameOperation()
+    <span style="color:#66d9ef">let</span> anotherVg = Videogame(title: <span style="color:#e6db74">&#34;Tales of the Abyss&#34;</span>, year: <span style="color:#ae81ff">2005</span>)
+    await <span style="color:#66d9ef">Self</span>.<span style="color:#960050;background-color:#1e0010">$</span>currentVideogame.withValue(anotherVg) {
+        await expensiveVidegameOperation()
+    }
+}
+</code></pre></div><p>Note the <code>await</code> before we bind the value with <code>currentVideogame</code>. I am not sure if this is compiler magic, but you will be forced to put an await when you are inside the task. The reasoning makes sense, as <code>TaskLocal</code> values can potentially be accessed by multiple threads at the same time, so writing one will prevent our program from having any reace conditions.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>You may find a case in which you need to share a value to all the children in the task hierarchy. When you do, feel free to use the <code>@TaskLocal</code> property wrapper. Values will be shared to all the children, but any detached tasks will not have any access to them due to their nature.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/mainactor-and-global-actors-in-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">@MainActor and Global Actors in Swift</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
