@@ -298,6 +298,7 @@ if (!doNotTrack) {
 <li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
 <li><a href="/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift</a></li>
 <li><a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></li>
+<li><a href="/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p><em>Understanding async/await is a pre-requisite to read this article. If you aren&rsquo;t familiar with that concept, feel free to read the first part of this article series: <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a>.</em></p>
@@ -359,7 +360,7 @@ if (!doNotTrack) {
 }
 </code></pre></div><p>The downloads take place sequentially, which is exactly what you want most of the time. The function will download the image first, and the metadata later, one at a time. This is great in many cases, but there are times when the tasks don&rsquo;t have any dependencies with each other and it&rsquo;s therefore possible to execute them concurrently.</p>
 <p>In this example, the image download and metadata download are two independent tasks, so we can give the function a little push to download both at the same time and therefore finish earlier.</p>
-<p>Before we move on, think about how you would do this with closure-based code. First, you would need to launch to <code>URLSession</code> data tasks, each with its own completion handler. But then what? How will the tasks coordinate the completion for this task? What happens if the image downloads first? What happens if the metadata finishes first? How are we gonna &ldquo;lock&rdquo; and guarantee access and that the final completion handler is called?</p>
+<p>Before we move on, think about how you would do this with closure-based code. First, you would need to launch two <code>URLSession</code> data tasks, each with its own completion handler. But then what? How will the tasks coordinate the completion for this task? What happens if the image downloads first? What happens if the metadata finishes first? How are we gonna &ldquo;lock&rdquo; and guarantee access and that the final completion handler is called?</p>
 <p>In truth, doing this task with pure closure-based code (and even with delegate-based code), it becomes pretty messy real quick. And we are just talking about a measly <em>two</em> tasks at once!</p>
 <p>In Swift, we have two ways to work with structured concurrency:</p>
 <ul>
