@@ -299,6 +299,7 @@ if (!doNotTrack) {
 <li><a href="/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift</a></li>
 <li><a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></li>
 <li><a href="/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift</a></li>
+<li><a href="/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks</a></li>
 </ol>
 <!-- raw HTML omitted -->
 <p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&rsquo;s no way around it. While async/await are not the only <a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options</a>, Apple&rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.</p>
@@ -535,7 +536,7 @@ performMessyStuff()
 <li><strong>Note</strong>: <em>Unfortunately <code>Task.sleep</code> appears to crash as of Xcode 13 Beta 1. <code>await Task.sleep(2 * 1_000_000_000) </code>.</em></li>
 </ul>
 <p>One final important note about <code>await</code>: It&rsquo;s not guaranteed that the same thread that executed the code above it is the same one that will execute the code below it (commonly called the <em>continuation</em>). This has important implications when dealing with UI. If you use <code>await</code> in a context that needs the main thread such as a ViewController, make sure you mark the functions with <code>await</code> with the <code>@MainActor</code> attribute, or add the attribute to the entire class declaration. If you want a complete tour behind how the new concurrency works in Swift, check out the <a href="https://developer.apple.com/videos/play/wwdc2021/10254/">Swift concurrency: Behind the scenes</a> WWDC2021 session talk.</p>
-<h2 id="bridging-between-the-sync-and-async-worlds-with-async">&ldquo;Bridging&rdquo; between the sync and async worlds with async</h2>
+<h2 id="bridging-between-the-sync-and-async-worlds-with-task">&ldquo;Bridging&rdquo; between the sync and async worlds with Task</h2>
 <p>We can create a &ldquo;bridge&rdquo; between the sync and async worlds creating a <code>Task</code>. To understand why this is necessary, consider the following piece of code:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performDownload</span>() {
     <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadMetadata(<span style="color:#66d9ef">for</span>: <span style="color:#ae81ff">1</span>)

@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Modern Swift Concurrency Summary, Cheatsheet, and Thanks • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Modern Swift Concurrency Summary, Cheatsheet, and Thanks"/>
+<meta name="twitter:description" content="A summary of all the articles written about the modern Swift Concurrency System introduced at WWDC2021."/>
+
+<meta property="og:title" content="Modern Swift Concurrency Summary, Cheatsheet, and Thanks" />
+<meta property="og:description" content="A summary of all the articles written about the modern Swift Concurrency System introduced at WWDC2021." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/" />
+<meta property="article:published_time" content="2021-09-08T07:00:00-04:00" />
+<meta property="article:modified_time" content="2021-09-08T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2020/">
+						<span>WWDC 2020</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Modern Swift Concurrency Summary, Cheatsheet, and Thanks</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Sep 8, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/article-series">ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-article-series">MODERN CONCURRENCY ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-in-swift-article-series">MODERN CONCURRENCY IN SWIFT ARTICLE SERIES</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/concurrency">concurrency</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/async">async</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/await">await</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2021">wwdc2021</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/multithreading">multithreading</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 14 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <h6 id="table-of-contents">Table of Contents</h6>
+<ol>
+<li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
+<li><a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a></li>
+<li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
+<li><a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
+<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
+<li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
+<li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift</a></li>
+<li><a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></li>
+<li><a href="/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift</a></li>
+<li><strong>Modern Swift Concurrency Summary, Cheatsheet, and Thanks</strong></li>
+</ol>
+<!-- raw HTML omitted -->
+<p>Since WWDC21, we have talked, extensively, about all the new concurrency features introduced in Swift 5.5. We covered <em>a lot</em> of topics, so I decided to finish off this series writing a summary article were we cover the most important topics of each article. Links will be given to the relevant articles when necessary in case this summary is not enough.</p>
+<h1 id="asyncawait">async/await</h1>
+<ul>
+<li><code>async</code> and <code>await</code> are the most fundamental keywords of the new concurrency system.</li>
+<li>When you learn to program, you are used to writing code that executes linearly (called procedural programming). Your code executes its lines in the order you give them.</li>
+<li>When dealing with concurrent tasks, prior to async/await, Apple gave us callback/closure-based concurrency, in which we are notified via a closure when the task is done, or delegate-based concurrency in the case of older concurrent code. Callback and delegate based concurrency can alter the order in which our program runs. If we have a set of linear instructions, we can be notified as that linear code executes and receive new data from a different thread. This makes it possible to deal with concurrency, but it can become hard to understand as time goes by.</li>
+<li>async/await allow us to write linear concurrent code that executes from top to bottom. To work with this, functions that can be called asynchronously should be marked as <code>async</code> in the function signature.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadData</span>() async <span style="color:#66d9ef">throws</span> -&gt; CustomData { 
+	<span style="color:#75715e">//...</span>
+}
+</code></pre></div><ul>
+<li>When we call a function marked as <code>async</code>, it needs to be prepended with the word <code>await</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">processData</span>() async <span style="color:#66d9ef">throws</span> -&gt; CustomData {
+   <span style="color:#66d9ef">let</span> newData = <span style="color:#66d9ef">try</span> await downloadData()
+   <span style="color:#66d9ef">return</span> newData
+}
+</code></pre></div><ul>
+<li>When execution of our code reaches the <code>await</code> keyword, execution of our code may be suspended <strong>suspended</strong>, and the thread our code is running on is free to do other work. This other work is assigned by the system. Because our code is suspended, the lines below the <code>await</code> will not be executed until the <code>async</code> task is done running.</li>
+<li>If our code was suspended, at some point, the <code>async</code> task will be done running. The system will come back to our code and continue executing our code. That means everything under the <code>await</code> call will resume execution.</li>
+<li><code>async/await</code> allow us to keep a procedural flow that runs from top to bottom thanks to thread suspension.</li>
+<li>Anything below an <code>await</code> call is called a <em>continuation</em>. This is relevant to know if you want to convert delegate or closure based concurrent code into async/await.</li>
+<li>It&rsquo;s important to note that a continuation may not be executed in the same thread that was suspended. If you need to update your UI, you should run that code in the @MainActor.</li>
+<li><code>async</code> code needs to run in <code>async</code> contexts. This means functions marked as <code>async</code>, or if you create such context yourself with <code>Task {}</code>.</li>
+</ul>
+<p>To learn about async/await, checkout the <a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift</a> article.</p>
+<h1 id="converting-delegate-and-closure-based-code-into-asyncawait">Converting Delegate and Closure Based Code into async/await.</h1>
+<ul>
+<li>The compiler can already do this for you for free without any effort - if you start typing a method that you expect it to have a closure, you may find the compiler has already created an <code>async</code> version of it for you for free.</li>
+<li>You can create such conversions yourself.</li>
+<li>To create such conversions, you create manual <em>continuations</em>. Recall a continuation is everything that happens after an <code>await</code> call.</li>
+<li>To create these conversions yourself, you can use the <code>withCheckedContinuation</code> or <code>withCheckedThrowingContinuation</code> functions. Use them to wrap your closure-based calls, or store references to the continuations in order to call them later as part of delegate-based calls.</li>
+<li>These methods will provide you with the continuation you need to call explicitly when your concurrent tasks are done. You can call them passing in the &ldquo;returned&rdquo; value, or throwing an error (in the case of <code>withCheckedThrowingContinuation</code>.</li>
+<li>You are required to call a continuation exactly once. Don&rsquo;t forget to call it. Do call it once and no more.</li>
+<li>The following code hows how to convert closure-based concurrency into async/await.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await withCheckedThrowingContinuation({
+        (continuation: CheckedContinuation&lt;DetailedImage, Error&gt;) <span style="color:#66d9ef">in</span>
+        downloadImageAndMetadata(imageNumber: imageNumber) { image, error <span style="color:#66d9ef">in</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> image = image {
+                continuation.resume(returning: image)
+            } <span style="color:#66d9ef">else</span> {
+                continuation.resume(throwing: error!)
+            }
+        }
+    })
+}
+</code></pre></div><ul>
+<li>Converting delegate-based calls into async/await is slightly more involved, but not impossible. You need to store the continuation provided by the <code>withChecked*Continuation</code> call and call it whenever it is appropriate.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ContactPicker</span>: NSObject, CNContactPickerDelegate {
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">typealias</span> ContactCheckedContinuation = CheckedContinuation&lt;CNContact, Never&gt; <span style="color:#75715e">// 1</span>
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">unowned</span> <span style="color:#66d9ef">var</span> viewController: UIViewController
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> contactContinuation: ContactCheckedContinuation? <span style="color:#75715e">// 2</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">var</span> picker: CNContactPickerViewController
+
+    <span style="color:#66d9ef">init</span>(viewController: UIViewController) {
+        <span style="color:#66d9ef">self</span>.viewController = viewController
+        picker = CNContactPickerViewController()
+        <span style="color:#66d9ef">super</span>.<span style="color:#66d9ef">init</span>()
+        picker.delegate = <span style="color:#66d9ef">self</span>
+    }
+
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pickContact</span>() async -&gt; CNContact { <span style="color:#75715e">// 3</span>
+        viewController.present(picker, animated: <span style="color:#66d9ef">true</span>)
+        <span style="color:#66d9ef">return</span> await withCheckedContinuation({ (continuation: ContactCheckedContinuation) <span style="color:#66d9ef">in</span>
+            <span style="color:#66d9ef">self</span>.contactContinuation = continuation
+        })
+    }
+
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">contactPicker</span>(<span style="color:#66d9ef">_</span> picker: CNContactPickerViewController, didSelect contact: CNContact) {
+        contactContinuation?.resume(returning: contact) <span style="color:#75715e">// 4</span>
+        contactContinuation = <span style="color:#66d9ef">nil</span>
+        picker.dismiss(animated: <span style="color:#66d9ef">true</span>, completion: <span style="color:#66d9ef">nil</span>)
+    }
+}
+</code></pre></div><ul>
+<li>You are not limited to converting delegate-based concurrency. Even delegate-based call that does everything in the same thread can benefit from this (but do consider if your effort will be worth it and it won&rsquo;t be over-engineering.</li>
+</ul>
+<p>To learn more about converting existing closure or delegate based code into <code>async/await</code>, check out the <a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a> article.</p>
+<h1 id="structured-concurrency">Structured Concurrency</h1>
+<ul>
+<li>Having multiple <code>await</code> calls in a row does not mean that concurrency is taking place. The code below is not concurrent, although the <code>await</code> calls are independent so they could very well be.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+    <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadImage(imageNumber: imageNumber)
+    <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span> await downloadMetadata(<span style="color:#66d9ef">for</span>: imageNumber)
+    <span style="color:#66d9ef">return</span> DetailedImage(image: image, metadata: metadata)
+}
+</code></pre></div><ul>
+<li>Structured concurrency allows us to write concurrent code that can also be read from top to bottom. We can launch multiple tasks in parallel easily.</li>
+<li>There&rsquo;s two types of structured concurrency: <code>async let</code> calls and Task Groups.</li>
+</ul>
+<h2 id="async-let-concurrency">async let concurrency</h2>
+<ul>
+<li>Calls that can be <code>await</code>ed can also be executed concurrently.</li>
+<li>To do so, simply add the <code>async</code> keyword in your variable definition before the <code>let</code> or <code>var</code>, and remove the <code>await</code> call.</li>
+<li>Then simply <code>await</code> for the variable at the point that you need it.</li>
+<li>The following code is the same code as above, but it now performs both <code>async</code> tasks concurrently.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+    async <span style="color:#66d9ef">let</span> image = downloadImage(imageNumber: imageNumber)
+    async <span style="color:#66d9ef">let</span> metadata = downloadMetadata(<span style="color:#66d9ef">for</span>: imageNumber)
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> DetailedImage(image: await image, metadata: await metadata)
+}
+</code></pre></div><ul>
+<li>Despite the fact that <code>image</code> and <code>metadata</code> are async values, the code is still very easy to read, because we await for their values before we return from the function.</li>
+<li><code>async let</code> is perfect when you know the exact number of concurrent tasks you need to perform. In the example above, we know we have two: <code>downloadImage</code> and <code>downloadMetadata</code>.</li>
+</ul>
+<p>To learn more about structured concurrency with <code>async let</code>, read the <a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swit: Using async let</a> article.</p>
+<h2 id="group-tasks">Group Tasks</h2>
+<ul>
+<li>Use group tasks when the amount of concurrency is not known before hand. Like fetching a variable number of URLs from a web service, which you later want to download concurrently.</li>
+<li>To launch them, use the <code>withThrowingTaskGroup</code> or <code>withTaskGroup</code> methods.</li>
+<li>In the example above, we create a Task Group to download a variable number of images.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadMultipleImagesWithMetadata</span>(images: Int...) async <span style="color:#66d9ef">throws</span> -&gt; [DetailedImage]{
+    <span style="color:#66d9ef">var</span> imagesMetadata: [DetailedImage] = []
+    <span style="color:#66d9ef">try</span> await withThrowingTaskGroup(of: DetailedImage.<span style="color:#66d9ef">self</span>, body: { group <span style="color:#66d9ef">in</span>
+        <span style="color:#66d9ef">for</span> image <span style="color:#66d9ef">in</span> images {
+            group.async {
+                async <span style="color:#66d9ef">let</span> image = downloadImageAndMetadata(imageNumber: image)
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await image
+            }
+        }
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">try</span> await image <span style="color:#66d9ef">in</span> group {
+            imagesMetadata <span style="color:#f92672">+=</span> [image]
+        }
+    })
+    <span style="color:#66d9ef">return</span> imagesMetadata
+}
+</code></pre></div><ul>
+<li>the <code>group</code> variable will have our data as it is downloaded. It&rsquo;s an <code>AsyncSequence</code>, so you can iterate over it, or apply functions such as <code>filter</code>, <code>map</code>, <code>reduce</code>.</li>
+<li>You can specify the priority of the group, making this structured concurrency method a bit more flexible than <code>async let</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">group.async(priority: .userInitiated) {
+   <span style="color:#75715e">//...</span>
+}
+</code></pre></div><ul>
+<li>We can be ready for cancellation with <code>asyncUnlessCancelled</code>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">group.asyncUnlessCancelled(priority: <span style="color:#66d9ef">nil</span>) {
+   <span style="color:#75715e">//...</span>
+}
+</code></pre></div><h3 id="sendable-types">Sendable Types</h3>
+<ul>
+<li>Sendable types are the types that work well with concurrency. The compiler won&rsquo;t complain if you use these in concurrent contexts. There are <code>@Sendable</code> closures that only work with <code>Sendable</code> types (a protocol).</li>
+<li><code>@Sendable</code> closures cannot capture mutating variables.</li>
+<li>You should only capture value types, actors, classes, or other objects that implement their own synchronization.</li>
+</ul>
+<p>To learn more about Group Tasks and/or Sendable types, read the <a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift</a> and <a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a> articles.</p>
+<h2 id="the-task-tree">The Task Tree</h2>
+<p>An important concept of structured concurrency (for both <code>async let</code> and Task Groups) is the Task Tree.</p>
+<ul>
+<li><code>async</code> functions can spawn other <code>async</code> tasks. These spawned tasks are the <em>children</em> of the task that launched them.</li>
+<li>Children tasks inherit info from their parents, such as priority, local variables, and cancellation.</li>
+<li>It is said that a Parent task can only finish their work when their children have also finished their work.</li>
+<li>Cancellation of a task is governed by the task tree and it is cooperative. When a task is cancelled - either manually via a <code>cancel</code> or <code>cancellAll</code> call, or when they throw an error -, the tasks in the tree are not cancelled instantly. Instead, the task is marked as <code>cancelled</code>, but they continue doing their work until they see it is appropriate to be cancelled. When a parent task is marked as cancelled, its children tasks are marked as <code>cancelled</code> as well.</li>
+<li>To check the cancellation status of a task and determine if you need to stop working, you can use the <code>Task.checkCancellation()</code> method for tasks that may throw errors, or <code>Task.isCancelled</code> for tasks that don&rsquo;t throw.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; UIImage {
+    <span style="color:#66d9ef">try</span> Task.checkCancellation() <span style="color:#75715e">// &lt;- If we are cancelled, this throws.</span>
+    <span style="color:#66d9ef">let</span> imageUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part3/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.png&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> imageRequest = URLRequest(url: imageUrl)
+    <span style="color:#66d9ef">let</span> (data, imageResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: imageRequest)
+    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> image = UIImage(data: data), (imageResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">throw</span> ImageDownloadError.badImage
+    }
+    <span style="color:#66d9ef">return</span> image
+}
+</code></pre></div><p>To learn more about the Task Tree, check out the <a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swit: Using async let</a> article.</p>
+<h1 id="unstructured-concurrency">Unstructured Concurrency</h1>
+<p>Unstructured concurrency is useful when you don&rsquo;t have such a procedural flow for your tasks, but they can still help you greatly reduce the amount of unusual execution flows. Unstructured concurrency also gives you more control over structured concurrency.</p>
+<p>There&rsquo;s two ways to do unstructured concurrency: <code>Task</code> calls and detached tasks with <code>Task.detached</code>.</p>
+<h2 id="task-">Task</h2>
+<ul>
+<li>When you use <code>Task {}</code>, you are actually launching a concurrent task. This is how the &ldquo;bridge&rdquo; between the async and sync worlds is done.</li>
+<li>You can store them in variables so you can manually cancel them when necessary.</li>
+<li>You can also start them with a specific priority.</li>
+</ul>
+<p>To learn more about Unstructured Concurrency with tasks, check out the <a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a> article.</p>
+<h2 id="detached-tasks">Detached tasks</h2>
+<ul>
+<li>Launched with <code>Task.detached {}</code>.</li>
+<li>Unlike the other kinds of tasks, they do not inherit anything from their parent tasks. Not even the priority.</li>
+<li>They are independent from the context they are launched in.</li>
+</ul>
+<p>To learn more about Detached Tasks, check out the <a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a> article.</p>
+<h1 id="actors">Actors</h1>
+<ul>
+<li>Actors are reference types that isolate their state from the rest of the program. This is a perfect mechanism to prevent data races in your program.</li>
+<li>They provide their own internal synchronization for when they are accessed. This prevents data races.</li>
+<li>You cannot modify an actor state directly. Every call that modifies the actor needs to go through the actor itself.</li>
+<li>All the methods the actor provides are exposed through <code>await</code> calls even when you don&rsquo;t explicitly mark them as such.</li>
+<li>Properties are method that don&rsquo;t need to be or can&rsquo;t be isolated can be marked as <code>nonisolated</code>.</li>
+<li>You should take care to design for actor reentrancy (entering the actor multiple times). Because its state changes, you may need to do some considerations. For example, an actor that downloads and caches images may download and cache the same image twice if entered in quick succession.</li>
+</ul>
+<p><a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></p>
+<h1 id="mainactor-and-global-actors">@MainActor and Global Actors</h1>
+<ul>
+<li>We can define global actors across different files and types. Marking a class as running on a specific actor ensures that all code will be run in the same thread.</li>
+<li>You declare global actors with the <code>@globalActor</code> attribute, and then you use that actor by referencing its name prepending a <code>@</code>. In the example above, we create an actor called <code>MediaActor</code> and we create a variable called <code>videogames</code> that runs on this actor.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@globalActor
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">MediaActor</span> {
+  actor ActorType { }
+
+  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">let</span> shared: ActorType = ActorType()
+}
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Videogame</span> {
+    <span style="color:#66d9ef">let</span> id = UUID()
+    <span style="color:#66d9ef">let</span> name: String
+    <span style="color:#66d9ef">let</span> releaseYear: Int
+    <span style="color:#66d9ef">let</span> developer: String
+}
+
+@MediaActor <span style="color:#66d9ef">var</span> videogames: [Videogame] = []
+</code></pre></div><ul>
+<li>The <code>@MainActor</code> is a special global actor provided by Swift that runs on the main thread. We can mark view controllers, view models, and other code that we want to force to run on the main thread as <code>@MainActor</code>. Marking a class with an actor means that all its properties and methods will be run on that same actor. In the example below, we add the <code>@MainActor</code> attribute to a view controller, ensure all its code runs on the main thread.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@MainActor
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameLibraryViewController</span>: UIViewController {
+	<span style="color:#75715e">//...</span>
+	nonisolated <span style="color:#66d9ef">var</span> fetchVideogameTypes() -&gt; [VideogameType] { ... }
+	<span style="color:#75715e">//...</span>
+}
+</code></pre></div><p>It&rsquo;s possible to override the actor of specific methods.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">@MainActor
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GameLibraryViewController</span>: UIViewController {
+   @MediaActor <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doThisInAnotherActor</span>() {}
+}
+</code></pre></div><p><a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift</a></p>
+<h1 id="sharing-data-across-tasks-with-tasklocal">Sharing Data Across Tasks with @TaskLocal</h1>
+<ul>
+<li>The <code>@TaskLocal</code> property wrapper can be used to share data across local tasks.</li>
+<li>The tasks should be part of the same tree - detached tasks launched within some task will not inherit them.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ViewController</span>: UIViewController {
+    @TaskLocal <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">var</span> currentVideogame: Videogame?
+    <span style="color:#75715e">// ...</span>
+}
+</code></pre></div><ul>
+<li>Only static properties can have this property wrapper.</li>
+<li>To write values to them, we need to bind them values.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidLoad</span>() {
+    <span style="color:#66d9ef">super</span>.viewDidLoad()
+    <span style="color:#75715e">// Do any additional setup after loading the view.</span>
+    
+    <span style="color:#66d9ef">let</span> vg = Videogame(title: <span style="color:#e6db74">&#34;The Legend of Zelda: Ocarina of Time&#34;</span>, year: <span style="color:#ae81ff">1998</span>)
+    <span style="color:#66d9ef">Self</span>.<span style="color:#960050;background-color:#1e0010">$</span>currentVideogame.withValue(vg) {
+        <span style="color:#75715e">// we cam launch some async tasks here that make use of the LocalValue</span>
+    }
+}
+</code></pre></div><ul>
+<li>Reading them is an <code>await</code>ed call.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">expensiveVidegameOperation</span>() async {
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> vg = await ViewController.currentVideogame {
+        print(<span style="color:#e6db74">&#34;We are processing </span><span style="color:#e6db74">\(</span>vg.title<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+    }
+}
+</code></pre></div><p><a href="https://www.andyibanez.com/posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model/">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></p>
+<h1 id="asyncsequence-and-asyncstream">AsyncSequence and AsyncStream</h1>
+<ul>
+<li><code>AsyncSequence</code> allows us to receive values over time, <code>await</code>ing them in a loop, or even applying functions such as <code>filter</code>, <code>map</code>, <code>reduce</code> to them.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">loadVideogames</span>() async {
+    <span style="color:#66d9ef">let</span> url = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part11/videogames.csv&#34;</span>)<span style="color:#f92672">!</span>
+    
+    <span style="color:#66d9ef">let</span> videogames =
+        url
+        .lines
+        .filter { $0.contains(<span style="color:#e6db74">&#34;|&#34;</span>) }
+        .map { Videogame(rawLine: $0) }
+    
+    <span style="color:#66d9ef">do</span> {
+        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">try</span> await videogame <span style="color:#66d9ef">in</span> videogames {
+            print(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>videogame.title<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>videogame.year ?? <span style="color:#ae81ff">0</span><span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>)
+        }
+    } <span style="color:#66d9ef">catch</span> {
+        
+    }
+}
+</code></pre></div><ul>
+<li>Worth noting that the sequence will not &ldquo;start&rdquo; until we put it in a loop. Applying higher order functions simply limits what will be received in the <code>await for</code> loop.</li>
+<li>Multiple APIs have been updated to support this in WWDC21, including the <code>NSNotificationCenter</code> APIs.</li>
+<li>The <code>AsyncStream</code> object can be used to take a stream of values from somewhere and convert it into something that can be used in a <code>for await</code> loop.</li>
+<li>For example, if you receive GPS updates in real time in a delegate, you can wrap all that up and receive the new coordinates in a loop instead.</li>
+</ul>
+<p><a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift</a></p>
+<h1 id="credits-and-thanks">Credits and Thanks</h1>
+<p>The articles in this series have quickly become one of my most visited pages on my website since I relaunched it in 2019. Because of that, I have also received a lot feedback from members in the community.</p>
+<p>I want to take a minute to thank everyone who has written me regarding typos or weird phrasing in some sentences. I have taken a lot of care into improving the articles with all your opinions and comments. You have all helped me increase the quality of these articles a lot.</p>
+<p>I have received a lot of emails, and it&rsquo;s really, really hard to name all of you due to the sheer amount of people who wrote to me. So, thank you all so much for helping me improve the quality of my blog. I am also sorry if I could not reply to everyone - I got a lot of email and sometimes I lost track of who I had replied to.</p>
+<p>There is one person in particular I want to mention by name, because he has spent a lot of time going through all the articles in the series and sending very detailed emails with observations and improvements. This person&rsquo;s emails were actually very long, and whenever I received an email from him, I spent a long time working through the fixes. That said, every second I spent working on his recommendations paid off, and this article series is probably one of the things I&rsquo;m very proud of. This person is <a href="https://twitter.com/dennisbirch2">Dennis Birch</a>. Big thanks to Dennis for helping this article series become one of my favorites.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/using-asyncsequence-in-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Using AsyncSequence in Swift</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Sep 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 08 Sep 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>apple</title>
       <link>https://www.andyibanez.com/tags/apple/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/apple/</guid>
       <description></description>
@@ -23,9 +23,117 @@
     <item>
       <title>async</title>
       <link>https://www.andyibanez.com/tags/async/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/async/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>await</title>
+      <link>https://www.andyibanez.com/tags/await/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/await/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>concurrency</title>
+      <link>https://www.andyibanez.com/tags/concurrency/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ios</title>
+      <link>https://www.andyibanez.com/tags/ios/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipados</title>
+      <link>https://www.andyibanez.com/tags/ipados/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/ipados/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macos</title>
+      <link>https://www.andyibanez.com/tags/macos/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/macos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>multithreading</title>
+      <link>https://www.andyibanez.com/tags/multithreading/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/multithreading/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming</title>
+      <link>https://www.andyibanez.com/tags/programming/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/programming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>swift</title>
+      <link>https://www.andyibanez.com/tags/swift/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/swift/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>watchos</title>
+      <link>https://www.andyibanez.com/tags/watchos/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/watchos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc</title>
+      <link>https://www.andyibanez.com/tags/wwdc/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc20</title>
+      <link>https://www.andyibanez.com/tags/wwdc20/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc20/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wwdc2021</title>
+      <link>https://www.andyibanez.com/tags/wwdc2021/</link>
+      <pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/tags/wwdc2021/</guid>
       <description></description>
     </item>
     
@@ -44,114 +152,6 @@
       <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/tags/asyncstream/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>await</title>
-      <link>https://www.andyibanez.com/tags/await/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/await/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>concurrency</title>
-      <link>https://www.andyibanez.com/tags/concurrency/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/concurrency/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ios</title>
-      <link>https://www.andyibanez.com/tags/ios/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ipados</title>
-      <link>https://www.andyibanez.com/tags/ipados/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/ipados/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>macos</title>
-      <link>https://www.andyibanez.com/tags/macos/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/macos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>multithreading</title>
-      <link>https://www.andyibanez.com/tags/multithreading/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/multithreading/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://www.andyibanez.com/tags/programming/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/programming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>swift</title>
-      <link>https://www.andyibanez.com/tags/swift/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/swift/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>watchos</title>
-      <link>https://www.andyibanez.com/tags/watchos/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/watchos/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wwdc</title>
-      <link>https://www.andyibanez.com/tags/wwdc/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/wwdc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wwdc20</title>
-      <link>https://www.andyibanez.com/tags/wwdc20/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/wwdc20/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>wwdc2021</title>
-      <link>https://www.andyibanez.com/tags/wwdc2021/</link>
-      <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
-      
-      <guid>https://www.andyibanez.com/tags/wwdc2021/</guid>
       <description></description>
     </item>
     
