@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>New UIDatePicker in iOS 14 • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="New UIDatePicker in iOS 14"/>
+<meta name="twitter:description" content="Learn about the new UIDatePicker in iOS 14."/>
+
+<meta property="og:title" content="New UIDatePicker in iOS 14" />
+<meta property="og:description" content="Learn about the new UIDatePicker in iOS 14." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/new-uidatepicker-ios14/" />
+<meta property="article:published_time" content="2020-07-08T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-07-08T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>New UIDatePicker in iOS 14</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 8, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/uikit">uikit</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/uidatepicker">uidatepicker</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2020">wwdc2020</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 3 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>WWDC2020 brought many interesting and unexpected updates to many old and well known APIs. In this article, we will explore what&rsquo;s new with <code>UIDatePicker</code> on iOS, an API that has existed since the dawn of time and hasn&rsquo;t changed much since its introduction.</p>
+<h1 id="a-short-history-on-pickers">A Short History on Pickers</h1>
+<p><code>UIDatePicker</code> is an API that has existed since the very early days of the iOS SDK - it goes all the way back to iOS 2.0.</p>
+<p>If you have been developing for iOS for a while, you must remember this beauty:</p>
+<p><img src="/img/date_picker_pre_7.png" alt="The Very First UIDatePicker"></p>
+<p>In iOS 7, the whole system received a full redesign. Look at the <em>huge</em> update our old friend <code>UIDatePicker</code> went through:</p>
+<p><img src="/img/date_picker_post_7.png" alt="The Second Date Picker"></p>
+<p>&hellip; Not much of a chance for our old friend. But iOS 14 introduced a whole new date picker we can use. It&rsquo;s much easier and flexible to use for our end users, and we don&rsquo;t have to do much to adopt it.</p>
+<h1 id="uidatepicker-in-ios-14">UIDatePicker in iOS 14</h1>
+<h2 id="uidatepicker-styles">UIDatePicker Styles</h2>
+<p>First things first, the old wheel-styled picker is not actually gone. Instead, <code>UIDatePicker</code> now has a property called <code>datePickerStyle</code> where you can let the system choose the best style with the <code>.automatic</code> style, or you can choose between <code>.compact</code> and <code>.inline</code> - both new to iOS 14 - or <code>.wheel</code>, which is the old style we have known for over a decade.</p>
+<h3 id="the-compact-style">The .compact Style</h3>
+<p>The <code>.compact</code> date picker style presents the user as a small UI the user can tap.</p>
+<p><img src="/img/date_picker_ios14_entry.png" alt="Compact Style Calendar"></p>
+<p>This tiny UI takes up less space, and the best part is it is interactive. When the user taps it, they will view the new full calendar view in all its glory:</p>
+<p><img src="/img/date_picker_ios14_calendar.png" alt="Full Calendar"></p>
+<p>In this full calendar view, your user has more flexibility to choose a time and a date, with arrows to move between months and more.</p>
+<p>The picker is still as customizable as always. You can for example, show a prompt to select only the date or only the time instead of both as it is by default.</p>
+<p><img src="/img/picker_time_only.png" alt="Showing only the Time component of a picker"></p>
+<p><img src="/img/picker_time_only_displayed.png" alt="Showing only the Time component of a picker - editable"></p>
+<h3 id="the-inline-style">The .inline Style</h3>
+<p>This style is essentially the same as <code>.compact</code> with the difference that your user will never see a little UI they have to tap. Instead, the calendar or time picker component will be there in all its glory ready to be used.</p>
+<p><img src="/img/inline_ui_date_picker.png" alt="Inline UIDatePicker"></p>
+<p>Finally, in either <code>.inline</code> or <code>.compact</code> modes, your user can tap the top right label that shows the month and year and the system will show a wheel picker to let them quickly jump to a different month and year:</p>
+<p><img src="/img/inline_uidatepicker_year_month.png" alt="Quickly Jump to Months and Year"></p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Old and known APIs have received a deserved refresh in iOS 14. The new date picker is easy to implement and it provides your users with a faster way to check dates.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/uimenu-improvements-ios14/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">UIMenu Improvements in iOS 14</span>
+    </a>
+    
+    
+    <a href="/posts/sharing-data-apple-devices-multipeerconnectivity-framework/" class="navigation-next">
+      <span class="navigation-tittle">Sharing Data Across Apple Devices with the MultipeerConnectivity Framework</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

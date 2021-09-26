@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>corehaptics on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/corehaptics/</link>
+    <description>Recent content in corehaptics on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Oct 2019 07:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/corehaptics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Playing Custom Haptics on iOS</title>
+      <link>https://www.andyibanez.com/posts/playing-custom-haptics-on-ios/</link>
+      <pubDate>Wed, 02 Oct 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/playing-custom-haptics-on-ios/</guid>
+      <description>Vibration and physical feedback has become an important feature of Apple&amp;rsquo;s operating systems. Starting with the Apple Watch, Apple replaced the traditional vibration feedback with haptic feedback hardware, which allowed them to have more control over how vibrations and physical feedback work.
+First being introduced in the Apple Watch, Haptic Feedback has been a core part of the Apple ecosystem experience since. Just think about it, wouldn&amp;rsquo;t it be weird if you force-touched the screen to do something, and there was no physical response from the device?</description>
+    </item>
+    
+  </channel>
+</rss>

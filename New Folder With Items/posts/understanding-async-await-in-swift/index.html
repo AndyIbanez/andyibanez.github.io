@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Understanding async/await in Swift • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Understanding async/await in Swift"/>
+<meta name="twitter:description" content="Learn about Swift&#39;s async/await APIs and how to use them, complete with working examples."/>
+
+<meta property="og:title" content="Understanding async/await in Swift" />
+<meta property="og:description" content="Learn about Swift&#39;s async/await APIs and how to use them, complete with working examples." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/understanding-async-await-in-swift/" />
+<meta property="article:published_time" content="2021-06-16T07:01:00-04:00" />
+<meta property="article:modified_time" content="2021-06-16T07:01:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Understanding async/await in Swift</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jun 16, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/article-series">ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-article-series">MODERN CONCURRENCY ARTICLE SERIES</a>
+              •
+          
+              <a class="badge badge-category" href="/categories/modern-concurrency-in-swift-article-series">MODERN CONCURRENCY IN SWIFT ARTICLE SERIES</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/concurrency">concurrency</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/async">async</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/await">await</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2021">wwdc2021</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/multithreading">multithreading</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 16 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p><em>This article is part of my <a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift</a> article series.</em></p>
+<p><em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.</em></p>
+<h6 id="table-of-contents">Table of Contents</h6>
+<ol>
+<li><a href="/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction</a></li>
+<li><strong>Understanding async/await in Swift</strong></li>
+<li><a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift</a></li>
+<li><a href="/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let</a></li>
+<li><a href="/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift</a></li>
+<li><a href="/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift</a></li>
+<li><a href="/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift</a></li>
+<li><a href="/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift</a></li>
+<li><a href="/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift</a></li>
+<li><a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</a></li>
+<li><a href="/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift</a></li>
+<li><a href="/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks</a></li>
+</ol>
+<!-- raw HTML omitted -->
+<p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&rsquo;s no way around it. While async/await are not the only <a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options</a>, Apple&rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.</p>
+<p>This article will explore async/await and nothing else. Once you understand these concepts, we will start moving on to more advanced articles where we cover structured concurrency, unstructured concurrency, SwiftUI, and more.</p>
+<p>If you have been writing callback-based concurrency, keep in mind that the implementation for async/await is <em>very</em> different from anything you have seen before in Apple&rsquo;s technologies. It basically throws what you know about concurrent programming out the window. It&rsquo;s important to keep that in mind as you read this article.</p>
+<p>In this article, we will write a function that downloads an image and then its metadata using a different network call. We will show you how doing this with callback-based concurrency can become hard to manage quickly, and how async/await solves this problem beautifully.</p>
+<h1 id="refreshing-concepts">Refreshing Concepts</h1>
+<h2 id="a-refresher-on-procedural-programming">A Refresher on Procedural Programming</h2>
+<p>When you write any normal program with no exceptional needs such as networking and/or I/O, your program executes in the order your code is written, calling procedures as needed, and returning content to the caller if necessary.</p>
+<p>Consider the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sayHi</span>() {
+    print(<span style="color:#e6db74">&#34;Hi&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#66d9ef">_</span> x: Int, <span style="color:#66d9ef">_</span> y: Int) -&gt; Int {
+    x <span style="color:#f92672">*</span> y
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sayBye</span>(result: Int) {
+    print(<span style="color:#e6db74">&#34;Bye </span><span style="color:#e6db74">\(</span>result<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performCoolStuff</span>() {
+    sayHi()
+    <span style="color:#66d9ef">let</span> x = <span style="color:#ae81ff">10</span>
+    <span style="color:#66d9ef">let</span> y = <span style="color:#ae81ff">5</span>
+    <span style="color:#66d9ef">let</span> result = multiply(x, y)
+    sayBye(result: result)
+}
+
+<span style="color:#75715e">// Calling performCoolStuff()</span>
+performCoolStuff()
+</code></pre></div><p>When you call <code>performCoolStuff()</code>, your code is executed as follows:</p>
+<ol>
+<li>It will first call <code>sayHi()</code></li>
+<li>It will declare two variables, <code>x</code> and <code>y</code>.</li>
+<li>It will call <code>multiply</code> passing in the values for <code>x</code> and <code>y</code>.</li>
+<li>It will call <code>sayBye</code> with the result of the multiplication</li>
+</ol>
+<p>There&rsquo;s nowhere to get lost here. Your code is called in the same order it was given. Functions that call other functions are placed in the <em>call stack</em> exactly as they appear, unwinding back as they return values to the main callers. As calls happen, the function give back control to the caller through the use of <code>return</code>. When we call <code>multiply</code>, we assign control to it, and when it returns us a result, it gives us back control through <code>return</code>.</p>
+<p>You don&rsquo;t think much about procedural programming. Chances are you do it daily, and it always works the way you expect it to *.</p>
+<h2 id="a-refresher-on-callback-based-concurrency-code">A refresher on callback-based concurrency code.</h2>
+<p>Things are a bit more complicated when it comes to code that may run in parallel with other code. Consider the following example that will download an image through a network call and the metadata through a different network call (you can copy and paste this code in a view controller of a new project - it contains everything you need to run it). The download takes place at the same time as the main thread&rsquo;s execution:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ImageMetadata</span>: Codable {
+    <span style="color:#66d9ef">let</span> name: String
+    <span style="color:#66d9ef">let</span> firstAppearance: String
+    <span style="color:#66d9ef">let</span> year: Int
+}
+
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">DetailedImage</span> {
+    <span style="color:#66d9ef">let</span> image: UIImage
+    <span style="color:#66d9ef">let</span> metadata: ImageMetadata
+}
+
+<span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">ImageDownloadError</span>: Error {
+    <span style="color:#66d9ef">case</span> badImage
+    <span style="color:#66d9ef">case</span> invalidMetadata
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sayHi</span>() {
+    print(<span style="color:#e6db74">&#34;Hi&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">multiply</span>(<span style="color:#66d9ef">_</span> x: Int, <span style="color:#66d9ef">_</span> y: Int) -&gt; Int {
+    x <span style="color:#f92672">*</span> y
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">sayBye</span>(result: Int) {
+    print(<span style="color:#e6db74">&#34;Bye </span><span style="color:#e6db74">\(</span>result<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(
+    imageNumber: Int,
+    completionHandler: @escaping (<span style="color:#66d9ef">_</span> image: DetailedImage?, <span style="color:#66d9ef">_</span> error: Error?) -&gt; Void
+) {
+    <span style="color:#66d9ef">let</span> imageUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.png&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> imageTask = URLSession.shared.dataTask(with: imageUrl) { data, response, error <span style="color:#66d9ef">in</span>
+        <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> data = data, <span style="color:#66d9ef">let</span> image = UIImage(data: data), (response <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+            completionHandler(<span style="color:#66d9ef">nil</span>, ImageDownloadError.badImage)
+            <span style="color:#66d9ef">return</span>
+        }
+        <span style="color:#66d9ef">let</span> metadataUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.json&#34;</span>)<span style="color:#f92672">!</span>
+        <span style="color:#66d9ef">let</span> metadataTask = URLSession.shared.dataTask(with: metadataUrl) { data, response, error <span style="color:#66d9ef">in</span>
+            <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> data = data, <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span>? JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data),  (response <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+                completionHandler(<span style="color:#66d9ef">nil</span>, ImageDownloadError.invalidMetadata)
+                <span style="color:#66d9ef">return</span>
+            }
+            <span style="color:#66d9ef">let</span> detailedImage = DetailedImage(image: image, metadata: metadata)
+            completionHandler(detailedImage, <span style="color:#66d9ef">nil</span>)
+        }
+        metadataTask.resume()
+    }
+    imageTask.resume()
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performMessyStuff</span>() {
+    sayHi()
+    <span style="color:#66d9ef">let</span> x = <span style="color:#ae81ff">10</span>
+    downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) { image, error <span style="color:#66d9ef">in</span>
+        DispatchQueue.main.async {
+            print(<span style="color:#e6db74">&#34;We got results&#34;</span>)
+        }
+    }
+    <span style="color:#66d9ef">let</span> y = <span style="color:#ae81ff">5</span>
+    <span style="color:#66d9ef">let</span> result = multiply(x, y)
+    sayBye(result: result)
+}
+
+performMessyStuff()
+</code></pre></div><p><strong>Note</strong>: <em>Apple used a similar example in the <a href="https://developer.apple.com/videos/play/wwdc2021/10132/">Meet async/await in Swift session</a> at WWDC2021. This example is based on that, but I created a compilable version you can use.</em></p>
+<p>This is what happens:</p>
+<ol>
+<li>The method calls <code>sayHi()</code> normally.</li>
+<li>We create a variable <code>x</code> and assign it a value.</li>
+<li><code>downloadImageAndMetadata</code> is called, which internally will set up the first variables it needs for its execution (<code>imageUrl</code>).</li>
+<li>We create a variable, once again synchronously, that will hold a <code>dataTask</code> and provide it with a completion handler that will be called after it&rsquo;s done downloading.</li>
+<li>We call <code>resume()</code> on the task to begin the download.</li>
+<li>The contents of the completion handler will not be executed immediately. Instead, while the downloads happen, the program continues its execution.</li>
+<li>The program may, or may not, print <code>&quot;We got results&quot;</code>. In the case of a network download, it will always take a while, but if this were a faster asynchronous operation, it may be called at this point. The program will create a variable <code>y</code>.</li>
+<li>If both downloads have finished successfully, the program may print <code>&quot;We got results&quot;.</code> Otherwise it creates the <code>result</code> variable and calls <code>multiply</code>, which may or may not finish before the downloads.</li>
+<li>If the downloads have finished successfully, the program will print <code>&quot;We got results&quot;</code>, otherwise it will call <code>sayBye</code>.</li>
+<li>Somewhere above there and at any point, the program may start the metadata download task after the image task has downloaded.</li>
+</ol>
+<p>This flow of execution is messy, because downloading data from the network is asynchronous and all its work happens somewhere else. Anything else may happen on the main thread while the downloads take place. Whatever the console prints may have a different output on each run **. The downloads spawn from the main thread onto another thread, but the program will continue executing the code in the main thread without any issue. This makes it hard to think procedurally, because we rely on the <code>completionHandler</code> to let us know when it has finished its work. If there are tasks that can be performed in the main thread, but they depend on an image and/or its metadata, we have to do all that work in the completion handler (while rerouting the work to the main thread with <code>DispatchQueue.main.async</code> whenever relevant).</p>
+<p>In the case of callback-based asynchronous code, control is given back whenever completion handlers are executed.</p>
+<p>And as you may imagine, these calls can become more and more complex and nested.</p>
+<h1 id="introducing-asyncawait">Introducing async/await</h1>
+<p>If I had to explain async/await in few words, I&rsquo;d say this:</p>
+<blockquote>
+<p>async/await is like a hybrid between procedural programming and callback-based closures.</p>
+</blockquote>
+<p>Before we explain why, let&rsquo;s keep two things in mind:</p>
+<ol>
+<li>Procedural code runs from top to bottom. Control is given back to the caller through <code>return</code></li>
+<li>Callback-based concurrency will create asynchronous tasks, but it will continue executing the current thread without an issue, even if those tasks are running. Control is given back to the caller through completion handlers.</li>
+</ol>
+<p>Let&rsquo;s take a few minutes to discuss the <code>async</code> and <code>await</code> keywords individually.</p>
+<h2 id="async">async</h2>
+<p><code>async</code> has two uses:</p>
+<ul>
+<li>To tell the compiler when a piece of code is asynchronous.</li>
+<li>To spawn asynchronous tasks in parallel.</li>
+</ul>
+<p>To mark a function as <code>async</code>, simply put the keyword after the function&rsquo;s closing parenthesis and before the arrow, like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(id: Int) async -&gt; UIImage? { ... }
+</code></pre></div><p>Or:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(id: Int) async <span style="color:#66d9ef">throws</span> -&gt; UIImage { ... }
+</code></pre></div><p>You can already see a huge advantage here. The completion handler is gone, and our function signature is very clear with its purpose. We can tell at first glance if it is <code>async</code> and what it returns.</p>
+<p><code>async</code> code can only run in <em>concurrent</em> contexts. That is to say, within other <code>async</code> functions, or when manually dispatched via <code>Task {}</code>. We will explore <code>Task {}</code> in a bit.</p>
+<h2 id="await">await</h2>
+<p><code>await</code> is where the magic happens. Whenever the program finds the <code>await</code> keywords, it has the option of suspending the function. It may or may not do so, and the decision is up to the system.</p>
+<p>If the system does suspend the function, <code>await</code> will return control, not to the caller, but to the system. The system will then use the thread to perform other work until the suspended function is done. The statements below <code>await</code> will not be executed until it has finished. The system decides what&rsquo;s important to execute, and at some point, it will return control back to you after it sees the <code>await</code>ed function has finished.</p>
+<p>You can think of it as a traffic light. If you are driving down the road and you find a red light, chances are you will stop. But if it is 4 AM in the morning and there&rsquo;s no cars coming you may just run it. ***</p>
+<p><strong>What you need to understand about await is that, if it does choose to suspend, nothing below it will execute until the system tells it to, and the system will use the thread to do other work.</strong></p>
+<p>Every call to an <code>async</code> function, must be marked as <code>await</code>.</p>
+<p>To better understand this, we will rewrite our <code>downloadImageAndMetadata</code> function, this time using <code>async</code> and using <code>await</code> within the body.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+
+        <span style="color:#75715e">// Attempt to download the image first.</span>
+        <span style="color:#66d9ef">let</span> imageUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.png&#34;</span>)<span style="color:#f92672">!</span>
+        <span style="color:#66d9ef">let</span> imageRequest = URLRequest(url: imageUrl)
+        <span style="color:#66d9ef">let</span> (imageData, imageResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: imageRequest)
+        <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> image = UIImage(data: imageData), (imageResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">throw</span> ImageDownloadError.badImage
+        }
+
+        <span style="color:#75715e">// If there were no issues, continue downloading the metadata.</span>
+        <span style="color:#66d9ef">let</span> metadataUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.json&#34;</span>)<span style="color:#f92672">!</span>
+        <span style="color:#66d9ef">let</span> metadataRequest = URLRequest(url: metadataUrl)
+        <span style="color:#66d9ef">let</span> (metadataData, metadataResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: metadataRequest)
+        <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+            <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
+        }
+
+        <span style="color:#66d9ef">let</span> detailedImage = DetailedImage(image: image, metadata: <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: metadataData))
+
+        <span style="color:#66d9ef">return</span> detailedImage
+    }
+</code></pre></div><p>This is a long function, but it&rsquo;s already much better than the pyramid version of it. Let&rsquo;s highlight the important parts first:</p>
+<ol>
+<li>The program procedurally creates <code>imageUrl</code> and <code>imageRequest</code>.</li>
+<li>The program reaches a call to an async call, <code>URLSession.shared.data(for:)</code>.</li>
+<li>The program will make a decision on suspending the function or continuing it. In this case, it&rsquo;s likely it will suspend due to the nature of networking, but don&rsquo;t get used to taking that for granted. We will assume the program suspends the function.</li>
+<li>This will give control back to the system.</li>
+<li>The system may do other work that is not relevant to this task while the download <code>await</code>s.</li>
+<li>Anything under the first await <em>will not</em> be executed. It will not reach the guard, it will not create the variables for the metadata, it will do <em>nothing</em> until the <code>await</code>ed function finishes.</li>
+<li>After some time, the system will give control back to you, after the <code>await</code>ed function has finished.</li>
+<li>The <code>guard</code> statement is reached, throwing an error if necessary.</li>
+<li>The program will repeat steps 2-8 but for the metadata task.</li>
+<li>The program will return a new <code>DetailedImage</code>.</li>
+</ol>
+<p>As you can see, it is a pretty linear flow, and the way <code>await</code> suspends the rest of the execution until the system deems it necessary makes it behave very much like procedural programming.</p>
+<p>We can separate that function into different functions as well:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+    <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadImage(imageNumber: imageNumber)
+    <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span> await downloadMetadata(<span style="color:#66d9ef">for</span>: imageNumber)
+    <span style="color:#66d9ef">return</span> DetailedImage(image: image, metadata: metadata)
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImage</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; UIImage {
+    <span style="color:#66d9ef">let</span> imageUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>imageNumber<span style="color:#e6db74">)</span><span style="color:#e6db74">.png&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> imageRequest = URLRequest(url: imageUrl)
+    <span style="color:#66d9ef">let</span> (data, imageResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: imageRequest)
+    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> image = UIImage(data: data), (imageResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">throw</span> ImageDownloadError.badImage
+    }
+    <span style="color:#66d9ef">return</span> image
+}
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadMetadata</span>(<span style="color:#66d9ef">for</span> id: Int) async <span style="color:#66d9ef">throws</span> -&gt; ImageMetadata {
+    <span style="color:#66d9ef">let</span> metadataUrl = URL(string: <span style="color:#e6db74">&#34;https://www.andyibanez.com/fairesepages.github.io/tutorials/async-await/part1/</span><span style="color:#e6db74">\(</span>id<span style="color:#e6db74">)</span><span style="color:#e6db74">.json&#34;</span>)<span style="color:#f92672">!</span>
+    <span style="color:#66d9ef">let</span> metadataRequest = URLRequest(url: metadataUrl)
+    <span style="color:#66d9ef">let</span> (data, metadataResponse) = <span style="color:#66d9ef">try</span> await URLSession.shared.data(<span style="color:#66d9ef">for</span>: metadataRequest)
+    <span style="color:#66d9ef">guard</span> (metadataResponse <span style="color:#66d9ef">as</span>? HTTPURLResponse)?.statusCode == <span style="color:#ae81ff">200</span> <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">throw</span> ImageDownloadError.invalidMetadata
+    }
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> JSONDecoder().decode(ImageMetadata.<span style="color:#66d9ef">self</span>, from: data)
+}
+</code></pre></div><p>As long as we mark the functions as <code>async</code>, this is possible to do.</p>
+<p>It is important to note the linearity of this. The metadata and image <strong>are not being downloaded at the same time</strong>. It will download the image first, and the metadata later. We can make it download both the image and metadata at the same time, but this article is not about actual concurrency just yet. We will explore how to do both tasks at the same time when we learn about <em>structured concurrency</em>.</p>
+<p>If you want to see the function suspension in action, simply put some print statements before and after <code>await</code> code. You will see that the print statements will be executed slowly, as the system suspends the download tasks, perform other tasks, and gives control back to you.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downloadImageAndMetadata</span>(imageNumber: Int) async <span style="color:#66d9ef">throws</span> -&gt; DetailedImage {
+    print(<span style="color:#e6db74">&#34;Will download image&#34;</span>)
+    <span style="color:#66d9ef">let</span> image = <span style="color:#66d9ef">try</span> await downloadImage(imageNumber: imageNumber)
+    print(<span style="color:#e6db74">&#34;Has downloaded image&#34;</span>)
+    print(<span style="color:#e6db74">&#34;Will download metadata&#34;</span>)
+    <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span> await downloadMetadata(<span style="color:#66d9ef">for</span>: imageNumber)
+    print(<span style="color:#e6db74">&#34;Has downloaded metadata&#34;</span>)
+    <span style="color:#66d9ef">return</span> DetailedImage(image: image, metadata: metadata)
+}
+</code></pre></div><p>If your internet is a bit too speedy to appreciate the slow prints, Apple provides us a neat method: <code>Task.sleep</code>. This function solely exists to sleep the thread for a given number of time, and you can use it to explore async/await.</p>
+<ul>
+<li><strong>Note</strong>: <em>Unfortunately <code>Task.sleep</code> appears to crash as of Xcode 13 Beta 1. <code>await Task.sleep(2 * 1_000_000_000) </code>.</em></li>
+</ul>
+<p>One final important note about <code>await</code>: It&rsquo;s not guaranteed that the same thread that executed the code above it is the same one that will execute the code below it (commonly called the <em>continuation</em>). This has important implications when dealing with UI. If you use <code>await</code> in a context that needs the main thread such as a ViewController, make sure you mark the functions with <code>await</code> with the <code>@MainActor</code> attribute, or add the attribute to the entire class declaration. If you want a complete tour behind how the new concurrency works in Swift, check out the <a href="https://developer.apple.com/videos/play/wwdc2021/10254/">Swift concurrency: Behind the scenes</a> WWDC2021 session talk.</p>
+<h2 id="bridging-between-the-sync-and-async-worlds-with-task">&ldquo;Bridging&rdquo; between the sync and async worlds with Task</h2>
+<p>We can create a &ldquo;bridge&rdquo; between the sync and async worlds creating a <code>Task</code>. To understand why this is necessary, consider the following piece of code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performDownload</span>() {
+    <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadMetadata(<span style="color:#66d9ef">for</span>: <span style="color:#ae81ff">1</span>)
+}
+</code></pre></div><p>The compiler will protect us from erroneously running this, showing the following error:</p>
+<blockquote>
+<p>&lsquo;async&rsquo; call in a function that does not support concurrency
+Add &lsquo;async&rsquo; to function &lsquo;performDownload()&rsquo; to make it asynchronous</p>
+</blockquote>
+<p>The compiler is suggesting we mark <code>performDownload</code> as async.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performDownload</span>() async {
+    <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadMetadata(<span style="color:#66d9ef">for</span>: <span style="color:#ae81ff">1</span>)
+}
+</code></pre></div><p>But this is not always possible. What if <code>performDownload</code> is in a view controller or in another place that can&rsquo;t give you an asynchronous context?</p>
+<p>To fix this, we can bridge this synchronous function to the asynchronous world using <code>Task {}</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">performDownload</span>() {
+    Task {
+        <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadMetadata(<span style="color:#66d9ef">for</span>: <span style="color:#ae81ff">1</span>)
+    }
+}
+</code></pre></div><p>We are explicitly creating an asynchronous context, and it will behave as such. We can now call perform download from any sync context without an issue.</p>
+<h2 id="get-async">get async</h2>
+<p>To make things even better, properties that are read-only can be <code>await</code>ed.</p>
+<p>Suppose you have the following wrapper object:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Character</span> {
+    <span style="color:#66d9ef">let</span> id: Int
+}
+</code></pre></div><p>We can get its image and metadata by calling <code>downloadImageAndMetadata</code>, but you could also give this object two calculated properties to get its image and/or metadata independently.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Character</span> {
+    <span style="color:#66d9ef">let</span> id: Int
+
+    <span style="color:#66d9ef">var</span> metadata: ImageMetadata {
+        <span style="color:#66d9ef">get</span> async <span style="color:#66d9ef">throws</span> {
+            <span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span> await downloadMetadata(<span style="color:#66d9ef">for</span>: id)
+            <span style="color:#66d9ef">return</span> metadata
+        }
+    }
+
+    <span style="color:#66d9ef">var</span> image: UIImage {
+        <span style="color:#66d9ef">get</span> async <span style="color:#66d9ef">throws</span> {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">try</span> await downloadImage(imageNumber: id)
+        }
+    }
+}
+</code></pre></div><p>And we can use it as such:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> metadata = <span style="color:#66d9ef">try</span>? await character.metadata
+</code></pre></div><h1 id="summary">Summary</h1>
+<p>This was a long introduction to async/await, but hopefully the included examples and discussion will help you understand how this works. <code>async/await</code> are the heart of the new concurrency system, so you need to have a fine grasp of them. Future articles may not be as long. Generally, covering the basics of something requires a lot of effort as it&rsquo;s important to not miss any details. Hopefully this article will be of use to you.</p>
+<p>I have created a sample project that makes use of the downloaded image and metadata in a UIKit project. You can download it from <a href="/archives/AsyncAwaitIntro.zip">here</a>.</p>
+<p>When ran, the program will simply download the contents and display them like this:</p>
+<p><img src="/img/async_await_part_1.png" alt="async/await Tutorial 1 result"></p>
+<p>On the <code>viewDidAppear</code> method, you will find the following code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">viewDidAppear</span>(<span style="color:#66d9ef">_</span> animated: Bool) {
+    <span style="color:#66d9ef">super</span>.viewDidAppear(animated)
+
+    <span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> METHOD 1 - Using Async/Await</span>
+
+    Task {
+        <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> imageDetail = <span style="color:#66d9ef">try</span>? await downloadImageAndMetadata(imageNumber: <span style="color:#ae81ff">1</span>) {
+            <span style="color:#66d9ef">self</span>.imageView.image = imageDetail.image
+            <span style="color:#66d9ef">self</span>.metadata.text = <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>imageDetail.metadata.name<span style="color:#e6db74">)</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">\(</span>imageDetail.metadata.firstAppearance<span style="color:#e6db74">)</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">\(</span>imageDetail.metadata.year<span style="color:#e6db74">)</span><span style="color:#e6db74">)&#34;</span>
+        }
+    }
+
+    <span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> METHOD 2 - Using async properties</span>
+
+<span style="color:#75715e">//        Task {</span>
+<span style="color:#75715e">//            let character = Character(id: 1)</span>
+<span style="color:#75715e">//            if</span>
+<span style="color:#75715e">//                let metadata = try? await character.metadata,</span>
+<span style="color:#75715e">//                let image = try? await character.image{</span>
+<span style="color:#75715e">//                imageView.image = image</span>
+<span style="color:#75715e">//                self.metadata.text = &#34;\(metadata.name) (\(metadata.firstAppearance) - \(metadata.year))&#34;</span>
+<span style="color:#75715e">//            }</span>
+<span style="color:#75715e">//        }</span>
+
+    <span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> Method 3 - Using Callbacks</span>
+
+<span style="color:#75715e">//        downloadImageAndMetadata(imageNumber: 1) { imageDetail, error in</span>
+<span style="color:#75715e">//            DispatchQueue.main.async {</span>
+<span style="color:#75715e">//                if let imageDetail = imageDetail {</span>
+<span style="color:#75715e">//                    self.imageView.image = imageDetail.image</span>
+<span style="color:#75715e">//                    self.metadata.text =  &#34;\(imageDetail.metadata.name) (\(imageDetail.metadata.firstAppearance) - \(imageDetail.metadata.year))&#34;</span>
+<span style="color:#75715e">//                }</span>
+<span style="color:#75715e">//            }</span>
+<span style="color:#75715e">//        }</span>
+}
+</code></pre></div><p>You can comment and uncomment everything under <code>MARK: - Method x</code> to fill the outlets with the data provided by the different methods of getting the data. Hopefully you can play around with this to get a better hang of how <code>async/await</code> work in Swift.</p>
+<p>I want to revisit these two points I made earlier:</p>
+<blockquote>
+<ol>
+<li>Procedural code runs from top to bottom. Control is given back to the caller through <code>return</code></li>
+<li>Callback-based concurrency will create asynchronous tasks, but it will continue executing the current thread without an issue, even if those tasks are running. Control is given back to the caller through completion handlers.</li>
+</ol>
+</blockquote>
+<p>We can now append one more thing to summarize:</p>
+<blockquote>
+<p>3 async/await will run in order just like procedural programming. When it finds an <code>await</code> call, the job will  suspend and will give control back to the system instead of the caller. Unlike callback-based concurrency, it will not continue execution of the statements under it until it has finished. The system will make use of the thread to perform other work, and when it decides it&rsquo;s time to revisit your function, it will, and execution will resume linearly.</p>
+</blockquote>
+<p>When you are ready, you can proceed to the third article in the series, <a href="/posts/converting-closure-based-code-into-async-await-in-swift/">Converting Closure-based code into async/await in Swift</a> to learn more about continuations, explicit continuations, and how to bridge closure-based and delegate-based code into async/await.</p>
+<h3 id="notes">Notes</h3>
+<p>*: Well, except when you put bugs in.</p>
+<p>**: This is not obvious in this example, but there exists asynchronous code that is much faster than a network call and it may finish much faster than expected, altering the output of the console on each run.</p>
+<p>***: Drive responsibly.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/modern-concurrency-in-swift-introduction/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Modern Concurrency in Swift: Introduction</span>
+    </a>
+    
+    
+    <a href="/posts/converting-closure-based-code-into-async-await-in-swift/" class="navigation-next">
+      <span class="navigation-tittle">Converting closure-based code into async/await in Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

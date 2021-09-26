@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Recognizing the language in a Natural Language Text with NLanguageRecognizer • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Recognizing the language in a Natural Language Text with NLanguageRecognizer"/>
+<meta name="twitter:description" content="Identify the language of a body of natural language text with NLLanguageRecognizer."/>
+
+<meta property="og:title" content="Recognizing the language in a Natural Language Text with NLanguageRecognizer" />
+<meta property="og:description" content="Identify the language of a body of natural language text with NLLanguageRecognizer." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/recognizing-language-nllanguagerecognizer/" />
+<meta property="article:published_time" content="2020-02-19T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-02-19T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Recognizing the language in a Natural Language Text with NLanguageRecognizer</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Feb 19, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/natural-language">natural language</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 4 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Continuing my trend of writing about language processing, today I want to discuss about identifying the language of a body of text. This is an interesting task we can do thanks, once again, to Apple&rsquo;s investment in APIs linked to machine learning.</p>
+<p>Today we will explore the <a href="https://developer.apple.com/documentation/naturallanguage/nllanguagerecognizer"><code>NLLanguageRecognizer</code></a> object. Introduced in iOS 12, this class can do a lot of language recognizing, from detecting the &ldquo;dominant language&rdquo; of a string, to all the possible languages.</p>
+<h1 id="introducing-nllanguagerecognizer">Introducing NLLanguageRecognizer</h1>
+<!-- raw HTML omitted -->
+<p>Don&rsquo;t try to use one instance of this object through multiple threads.</p>
+<!-- raw HTML omitted -->
+<p>This class is actually very easy to use. It has very few methods, and the easiest task to perform is one static method away. You need to <code>import NaturalLanguage</code> to use it.</p>
+<h2 id="quickly-recognizing-a-language-in-a-string">Quickly Recognizing a Language in a String.</h2>
+<p>If all you need to do is to quickly recognize a language in a string, you can use the static <code>dominantLanguage(for:)</code> method. This method takes the string to recognize and returns an optional <a href="https://developer.apple.com/documentation/naturallanguage/nllanguage"><code>NLLanguage</code></a> object, which contains the language itself. If the string cannot recognize a language at all, it will be nil.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToRecognize = <span style="color:#e6db74">&#34;This is an awesome string.&#34;</span>
+
+<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> lang = NLLanguageRecognizer.dominantLanguage(<span style="color:#66d9ef">for</span>: stringToRecognize) {
+  print(lang.rawValue) <span style="color:#75715e">// prints &#34;en&#34;</span>
+}
+</code></pre></div><p>And the fun part is, because the method can return the <em>dominant</em> language, you can mix multiple languages together and it will return the one with most presence.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToRecognize = <span style="color:#e6db74">&#34;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&#34;</span>
+
+<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> lang = NLLanguageRecognizer.dominantLanguage(<span style="color:#66d9ef">for</span>: stringToRecognize) {
+  print(lang.rawValue) <span style="color:#75715e">// prints &#34;es&#34;</span>
+}
+</code></pre></div><p>The above example uses a string with both English and Spanish. Because Spanish is the dominant language, it prints &ldquo;es&rdquo;.</p>
+<h2 id="advanced-usage">Advanced Usage</h2>
+<p>That&rsquo;s probably a bad title, because using the other features o this class is not complicated at all.</p>
+<p>First, we can detect all the languages in a string. Although this will not be accurate all the time, an instance of this class offers the <code>languageHypotheses(withMaximum)</code> method, which tries to return all the languages found in a string. The return type is a dictionary of type <code>[NLLanguage: Double]</code>. The double is the probability of each language. The <code>withMaximum</code> parameter is the maximum number of languages to return.</p>
+<p>To use an instance instead of the static methods of this class, you have to call the <code>processString</code> method, which takes a string and returns nothing. After you call this method, <code>NSLanguageRecognizer</code>s will have its <code>dominantLanguage</code> property filled. You will also be able to use <code>languageHypotheses(withMaximum)</code> method. Calling <code>processString</code> is essential to do anything interesting with this class. And like you are able to tell, everything happens in the same thread, so remember not to use one instance concurrently.</p>
+<p>The following example gets all the possible languages in the string:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">var</span> stringToRecognize = <span style="color:#e6db74">&#34;This is an awesome string. Cuando yo estaba por ahí en las calles decidí preguntar el significado de la vida&#34;</span>
+
+<span style="color:#66d9ef">let</span> langRecognizer = NLLanguageRecognizer()
+langRecognizer.processString(stringToRecognize)
+<span style="color:#66d9ef">for</span> (lang, perc) <span style="color:#66d9ef">in</span> langRecognizer.languageHypotheses(withMaximum: <span style="color:#ae81ff">10</span>) {
+  print(<span style="color:#e6db74">&#34;Probability of </span><span style="color:#e6db74">\(</span>lang.rawValue<span style="color:#e6db74">)</span><span style="color:#e6db74">: </span><span style="color:#e6db74">\(</span>perc<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+}
+</code></pre></div><p>It will output something like the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">Probability of de: <span style="color:#ae81ff">0.0011527120368555188</span>
+Probability of sk: <span style="color:#ae81ff">0.0013781085144728422</span>
+Probability of hu: <span style="color:#ae81ff">0.001778516685590148</span>
+Probability of it: <span style="color:#ae81ff">0.003761883592233062</span>
+Probability of pt: <span style="color:#ae81ff">0.01308358833193779</span>
+Probability of nl: <span style="color:#ae81ff">0.0018757604993879795</span>
+Probability of ro: <span style="color:#ae81ff">0.0038427249528467655</span>
+Probability of hr: <span style="color:#ae81ff">0.0007617694209329784</span>
+Probability of en: <span style="color:#ae81ff">0.09818074852228165</span>
+Probability of es: <span style="color:#ae81ff">0.8707313537597656</span>
+</code></pre></div><p>You should try to give the <code>withMaximum</code> parameter a more reasonable value if you have any idea of what the dominant languages are going to be. We can observe that English and Spanish have the bigger percentages.</p>
+<p>You can also guide the recognizer by specifying the <code>languageHints</code> and <code>languageConstraints</code> properties. I wasn&rsquo;t able to find much use for <code>languageHints</code> because it takes a dictionary similar to the one returned by <code>languageHypotheses(withMaxium:)</code>, but by using <code>languageConstraints</code> you can limit the languages you want to recognize.</p>
+<p>If we add the following code to the piece of code above</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">langRecognizer.languageConstraints = [.english, .spanish]
+</code></pre></div><p>It will print:</p>
+<pre><code>Probability of es: 0.8986690044403076
+Probability of fr: 0.0
+Probability of hr: 0.0
+Probability of da: 0.0
+Probability of en: 0.10133091360330582
+Probability of cs: 0.0
+Probability of fi: 0.0
+Probability of de: 0.0
+Probability of hu: 0.0
+</code></pre><p>And it would be good to assign <code>withMaxium</code> to <code>2</code> here, as we know we only want to recognize two languages.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Recognizing a language in iOS is as easy as using the <code>NLLanguageRecognizer</code> API introduced in iOS 12 and calling a few lines of code. The system will do its best to determine the dominant language or all the possible languages in a string, and you can use this information for natural-language apps.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/tokenizing-nltokenizer/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Tokenizing Natural Language into Semantic Units in iOS</span>
+    </a>
+    
+    
+    <a href="/posts/analyzing-text-nltagger/" class="navigation-next">
+      <span class="navigation-tittle">Analyzing Natural Language Text with NLTagger</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

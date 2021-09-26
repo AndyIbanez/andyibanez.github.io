@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Using ASWebAuthenticationSession with SwiftUI • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Using ASWebAuthenticationSession with SwiftUI"/>
+<meta name="twitter:description" content="Learn how to integrate ASWebAuthenticationSession with SwiftUI"/>
+
+<meta property="og:title" content="Using ASWebAuthenticationSession with SwiftUI" />
+<meta property="og:description" content="Learn how to integrate ASWebAuthenticationSession with SwiftUI" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/using-aswebauthenticationaession-swiftui/" />
+<meta property="article:published_time" content="2020-09-02T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-09-02T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Using ASWebAuthenticationSession with SwiftUI</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Sep 2, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/macos">macos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/swiftui">swiftui</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 9 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Working with REST APIs you have no control over can be a little monotonous. This is especially for OAuth 2.0 API that need you to do a little bit of setup, get your API keys with the service provider, and then you need to do the setup on your app&rsquo;s size: Configure your URL scheme, deal with that URL Scheme, and write code that does something when your app gets called with that URL.</p>
+<p>In the old days of iOS development, this took quite a while. If you adopted something like the Facebook and Twitter APIs, you likely used their SDKs as they dealt with all these issues for you. If you wanted to use a service that didn&rsquo;t provide an SDK, you were of luck, and had to do quite a little bit of setup.</p>
+<p>Luckily for us, starting on iOS 12, Apple introduced the <code>AuthenticationServices</code>, which, amongst many many things, it <em>greatly</em> simplifies the OAuth 2.0 flow for REST APIs, thanks to the <code>ASWebAuthenticationSession</code> object.</p>
+<h1 id="initial-setup">Initial Setup</h1>
+<p>I recently had to use the <a href="https://anilist.gitbook.io/anilist-apiv2-docs/">Anilist API</a> for an upcoming up, so a lot of the sample code will come from this project.</p>
+<p>Regardless of the service you are interacting with, you will first need to get your API credentials.</p>
+<p><img src="/img/nae_anilist_config.png" alt="Nae Anilist Config"></p>
+<p>At the very least, they will always give you an API secret.</p>
+<p>You still need to configure your URL Scheme to call your app. To do this, click your project blueprint in Xcode, click <code>Info</code>,  select your Target, and expand the <code>URL Types</code> section. The identifier needs to be anything in reverse DNS donation. The scheme has to be everything up to but not including <code>://</code> of your URL. Depending on the service provider, you may have the flexibility of creating your own or they will assign one to you. Set the role to <code>Viewer</code>, thought it doesn&rsquo;t really matter for iOS apps.</p>
+<p><img src="/img/anilist_url_config.png" alt="Xcode Anilist Config"></p>
+<p>And that&rsquo;s all we need to do for the initial setup. We can now start writing some code.</p>
+<h1 id="the-view-and-viewmodel">The View and ViewModel</h1>
+<p>Because we are using SwiftUI, we can create our views and a companion ViewModel object.</p>
+<h2 id="the-viewmodel">The ViewModel</h2>
+<h3 id="the-aswebauthenticationpresentationcontextproviding-protocol">The ASWebAuthenticationPresentationContextProviding Protocol</h3>
+<p>The ViewModel will take care of handling the actual authentication flow for us. It must conform to the <code>ASWebAuthenticationPresentationContextProviding</code> protocol.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SignInViewModel</span>: NSObject, ObservableObject, ASWebAuthenticationPresentationContextProviding {
+}
+</code></pre></div><p>Also note the <code>NSObject</code> inheritance. This is necessary, because we are conforming to <code>ASWebAuthenticationPresentationContextProviding</code>. If you don&rsquo;t inherit from <code>NSObject</code> you will need to do a lot of implementations to satisfy the constraint, and it&rsquo;s not easy or short to do.</p>
+<p>Before we move on, let&rsquo;s satisfy that <code>ASWebAuthenticationPresentationContextProviding</code> protocol. There&rsquo;s only one tiny method we need to implement.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SignInViewModel</span>: NSObject, ObservableObject, ASWebAuthenticationPresentationContextProviding {
+
+    <span style="color:#75715e">// </span><span style="color:#75715e">MARK:</span><span style="color:#75715e"> - ASWebAuthenticationPresentationContextProviding</span>
+    
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">presentationAnchor</span>(<span style="color:#66d9ef">for</span> session: ASWebAuthenticationSession) -&gt; ASPresentationAnchor {
+        <span style="color:#66d9ef">return</span> ASPresentationAnchor()
+    }
+
+}
+</code></pre></div><p>This method is actually one of the source of confusion developers have when they try to integrate this framework with web logins. I have seen implementations where people try to get a reference to <code>UIWindow</code> and all other kinds of hacky jobs to get this to work, but nothing like that is necessary. In SwiftUI 2, it&rsquo;s not easy (is it even possible?) To get a reference to the main window and use that as the presentation anchor, so it&rsquo;s good to know you don&rsquo;t need to keep any kind of whacky references to get this to work.</p>
+<p>Everything this method is doing is telling the framework &ldquo;hey, use use a presentation anchor appropriate for this platform&rdquo;. You don&rsquo;t need to give it any other context information or references. In fact, the <code>ASPresentationAnchor</code> documentation states:</p>
+<blockquote>
+<p>A platform-specific type that indicates the kind of user interface element to use as a presentation anchor.</p>
+</blockquote>
+<p>The system will choose the right anchor for you, so you don&rsquo;t have to worry about grabbing one up from up above the view hierarchy.</p>
+<p>Furthermore, the documentation even tells you how it is implemented:</p>
+<p>For iOS, Mac Catalyst, tvOS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">typealias</span> ASPresentationAnchor = UIWindow
+</code></pre></div><p>for macOS:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">typealias</span> ASPresentationAnchor = NSWindow
+</code></pre></div><p>So no need to grab references or anything. Just return <code>ASPresentationAnchor</code> and let the framework do the rest.</p>
+<h3 id="the-signin-method">The SignIn Method</h3>
+<p>We can finally write the actual code that will show up the login UI. The login UI is a website provided by the OAuth 2.0 service, where the user logs in without having to enter their credentials directly into their app. Once the user finishes the login flow with the service, the service calls your custom URL Scheme with a longer URL that contains an access token.</p>
+<pre><code>    func signIn() {
+        let signInPromise = Future&lt;URL, Error&gt; { completion in
+            let apiData = AnilistAPIConfigurations.load()
+            let authUrl = AnilistAuthenticationURLBuilder(clientID: apiData.id)()
+            
+            let authSession = ASWebAuthenticationSession(
+                url: authUrl, callbackURLScheme:
+                    apiData.redirectURL.absoluteString) { (url, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let url = url {
+                    completion(.success(url))
+                }
+            }
+            
+            authSession.presentationContextProvider = self
+            authSession.prefersEphemeralWebBrowserSession = true
+            authSession.start()
+        }
+        
+        signInPromise.sink { (completion) in
+            switch completion {
+            case .failure(let error): // Handle the error here. An error can even be when the user cancels authentication.
+            default: break
+            }
+        } receiveValue: { (url) in
+            self.processResponseURL(url: url)
+        }
+        .store(in: &amp;subscriptions)
+    }
+</code></pre><p>This looks like a lot, so let&rsquo;s look at it step by step.</p>
+<p>First, I&rsquo;m getting into the habit of reducing the amount of callback code I have. For this reason, when I find a native API that requires a callback, I wrap it in a combine <code>Future</code>. For more info, check out my <a href="https://www.andyibanez.com/posts/wrapping-asynchronous-apis-into-combine-futures/">Wrapping Asynchronous APIs into Combine Futures</a> article. You do not need to do this, and you can use the callback and its results directly.</p>
+<p>Second, we have a <code>AnilistAPIConfiguration</code> object that calls a static <code>load()</code> object.</p>
+<p>I bundle an API config file in my app that is simple a JSON file with my API credentials. For those raising eyebrows at this, you are allowed to do this as long as your service provider allows you to use implicit grants.</p>
+<p>The JSON file looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">{
+    <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+    <span style="color:#e6db74">&#34;secret&#34;</span>: <span style="color:#e6db74">&#34;api_secret&#34;</span>,
+    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Nae for Anilist&#34;</span>,
+    <span style="color:#e6db74">&#34;redirectURL&#34;</span>: <span style="color:#e6db74">&#34;fairese-nae://anilist-auth&#34;</span>
+}
+</code></pre></div><p>All the values here were given to my by service provider (Anilist). You may need to adapt this or provide your credentials in an entire different way depending on your API provider.</p>
+<p>The <code>AnilistAPIConfigurations</code> class is implemented like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnilistAPIConfigurations</span>: Codable {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">let</span> id: Int
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">let</span> secret: String
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">let</span> name: String
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">let</span> redirectURL: URL
+    
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">load</span>() -&gt; AnilistAPIConfigurations {
+        <span style="color:#66d9ef">let</span> filePath = Bundle.main.url(forResource: <span style="color:#e6db74">&#34;anilist_api&#34;</span>, withExtension: <span style="color:#e6db74">&#34;json&#34;</span>)<span style="color:#f92672">!</span>
+        <span style="color:#66d9ef">let</span> data = <span style="color:#66d9ef">try</span>! Data(contentsOf: filePath)
+        <span style="color:#66d9ef">let</span> object = <span style="color:#66d9ef">try</span>! JSONDecoder().decode(AnilistAPIConfigurations.<span style="color:#66d9ef">self</span>, from: data)
+        <span style="color:#66d9ef">return</span> object
+    }
+}
+</code></pre></div><p>The <code>load()</code> does not safely unwrap, because I want it to fail when it&rsquo;s not possible to use my credentials.</p>
+<p>The <code>AnilistAuthenticationURLBuilder</code> builds the authentication URL for the service. You could hardcore your URL here directly, or anything else. Just know you need an authentication URL the service will call based on your API secret and other info. The implementation of this object is the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#75715e">/// Builds authentication URLs.</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AnilistAuthenticationURLBuilder</span> {
+    
+    <span style="color:#75715e">/// The domain URL</span>
+    <span style="color:#66d9ef">let</span> domain: String
+    
+    <span style="color:#75715e">/// Client ID</span>
+    <span style="color:#66d9ef">let</span> clientID: Int
+    
+    <span style="color:#66d9ef">init</span>(
+        domain: String = <span style="color:#e6db74">&#34;anilist.co&#34;</span>,
+        clientID: Int) {
+        <span style="color:#66d9ef">self</span>.domain = domain
+        <span style="color:#66d9ef">self</span>.clientID = clientID
+    }
+    
+    <span style="color:#66d9ef">var</span> url: URL {
+        <span style="color:#66d9ef">var</span> components = URLComponents()
+        components.scheme = <span style="color:#e6db74">&#34;https&#34;</span>
+        components.host = domain
+        components.path = <span style="color:#e6db74">&#34;/api/v2/oauth/authorize&#34;</span>
+        components.queryItems =
+            [
+                <span style="color:#e6db74">&#34;client_id&#34;</span>: String(clientID),
+                <span style="color:#e6db74">&#34;response_type&#34;</span>: <span style="color:#e6db74">&#34;token&#34;</span>
+            ].map { URLQueryItem(name: $0, value: $1) }
+        <span style="color:#66d9ef">return</span> components.url!
+    }
+    
+    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">callAsFunction</span>() -&gt; URL {
+        url
+    }
+}
+</code></pre></div><p>Anilist requires you build the URL with the client ID. The secret is not necessary for this specific API (and grant type).</p>
+<p>Next, we have the core of this article - the <code>ASWebAuthenticationSession</code> object.</p>
+<p>To create this object, you need to give it:</p>
+<ul>
+<li>The Authentication URL (<code>authUrl</code>). This is the URL that the web view will display once it loads. It will show the service&rsquo;s login page in which your users write their credentials and finish the login flow.</li>
+<li>The callback URL Scheme: This is the scheme that was both provided by the service and that we configured in our project&rsquo;s Target.</li>
+<li>A callback: The callback will give us an error or an URL containing the access token and possibly other login info. When the callback gets called, at the very least we need to grab the access token and store it in our app for authenticated requests.</li>
+</ul>
+<p>I have also set two additional properties:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">authSession.presentationContextProvider = authSession.prefersEphemeralWebBrowserSession = <span style="color:#66d9ef">true</span>
+</code></pre></div><p>The former is necessary, as that will assign us as the context provider. The later sets the web browser session as ephemeral, meaning that each time we show this web view, it will not try to use any cookies or data from a past authentication session. I do this because if the user logs out of the app, they may want to login into a different account.</p>
+<p>Finally, once you call <code>start()</code>, the session will start, the web view will be displayed, and your user will be able to authenticate against the service.</p>
+<h3 id="handling-the-response">Handling the Response</h3>
+<p>If the callback gets called successfully with an URL, we need to parse out the access token and store it. I will leave the storage details to you as that will depend on how secure the token must be and your own needs.</p>
+<p>To parse out the token, I created the <code>processResponseURL(_)</code> method:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">processResponseURL</span>(url: URL) {
+    <span style="color:#66d9ef">let</span> anilistComponents = URLComponents(url: url, resolvingAgainstBaseURL: <span style="color:#66d9ef">true</span>)
+    <span style="color:#75715e">// Anilist actually returns the token in a messed up way.</span>
+    <span style="color:#75715e">// All the parameters - including query parameters - are AFTER the fragment.</span>
+    <span style="color:#75715e">// So I can&#39;t just access the query property of these components to get all the data I need.</span>
+    <span style="color:#75715e">// To work around this and save myself the headache of possible encoding issues, I will create</span>
+    <span style="color:#75715e">// a new URL using the fragment of the old components and some dummy domain.</span>
+    
+    <span style="color:#66d9ef">if</span>  <span style="color:#66d9ef">let</span> anilistFragment = anilistComponents?.fragment,
+        <span style="color:#66d9ef">let</span> dummyURL = URL(string: <span style="color:#e6db74">&#34;http://dummyurl.com?</span><span style="color:#e6db74">\(</span>anilistFragment<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>),
+        <span style="color:#66d9ef">let</span> components = URLComponents(url: dummyURL, resolvingAgainstBaseURL: <span style="color:#66d9ef">true</span>),
+        <span style="color:#66d9ef">let</span> queryItems = components.queryItems,
+        <span style="color:#66d9ef">let</span> token = queryItems.filter ({ $0.name == <span style="color:#e6db74">&#34;access_token&#34;</span> }).first?.value,
+        <span style="color:#66d9ef">let</span> expirationDate = queryItems.filter ({ $0.name == <span style="color:#e6db74">&#34;expires_in&#34;</span> }).first?.value
+        {
+        
+        <span style="color:#75715e">/// Store the token</span>
+        <span style="color:#75715e">/// Store the token expiration date if necessary.</span>
+    }
+}
+</code></pre></div><p>This implementation is a bit specific to Anilist. Anilist currently returns the URL query parameters <em>after</em> the fragment, so we cannot grab them with URLComponents&rsquo; queryItems property. I had to create a dummy URL, create it with the contents of the response, and grab the token from there. It&rsquo;s likely that if you use this with another service, you will not need to this as they are likely to return the URL query and fragment (everything after the <code>#</code>) correctly.</p>
+<p>For more info on <code>URLComponents</code>, you can read <a href="https://www.andyibanez.com/posts/building-urls-with-nsurlcomponents/">this article</a>.</p>
+<h2 id="the-view">The View</h2>
+<p>Finally, the view will call our ViewModel&rsquo;s <code>signIn</code> method, showing the web view. The I used for this is simply this one:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">SignInView</span>: View {
+    
+    @StateObject <span style="color:#66d9ef">var</span> viewModel = SignInViewModel()
+    
+    <span style="color:#66d9ef">var</span> body: some View {
+        VStack(spacing: <span style="color:#ae81ff">16</span>) {
+            Image(systemName: <span style="color:#e6db74">&#34;person.circle&#34;</span>)
+                .resizable()
+                .frame(width: <span style="color:#ae81ff">50</span>, height: <span style="color:#ae81ff">50</span>)
+                .foregroundColor(colorForTheme(color))
+            
+            VStack(spacing: <span style="color:#ae81ff">8</span>) {
+                Text(<span style="color:#e6db74">&#34;You must be logged in to your Anilist account to use this feature&#34;</span>)
+                    .foregroundColor(.secondary)
+                    .font(.title3)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                Button {
+                    viewModel.signIn()
+                } label: {
+                    Text(<span style="color:#e6db74">&#34;Sign In&#34;</span>)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(colorForTheme(color))
+                        .clipShape(RoundedRectangle(cornerRadius: <span style="color:#ae81ff">8</span>))
+                }
+            }
+        }
+    }
+}
+</code></pre></div><p><img src="/img/nae_login.png" alt="Nae Login"></p>
+<p>Tapping the Sign In button will show a web view:</p>
+<p><img src="/img/nae_anilist_login_webview.png" alt="Nae Anilist Login"></p>
+<h1 id="conclusion">Conclusion</h1>
+<p><code>ASWebAuthenticationSession</code> is one of the hidden gems from WWDC18. Authorizing your app with third party web services is now easier than ever, and you can get it done in just a few hours of code, without having to engage in heavy configurations or callbacks.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/introduction-apples-unified-logging-system-ios14-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Introduction to Apple&#39;s Unified Logging System on iOS 14 in Swift</span>
+    </a>
+    
+    
+    <a href="/posts/logging-messages-unified-logging-system-apple-platforms/" class="navigation-next">
+      <span class="navigation-tittle">Logging Messages With the Unified Logging System on Apple Platforms</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Getting to Know the Simulator Better • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Getting to Know the Simulator Better"/>
+<meta name="twitter:description" content="Learn about the features the Simulator offers to make your Apple App development better."/>
+
+<meta property="og:title" content="Getting to Know the Simulator Better" />
+<meta property="og:description" content="Learn about the features the Simulator offers to make your Apple App development better." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/getting-to-know-the-simulator-better/" />
+<meta property="article:published_time" content="2021-03-10T07:00:00-04:00" />
+<meta property="article:modified_time" content="2021-03-10T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Getting to Know the Simulator Better</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Mar 10, 2021
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/simulator">simulator</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/watchos">watchos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 9 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Every iOS developer has used the simulator. Alongside Xcode, it&rsquo;s probably one of the most used tool by us all. We use the simulator to test our iOS, iPadOS, and watchOS apps without having to run them in an iOS device.</p>
+<p>But other than helping us test our apps, the simulator actually has many nice features that can help make our job a little bit easier. With the use of these features we can avoid using physical devices until it&rsquo;s time to do an actual test run or one.</p>
+<p>In this article, we will explore the Simulator features provided to us by Xcode and the <code>xcrun simctl</code> tool.</p>
+<h1 id="simctl-basics">simctl Basics</h1>
+<p>Before we get into the good stuff, let&rsquo;s explore some basic functionality offered by <code>simctl</code>. You can, after all, use this to write some automation for your work with the simulator and it can save you some trips to Xcode&rsquo;s GUI.</p>
+<h2 id="listing-simulator-devices">Listing Simulator Devices</h2>
+<p>You can list the available simulator runtimes by simply running the <code>list</code> subcommand.</p>
+<pre><code>xcrun simctl list
+</code></pre><p>This will print a lot of stuff, but among the data, you will find the name of the emulated device and the OS version is currently emulating.</p>
+<pre><code>== Devices ==
+-- iOS 13.2 --
+    iPad Pro (9.7-inch) (5FB75994-26F5-4455-80E7-14D00CBACA81) (Shutdown) 
+    iPad (7th generation) (7055FC4A-DC49-433B-8005-13E9AC2CDCF7) (Shutdown) 
+    iPad Pro (11-inch) (1st generation) (8D50B34C-FABE-41D0-807E-6AB5CAD73E41) (Shutdown) 
+    iPad Pro (12.9-inch) (3rd generation) (FD578FA9-987A-40A9-8317-695E40D2D52C) (Shutdown) 
+-- iOS 14.4 --
+    iPhone 11 Pro Max (0DD83491-914D-4EB9-9B8A-00A3191199B7) (Shutdown) 
+    iPhone SE (2nd generation) (9C8A6939-9AC5-4D7D-AA46-9E8DA7F22725) (Shutdown) 
+    iPhone 12 mini (0F59FD9B-DC0C-4812-99EF-E88236667AB9) (Booted) 
+    iPhone 12 (31891A98-684F-4C82-9767-EF09FD91F678) (Shutdown) 
+</code></pre><p>It even lists device pairs, which are used when you are working with an Apple Watch companion app to your iPhone app:</p>
+<pre><code>== Device Pairs ==
+3A322BC4-879B-49B8-B60D-6C7647B2C567 (active, disconnected)
+    Watch: Apple Watch Series 5 - 40mm (000B4763-2096-434E-97E4-74154DD72B4E) (Shutdown)
+    Phone: iPhone 12 mini (0F59FD9B-DC0C-4812-99EF-E88236667AB9) (Booted)
+AFB5C78F-8C41-4851-98F7-39D5A49F8E5C (active, disconnected)
+    Watch: Apple Watch Series 5 - 44mm (EF2AD5C2-16B5-41D9-AE75-3EE657F0630F) (Shutdown)
+    Phone: iPhone 12 (31891A98-684F-4C82-9767-EF09FD91F678) (Shutdown)
+</code></pre><p>All the devices have a unique (UUID) identifier associated to them. When using <code>simctl</code>, you specify the UUID you want the command to act upon.</p>
+<h2 id="booting-devices">Booting Devices</h2>
+<p>Use <code>xcrun simctl boot YOUR_UUID_ID</code> to boot a device.</p>
+<p>Here, I&rsquo;m booting my iPhone 11 Pro Max simulator running iOS 14.4.</p>
+<pre><code>xcrun simctl boot 0DD83491-914D-4EB9-9B8A-00A3191199B7
+</code></pre><p>Note that this command will send the boot up signal to the simulator and return immediately return. In other words, there&rsquo;s no way to &ldquo;wait&rdquo; until the device is ready for use and is fully booted up.</p>
+<p>Earlier, we said that <code>simctl</code> takes an UUID on its commands. After a device is booted, you can pass in the word <code>booted</code> instead of the UUID and the simulator will automatically choose the currently booted device to execute the commands on. If you are running multiple simulators and you pass in <code>booted</code>, the command line tool will select one of the booted simulators, so if you have multiple simulators open, it&rsquo;s best to keep passing the respective UUIDs.</p>
+<p>Once a simulator is booted, their status on <code>simctl list</code> will change to <code>(Booted)</code> instead of <code>(Shutdown)</code>.</p>
+<pre><code>-- iOS 14.4 --
+    iPhone 7 (4C1A1BE4-82D0-428F-9B22-0CC1FC776821) (Shutdown) 
+    iPhone 8 (4A3B434B-1EAA-4D30-BD4C-4C03906CA6E6) (Shutdown) 
+    iPhone 8 Plus (1A3195D3-2557-4B8C-85C8-C6C49E0350BC) (Shutdown) 
+    iPhone 11 (03BBFEB2-7DCB-41D1-A49D-18AB55AB3C0F) (Shutdown) 
+    iPhone 11 Pro (726B8086-CBF5-4FE4-B0BB-DFE2100D95F0) (Shutdown) 
+    iPhone 11 Pro Max (0DD83491-914D-4EB9-9B8A-00A3191199B7) (Booted) &lt;--------
+</code></pre><p>This is just bash, so you can combine other shell commands through piping. For example, we can choose to list only the devices that are currently booted:</p>
+<pre><code>xcrun simctl list | grep &quot;(Booted)&quot;
+</code></pre><pre><code>iPhone 11 Pro Max (0DD83491-914D-4EB9-9B8A-00A3191199B7) (Booted) 
+iPhone 12 mini (0F59FD9B-DC0C-4812-99EF-E88236667AB9) (Booted) 
+</code></pre><h2 id="simctl-with-json">simctl with JSON</h2>
+<p>You can make the <code>list</code> and other subcommands print in json by adding the <code>--json</code> (<code>-j</code> for short) flag.</p>
+<pre><code>xcrun simctl list --json
+</code></pre><pre><code>  &quot;runtimes&quot; : [
+    {
+      &quot;bundlePath&quot; : &quot;\/Library\/Developer\/CoreSimulator\/Profiles\/Runtimes\/iOS 13.2.simruntime&quot;,
+      &quot;buildversion&quot; : &quot;17B102&quot;,
+      &quot;runtimeRoot&quot; : &quot;\/Library\/Developer\/CoreSimulator\/Profiles\/Runtimes\/iOS 13.2.simruntime\/Contents\/Resources\/RuntimeRoot&quot;,
+      &quot;identifier&quot; : &quot;com.apple.CoreSimulator.SimRuntime.iOS-13-2&quot;,
+      &quot;version&quot; : &quot;13.2.2&quot;,
+      &quot;isAvailable&quot; : true,
+      &quot;name&quot; : &quot;iOS 13.2&quot;
+    },
+    {
+      &quot;bundlePath&quot; : &quot;\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneOS.platform\/Library\/Developer\/CoreSimulator\/Profiles\/Runtimes\/iOS.simruntime&quot;,
+      &quot;buildversion&quot; : &quot;18D46&quot;,
+      &quot;runtimeRoot&quot; : &quot;\/Applications\/Xcode.app\/Contents\/Developer\/Platforms\/iPhoneOS.platform\/Library\/Developer\/CoreSimulator\/Profiles\/Runtimes\/iOS.simruntime\/Contents\/Resources\/RuntimeRoot&quot;,
+      &quot;identifier&quot; : &quot;com.apple.CoreSimulator.SimRuntime.iOS-14-4&quot;,
+      &quot;version&quot; : &quot;14.4&quot;,
+      &quot;isAvailable&quot; : true,
+      &quot;name&quot; : &quot;iOS 14.4&quot;
+    },
+</code></pre><h2 id="shutting-down-and-clearing-simulators">Shutting Down And Clearing Simulators</h2>
+<p>You can close all simulators and even clear their contents and settings with two simple commands:</p>
+<pre><code>xcrun simctl shutdown SIMULATOR_UUID
+xcrun simctl erase SIMULATOR_UUID
+</code></pre><h2 id="opening-urls-in-the-simulator">Opening URLs in the Simulator</h2>
+<p>If you have been using Safari to try out your custom URL schemes, you can stop doing that now. There is a command that will prompt the simulator to open a URL and it will route the request to the appropriate app.</p>
+<pre><code>xcrun simctl openurl (SIMULATOR_UUID|booted) maps://
+</code></pre><p>This is not limited to schemes, as it can open normal HTTP links as well in the default browser.</p>
+<pre><code>xcrun simctl openurl (SIMULATOR_UUID|booted) &quot;https://www.andyibanez.com&quot;
+</code></pre><h2 id="screenshots-and-videos">Screenshots and Videos</h2>
+<p>You can take screenshots from the simulator in two ways:</p>
+<ul>
+<li>Press Cmd + S</li>
+<li>Using the <code>xcrun simctl io SIMULATOR_UUID|booted screenshot FILE_NAME.png</code></li>
+</ul>
+<p>You can also record video with the following command:</p>
+<pre><code>xcrun simctl io booted SIMULATOR_UUID|booted recordVideo FILE_NAME.mp4
+</code></pre><p>This will begin recording indefinitely. Press <code>Ctrl + C</code> on the console when you are done recording, and the video will be saved on your Mac.</p>
+<p>You can pass in some additional flags to <code>recordVideo</code>. We can, for example, change the codec altogether and even the device mask.</p>
+<pre><code>xcrun simctl io booted recordVideo --codec h264 --mask ignored myVid.mp4
+</code></pre><h3 id="capturing-video-on-external-displays">Capturing Video on External Displays</h3>
+<p>The simulator can simulate external displays. If your app supports them, you can choose whether to capture from the main device or an external device.</p>
+<p>To quickly test this, we can use the Photos app.[^]</p>
+<p>Go to <code>I/O</code> &gt; <code>External Displays</code> on the Simulator menu to explore the different options you have.</p>
+<h2 id="adding-media-to-the-photosapp">Adding Media to the Photos.app</h2>
+<p>There&rsquo;s two ways you can add media to the Photos.app</p>
+<p>The first one is the following command:</p>
+<pre><code>xcrun simctl addmedia SIMULATOR_UUID|booted ~/path/to/file/pic.jpg
+</code></pre><p>This is a great way to script and automate the addition of new media.</p>
+<p>But if you just need to quickly add media to the simulator, you can now simply drag and drop the media from anywhere in your Mac to the simulator.</p>
+<p>To capture from an external display:</p>
+<pre><code>xcrun simctl io booted recordVideo --display external externalVid.mp4
+</code></pre><h1 id="privacy">Privacy</h1>
+<p>As you know, on iOS we don&rsquo;t have free access to all the areas on the operating system as Apple takes user privacy very seriously. Instead, when an app needs access to data deemed private, the user will see a prompt asking them if it&rsquo;s OK to grant your app that data. This data includes, but is not limited to, contacts, calendar, and health.</p>
+<p>We can quickly grant access to this personal data on the simulator to your app by running:</p>
+<pre><code>xcrun simctl privacy SIMULATOR_UUID|booted grant APP_NAME YOUR_APP_BUNDLE_ID
+</code></pre><p>Where:</p>
+<ul>
+<li>APP_NAME is the name of the data with private data you want to access, such as <code>contacts</code>, <code>calendar</code>, <code>health</code>, <code>wallet</code>, and more. If you want to grant access to everything, you can simply write <code>all</code>.</li>
+<li>YOUR_APP_BUNDLE_ID is the bundle ID of the app that will have access to this data.</li>
+</ul>
+<p>Granting and revoking is equally easy. To revoke permissions, replace <code>grant</code> with <code>revoke</code> in the command above.</p>
+<p>On iOS, permissions normally have three states: undefined, granted, and denied. The prompt is shown only when the state is undefined. After a user grants or denies a permission, the prompt will show.</p>
+<p>You can reset all the permission settings to the &ldquo;undefined&rdquo; state and force the system to show a prompt for your app by running:</p>
+<pre><code>xcrun simctl privacy SIMULATOR_UUID|booted reset all
+</code></pre><p>Just like above, you can replace <code>all</code> with specific apps.</p>
+<h1 id="device-specific-features">Device Specific Features</h1>
+<h2 id="ipados">iPadOS</h2>
+<p>The iPadOS simulator allows you to test the mouse integration with your app. By clicking the &ldquo;Capture Pointer&rdquo; button on the simulator, you will be able to simulate using a mouse in your app:</p>
+<p><img src="/img/ipad_sim_bar.png" alt="iPadOS Simulator Bar"></p>
+<p>When you want to exit, press the <code>Esc</code> key.</p>
+<p>A lot of this is actually customizable. If you need to do something with the <code>Esc</code> key on your iPadOS app, you can configure a different key to stop capturing your mouse. For this, go to <code>Simulator</code> &gt; <code>Preferences</code> and choosing another option for <code>Stop capture shortcut</code>.</p>
+<h1 id="newly-added-features-on-ios-14">Newly-added Features on iOS 14.</h1>
+<p>Xcode 12 and iOS 14 and the rest of the OS family bring a few new features to the simulator, most notably:</p>
+<h2 id="creating-new-simulators-without-xcode">Creating new Simulators without Xcode</h2>
+<p>You can go to <code>File</code> &gt; <code>New Simulator...</code> to create a new simulator quickly and painlessly. You will be asked for a name, type, and OS version.</p>
+<h2 id="push-notifications">Push Notifications</h2>
+<p>New (and very exciting) to Xcode 12, we can send push notifications to the simulator without having to use a server.</p>
+<p>To trigger the notifications, you can do it in two ways:</p>
+<ul>
+<li>With the <code>simctl</code> <code>push</code> command:</li>
+</ul>
+<pre><code>xcrun simctl push SIMULATOR_ID|booted YOUR_APP_BUNDLE_ID PAYLOAD_JSON_FILE.json
+</code></pre><p>You must specify the bundle ID of your app in order for the command to know what App triggered the request.</p>
+<p>The <code>PAYLOAD_JSON_FILE.json</code> parameter is a file that contains a JSON in the same format as push notifications.</p>
+<p>It looks like this:</p>
+<pre><code>{
+    &quot;aps&quot; : {
+		    &quot;badge&quot; : 1, 
+        &quot;alert&quot; : {
+            &quot;title&quot; : &quot;New Message&quot;,
+            &quot;body&quot; : &quot;Sakura: Hey I just captured a new card!&quot;
+        }
+    }
+}
+</code></pre><p>This is a simple payload you can use, but Apple documents all the possible fields <a href="https://developer.apple.com/library/archive/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/CreatingtheNotificationPayload.html">here</a>.</p>
+<h1 id="modifying-the-status-bar">Modifying the Status Bar.</h1>
+<p>With the simulator, we can even modify the status bar. This is useful when preparing screenshots for the App Store or other marketing material. You may know Apple always show 9:41 in all its screenshots when the status bar clock is visible - this is because the first iPhone was shown to the world for the first time at this time.</p>
+<p>But that&rsquo;s not all, you can also make it show full signal, full battery, full Wi-Fi bars, or customize any of these parameters to your liking.</p>
+<p>Simply run the <code>status_bar</code> subcommand with any or all of the following flags:</p>
+<pre><code>xcrun simctl status_bar booted override --time 07:00 --cellularBars 3 --dataNetwork LTE --wifiMode failed
+</code></pre><p>If you need to override these settings, simply run:</p>
+<pre><code>xcrun simctl status_bar booted clear
+</code></pre><p>If you run the <code>status_bar</code> subcommand without any arguments, you will be able to see all the possible flags you can modify. It&rsquo;s very powerful and flexible, as you can even modify the operatorName:</p>
+<pre><code>xcrun simctl status_bar
+</code></pre><p>At the time of this writing, this printed:</p>
+<pre><code>Set or clear status bar overrides
+Usage: simctl status_bar &lt;device&gt; [list | clear | override &lt;override arguments&gt;]
+
+Supported Operations:
+    list
+	List existing overrides.
+
+    clear
+	Clear all existing status bar overrides.
+
+    override &lt;override arguments&gt;
+	Set status bar override values, according to these flags.
+	You may specify any combination of these flags (at least one is required):
+
+	--time &lt;string&gt;
+	     Set the date or time to a fixed value.
+	     If the string is a valid ISO date string it will also set the date on relevant devices.
+	--dataNetwork &lt;dataNetworkType&gt;
+	     If specified must be one of 'wifi', '3g', '4g', 'lte', 'lte-a', or 'lte+'.
+	--wifiMode &lt;mode&gt;
+	     If specified must be one of 'searching', 'failed', or 'active'.
+	--wifiBars &lt;int&gt;
+	     If specified must be 0-3.
+	--cellularMode &lt;mode&gt;
+	     If specified must be one of 'notSupported', 'searching', 'failed', or 'active'.
+	--cellularBars &lt;int&gt;
+	     If specified must be 0-4.
+	--operatorName &lt;string&gt;
+	     Set the cellular operator/carrier name. Use '' for the empty string.
+	--batteryState &lt;state&gt;
+	     If specified must be one of 'charging', 'charged', or 'discharging'.
+	--batteryLevel &lt;int&gt;
+	     If specified must be 0-100.
+</code></pre><h1 id="keychain-management">Keychain Management</h1>
+<p>You can certificates to the device&rsquo;s keychain with the <code>keychain</code> command:</p>
+<pre><code>xcrun simctl keychain booted add-root-cert myCert.cer
+</code></pre><p>You can also simply drag and drop your certs.</p>
+<p>Keep in mind that you will have to trust the certificate manually, as neither of these options will do that for you.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/what-i-learned-from-selling-an-app/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">What I Learned From Selling an App</span>
+    </a>
+    
+    
+    <a href="/posts/using-corelocation-with-swiftui/" class="navigation-next">
+      <span class="navigation-tittle">Using CoreLocation With SwiftUI</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

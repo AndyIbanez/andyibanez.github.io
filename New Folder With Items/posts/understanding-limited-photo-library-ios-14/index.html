@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Understanding the Limited Photo Library in iOS 14 • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Understanding the Limited Photo Library in iOS 14"/>
+<meta name="twitter:description" content="Learn how to implement features to deal with Apple&#39;s new privacy-focused photo library features."/>
+
+<meta property="og:title" content="Understanding the Limited Photo Library in iOS 14" />
+<meta property="og:description" content="Learn how to implement features to deal with Apple&#39;s new privacy-focused photo library features." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/understanding-limited-photo-library-ios-14/" />
+<meta property="article:published_time" content="2020-12-02T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-12-02T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Understanding the Limited Photo Library in iOS 14</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Dec 2, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2020">wwdc2020</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 5 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>This year, Apple introduced a new feature that gives users even more control over what photos may third party apps see when they see a Photo Picker. The system will first present an alert asking users if they want to give access to their photos at all, and they have the option to give access to all their photos, or only to the photos they choose.</p>
+<p>This is great, but it has been a very confusing experience for both users and developers alike. In this article we will explore this new privacy-focused photo picker and how to make good use of it without compromising too much of either usability and privacy.</p>
+<h1 id="the-new-limited-photos-library">The New Limited Photos Library</h1>
+<p>Up until know, if an app asked for permission to use photos, the app got access to all of them through the PhotoKit APIs. In iOS 14, the limited photo access feature presents a system prompt where users can choose which photos will be available, and to which apps. That is to say, they can choose to give access to certain photos to one app, and a completely different set to other apps, meanwhile giving full library access to apps they fully trust.</p>
+<p>The new photo app will even apply to apps that weren&rsquo;t shipped with iOS 14 support out of the box. As this is a system feature, the prompt, being a system one, can show up on top of any app.</p>
+<p>Users can manage their selection in a few ways.</p>
+<p>The first one is to send them to Settings. In the Settings for your app, users can modify the photo access. Once again, they will have the option to give access to the whole library, or only a few photos. When the user chooses to select photos, a new button to select photo access will appear under the option selector. Below are some screenshots I took for the Twitter app.</p>
+<p><img src="/img/IMG_7206.PNG" alt="All Photos"></p>
+<p><img src="/img/IMG_7207.PNG" alt="Selected Photos"></p>
+<p>Note that when a user limits photo access to your app, you still have access to all the information you had before at an individual photo level. The functionality only limits access to assets themselves, not their metadata.</p>
+<p>For apps that haven&rsquo;t made any changes to their photo library handling code, the app can prompt the user, once per launch session, if they want to keep their library selection or if they want to change it.</p>
+<h2 id="the-motivation">The Motivation</h2>
+<p>As we said above, this feature exists to give users more control over the data they make available to third party data. In a <a href="https://developer.apple.com/videos/play/wwdc2020/10641/">WWDC2020 session video</a>, Apple said that users don&rsquo;t like to give access to their whole libraries, because they have been growing over time, and they want to feel they have more control over that data.</p>
+<h2 id="the-alternatives">The Alternatives</h2>
+<p>The prompts we saw above are displayed to users when the app wants to access assets directly. In general, there&rsquo;s very little need to ask access to entire photo libraries.</p>
+<p>Apple has introduced the new <code>PHPicker</code> class in iOS 14. This class is a replacement for <code>UIImagePickerController</code> which has many more features. The new picker provides a system UI to let users search their libraries and select multiple photos and videos. The best part is, since this is a system prompt, the user will never be prompted about giving access to their photos to your app. Unless you have a good reason to request access to user photos directly (specific cases include photo backup apps), you should adopt this picker instead, which has many improvements over the old <code>UIImagePickerController</code>. It makes it better for users to search for the photo they want in huge libraries.</p>
+<p>Also, in the past, camera apps had to request full read/write access to the library to be able to take photos and save them. This didn&rsquo;t make sense, as most camera apps would only want write access. There are new workflows to support this kind of situations.</p>
+<h2 id="adopting-explicit-limited-library-support">Adopting Explicit Limited Library Support</h2>
+<h3 id="authorization-status">Authorization Status</h3>
+<p>If you ever thought Apple wouldn&rsquo;t add more enum values to their APIs that have an authorization status, you now know they can. When requesting photo access, the system will give you back the new <code>.limited</code> case of <code>PHAuthorizationStatus</code> when users choose to limit access. There is also a new enum called <code>PHAccessLevel</code>. This value can be add only or read/write access.</p>
+<h3 id="ui-considerations">UI Considerations</h3>
+<p>Earlier we said that apps that don&rsquo;t have code to work with the limited library, can only change their access through Settings or by having the app automatically prompt the user if they want to change their selection, once per launch session.</p>
+<p>To make the experience better, you should add a button or other UI elements to let users trigger the system prompt. To do this, you can call the new <code>presentLimitedLibraryPicker(from:)</code> method of <code>PHPhotoLibrary</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> library = PHPhotoLibrary.shared()
+library.presentLimitedLibraryPicker(from: viewController)
+</code></pre></div><p>The system prompt can be annoying. The good news is that we can suppress it by setting <code>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</code> key in our <code>Info.plist</code> to yes. If you already deal with the new limited photo library, you don&rsquo;t need the system to alert your users, as you have code to show the picker as necessary.</p>
+<p>Note that you need to <code>import PhotosUI</code> to use this feature.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>The new limited photo library exists for privacy reason. Before you even make use of these APIs, you should ask yourself if you really need to access user photos, or if the new <code>PHPhotoPicker</code> can do the work for you. If you must access the assets directly, adopt the new features and suppress the alert to make the photo picker experience smoother.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/lazy-sequences-in-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Lazy Sequences in Swift</span>
+    </a>
+    
+    
+    <a href="/posts/getting-started-app-store-connect-api/" class="navigation-next">
+      <span class="navigation-tittle">Getting Started with the App Store Connect API</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

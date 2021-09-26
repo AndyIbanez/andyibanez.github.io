@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>iOS App on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/categories/ios-app/</link>
+    <description>Recent content in iOS App on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 17 Oct 2020 11:48:58 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/categories/ios-app/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Silvianna for Anilist </title>
+      <link>https://www.andyibanez.com/projects/silvianna/</link>
+      <pubDate>Sat, 17 Oct 2020 11:48:58 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/silvianna/</guid>
+      <description>Silvianna is the best Anilist client for iOS.
+Anilist is the popular website for anime and manga fans, where you can keep track of your favorite series, or discover something new to watch or read.
+Silvianna comes packed with power features for list management. The app allows you to modify anything about items on your list as long as it is supported by Anilist.
+FEATURES:
+ Friendly on the smallest iPhone and the biggest iPad.</description>
+    </item>
+    
+    <item>
+      <title>Next Anime Episode</title>
+      <link>https://www.andyibanez.com/projects/nextanimeepisode1/</link>
+      <pubDate>Mon, 08 May 2017 21:06:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/nextanimeepisode1/</guid>
+      <description>IMPORTANT NOTE While I am the original developer of this app, it has since been transferred to Alon Waller, so I can no longer offer support for the app.
+ Download on the App Store | Privacy Policy
+Next Anime Episode does one job: To help you keep track of airing anime and when they will have a new episode available in Japan.
+Generally, sub based simulcast streaming services have the newest episodes available within one hour after they air in Japan.</description>
+    </item>
+    
+    <item>
+      <title>Mignori 1</title>
+      <link>https://www.andyibanez.com/projects/mignori1/</link>
+      <pubDate>Mon, 03 Mar 2014 17:17:17 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/mignori1/</guid>
+      <description>Discontinued project, but a new version is in the works. Developed in 2014.
+Mignori is a mobile client to use with -booru or -booru based sites (Gelbooru and Danbooru, to name a few).
+A -booru imageboard is simply a board where people post pictures and tag with them relevant attributes. This allows other users to search for images in these boards and find images with the qualities they’re looking for.</description>
+    </item>
+    
+    <item>
+      <title>Combox</title>
+      <link>https://www.andyibanez.com/projects/combox/</link>
+      <pubDate>Sat, 04 Jan 2014 18:54:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/combox/</guid>
+      <description>Discontinued project. Developed in 2012.
+Combox is a third-party client for Dropbox.
+Do you love Dropbox? Dropbox is a very nifty service that allows you to store your files in the cloud. With Dropbox, you can upload and download your documents and photos anywhere, any time.
+Why a third-party client? This app was made with Dropbox lovers and Power Users in mind. It offers many features that no other Dropbox clients for iOS offer.</description>
+    </item>
+    
+    <item>
+      <title>SBConverter</title>
+      <link>https://www.andyibanez.com/projects/sb-converter/</link>
+      <pubDate>Sat, 04 Jan 2014 18:25:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/projects/sb-converter/</guid>
+      <description>Discontinued project. Developed in 2011.
+A very complete base number converter for programmers and computer science students. Super Base Converter (SBConverter) is a very powerful base number conversion tool. It offers a simple and intuitive user interface free of distractions to allow users to quickly convert from one number base to another.
+Features:  Convert any number back and forth in any base from base 2 (binary) to base 16 (hexadecimal).</description>
+    </item>
+    
+  </channel>
+</rss>

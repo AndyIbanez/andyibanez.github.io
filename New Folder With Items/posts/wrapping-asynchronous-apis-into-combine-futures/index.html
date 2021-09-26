@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Wrapping Asynchronous APIs into Combine Futures • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Wrapping Asynchronous APIs into Combine Futures"/>
+<meta name="twitter:description" content="Learn to wrap asynchronous APIs into simple Combine publishers in Swift."/>
+
+<meta property="og:title" content="Wrapping Asynchronous APIs into Combine Futures" />
+<meta property="og:description" content="Learn to wrap asynchronous APIs into simple Combine publishers in Swift." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/wrapping-asynchronous-apis-into-combine-futures/" />
+<meta property="article:published_time" content="2020-07-22T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-07-22T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Wrapping Asynchronous APIs into Combine Futures</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Jul 22, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tvos">tvos</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/combine">combine</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 5 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>Two of the concepts used a lot in Reactive Programming are the <em>Future</em> and <em>Promises</em>. Whether you have been using Combine for a while or are new to Reactive Programming, chances are you have seen these two words. These terms date to years ago. And I would be lying if I told you I knew what that they were for until I started learning Combine. The first time I heard about Futures and Promises was back in my NodeJS job half a decade ago, and I didn&rsquo;t understand these concepts back then.</p>
+<p>In this short article, we will learn about Futures and Promises and how we can use them in our iOS/iPadOS/watchOS/macOS apps to integrate asynchronous code with callbacks into Combine. Basic knowledge of Combine is assumed for this article.</p>
+<h1 id="but-first-a-quick-word-on-asynchronous-apis-and-combine">But First, a Quick Word on Asynchronous APIs and Combine</h1>
+<p>Before we dive right in, there&rsquo;s one thing we need to keep in mind when we work with combine. Combine allows us to grab multiple sources into a single, consistent reactive API. In the case of the iOS SDK, for example, we have a lot of frameworks that may give data either via callbacks (<code>URLSession</code>), sometimes app wide notifications (<code>UINotificationCenter</code> APIs), and more. Combine allows us to grab all these different sources and <em>combine</em> them into one. So dealing with networking callbacks or app wide notifications becomes the same process thanks to the reactive API.</p>
+<p>Apple&rsquo;s SDKs provides us with many Publishers for common tasks. For example, where we had <code>URLSession</code>'s <code>dataTask</code>, we now have a <code>dataTaskPublisher</code> as well. And rather than registering callbacks or target-actions for <code>UINotificationCenter</code>, we now have a <code>.publisher</code> property to work with notifications on Combine/</p>
+<p>Despite all this, there are still some APIs that could benefit of a Combine publisher integration but they currently do not.</p>
+<h2 id="futures-and-promises">Futures and Promises</h2>
+<p>Promises and Futures are two components of a system that allows us to run code concurrently and have a way to know when such code has finished running. If you google for a definition of futures and promises you are going to find a lot passionated discussions and even some mathematical definitions of these concepts that make it hard to wrap your head around.</p>
+<p>You can think of a <em>future</em> as a placeholder for a value that doesn&rsquo;t exist yet. This empty placeholder can happily sit forever, idle in your code. When it finally receives a value, in the context of Combine, the Future is essentially a publisher that will send the fulfilled value down the pipeline. The code that fills in this empty value is the <em>promise</em>. So, the <em>future</em> is the value we want to have, and the <em>promise</em> fulfills that value for us. You can imagine this system makes it very easy and intuitive to work with asynchronous code that gives us a value back.</p>
+<h2 id="combine-fying-non-combine-asynchronous-code-into-a-future-publisher">Combine-fying Non-Combine Asynchronous Code Into a Future Publisher</h2>
+<p>As I said earlier, there are some elements in Apple&rsquo;s SDKs that could benefit from a Combine publisher, but they don&rsquo;t provide such a thing. One examples I can immediately think of is the <code>LocalAuthentication</code> framework, when you need to ask for permission to use Touch ID or Face ID.</p>
+<p>In the case of the <code>LocalAuthentication</code> framework, you can simply create a <em>Future</em> directly:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">BiometryError</span>: Error {
+    <span style="color:#66d9ef">case</span> localAuthenticationFrameworkError(errorPointer: LAError)
+    <span style="color:#66d9ef">case</span> evaluationError(error: Error)
+    <span style="color:#66d9ef">case</span> unauthorized
+}
+
+<span style="color:#66d9ef">let</span> biometryFuture = Future&lt;Bool, BiometryError&gt; { completion <span style="color:#66d9ef">in</span> <span style="color:#75715e">// 1</span>
+    <span style="color:#66d9ef">let</span> context = LAContext()
+    <span style="color:#66d9ef">let</span> biometricPolicy = LAPolicy.deviceOwnerAuthenticationWithBiometrics
+    
+    <span style="color:#66d9ef">var</span> error: NSError?
+    
+    <span style="color:#66d9ef">if</span> context.canEvaluatePolicy(biometricPolicy, error: &amp;error) {
+        
+        context.evaluatePolicy(biometricPolicy, localizedReason: <span style="color:#e6db74">&#34;To log in&#34;</span>) { (success, error) <span style="color:#66d9ef">in</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> error = error {
+                completion(.failure(.evaluationError(error: error))) <span style="color:#75715e">// 2</span>
+            } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> success {
+                completion(.success(<span style="color:#66d9ef">true</span>)) <span style="color:#75715e">// 3</span>
+            } <span style="color:#66d9ef">else</span> {
+                completion(.failure(.unauthorized))
+            }
+        }
+        
+    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> error = error <span style="color:#66d9ef">as</span>? LAError {
+        <span style="color:#66d9ef">let</span> errorWrapper = BiometryError.localAuthenticationFrameworkError(errorPointer: error)
+        completion(.failure(errorWrapper))
+    }
+}
+</code></pre></div><p>This looks like quite a mouthful, so let&rsquo;s give a quick rundown of what&rsquo;s going on here. It&rsquo;s worth noting that the handful isn&rsquo;t even the Combine Future/Promise part:</p>
+<ol>
+<li>We are creating a future that will return a <code>Bool</code> on success, and a <code>BiometryError</code> on failure.</li>
+<li>We can use the completion handler. This allows our <code>Promise</code> to notify the <code>Future</code> that a value is ready. In this case, we provide a <code>BiometryError</code></li>
+<li>We were able to successfully get a biometric scan, so we pass in the right value.</li>
+</ol>
+<p>And that, is a perfectly valid publisher. You can use it as such with the operators you know and love.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">biometryFuture
+    .sink(receiveCompletion: { (completion) <span style="color:#66d9ef">in</span>
+        <span style="color:#75715e">// Handle any errors here</span>
+    }, receiveValue: { (value) <span style="color:#66d9ef">in</span>
+        print(<span style="color:#e6db74">&#34;Did Login Successfully: </span><span style="color:#e6db74">\(</span>value<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>)
+    })
+.store(<span style="color:#66d9ef">in</span>: &amp;subscriptions)
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>We can <em>Combine</em> anything into publishers, even if we do not have native publishers for it. Using Futures and Promises is a good way to make simple asynchronous code into Combine code.</p>
+<p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK">@AndyIbanezK</a>) or send me an e-mail to andy[at]andyibanez[dot]com. Thank you for helping me improve the quality of my blog!</p>
+<p>If there&rsquo;s anything related to Swift, iOS, or another Apple Platform you&rsquo;d like me to cover, feel free to contact me and I will try to cover it in an upcoming article.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/sharing-data-apple-devices-multipeerconnectivity-framework/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Sharing Data Across Apple Devices with the MultipeerConnectivity Framework</span>
+    </a>
+    
+    
+    <a href="/posts/custom-views-modifiers-xcode-library-swiftui/" class="navigation-next">
+      <span class="navigation-tittle">Adding Custom SwiftUI Views and Modifiers to the Xcode Library</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

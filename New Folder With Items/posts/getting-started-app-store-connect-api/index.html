@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Getting Started with the App Store Connect API • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Getting Started with the App Store Connect API"/>
+<meta name="twitter:description" content="Get started with the App Store Connect API and how it can be automated."/>
+
+<meta property="og:title" content="Getting Started with the App Store Connect API" />
+<meta property="og:description" content="Get started with the App Store Connect API and how it can be automated." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/getting-started-app-store-connect-api/" />
+<meta property="article:published_time" content="2020-12-09T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-12-09T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Getting Started with the App Store Connect API</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Dec 9, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/app-store-connect">app store connect</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 6 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>In 2018, Apple introduced the App Store Connect API. We as iOS developers interact with App Store Connect almost daily. We like to see our sales reports, analytics, check how our apps are doing. Occasionally, we may need to register a new device or manage our users.</p>
+<p>Many of these tasks are so common that it was necessary to get an App Store Connect API at some point. Having an API allows us to automatize some aspects of our day to day tasks on App Store Connect, and to make some tasks easier and faster. In this article, we will explore a few features of the App Store Connect API.</p>
+<h1 id="the-app-store-connect-api">The App Store Connect API.</h1>
+<p>Apple provides us with a nice and simple RESTful API, meaning that all you need to do to interact with it is perform a few pure HTTP calls. We need to authenticate ourselves providing a JWT (Jason Web Token) token.</p>
+<h2 id="current-features">Current Features</h2>
+<p>At the time of this writing (December 2020), App Store connect offer us endpoints for the following tasks:</p>
+<ul>
+<li><strong>App Management</strong>: We can create new versions of our apps, configure pre-orders, manage manage phased releases of new versions, and even submit our apps for review.</li>
+<li><strong>App Metadata</strong>: We can edit our apps metadata, such as managing assets, edit the description, managing screenshots, and app previews.</li>
+<li>*<strong>Pricing and Availability</strong>: You can manage your app&rsquo;s price and availability, price tiers, and more.</li>
+<li><strong>Power and Performance</strong>: Introduced in WWDC2020, we can use this tool to monitor performance for our apps. We can get data for launch times, hang rates, disk writes, memory use, and battery life. This is the same API Apple uses to make such info available in Xcode.</li>
+<li><strong>Provisioning</strong>: Manage bundle IDs, certificates, development devices, and provisioning profiles.</li>
+<li><strong>Reporting</strong>: Manage Sales and Trends, allowing you to see first-time downloads, sales, proceeds, pre-orders, subscriptions, and more. We can also view our Payments and Financial reports with earnings by product, territory, currency, price, and more. The API will even show you how much you were paid each month and any money Apple may have withheld for tax or other reasons.</li>
+<li><strong>TestFlight</strong>: You can automate tester management and build distribution. You can remove and add testers, manage tester groups, manage builds based on testers and tester groups, submit builds to beta review, and more.</li>
+<li><strong>Users and Roles</strong>: You can manage Users and Roles. If you work on an organization, you can integrate with your own employee management tools, to have control over and link users between App Store and your own systems.</li>
+</ul>
+<h2 id="requesting-app-store-connect-api-access">Requesting App Store Connect API Access</h2>
+<h3 id="requesting-permission">Requesting Permission</h3>
+<p>To request App Store Connect API access, visit <a href="https://appstoreconnect.apple.com/access/api">this link</a>. You need to be the Account Holder to finish the process.</p>
+<p>I was under the impression that I needed approval and that my request would be reviewed manually. However after agreeing to the prompts, my request was instantly approved and I was able to use the API. I do not know if this is the case for everyone, or Apple does review some requests manually.</p>
+<h3 id="keys-and-access-tokens">Keys and Access Tokens.</h3>
+<p>You need to create API keys, which you later use to create JWT access tokens.</p>
+<h4 id="generating-keys">Generating Keys.</h4>
+<p>You can create up to 50 API keys, and you can limit the API access for each key. Once you create a key, you cannot edit its permissions.</p>
+<p>Click the &ldquo;Generate API Key&rdquo; button, and you will be greeted with the following view:</p>
+<p><img src="/img/api_key_1.png" alt="Configuring an API Key"></p>
+<p>You can give it any name you want and select the permissions. If you choose &ldquo;Admin&rdquo;, your key will automatically get all the permissions, but you can pick and choose stricter permissions and as many as you need for your particular scenario.</p>
+<p>I named mine &ldquo;Article Key&rdquo; and chose &ldquo;Admin&rdquo; as the key type.</p>
+<p><strong>Note</strong>: You probably know this, but just in case, do not share your API keys with people you don&rsquo;t trust! While it may make sense to create keys for specific members of your team, remember that the keys have power over the specific permissions you granted when creating them. If your keys fall in the wrong hands, <strong>damage CAN be done</strong>. Shall your keys be compromised, you can revoke them from the same screen where you generated them.</p>
+<p>Once you create the key, you have to download it. This is a file with a <code>.p8</code> extension. You can only download your key once, so make sure you don&rsquo;t lose it later.</p>
+<p>Make a mental note of the Key ID (this info is always visible), as you will need it to generate your JWT tokens.</p>
+<h4 id="generating-access-tokens">Generating Access Tokens</h4>
+<p>JSON Web Tokens are JSON payloads encoded in Base64 and signed with your private key for their transmission to the App Store Connect API server. You can create your token with any text editor.</p>
+<p>To create the token you will need the following info:</p>
+<ul>
+<li>Your private key (the <code>.p8</code> file you got earlier)</li>
+<li>Your KEY ID (This is visible in the same screen where you generate API keys - the one I linked you to above).</li>
+<li>Your Issuer ID. To get this, go back once again to the page where you generate keys. The issuer ID is near the top of the page.</li>
+</ul>
+<h5 id="the-jwt-token">The JWT Token</h5>
+<p>We will now begin creating creating our JWT token. The token is made of a JWT header and a JWT Payload, both joined together and signed with our private key.</p>
+<p>There are libraries out there that can do this for you. For this article, we will use the Ruby script Apple used at WWDC2018 to show how to generate the token. The script is below (<code>token.rb</code>):</p>
+<pre><code>require &quot;base64&quot;
+require &quot;jwt&quot;
+
+ISSUER_ID = &quot;YOUR_ISSUER_ID&quot;
+KEY_ID = &quot;YOUR_KEY_ID&quot;
+
+PATH = &quot;PATH_TO_YOUR_P8_FILE&quot;
+
+private_key = OpenSSL::PKey.read(File.read(PATH))
+
+token = JWT.encode(
+   {    iss: ISSUER_ID,
+    exp: Time.now.to_i + 20 * 60,
+    aud: &quot;appstoreconnect-v1&quot;
+   },
+   private_key,
+   &quot;ES256&quot;,
+   header_fields={
+     kid: KEY_ID }
+ )
+
+puts token
+</code></pre><p>You may need to install the Ruby <code>jwt</code> dependency for it. If you have Homebrew and installed Ruby with it, simply run <code>gem install jwt</code> in a Terminal window and you will get the dependency.</p>
+<p>When you run the script (<code>ruby token.rb</code>), the console will print out the token you can use, with a lifetime of 20 minutes from the time it was generated.</p>
+<h2 id="using-the-api">Using the API.</h2>
+<p>Once you have the token, you can finally start using the API. You need to include your token in every call as a header field called <code>Authorization</code> with the format <code>Authorization: Bearer YOUR_TOKEN</code>.</p>
+<p>The following is a complete cURL request you can run the terminal:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">curl -v -H &#39;Authorization: Bearer [signed token]&#39; 
+&#34;https://api.appstoreconnect.apple.com/v1/apps&#34;
+</code></pre></div><p>If you don&rsquo;t like the Terminal, you can also use something such as Postman to get a GUI.</p>
+<p>In a future article, we will explore a little bit more of the features the API offers. I originally intended to make this article to explore the API itself, but I spent more time than expected generating the token. Look forward to that. In the meantime, you can download the OpenAPI specification from <a href="https://developer.apple.com/app-store-connect/api/">here</a> and play around with what you find.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>The App Store Connect API has many features to help with automation. It has seen steady growth in terms of features each WWDC, and we can expect it to become better.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/understanding-limited-photo-library-ios-14/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Understanding the Limited Photo Library in iOS 14</span>
+    </a>
+    
+    
+    <a href="/posts/expressibleby-protocols-swift/" class="navigation-next">
+      <span class="navigation-tittle">The &#34;ExpressibleBy-&#34; Protocols in Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

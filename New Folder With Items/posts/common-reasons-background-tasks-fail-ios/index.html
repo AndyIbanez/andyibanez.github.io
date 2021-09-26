@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>Common Reasons for Background Tasks to Fail in iOS • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Common Reasons for Background Tasks to Fail in iOS"/>
+<meta name="twitter:description" content="Learn what are the common reasons your background tasks never get executed, and how to go around them."/>
+
+<meta property="og:title" content="Common Reasons for Background Tasks to Fail in iOS" />
+<meta property="og:description" content="Learn what are the common reasons your background tasks never get executed, and how to go around them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/common-reasons-background-tasks-fail-ios/" />
+<meta property="article:published_time" content="2020-08-05T00:00:00-04:00" />
+<meta property="article:modified_time" content="2020-08-05T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>Common Reasons for Background Tasks to Fail in iOS</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Aug 5, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/backgroundtasks">backgroundtasks</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/wwdc2020">wwdc2020</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 10 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p><a href="https://www.andyibanez.com/posts/modern-background-tasks-ios13/">Apple introduced modern background tasks last year on iOS 13</a>. These new APIs have been out for a little over year (counting the beta period). Many developers have tried to adopt them to moderate success. Many of them have found them to be very unpredictable and that only work a fraction of the time. If you look around the internet (and even on the comments in that article), you will see many developers weren&rsquo;t able to get them to work as expected.</p>
+<p>In the article linked above, we mentioned that you can schedule your tasks, but it is entirely up to the system to decide when they will be executed, and if at all. In this article we will explore some common reasons the system may decide to ignore your tasks, so you can hopefully work around the limitations and setup more predictable background tasks.</p>
+<p>In this article, we will talk about 7 factors that impact background runtime. These factor may apply to your background tasks whether they are using <code>BGAppRefreshTask</code>, <code>BGProcessingTask</code>, background push or URLSession backgrounded tasks.</p>
+<h1 id="it-is-all-about-balance">It Is All About Balance.</h1>
+<p>At the end of the day, what matters is balance. Balance between what your app wants to do and what the system needs. In a constrained system where hundreds of apps may be fighting for background resources, the system has to choose who will get to use its battery life and other performance features. After all, the system needs to maintain all-day battery life, be performant at all times, respect users&rsquo; privacy, and respecting user intent.</p>
+<h1 id="factors-that-affect-background-task-execution">Factors That Affect Background Task Execution.</h1>
+<p>There are actually more than seven factors that affect background task execution, but many of them don&rsquo;t require any action. Factors such as the device lock state, if the screen is on or off, there is an iCloud restore going on, the camera is in use are just natural states of the device that you can&rsquo;t do anything about.</p>
+<p>The factors we care are about will be listed below. These will either require you to do things differently, will require your users to do things differently (a very important factor), or they will require you to understand how resource budgeting work within the system to assign resources. I apologize if some of these are obvious - My source for this article is the &ldquo;Background execution demystified&rdquo; WWDC2020 session vide.</p>
+<h2 id="critically-low-battery">Critically Low Battery</h2>
+<p>When the battery is at %20 capacity or lower, we can say it is at a critically low battery. The system will choose to preserve battery life by suspending non-essential processes and will prioritize essential work only.</p>
+<p>Background tasks are <em>opportunistic</em>. If they have a chance to run, they will. You should never rely on background tasks for core functionality of your app. Opportunistic tasks get suspended the moment the device is in critically low battery.</p>
+<h2 id="low-power-mode">Low Power Mode</h2>
+<p>Low power mode is similar to having a critically low battery. The main difference is user&rsquo;s can trigger it at will, but the side-effects of it are the same.</p>
+<p>The system will cancel background processing and opportunistic tasks will be suspended. The device will perform essential activity only.</p>
+<p>This one is important because a lot of people these days enable low power mode and have it on all the time.</p>
+<p>You can use <code>NSProcessInfo.processInfo.isLowPowerModeEnabled</code> and <code>NSProcessInfoPowerStateDidChange</code> to query whether low power mode is enabled and to learn when it is triggered by the user.</p>
+<h2 id="app-usage">App Usage</h2>
+<p>There are times when the system must prioritize some apps over others. Whenever it is necessary, the system will prioritize apps that are most important to the user. If your users are not using your app as much as other apps, then it will simply be treated as a low priority app by the system. The system uses machine learning to predict what apps the user will use and when, and it will use this information to prioritize background activity.</p>
+<h2 id="app-switcher">App Switcher</h2>
+<p>Sometimes the system may have hints about what apps the user wants to run, even if they are not part of what the system has learned about their habits.</p>
+<p>One such hint is the App Switcher. Apps that are currently backgrounded and visible in the App Switcher have higher priority by the system.</p>
+<p>This is very important. <strong>The system will constrain the apps that can run background tasks to apps that are visible on the App Switcher</strong>. I have always said that killing apps on iOS is an enemy of the system, because the system is smarter at resource management than humans. Unfortunately, way too many people kill apps in the App Switcher. Those users may never benefit from having the system honor their background task requests.</p>
+<p>We all know a person or two who this. If your users ever report to you that your app doesn&rsquo;t seem to execute background tasks, this is probably one of the first questions you should ask them.</p>
+<h2 id="background-app-refresh-switch">Background App Refresh switch</h2>
+<p>Apps that support background task execution can be enabled and disabled by your users at will. Using the Background App Refresh screen in the Settings app, users can enable and disable background app refresh for specific apps.</p>
+<p>The switch is enabled by default, so users have to know what they are doing in order to turn it off and what that implies in terms of your app&rsquo;s background execution.</p>
+<p>You can query the system to know if Background App Refresh is enabled for your app by using <code>NSProcessInfo.processInfo.backgroundRefreshStatus</code> and the <code>UINotification.backgroundRefreshStatusDidChangeNotification</code> notification to learn when it is toggled.</p>
+<h2 id="system-budgets">System budgets</h2>
+<p>Because the Background App Refresh switch is enabled by default, many users may not know their apps support background task execution, or even what that means. This is why System budgets are important to understand how your app may execute in the background when you have to compete against hundreds of other apps.</p>
+<p>The system has both energy and data budgets. These budgets are slowly distributed to different apps throughout the day. When an app runs, it deducts from these budgets - there is no mistake with what I wrote here. The budgets are decreased when your app <em>runs</em>, not only when it manages to execute a background task.</p>
+<p>If you are a good player and are not running obnoxious lengths of code, the system will have no reason to limit your app.</p>
+<h2 id="rate-limiting">Rate limiting</h2>
+<p>To help apps with budget management, the system may impose rate limiting on some apps. The system will space out background task launches for you. When you ask the system to schedule a background task for you, the system will decide the optimal time to honor your request.</p>
+<p>This is one of the sources of confusion for this new system because developers keep scheduling tasks but don&rsquo;t see any execution on them. Remember, you can ask the system to execute a task, but it&rsquo;s up to it to honor your request and what capacity. It may trigger it later than you expect to, earlier, or never.</p>
+<h1 id="control-for-developers">Control for Developers.</h1>
+<p>Most of the factors seen above are external, either due to user settings or system resources management. But there is one factor you have slight control over to improve your chances of the system honoring your requests in a timely manner.</p>
+<p>As we said above, if you are a good player and perform little work per launch, you are being responsible with the budgets assigned to you. But you can do more, and you should prevent your app from using unnecessary resources while it is running.</p>
+<h2 id="power-consumption">Power Consumption</h2>
+<p>Minimize power consumption. Do not use hardware you have no need for. Do not use GPS and accelerometer, or other hardware that needs to be constantly in unless you really need to. When using the GPS, ensure you configure it to receive less events at the cost of slightly less accuracy if it is acceptable.</p>
+<p>Do try to finish work as quickly as possible. If dealing with APIs that require you to call a system completion handler, properly signal the system that you have finished working. This way, the system will know to not only limit your app after your task is done, but it will also know how good of a player you are. For app refresh tasks, always call <code>setTaskCompleted(success:)</code> when you are done.</p>
+<h2 id="data-usage">Data Usage</h2>
+<p>You should also minimize the amount of data your app uses. When called for background refresh, only download what you need to update your UI and nothing more. If you use images, download thumbnails and not full images.</p>
+<p>You should enqueue URLSession background transfers when you need to download data.</p>
+<p><strong>Ideally, keep the amount of data you download to 100 Kilobytes or less while your app refreshes</strong>. This is a good guideline for both app refresh tasks and background pushes,</p>
+<h2 id="background-pushes">Background Pushes</h2>
+<p>Also known as &ldquo;silent push notifications&rdquo;, you can send background pushes that doesn&rsquo;t show any indication to the users of their reception. They are instead, notifications for the app itself. They are low priority and preserve power.</p>
+<p>They are great to let the app know that new content is available, but it&rsquo;s not immediately necessary for the user.</p>
+<h3 id="silent-pushes-and-the-seven-factors">Silent Pushes and the Seven Factors</h3>
+<p>The seven factors come into play for background pushes, except for App Usage.</p>
+<p>The system will not limit background pushes based on App Usage. So no matter how much your user uses your app, whether it is a bit or much, background pushes will not be gated by app usage metrics.</p>
+<p>This does not mean background pushes are a free way to trigger your app to do background work. Rate limiting is still a thing when it comes to this mechanism, and you should be responsible with them. If you are sending a lot of silent pushes, you are depleting budgets and affecting system resources.</p>
+<p>To avoid this, the system may delay the delivery of some background pushes. If you send 14 pushes in a short time, the system will not wake up your app for each. It may coalesce them into 7 pushes to optimize resource usage.</p>
+<p>Rather than focusing on the delivery rate, focus on spacing the number of pushes sent to your apps. Send them less often. Background pushes are for non-essential content such as receiving messages in a muted conversation in a chat app.</p>
+<h2 id="background-urlsessions">Background URLSessions</h2>
+<p>When you use Background URLSessions, the system is in charge of managing them. This allows the system to continue the transfers even after the app exists (as long as it has not been killed from the App Switcher). They are not constrained by run time limits.</p>
+<p>They are good for file downloads and photo uploads.</p>
+<p>You can configure them to not use cellular data and you can configure them to send launch events. This allows the system to notify us when a big file download or upload has completed.</p>
+<p>If you use the <code>.isDiscretionary</code> property, the work can be deferred until later. Enqueued tasks are always discretionary. The system will choose the right time to execute these tasks, such as when the phone is plugged into a charger and on a Wi-Fi network.</p>
+<h3 id="the-seven-factors-and-background-urlsessions">The Seven Factors and Background URLSessions</h3>
+<p>Most of the factors apply to background URLSessions depending on the configuration. If the app was brought to the foreground recently, rate limiting won&rsquo;t apply.</p>
+<p>For non-discretionary launches that may even be queued, only App Switcher and System budgets apply. If the user kills your app while it is executing one of these tasks, the task will stop. System budgets apply, but they are relaxed and not as strict. This is because the system knows the user wants this to happen to some capacity.</p>
+<p>If you configured your task to send launch events, App Usage and  Rate limiting won&rsquo;t apply.</p>
+<h2 id="background-processing-tasks">Background Processing Tasks.</h2>
+<p>App Usage, App Switcher, Background App Refresh switch, and Rate limiting are the only factors that apply to Background Processing tasks. If the user has used your app at least once in the last few weeks, the system may honor the launch of this task, so the system is very flexible with this type of tasks. If the user charges their phone daily, your tasks are more likely to run.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>The system will ultimately have all the control on whether your tasks will be executed or not. Still, if you are a good player and your apps are not resource hogs, you should have a better change of getting executed, depending on the conditions, task type, and whether your users are actually using your app.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/custom-views-modifiers-xcode-library-swiftui/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Adding Custom SwiftUI Views and Modifiers to the Xcode Library</span>
+    </a>
+    
+    
+    <a href="/posts/file-download-queue-combine/" class="navigation-next">
+      <span class="navigation-tittle">A File Download Queue in Combine for Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

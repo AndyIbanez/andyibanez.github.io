@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>backgroundtasks on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/backgroundtasks/</link>
+    <description>Recent content in backgroundtasks on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2020 07:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/backgroundtasks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Common Reasons for Background Tasks to Fail in iOS</title>
+      <link>https://www.andyibanez.com/posts/common-reasons-background-tasks-fail-ios/</link>
+      <pubDate>Wed, 05 Aug 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/common-reasons-background-tasks-fail-ios/</guid>
+      <description>Apple introduced modern background tasks last year on iOS 13. These new APIs have been out for a little over year (counting the beta period). Many developers have tried to adopt them to moderate success. Many of them have found them to be very unpredictable and that only work a fraction of the time. If you look around the internet (and even on the comments in that article), you will see many developers weren&amp;rsquo;t able to get them to work as expected.</description>
+    </item>
+    
+    <item>
+      <title>Modern Backgrounds Tasks in iOS 13</title>
+      <link>https://www.andyibanez.com/posts/modern-background-tasks-ios13/</link>
+      <pubDate>Wed, 25 Dec 2019 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/modern-background-tasks-ios13/</guid>
+      <description>In the article from last week, we explored the basic background execution APIs introduced since iOS 7. We explored how we could request additional time for a task to complete after entering the background, how we could defer downloads with URLSession, and how we could use silent push notifications to trigger background tasks.
+The story with background tasks does not end there. iOS 13 introduced more APIs to do better background tasks, and that allow you to do things that weren&amp;rsquo;t possible before.</description>
+    </item>
+    
+  </channel>
+</rss>

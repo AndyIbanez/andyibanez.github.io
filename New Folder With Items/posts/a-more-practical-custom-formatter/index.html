@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    
+    
+    
+
+<title>A More Practical Custom Formatter  • Andy Ibanez</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="A More Practical Custom Formatter "/>
+<meta name="twitter:description" content="Implement a more interesting custom Formatter in Swift."/>
+
+<meta property="og:title" content="A More Practical Custom Formatter " />
+<meta property="og:description" content="Implement a more interesting custom Formatter in Swift." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.andyibanez.com/posts/a-more-practical-custom-formatter/" />
+<meta property="article:published_time" content="2020-10-21T07:00:00-04:00" />
+<meta property="article:modified_time" content="2020-10-21T07:00:00-04:00" /><meta property="og:site_name" content="Andy Ibanez - iOS Developer" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.e4368406c047b72036bd31fdf69f74f805156724914c166a0accb2369a218b61.css" integrity="sha256-5DaEBsBHtyA2vTH99p90&#43;AUVZySRTBZqCsyyNpohi2E=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script data-ad-client="ca-pub-3640551804216350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.andyibanez.com">Andy Ibanez</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/196dd48d2ac425661edf58028d499370?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+         Software Developer from La Paz, Bolivia. Programming for iOS since 2011. 
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Andy Ibanez</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/posts/">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/tags/wwdc2021/">
+						<span>WWDC 2021</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/workshops/">
+						<span>Workshops</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/projects/">
+						<span>Projects</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about/">
+						<span>About Me</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/privacy-policy/">
+						<span>Privacy Policy</span>
+					</a>
+				</li>
+			 
+		
+	</ul>
+</div>
+
+        <section class="social">
+	
+	<a href="https://twitter.com/AndyIbanezK" rel="me"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://facebook.com/AndyIbanezCom" rel="me"><i class="fab fa-facebook-f"></i></a>
+	
+	
+	<a href="https://github.com/andyibanez" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://instagram.com/andyibanez" rel="me"><i class="fab fa-instagram fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://linkedin.com/in/andr%c3%a9s-iba%c3%b1ez-30234033" rel="me"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a>
+	
+	
+	<a href="https://stackoverflow.com/users/648767" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	<a href="https://keybase.io/andyibanez" rel="me"><i class="fab fa-keybase fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Andrés Ibañez
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    
+<article>
+  <header>
+    <h1>A More Practical Custom Formatter </h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Oct 21, 2020
+    
+    
+    
+      
+      
+          in
+          
+          
+              <a class="badge badge-category" href="/categories/development">DEVELOPMENT</a>
+              
+          
+      
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/nsformatter">nsformatter</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/swift">swift</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/programming">programming</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/apple">apple</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ios">ios</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/ipados">ipados</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 4 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <p>I had announced that I wouldn&rsquo;t be able to write an article this week due to it being Elections Day in my country. that said I just can&rsquo;t leave you guys without article, so this is a short one.</p>
+<p>We will write another <code>NSFormatter</code> subclass. It will allow us to compose E-mails easily. This should also help show that formatters can format string into anything else really.</p>
+<p>In short, we will be able to &ldquo;compose&rdquo; emails using raw strings, like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">TO: andy@andyibanez.com
+FROM: andy.cito@gmail.com
+CC: gg@hotmail.com, rk@hotmail.com
+BCC: myboss@gmail.com,myarchitect@gmail.com
+SUBJECT: Important Notice
+BODY:
+Hello guys. Just wanted to let you know that this is a very important notice. The notice has been sent and it&#39;s importance has priority one.
+
+Please take note of the importance, and share it with everyone you need to.
+</code></pre></div><p>We will be able to convert that into this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Email</span> {
+    <span style="color:#66d9ef">let</span> to: String?
+    <span style="color:#66d9ef">let</span> from: String?
+    <span style="color:#66d9ef">let</span> subject: String?
+    <span style="color:#66d9ef">let</span> cc: [String]?
+    <span style="color:#66d9ef">let</span> bcc: [String]?
+    <span style="color:#66d9ef">let</span> body: String?
+    
+    <span style="color:#66d9ef">init</span>(
+        to: String? = <span style="color:#66d9ef">nil</span>,
+        from: String? = <span style="color:#66d9ef">nil</span>,
+        subject: String? = <span style="color:#66d9ef">nil</span>,
+        cc: [String]? = <span style="color:#66d9ef">nil</span>,
+        bcc: [String]? = <span style="color:#66d9ef">nil</span>,
+        body: String? = <span style="color:#66d9ef">nil</span>) {
+        <span style="color:#66d9ef">self</span>.to = to
+        <span style="color:#66d9ef">self</span>.from = from
+        <span style="color:#66d9ef">self</span>.subject = subject
+        <span style="color:#66d9ef">self</span>.cc = cc
+        <span style="color:#66d9ef">self</span>.bcc = bcc
+        <span style="color:#66d9ef">self</span>.body = body
+    }
+}
+</code></pre></div><p>And viceversa.</p>
+<p>The only constraint will be that the <code>BODY:</code> always has to go last. Any fields can be missing and they will be filled as nil when appropriate.</p>
+<h1 id="the-emailformatter-class">The EmailFormatter Class</h1>
+<p>The EmailFormatter will format plain text into emails and the other way around. It will inherit from <code>Formatter</code>.</p>
+<h2 id="overriding-stringfor">Overriding string(for:)</h2>
+<p>We will start by implementing <code>override func string(for obj: Any?)</code>, as it is the easiest case. This object will ultimately take an <code>Email</code> and return the string representation of it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">string</span>(<span style="color:#66d9ef">for</span> obj: Any?) -&gt; String? {
+    <span style="color:#66d9ef">guard</span> <span style="color:#66d9ef">let</span> email = obj <span style="color:#66d9ef">as</span>? Email <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span> }
+    <span style="color:#66d9ef">var</span> stringRep = <span style="color:#e6db74">&#34;&#34;</span>
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> to = email.to {
+        stringRep <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;TO: </span><span style="color:#e6db74">\(</span>to<span style="color:#e6db74">)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> from = email.from {
+        stringRep <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;FROM: </span><span style="color:#e6db74">\(</span>from<span style="color:#e6db74">)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> cc = email.cc {
+        <span style="color:#66d9ef">let</span> joined = cc.joined(separator: <span style="color:#e6db74">&#34;,&#34;</span>)
+        stringRep <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;CC: </span><span style="color:#e6db74">\(</span>joined<span style="color:#e6db74">)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> bcc = email.bcc {
+        <span style="color:#66d9ef">let</span> joined = bcc.joined(separator: <span style="color:#e6db74">&#34;,&#34;</span>)
+        stringRep <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;BCC: </span><span style="color:#e6db74">\(</span>joined<span style="color:#e6db74">)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> subject = email.subject {
+        stringRep <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;SUBJECT: </span><span style="color:#e6db74">\(</span>subject<span style="color:#e6db74">)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+    }
+    <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> body = email.body {
+        stringRep <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;BODY:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">\(</span>body<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span>
+    }
+    <span style="color:#66d9ef">return</span> stringRep
+}
+</code></pre></div><p>We are also going to expose a prettier signature for our string formatter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">stringFor</span>(<span style="color:#66d9ef">_</span> email: Email) -&gt; String? {
+    <span style="color:#66d9ef">return</span> string(<span style="color:#66d9ef">for</span>: email)
+}
+</code></pre></div><h1 id="converting-strings-into-emails">Converting strings into Emails</h1>
+<p>The hardest part is now to convert strings into our object. In this specific case, it isn&rsquo;t too complicated, but know that it can become hairy quickly.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">override</span> <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">getObjectValue</span>(
+    <span style="color:#66d9ef">_</span> obj: AutoreleasingUnsafeMutablePointer&lt;AnyObject?<span style="color:#f92672">&gt;?</span>,
+    <span style="color:#66d9ef">for</span> string: String,
+    errorDescription error: AutoreleasingUnsafeMutablePointer&lt;NSString?<span style="color:#f92672">&gt;?</span>) -&gt; Bool {
+    obj?.pointee = stringToEmail(emailString: string)
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+}
+</code></pre></div><p><code>stringToEmail</code> is implemented as such (can definitely be improved):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">stringToEmail</span>(emailString: String) -&gt; Email {
+    <span style="color:#66d9ef">let</span> splat = emailString.split(separator: <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    <span style="color:#66d9ef">var</span> to: String? = <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">var</span> from: String? = <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">var</span> subject: String? = <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">var</span> cc: [String]? = <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">var</span> bcc: [String]? = <span style="color:#66d9ef">nil</span>
+    <span style="color:#66d9ef">var</span> body: String? = <span style="color:#66d9ef">nil</span>
+    
+    <span style="color:#66d9ef">for</span> line <span style="color:#66d9ef">in</span> splat {
+        <span style="color:#66d9ef">if</span> line.hasPrefix(<span style="color:#e6db74">&#34;TO: &#34;</span>) {
+            <span style="color:#66d9ef">let</span> toLine = line.split(separator: <span style="color:#e6db74">&#34;:&#34;</span>)
+            to = { <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> to = toLine.last { <span style="color:#66d9ef">return</span> String(to) } <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span> }}()
+        }
+        
+        <span style="color:#66d9ef">if</span> line.hasPrefix(<span style="color:#e6db74">&#34;FROM: &#34;</span>) {
+            <span style="color:#66d9ef">let</span> fromLine = line.split(separator: <span style="color:#e6db74">&#34;:&#34;</span>)
+            from = { <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> from = fromLine.last { <span style="color:#66d9ef">return</span> String(from) } <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span> }}()
+        }
+        
+        <span style="color:#66d9ef">if</span> line.hasPrefix(<span style="color:#e6db74">&#34;SUBJECT: &#34;</span>) {
+            <span style="color:#66d9ef">let</span> subjectLine = line.split(separator: <span style="color:#e6db74">&#34;:&#34;</span>)
+            subject = { <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> subject = subjectLine.last { <span style="color:#66d9ef">return</span> String(subject) } <span style="color:#66d9ef">else</span> { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span> }}()
+        }
+        
+        <span style="color:#66d9ef">if</span> line.hasPrefix(<span style="color:#e6db74">&#34;CC: &#34;</span>) {
+            <span style="color:#66d9ef">let</span> ccLines = line.split(separator: <span style="color:#e6db74">&#34;:&#34;</span>).last?.split(separator: <span style="color:#e6db74">&#34;,&#34;</span>).map { String($0) }
+            cc = ccLines
+        }
+        <span style="color:#66d9ef">if</span> line.hasPrefix(<span style="color:#e6db74">&#34;BCC: &#34;</span>) {
+            <span style="color:#66d9ef">let</span> bccLines = line.split(separator: <span style="color:#e6db74">&#34;:&#34;</span>).last?.split(separator: <span style="color:#e6db74">&#34;,&#34;</span>).map { String($0) }
+            bcc = bccLines
+        }
+    }
+    
+    <span style="color:#66d9ef">let</span> bodyStart = splat.firstIndex { $0.hasPrefix(<span style="color:#e6db74">&#34;BODY: &#34;</span>) }
+    <span style="color:#66d9ef">let</span> nextIndex = (bodyStart ?? <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+    <span style="color:#66d9ef">if</span> nextIndex <span style="color:#f92672">&lt;</span> splat.count {
+        <span style="color:#66d9ef">let</span> linesToMerge = nextIndex..&lt;splat.count
+        body = linesToMerge.reduce(<span style="color:#e6db74">&#34;&#34;</span>){ <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">\(</span>$0 ?? <span style="color:#e6db74">&#34;&#34;</span><span style="color:#e6db74">)</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">\(</span>splat[$1]<span style="color:#e6db74">)</span><span style="color:#e6db74">&#34;</span> }
+    }
+    
+    <span style="color:#66d9ef">return</span> Email(
+        to: to,
+        from: from,
+        subject: subject,
+        cc: cc,
+        bcc: bcc,
+        body: body)
+}
+</code></pre></div><p>And with that, we have a formatter that can convert from and to strings and <code>Email</code> objects.</p>
+<p>Sample usage is below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> email = Email(to: <span style="color:#e6db74">&#34;me@andyibanez.com&#34;</span>, bcc: [<span style="color:#e6db74">&#34;gg@hotmail.com&#34;</span>, <span style="color:#e6db74">&#34;rk@yahoo.es&#34;</span>])
+
+<span style="color:#66d9ef">let</span> formatter = EmailFormatter()
+<span style="color:#66d9ef">let</span> string = formatter.stringFor(email)
+
+print(string!)
+
+<span style="color:#66d9ef">let</span> emailString =
+<span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">TO: andy@andyibanez.com
+</span><span style="color:#e6db74">FROM: andy.cito@gmail.com
+</span><span style="color:#e6db74">CC: gg@hotmail.com, rk@hotmail.com
+</span><span style="color:#e6db74">BCC: myboss@gmail.com,myarchitect@gmail.com
+</span><span style="color:#e6db74">SUBJECT: Important Notice
+</span><span style="color:#e6db74">BODY:
+</span><span style="color:#e6db74">Hello guys. Just wanted to let you know that this is a very important notice. The notice has been sent and it&#39;s importance has priority one.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">Please take note of the importance, and share it with everyone you need to.
+</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+
+<span style="color:#66d9ef">let</span> newEmail = formatter.email(from: emailString)<span style="color:#f92672">!</span>
+
+print(<span style="color:#e6db74">&#34;We will send an email to </span><span style="color:#e6db74">\(</span>newEmail.to!<span style="color:#e6db74">)</span><span style="color:#e6db74"> and </span><span style="color:#e6db74">\(</span>newEmail.cc!.count<span style="color:#e6db74">)</span><span style="color:#e6db74"> others&#34;</span>)
+</code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>Hopefully this article shows you a bit better everything you can do with your custom formatters. Having the flexibility to convert anything into string and back is great, and there&rsquo;s support for it all over the frameworks.</p>
+
+    <hr>
+
+  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
+
+  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
+
+  <p>Thank you for helping me improve the quality of my blog!</p>
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/posts/writing-custom-nsformatters-swift/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Writing Custom NSFormatters in Swift</span>
+    </a>
+    
+    
+    <a href="/posts/parsing-tricky-json-codable-swift/" class="navigation-next">
+      <span class="navigation-tittle">Parsing Tricky JSON With Codable in Swift</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <script src="https://utteranc.es/client.js"
+        repo="AndyIbanez/andyibanez-com"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-146179797-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/swift.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/objectivec.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["swift, objectivec"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

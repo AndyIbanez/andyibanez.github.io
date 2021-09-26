@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>keychain on Andy Ibanez</title>
+    <link>https://www.andyibanez.com/tags/keychain/</link>
+    <description>Recent content in keychain on Andy Ibanez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Jun 2020 07:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://www.andyibanez.com/tags/keychain/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Using the iOS Keychain with Biometrics</title>
+      <link>https://www.andyibanez.com/posts/ios-keychain-touch-id-face-id/</link>
+      <pubDate>Wed, 03 Jun 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/ios-keychain-touch-id-face-id/</guid>
+      <description>If you have been using the keychain on your iOS apps you may want to start using Face ID/Touch ID to let your user access your app and their data. This is a common use case but it&amp;rsquo;s very easy to do incorrectly.
+Apple introduced Touch ID all the way back in 2013, and ever since then, every iOS device has come with some sort of biometric authentication method, be it Touch ID or Face ID.</description>
+    </item>
+    
+    <item>
+      <title>Using the iOS Keychain in Swift</title>
+      <link>https://www.andyibanez.com/posts/using-ios-keychain-swift/</link>
+      <pubDate>Wed, 27 May 2020 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/using-ios-keychain-swift/</guid>
+      <description>This article is an entirely rewritten version of an old tutorial I wrote years ago titled &amp;ldquo;Using the iOS Keychain&amp;rdquo;. Originally written in Objective-C, the old version has been archived but it is accessible here.
+The Keychain is the place where you would store sensitive data. As secure as iOS currently is, the keychain is the right place to store passwords, authentication tokens, and other sensitive data. You should not store this kind of data in UserDefaults, even if iOS has made it harder to access that data for normal users in the latest versions.</description>
+    </item>
+    
+  </channel>
+</rss>
