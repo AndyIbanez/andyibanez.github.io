@@ -6,7 +6,7 @@
     <description>Recent content on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2020 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -483,6 +483,16 @@ For this purpose, Apple introduced MetricKit back in WWDC2019. MetricKit allows 
       <guid>https://www.andyibanez.com/posts/formatting-notes-and-gotchas/</guid>
       <description>A year ago, we talked about using NSFormatter for formatting data in a human readable format. WWDC2020 brings some updates and changes to the NSFormatter APIs that we need to be aware of. This article will complement the NSFormatter article from last year with best practices and things to look out for.
 Improvements for Combinations of Languages and Regions. NSFormatter always does its best to format the data according to the user&amp;rsquo;s language and region where relevant.</description>
+    </item>
+    
+    <item>
+      <title>Workshops</title>
+      <link>https://www.andyibanez.com/workshops/</link>
+      <pubDate>Sat, 26 Sep 2020 00:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/workshops/</guid>
+      <description>This page lists all the Workshops I have given along with the respective projects when applicable and slides. Feel free to checkout the projects and download the slides even if you couldn&amp;rsquo;t assist the workshop.
+ try! Swift World: An Overview of the Codern Concurrency Features Introduced in Swift 5.5  </description>
     </item>
     
     <item>
