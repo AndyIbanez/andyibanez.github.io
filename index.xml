@@ -13,10 +13,10 @@
     
     <item>
       <title>try! Swift World: An Overview of the Modern Concurrency Features Introduced in Swift 5.5</title>
-      <link>https://www.andyibanez.com/workshops/tsw-concurrency2021/</link>
+      <link>https://www.andyibanez.com/workshop/tsw-concurrency2021/</link>
       <pubDate>Fri, 17 Sep 2021 00:00:00 -0400</pubDate>
       
-      <guid>https://www.andyibanez.com/workshops/tsw-concurrency2021/</guid>
+      <guid>https://www.andyibanez.com/workshop/tsw-concurrency2021/</guid>
       <description>Workshop Description Swift 5.5 introduced an exciting new set of concurrency APIs. Starting with async/await, the language has received a set of features that allow us to write shorter, concise, and more obvious concurrent code. You will learn how the new concurrency APIs help us avoid &amp;ldquo;pyramids of doom&amp;rdquo; with async/await, how structured concurrency is cooperative and how to apply it in the world; how unstructured concurrency gives us more control without sacrificing code readability; how to transform callback and even delegate based code into async/await, and how actors isolate their own state to make them usable across concurrent code.</description>
     </item>
     
