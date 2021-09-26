@@ -6,7 +6,7 @@
     <description>Recent content on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 20 Aug 2020 00:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 26 Sep 2020 00:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/index.xml" rel="self" type="application/rss+xml" />
     
@@ -496,10 +496,10 @@ Improvements for Combinations of Languages and Regions. NSFormatter always does 
     
     <item>
       <title>Workshops</title>
-      <link>https://www.andyibanez.com/workshops/workshops/</link>
+      <link>https://www.andyibanez.com/workshops/</link>
       <pubDate>Sat, 26 Sep 2020 00:00:00 -0400</pubDate>
       
-      <guid>https://www.andyibanez.com/workshops/workshops/</guid>
+      <guid>https://www.andyibanez.com/workshops/</guid>
       <description>This page lists all the Workshops I have given along with the respective projects when applicable and slides. Feel free to checkout the projects and download the slides even if you couldn&amp;rsquo;t assist the workshop.
  try! Swift World: An Overview of the Codern Concurrency Features Introduced in Swift 5.5 (September 17, 2021)  </description>
     </item>
