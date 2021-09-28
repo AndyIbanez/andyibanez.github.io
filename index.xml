@@ -35,8 +35,7 @@
       <pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate>
       
       <guid>https://www.andyibanez.com/posts/using-asyncsequence-in-swift/</guid>
-      <description>This article is part of my Modern Concurrency in Swift Article Series.
-Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift @MainActor and Global Actors in Swift Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model Using AsyncSequence in Swift Modern Swift Concurrency Summary, Cheatsheet, and Thanks  Along the new concurrency APIs introduced in Swift at WWDC2021, we have AsyncSequence.</description>
+      <description>This article is part of my Modern Concurrency in Swift Article Series.*  Table of Contents  Modern Concurrency in Swift: Introduction Understanding async/await in Swift Converting closure-based code into async/await in Swift Structured Concurrency in Swift: Using async let Structured Concurrency With Group Tasks in Swift Introduction to Unstructured Concurrency in Swift Unstructured Concurrency With Detached Tasks in Swift Understanding Actors in the New Concurrency Model in Swift @MainActor and Global Actors in Swift Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model Using AsyncSequence in Swift Modern Swift Concurrency Summary, Cheatsheet, and Thanks  Along the new concurrency APIs introduced in Swift at WWDC2021, we have AsyncSequence.</description>
     </item>
     
     <item>
