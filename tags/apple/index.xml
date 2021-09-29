@@ -6,10 +6,21 @@
     <description>Recent content in apple on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Sep 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 29 Sep 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/apple/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>The Mysterious CodableWithConfiguration Protocol</title>
+      <link>https://www.andyibanez.com/posts/the-mysterious-codablewithconfiguration-protocol/</link>
+      <pubDate>Wed, 29 Sep 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/the-mysterious-codablewithconfiguration-protocol/</guid>
+      <description>The Mysterious CodableWithConfiguration Protocol
+Every year, at WWDC, Apple gives us a lot of new things to play around with. For the big new things, they prepare session videos and labs so developers can experiment with the new technologies and hopefully integrate them in their apps by the time the new OSes are out.
+The &amp;ldquo;big things&amp;rdquo; are one thing, but Apple introduces a bunch of new APIs every year. Many (oh boy, many) of them do not get any coverage at WWDC at all.</description>
+    </item>
     
     <item>
       <title>Modern Swift Concurrency Summary, Cheatsheet, and Thanks</title>
