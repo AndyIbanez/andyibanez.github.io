@@ -506,9 +506,9 @@ metadataTask.resume()
     }
 
     <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">pickContact</span>() async -&gt; CNContact? {
-        viewController.present(picker, animated: <span style="color:#66d9ef">true</span>)
         <span style="color:#66d9ef">return</span> await withCheckedContinuation({ (continuation: ContactCheckedContinuation) <span style="color:#66d9ef">in</span>
             <span style="color:#66d9ef">self</span>.contactContinuation = continuation
+            viewController.present(picker, animated: <span style="color:#66d9ef">true</span>)
         })
     }
 
@@ -543,13 +543,6 @@ metadataTask.resume()
 <h1 id="notes">Notes</h1>
 <p>*: You should always stop and think if going that extra mile is actually worth it or if it is overkill. Over-engineering is a real and common problem in software engineering.</p>
 
-    <hr>
-
-  <p>If you find any inaccuracies (and that includes typos) or problems in this article please tweet at me (<a href="https://twitter.com/AndyIbanezK" target="_blank">@AndyIbanezK</a>) or send me an e-mail to website[at]andyibanez[dot]com.</p>
-
-  <p>Please do not e-mail to ask me to cross-promote your website or any other soliciting of that kind. AndyIbanez.com is a personal blog, and unless there's a chance to enter a sponsorship relationship with you, I may ignore your message.</p>
-
-  <p>Thank you for helping me improve the quality of my blog!</p>
   </div>
   
 
