@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 29 Sep 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 13 Oct 2021 07:00:00 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Ten Years and Over a 100 Articles Later - And Break Notice</title>
+      <link>https://www.andyibanez.com/posts/ten-years-and-over-100-articles-later/</link>
+      <pubDate>Wed, 13 Oct 2021 07:00:00 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/ten-years-and-over-100-articles-later/</guid>
+      <description>This year marks 10 years since I started writing iOS apps. It also marks 10 years since I launched the first version of my blog, which was a thing hosted on Tumblr and on a completely different domain that I am not going to name here. A year after the Tumblr blog, I purchased andyibanez.com, got proper hosting, and started blogging on Wordpress with whatever little money I could make during my college days.</description>
+    </item>
     
     <item>
       <title>The Mysterious CodableWithConfiguration Protocol</title>
