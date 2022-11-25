@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.andyibanez.com/posts/modern-concurrency-apple-platforms-now-available/</loc>
+    <lastmod>2022-11-24T19:46:21-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.andyibanez.com/posts/</loc>
+    <lastmod>2022-11-24T19:46:21-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.andyibanez.com/tags/apple/</loc>
     <lastmod>2021-10-13T07:00:00-04:00</lastmod>
   </url>
@@ -19,11 +29,6 @@
   
   <url>
     <loc>https://www.andyibanez.com/tags/ios/</loc>
-    <lastmod>2021-10-13T07:00:00-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.andyibanez.com/posts/</loc>
     <lastmod>2021-10-13T07:00:00-04:00</lastmod>
   </url>
   

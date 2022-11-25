@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Oct 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 24 Nov 2022 19:46:21 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>&#34;Modern Concurrency on Apple Platforms&#34; Book Now Available</title>
+      <link>https://www.andyibanez.com/posts/modern-concurrency-apple-platforms-now-available/</link>
+      <pubDate>Thu, 24 Nov 2022 19:46:21 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/modern-concurrency-apple-platforms-now-available/</guid>
+      <description>title: &amp;ldquo;Modern Concurrency in Swift: Introduction&amp;rdquo; date: 2021-06-16T07:00:00-04:00 originalDate: 2021-06-13T00:17:10-04:00 publishDate: 2021-06-16T07:00:00-04:00 draft: false highlightjslanguages:
+ swift objectivec categories: development tags: swift apple programming ios concurrency async await ios macos ipados watchos multithreading description: &amp;ldquo;My book, &amp;quot;Modern Concurrency on Apple Platforms&amp;quot; is now available for purchase.&amp;rdquo; keywords: swift apple programming ios concurrency async await ios macos ipados watchos multithreading   I am very happy to announce that I have successfully written and published my first book on Apple Platforms development.</description>
+    </item>
     
     <item>
       <title>Ten Years and Over a 100 Articles Later - And Break Notice</title>
