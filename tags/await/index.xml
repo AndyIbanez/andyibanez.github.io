@@ -6,10 +6,20 @@
     <description>Recent content in await on Andy Ibanez</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Sep 2021 07:00:00 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 24 Nov 2022 19:46:21 -0400</lastBuildDate>
     
 	<atom:link href="https://www.andyibanez.com/tags/await/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>&#34;Modern Concurrency on Apple Platforms&#34; Book Now Available</title>
+      <link>https://www.andyibanez.com/posts/modern-concurrency-apple-platforms-now-available/</link>
+      <pubDate>Thu, 24 Nov 2022 19:46:21 -0400</pubDate>
+      
+      <guid>https://www.andyibanez.com/posts/modern-concurrency-apple-platforms-now-available/</guid>
+      <description>I am very happy to announce that I have successfully written and published my first book on Apple Platforms development. If you were wondering why I haven&amp;rsquo;t blogged in over a year, this is the reason.
+Earlier this year I was contacted by Apress to write a topic on this after they saw my blog tutorial series on this topic. It is important to note, that this book is not just a copy paste of those articles in book form.</description>
+    </item>
     
     <item>
       <title>Modern Swift Concurrency Summary, Cheatsheet, and Thanks</title>
