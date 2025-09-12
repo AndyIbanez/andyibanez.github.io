@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Wwdc2021 on Andy Ibanez</title><link>https://www.andyibanez.com/tags/wwdc2021/</link><description>Recent content in Wwdc2021 on Andy Ibanez</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 29 Sep 2021 07:00:00 -0400</lastBuildDate><atom:link href="https://www.andyibanez.com/tags/wwdc2021/index.xml" rel="self" type="application/rss+xml"/><item><title>The Mysterious CodableWithConfiguration Protocol</title><link>https://www.andyibanez.com/posts/the-mysterious-codablewithconfiguration-protocol/</link><pubDate>Wed, 29 Sep 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/the-mysterious-codablewithconfiguration-protocol/</guid><description>&lt;p>The Mysterious CodableWithConfiguration Protocol&lt;/p>
+&lt;p>Every year, at WWDC, Apple gives us a lot of new things to play around with. For the big new things, they prepare session videos and labs so developers can experiment with the new technologies and hopefully integrate them in their apps by the time the new OSes are out.&lt;/p>
+&lt;p>The &amp;ldquo;big things&amp;rdquo; are one thing, but Apple introduces &lt;em>a bunch&lt;/em> of new APIs every year. Many (oh boy, &lt;strong>many&lt;/strong>) of them do not get any coverage at WWDC at all. Not in a session, and sometimes not even a small mention of them anywhere.&lt;/p></description></item><item><title>Modern Swift Concurrency Summary, Cheatsheet, and Thanks</title><link>https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/</link><pubDate>Wed, 08 Sep 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/</guid><description>&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>Since WWDC21, we have talked, extensively, about all the new concurrency features introduced in Swift 5.5. We covered &lt;em>a lot&lt;/em> of topics, so I decided to finish off this series writing a summary article were we cover the most important topics of each article. Links will be given to the relevant articles when necessary in case this summary is not enough.&lt;/p></description></item><item><title>Using AsyncSequence in Swift</title><link>https://www.andyibanez.com/posts/using-asyncsequence-in-swift/</link><pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/using-asyncsequence-in-swift/</guid><description>&lt;ul>
+&lt;li>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.*&lt;/li>
+&lt;/ul>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Using AsyncSequence in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>Along the new concurrency APIs introduced in Swift at WWDC2021, we have AsyncSequence. &lt;code>AsyncSequence&lt;/code> is a collection protocol that allow us to receive data in loops and even top higher order functions - such as &lt;code>filter&lt;/code>, &lt;code>map&lt;/code> and &lt;code>reduce&lt;/code> - asynchronously, being able to &lt;code>await&lt;/code> for new data as it becomes available.&lt;/p></description></item><item><title>Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model</title><link>https://www.andyibanez.com/posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model/</link><pubDate>Wed, 18 Aug 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>Sharing Data Across Tasks with @TaskLocal with the new Swift Concurrency Model&lt;/p></description></item><item><title>@MainActor and Global Actors in Swift</title><link>https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/</link><pubDate>Wed, 11 Aug 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>@MainActor and Global Actors in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>We have recently talked about &lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">actors&lt;/a>, what they are, and how to use them. If you remember, an actor controls access to its properties, so a member doesn&amp;rsquo;t get written from different processes at the same time, avoiding corrupted data.&lt;/p></description></item><item><title>Understanding Actors in the New Concurrency Model in Swift</title><link>https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/</link><pubDate>Wed, 04 Aug 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Understanding Actors in the New Concurrency Model in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>When we are working with concurrency, the most common problem developers face are data races. Whether it is a task updating a value at the same time another task is reading it or two tasks writing a value so that it it has an invalid value, data races are probably the main pain point of concurrency. Data races are very easy create, and hard to debug. There are entire books dedicated to the problem of data races and established patterns to avoid them.&lt;/p></description></item><item><title>Unstructured Concurrency With Detached Tasks in Swift</title><link>https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/</link><pubDate>Wed, 28 Jul 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.&lt;/em>&lt;/p>
+&lt;p>&lt;em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Unstructured Concurrency With Detached Tasks in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>&lt;em>Understanding async tasks is a requirement to read this article. If you don&amp;rsquo;t understand async tasks, you can read the &lt;a href="">Introduction to Unstructured Concurrency in Swift&lt;/a> article from this Article Series&lt;/em>&lt;/p></description></item><item><title>Introduction to Unstructured Concurrency in Swift</title><link>https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/</link><pubDate>Wed, 14 Jul 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.&lt;/em>&lt;/p>
+&lt;p>&lt;em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Introduction to Unstructured Concurrency in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>&lt;em>Understanding Structured Concurrency in Swift is a pre-requisite to read this article. If you aren&amp;rsquo;t familiar with that concept, feel free to read the &lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Beginning Concurrency in Swift: Structured Concurrency and async-let&lt;/a> and &lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift&lt;/a> articles of this series.&lt;/em>&lt;/p></description></item><item><title>Structured Concurrency With Task Groups in Swift</title><link>https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/</link><pubDate>Wed, 07 Jul 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.&lt;/em>&lt;/p>
+&lt;p>&lt;em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Structured Concurrency With Task Groups in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>&lt;em>Understanding Structured Concurrency and &lt;code>async let&lt;/code> is a pre-requisite to read this article. If you aren&amp;rsquo;t familiar with that concept, feel free to read the third part of this article series: &lt;a href="">Beginning Concurrency in Swift: Structured Concurrency and async-let&lt;/a>.&lt;/em>&lt;/p></description></item><item><title>Structured Concurrency in Swift: Using async let</title><link>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</link><pubDate>Wed, 30 Jun 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift&lt;/a> article series.&lt;/em>&lt;/p>
+&lt;p>&lt;em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Structured Concurrency in Swift: Using async let&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>&lt;em>Understanding async/await is a pre-requisite to read this article. If you aren&amp;rsquo;t familiar with that concept, feel free to read the first part of this article series: &lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>.&lt;/em>&lt;/p></description></item><item><title>Converting closure-based code into async/await in Swift</title><link>https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/</link><pubDate>Wed, 23 Jun 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift&lt;/a> article series.&lt;/em>&lt;/p>
+&lt;p>&lt;em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Converting closure-based code into async/await in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Task Groups in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>&lt;em>To better benefit from this article, you should be familiar with async/await. If you aren&amp;rsquo;t, feel free to read the first part of this article series: &lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>.&lt;/em>&lt;/p></description></item><item><title>Understanding async/await in Swift</title><link>https://www.andyibanez.com/posts/understanding-async-await-in-swift/</link><pubDate>Wed, 16 Jun 2021 07:01:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/understanding-async-await-in-swift/</guid><description>&lt;p>&lt;em>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift&lt;/a> article series.&lt;/em>&lt;/p>
+&lt;p>&lt;em>This article was originally written creating examples using Xcode 13 beta 1. The article, code samples, and provided sample project have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Understanding async/await in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/using-asyncsequence-in-swift/">Using AsyncSequence in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>Before you try to dive in with concurrency in Swift, you need to understand async/await. There&amp;rsquo;s no way around it. While async/await are not the only &lt;a href="https://www.andyibanez.com/posts/multithreading-options-on-apple-platforms/">concurrency options&lt;/a>, Apple&amp;rsquo;s SDKs are starting to make heavy use of them. There is no doubt that third-party library providers will start offering these as well.&lt;/p></description></item><item><title>Modern Concurrency in Swift: Introduction</title><link>https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/</link><pubDate>Wed, 16 Jun 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/</guid><description>&lt;h1 id="introduction">Introduction&lt;/h1>
+&lt;p>&lt;em>This article series was originally written creating examples using Xcode 13 beta 1. The articles in the series, code samples, and provided sample projects have been updated for Xcode 13 beta 3.&lt;/em>&lt;/p>
+&lt;p>This is a tutorial series focused on the new async/await APIs Apple introduced in WWDC2021. I do not know how many articles it is going to have yet, but they will be posted in the upcoming weeks.&lt;/p></description></item><item><title>My WWDC 2021 Wishlist</title><link>https://www.andyibanez.com/posts/my-wwdc-2021-wishlist/</link><pubDate>Wed, 26 May 2021 07:00:07 -0400</pubDate><guid>https://www.andyibanez.com/posts/my-wwdc-2021-wishlist/</guid><description>&lt;p>WWDC is undoubtly my favorite event of the year, and it has been for the past 11 years. This week I&amp;rsquo;m taking a break from writing technical articles and I want to talk about my personal wishlist, both for features and developers tools.&lt;/p>
+&lt;h2 id="writing-actual-viewcontrollers-for-the-settings-app">Writing Actual ViewControllers for the Settings App&lt;/h2>
+&lt;p>The iOS Settings.app was supposed to be a place where you as a user, have a centralized place to configure all your settings for all your apps. I have always liked the idea of having this central area for settings instead of having to have a dedicated settings screen within each app.&lt;/p></description></item></channel></rss>

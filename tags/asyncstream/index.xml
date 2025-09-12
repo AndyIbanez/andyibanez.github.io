@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Asyncstream on Andy Ibanez</title><link>https://www.andyibanez.com/tags/asyncstream/</link><description>Recent content in Asyncstream on Andy Ibanez</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 01 Sep 2021 07:00:00 -0400</lastBuildDate><atom:link href="https://www.andyibanez.com/tags/asyncstream/index.xml" rel="self" type="application/rss+xml"/><item><title>Using AsyncSequence in Swift</title><link>https://www.andyibanez.com/posts/using-asyncsequence-in-swift/</link><pubDate>Wed, 01 Sep 2021 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/using-asyncsequence-in-swift/</guid><description>&lt;ul>
+&lt;li>This article is part of my &lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift Article Series&lt;/a>.*&lt;/li>
+&lt;/ul>
+&lt;h6 id="table-of-contents">Table of Contents&lt;/h6>
+&lt;ol>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-concurrency-in-swift-introduction/">Modern Concurrency in Swift: Introduction&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-async-await-in-swift/">Understanding async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/converting-closure-based-code-into-async-await-in-swift/">Converting closure-based code into async/await in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-in-swift-using-async-let/">Structured Concurrency in Swift: Using async let&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/structured-concurrency-with-group-tasks-in-swift/">Structured Concurrency With Group Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/introduction-to-unstructured-concurrency-in-swift/">Introduction to Unstructured Concurrency in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/unstructured-concurrency-with-detached-tasks-in-swift/">Unstructured Concurrency With Detached Tasks in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/understanding-actors-in-the-new-concurrency-model-in-swift/">Understanding Actors in the New Concurrency Model in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/mainactor-and-global-actors-in-swift/">@MainActor and Global Actors in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="posts/sharing-data-across-tasks-tasklocal-new-swift-concurrency-model">Sharing Data Across Tasks with the @TaskLocal property wrapper in the new Swift Concurrency Model&lt;/a>&lt;/li>
+&lt;li>&lt;strong>Using AsyncSequence in Swift&lt;/strong>&lt;/li>
+&lt;li>&lt;a href="https://www.andyibanez.com/posts/modern-swift-concurrency-summary-cheatsheet-thanks/">Modern Swift Concurrency Summary, Cheatsheet, and Thanks&lt;/a>&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>Along the new concurrency APIs introduced in Swift at WWDC2021, we have AsyncSequence. &lt;code>AsyncSequence&lt;/code> is a collection protocol that allow us to receive data in loops and even top higher order functions - such as &lt;code>filter&lt;/code>, &lt;code>map&lt;/code> and &lt;code>reduce&lt;/code> - asynchronously, being able to &lt;code>await&lt;/code> for new data as it becomes available.&lt;/p></description></item></channel></rss>

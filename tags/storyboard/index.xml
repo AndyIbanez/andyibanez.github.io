@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Storyboard on Andy Ibanez</title><link>https://www.andyibanez.com/tags/storyboard/</link><description>Recent content in Storyboard on Andy Ibanez</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Wed, 13 May 2020 07:00:00 -0400</lastBuildDate><atom:link href="https://www.andyibanez.com/tags/storyboard/index.xml" rel="self" type="application/rss+xml"/><item><title>Dependency Injection with Storyboards on Apple Platforms</title><link>https://www.andyibanez.com/posts/dependency-injection-storyboards/</link><pubDate>Wed, 13 May 2020 07:00:00 -0400</pubDate><guid>https://www.andyibanez.com/posts/dependency-injection-storyboards/</guid><description>&lt;p>Every iOS developer has written a line of code like this one at least once:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f38ba8">class&lt;/span> &lt;span style="color:#f9e2af">DollInfoViewController&lt;/span>: UIViewController {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> 
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f38ba8">var&lt;/span> &lt;span style="color:#f5e0dc">dollModel&lt;/span>: Doll?
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#cba6f7">override&lt;/span> &lt;span style="color:#f38ba8">func&lt;/span> &lt;span style="color:#89b4fa">viewDidLoad&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#fab387">super&lt;/span>.viewDidLoad()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#6c7086;font-style:italic">// Do any additional setup after loading the view.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Or in the worst case, you may have seen code like this:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f38ba8">var&lt;/span> &lt;span style="color:#f5e0dc">dollModel&lt;/span>: Doll!
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Then, when you want to create a view controller of that type you&amp;rsquo;d do:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6c7086;font-style:italic">// First we need to check if we can actually instantiate the view controller.&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#cba6f7">guard&lt;/span> &lt;span style="color:#f38ba8">let&lt;/span> &lt;span style="color:#f5e0dc">dollInfoVc&lt;/span> = storyboard?.instantiateViewController(withIdentifier: &lt;span style="color:#a6e3a1">&amp;#34;DollInfo&amp;#34;&lt;/span>) &lt;span style="color:#cba6f7">as&lt;/span>? DollInfoViewController &lt;span style="color:#cba6f7">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#89dceb">fatalError&lt;/span>(&lt;span style="color:#a6e3a1">&amp;#34;Unable to load view controller.&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#6c7086;font-style:italic">// Then we pass in the data we want to work with. &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>dollInfoVc.dollModel = doll
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Code like this is &lt;em>very&lt;/em> error prone. The worst part is that up untul iOS 13, it was pretty much necessary to pass data around from view controller to view controller. It&amp;rsquo;s not possible to do this in any different way in different iOS versions.&lt;/p></description></item></channel></rss>
